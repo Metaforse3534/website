@@ -1,0 +1,501 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth select-none">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orbit AI — Your Intelligence, Amplified</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <link rel="icon" type="image/png" href="Public/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="Public/favicon.svg" />
+    <link rel="shortcut icon" href="Public/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="Public/apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+
+    <style>
+        :root {
+            --bg: #050505;
+            --panel: rgba(13, 13, 13, 0.7);
+            --panel-solid: #0d0d0d;
+            --text-main: #ffffff;
+            --text-muted: #71717a;
+            --border: rgba(255, 255, 255, 0.04);
+            --accent: #ffffff;
+            --accent-glow: rgba(255, 255, 255, 0.02);
+            --announcement-bg: rgba(255, 255, 255, 0.03);
+        }
+
+        .light-mode {
+            --bg: #fafafa;
+            --panel: rgba(244, 244, 245, 0.7);
+            --panel-solid: #f4f4f5;
+            --text-main: #09090b;
+            --text-muted: #71717a;
+            --border: rgba(0, 0, 0, 0.06);
+            --accent: #09090b;
+            --accent-glow: rgba(0, 0, 0, 0.015);
+            --announcement-bg: rgba(0, 0, 0, 0.03);
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text-main); 
+            transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .font-space { font-family: 'Space Grotesk', sans-serif; }
+
+        .reveal { 
+            opacity: 0; 
+            transform: translateY(15px); 
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); 
+            will-change: transform, opacity;
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+
+        #hero-glow {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(800px circle at var(--x, 50%) var(--y, 30%), var(--accent-glow), transparent 60%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .app-panel {
+            background: var(--panel);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .app-panel:hover {
+            border-color: rgba(255, 255, 255, 0.08);
+            background: rgba(20, 20, 20, 0.8);
+        }
+        
+        .light-mode .app-panel:hover {
+            border-color: rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .terminal-loader { border-right: 1px solid var(--text-main); animation: blink 0.8s step-end infinite; }
+        @keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--text-main); } }
+
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="announcement-bar" class="fixed top-0 left-0 w-full z-[60] border-b border-white/[0.04] dark:border-white/[0.04] light-mode:border-black/[0.05] transition-all duration-300 hidden" style="background-color: var(--announcement-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+        <div class="max-w-7xl mx-auto px-6 h-9 flex items-center justify-between text-[11px] font-medium tracking-tight">
+            <div class="flex items-center gap-2 mx-auto">
+                <span class="px-1.5 py-0.5 bg-zinc-900 text-zinc-100 dark:bg-zinc-800 dark:text-zinc-200 light-mode:bg-zinc-200 light-mode:text-zinc-800 text-[9px] font-mono rounded font-bold uppercase tracking-wider">Update</span>
+                <span class="text-zinc-400 dark:text-zinc-300 light-mode:text-zinc-600">Orbit Build v0.12 is live. Experiencing 40% faster multi-agent execution times.</span>
+                <a href="/Routes/blog.html" class="text-zinc-100 hover:underline dark:text-white light-mode:text-zinc-900 ml-1">Learn more &rarr;</a>
+            </div>
+            <button onclick="dismissAnnouncement()" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-700 p-1 transition duration-150 absolute right-4">
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <div id="cookie-banner" class="fixed bottom-6 right-6 left-6 md:left-auto md:w-[380px] z-[100] app-panel p-5 rounded-xl hidden shadow-2xl transition-all duration-500 translate-y-6 opacity-0">
+        <div class="flex items-start gap-3.5">
+            <div class="text-zinc-400 mt-0.5">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 2a10 10 0 0 1 10 10h-2a8 8 0 0 0-8-8V2z"/></svg>
+            </div>
+            <div class="flex-1">
+                <h4 class="text-xs font-semibold tracking-tight mb-1">Telemetry Protocol</h4>
+                <p class="text-xs leading-relaxed mb-4 text-zinc-400 light-mode:text-zinc-500">Orbit uses dynamic configurations to preserve secure agent environments. Review our <a href="/Routes/cookies.html" class="text-zinc-200 light-mode:text-zinc-800 hover:underline">Cookie Directive</a>.</p>
+                <div class="flex gap-2">
+                    <button onclick="acceptCookies()" class="flex-1 px-3 py-1.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-black light-mode:bg-zinc-900 light-mode:hover:bg-zinc-800 light-mode:text-white text-xs font-medium rounded-md transition duration-150">Accept</button>
+                    <button onclick="closeBanner()" class="px-3 py-1.5 border border-white/5 light-mode:border-black/5 hover:border-white/10 text-zinc-400 dark:text-zinc-400 light-mode:text-zinc-500 hover:text-zinc-200 text-xs font-medium rounded-md transition duration-150">Decline</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav id="main-nav" class="fixed w-full z-50 border-b border-white/[0.03] dark:border-white/[0.03] light-mode:border-black/[0.05] backdrop-blur-md bg-black/10 dark:bg-black/10 light-mode:bg-white/10 transition-all duration-200 top-0">
+        <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+            <div class="font-space text-sm font-bold tracking-tight cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                ORBIT <span class="text-zinc-500 font-light text-[10px] font-sans tracking-widest ml-1.5">BETA</span>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#capabilities" class="text-xs text-zinc-400 light-mode:text-zinc-600 hover:text-zinc-200 light-mode:hover:text-zinc-900 transition duration-150">Capabilities</a>
+                <a href="#models" class="text-xs text-zinc-400 light-mode:text-zinc-600 hover:text-zinc-200 light-mode:hover:text-zinc-900 transition duration-150">AI Models</a>
+                <a href="#pricing" class="text-xs text-zinc-400 light-mode:text-zinc-600 hover:text-zinc-200 light-mode:hover:text-zinc-900 transition duration-150">Pricing</a>
+                <a href="https://discord.gg/6dSJ7TPbg3" class="text-xs text-zinc-400 light-mode:text-zinc-600 hover:text-zinc-200 light-mode:hover:text-zinc-900 transition duration-150">Discord</a>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <button onclick="toggleTheme()" class="p-1.5 text-zinc-400 light-mode:text-zinc-600 hover:text-zinc-200 light-mode:hover:text-zinc-900 transition duration-150" aria-label="Toggle Theme">
+                    <svg id="theme-icon" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
+                    </svg>
+                </button>
+                <a href="https://www.orbitdev.org/" class="text-xs text-zinc-400 light-mode:text-zinc-600 hover:text-zinc-200 light-mode:hover:text-zinc-900 transition duration-150">Login</a>
+                <a href="https://www.orbitdev.org/" class="bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-black light-mode:bg-zinc-900 light-mode:hover:bg-zinc-800 light-mode:text-white px-3.5 py-1.5 rounded-md text-xs font-medium transition duration-150">Join Orbit</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative pt-36 pb-20 px-6 min-h-[90vh] flex items-center justify-center border-b border-white/[0.02]">
+        <div id="hero-glow"></div>
+        <div class="max-w-4xl mx-auto relative z-10 text-center">
+            <div class="reveal inline-flex items-center gap-2 px-3 py-1 border border-white/5 dark:border-white/5 light-mode:border-black/5 bg-white/[0.01] rounded-full text-[11px] font-medium text-zinc-400 light-mode:text-zinc-600 mb-6">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                System Live
+            </div>
+            <h1 class="reveal reveal-delay-1 text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-[1.1] font-space">
+                What are we working on?<br><span class="text-zinc-400 light-mode:text-zinc-500">Your Mission is ours.</span>
+            </h1>
+            <p class="reveal reveal-delay-2 max-w-xl mx-auto text-sm md:text-base mb-10 text-zinc-400 light-mode:text-zinc-600 font-normal leading-relaxed">
+                Deploy autonomous intelligence systems, interface natively with sandboxed knowledge containers, and scale distributed workflows instantly.
+            </p>
+            <div class="reveal reveal-delay-2 flex flex-wrap justify-center gap-3.5 mb-14">
+                <a href="https://www.orbitdev.org/" class="px-5 py-2.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-black light-mode:bg-zinc-900 light-mode:hover:bg-zinc-800 light-mode:text-white font-medium rounded-lg transition duration-150 text-xs shadow-sm">
+                    Initialize Access
+                </a>
+                <a href="https://github.com/Metaforse3534/OrbitAIPublic" class="px-5 py-2.5 app-panel text-zinc-300 light-mode:text-zinc-700 font-medium rounded-lg transition duration-150 text-xs">
+                    Download Core
+                </a>
+            </div>
+            
+            <div class="max-w-2xl mx-auto app-panel rounded-xl overflow-hidden reveal flex flex-col min-h-[260px] text-left shadow-2xl">
+                <div class="bg-white/[0.02] px-4 py-2.5 border-b border-white/[0.04] light-mode:border-black/[0.05] flex items-center justify-between">
+                    <span class="text-[11px] text-zinc-500 font-mono">agent_simulation_pipeline.sh</span>
+                    <div class="flex space-x-1.5">
+                        <div class="w-2 h-2 rounded-full bg-zinc-800 light-mode:bg-zinc-300"></div>
+                        <div class="w-2 h-2 rounded-full bg-zinc-800 light-mode:bg-zinc-300"></div>
+                        <div class="w-2 h-2 rounded-full bg-zinc-800 light-mode:bg-zinc-300"></div>
+                    </div>
+                </div>
+                <div class="p-5 font-mono text-xs flex-1 bg-black/20 light-mode:bg-zinc-50/50 leading-relaxed">
+                    <div id="feature-terminal"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="capabilities" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="mb-12 reveal">
+            <h2 class="text-xs uppercase tracking-wider text-zinc-500 mb-2 font-semibold">Core Capabilities</h2>
+            <h3 class="text-2xl md:text-3xl font-bold tracking-tight font-space">Autonomous interface modules.</h3>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
+            <div class="app-panel p-6 rounded-xl reveal flex flex-col justify-between">
+                <div>
+                    <div class="w-8 h-8 rounded-lg bg-zinc-900 border border-white/5 flex items-center justify-center text-zinc-400 mb-5">
+                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/></svg>
+                    </div>
+                    <h4 class="text-sm font-semibold mb-2 font-space">Voice Pipeline</h4>
+                    <p class="text-xs text-zinc-400 light-mode:text-zinc-500 leading-relaxed">Stream native complex commands over high-frequency voice streams. Built natively for real-time app protocols.</p>
+                </div>
+                <div class="text-[10px] font-mono text-zinc-600 mt-6 tracking-wider">01 // INTEGRATED</div>
+            </div>
+
+            <div class="app-panel p-6 rounded-xl reveal reveal-delay-1 flex flex-col justify-between">
+                <div>
+                    <div class="w-8 h-8 rounded-lg bg-zinc-900 border border-white/5 flex items-center justify-center text-zinc-400 mb-5">
+                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+                    </div>
+                    <h4 class="text-sm font-semibold mb-2 font-space">Knowledge Synthesis</h4>
+                    <p class="text-xs text-zinc-400 light-mode:text-zinc-500 leading-relaxed">Append localized context data frameworks, live script repositories, or unstructured runtime structures effortlessly.</p>
+                </div>
+                <div class="text-[10px] font-mono text-zinc-600 mt-6 tracking-wider">02 // CONTEXTUAL</div>
+            </div>
+
+            <div class="app-panel p-6 rounded-xl reveal reveal-delay-2 flex flex-col justify-between">
+                <div>
+                    <div class="w-8 h-8 rounded-lg bg-zinc-900 border border-white/5 flex items-center justify-center text-zinc-400 mb-5">
+                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    </div>
+                    <h4 class="text-sm font-semibold mb-2 font-space">Agent Multi-Build</h4>
+                    <p class="text-xs text-zinc-400 light-mode:text-zinc-500 leading-relaxed">Map complex multi-layer architectures or spawn asynchronous processing nodes in sandboxed container meshes.</p>
+                </div>
+                <div class="text-[10px] font-mono text-zinc-600 mt-6 tracking-wider">03 // DISTRIBUTED</div>
+            </div>
+
+            <div class="app-panel p-6 rounded-xl reveal reveal-delay-2 flex flex-col justify-between">
+                <div>
+                    <div class="w-8 h-8 rounded-lg bg-zinc-900 border border-white/5 flex items-center justify-center text-zinc-400 mb-5">
+                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                    </div>
+                    <h4 class="text-sm font-semibold mb-2 font-space">Browser Sync</h4>
+                    <p class="text-xs text-zinc-400 light-mode:text-zinc-500 leading-relaxed">Seamlessly integrate with modern web environments to compile, observe, and interact with live instances.</p>
+                </div>
+                <div class="text-[10px] font-mono text-zinc-600 mt-6 tracking-wider">04 // ORCHESTRATED</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="models" class="py-24 px-6 border-y border-white/[0.02] bg-white/[0.005] dark:bg-white/[0.005] light-mode:bg-black/[0.005]">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-12 reveal">
+                <h2 class="text-xs uppercase tracking-wider text-zinc-500 mb-2 font-semibold">Neural Inventory</h2>
+                <h3 class="text-2xl md:text-3xl font-bold tracking-tight font-space">Multi-Model Orchestration</h3>
+            </div>
+            <div class="grid md:grid-cols-3 gap-5">
+                <div class="app-panel p-6 rounded-xl reveal">
+                    <div class="flex justify-between items-center mb-5">
+                        <div class="text-zinc-400 bg-zinc-900 border border-white/5 px-2 py-0.5 rounded text-[10px] font-mono">GPT-5_CORE</div>
+                    </div>
+                    <h4 class="text-base font-semibold mb-1.5 font-space">ChatGPT 5</h4>
+                    <p class="text-xs text-zinc-400 light-mode:text-zinc-500 leading-relaxed">Advanced dynamic context parsing optimized specifically for complex semantic and cross-linguistic arrays.</p>
+                </div>
+                
+                <div class="app-panel p-6 rounded-xl reveal reveal-delay-1">
+                    <div class="flex justify-between items-center mb-5">
+                        <div class="text-zinc-400 bg-zinc-900 border border-white/5 px-2 py-0.5 rounded text-[10px] font-mono">GEMINI_3_ULTRA</div>
+                    </div>
+                    <h4 class="text-base font-semibold mb-1.5 font-space">Gemini 3</h4>
+                    <p class="text-xs text-zinc-400 light-mode:text-zinc-500 leading-relaxed">High-volume data processing windows mapped with adaptive native multimodal structural analytics.</p>
+                </div>
+                
+                <div class="app-panel p-6 rounded-xl relative overflow-hidden reveal reveal-delay-2 border-zinc-800 dark:border-zinc-800 light-mode:border-zinc-200">
+                    <div class="flex justify-between items-center mb-5">
+                        <div class="text-zinc-200 bg-white/5 border border-white/10 light-mode:bg-black/5 light-mode:border-black/10 light-mode:text-zinc-800 px-2 py-0.5 rounded text-[10px] font-mono font-medium">PROPRIETARY</div>
+                    </div>
+                    <h4 class="text-base font-semibold mb-1.5 font-space">ProPulsar</h4>
+                    <p class="text-xs text-zinc-400 light-mode:text-zinc-500 leading-relaxed">Sub-millisecond latency framework configured directly for multi-layered autonomous system state routing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16 reveal">
+            <h2 class="text-xs uppercase tracking-wider text-zinc-500 mb-2 font-semibold">Uplink Allocation</h2>
+            <h3 class="text-2xl md:text-3xl font-bold tracking-tight font-space">Predictable Node Structure</h3>
+        </div>
+        <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-5 items-stretch">
+            <div class="app-panel p-6 rounded-xl flex flex-col justify-between reveal">
+                <div>
+                    <div class="text-zinc-500 text-xs font-semibold mb-3">Standard Node</div>
+                    <div class="text-3xl font-bold font-space mb-5">€0</div>
+                    <ul class="text-xs space-y-3 text-zinc-400 light-mode:text-zinc-500 mb-6">
+                        <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-zinc-600"></span> 1,000 Queries</li>
+                        <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-zinc-600"></span> Standard Queue Priority</li>
+                    </ul>
+                </div>
+                <button onclick="location.href='https://www.orbitdev.org/'" class="w-full py-2 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-900 border border-white/5 text-zinc-300 text-xs font-medium rounded-md transition duration-150">Initialize</button>
+            </div>
+            
+            <div class="app-panel p-6 rounded-xl bg-white/[0.01] flex flex-col justify-between relative reveal reveal-delay-1 shadow-2xl border-zinc-700 dark:border-zinc-700 light-mode:border-zinc-300">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-zinc-200 light-mode:text-zinc-800 text-xs font-semibold">Pro Pulsar</span>
+                        <span class="text-[9px] bg-white/10 text-white light-mode:bg-black/5 light-mode:text-zinc-800 px-1.5 py-0.5 rounded font-medium">Active</span>
+                    </div>
+                    <div class="text-3xl font-bold font-space mb-5">€29</div>
+                    <ul class="text-xs space-y-3 text-zinc-300 light-mode:text-zinc-600 mb-6">
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-white light-mode:bg-black"></span> Unlimited Engine Runtime</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-white light-mode:bg-black"></span> Priority Queue Uplink</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-white light-mode:bg-black"></span> Complete Agent Access</li>
+                    </ul>
+                </div>
+                <button onclick="location.href='shop.html'" class="w-full py-2 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-black light-mode:bg-zinc-900 light-mode:hover:bg-zinc-800 light-mode:text-white text-xs font-medium rounded-md transition duration-150 shadow-sm">Initialize</button>
+            </div>
+            
+            <div class="app-panel p-6 rounded-xl flex flex-col justify-between reveal reveal-delay-2">
+                <div>
+                    <div class="text-zinc-500 text-xs font-semibold mb-3">Pulsar Node</div>
+                    <div class="text-3xl font-bold font-space mb-5">€10</div>
+                    <ul class="text-xs space-y-3 text-zinc-400 light-mode:text-zinc-500 mb-6">
+                        <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-zinc-600"></span> Unlimited Instances</li>
+                        <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-zinc-600"></span> Autonomous Fleet Manager</li>
+                        <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-zinc-600"></span> Standard Cluster Latency</li>
+                    </ul>
+                </div>
+                <button onclick="location.href='shop2.html'" class="w-full py-2 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-900 border border-white/5 text-zinc-300 text-xs font-medium rounded-md transition duration-150">Initialize</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-16 border-t border-white/[0.03] dark:border-white/[0.03] light-mode:border-black/[0.05] bg-[#020202] dark:bg-[#020202] light-mode:bg-zinc-50">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-12 gap-10">
+            <div class="md:col-span-4">
+                <div class="font-space text-base font-bold mb-3 tracking-tight">ORBIT AI</div>
+                <p class="text-xs text-zinc-500 leading-relaxed max-w-xs">Operating under standard EU regulatory guidelines.<br>Registered Entity: Orbit Systems B.V.</p>
+            </div>
+            
+            <div class="md:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-6 text-xs">
+                <div class="flex flex-col space-y-2.5">
+                    <span class="text-zinc-400 dark:text-zinc-400 light-mode:text-zinc-800 font-medium tracking-tight">Directives</span>
+                    <a href="/Routes/terms.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Terms</a>
+                    <a href="/Routes/acceptabe.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Acceptable Use</a>
+                    <a href="/Routes/partnership.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Partnership Map</a>
+                    <a href="/Routes/stage.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Orbit Academy</a>
+                </div>
+                <div class="flex flex-col space-y-2.5">
+                    <span class="text-zinc-400 dark:text-zinc-400 light-mode:text-zinc-800 font-medium tracking-tight">Compliance</span>
+                    <a href="/Routes/privacy.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Privacy Regulation</a>
+                    <a href="/Routes/cookies.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Cookie Directives</a>
+                </div>
+                <div class="flex flex-col space-y-2.5">
+                    <span class="text-zinc-400 dark:text-zinc-400 light-mode:text-zinc-800 font-medium tracking-tight">Corporate</span>
+                    <a href="/Routes/architects.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Architects ↗</a>
+                    <a href="/Routes/Career.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Careers ↗</a>
+                    <a href="/Routes/network.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Network Topology ↗</a>
+                </div>
+                <div class="flex flex-col space-y-2.5">
+                    <span class="text-zinc-400 dark:text-zinc-400 light-mode:text-zinc-800 font-medium tracking-tight">Assistance</span>
+                    <a href="/Routes/support.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Support Center ↗</a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-12 text-center text-[10px] text-zinc-600 tracking-wider">&copy; 2026 Orbit Systems B.V. Platform environment configured.</div>
+    </footer>
+
+    <script>
+        const ANNOUNCEMENT_ID = "orbit_announcement_v0.0.1";
+
+        // Layout shifts balancing the top navbar based on announcement visibility status
+        function checkAnnouncement() {
+            const bar = document.getElementById('announcement-bar');
+            const nav = document.getElementById('main-nav');
+            
+            if (!localStorage.getItem(ANNOUNCEMENT_ID)) {
+                bar.classList.remove('hidden');
+                nav.style.top = "36px";
+                document.body.style.paddingTop = "36px";
+            } else {
+                bar.classList.add('hidden');
+                nav.style.top = "0px";
+                document.body.style.paddingTop = "0px";
+            }
+        }
+
+        function dismissAnnouncement() {
+            localStorage.setItem(ANNOUNCEMENT_ID, 'dismissed');
+            const bar = document.getElementById('announcement-bar');
+            const nav = document.getElementById('main-nav');
+            
+            bar.classList.add('hidden');
+            nav.style.top = "0px";
+            document.body.style.paddingTop = "0px";
+        }
+
+        // Mouse Move Radial Flare Effect Tracker
+        const hero = document.querySelector('section');
+        hero.addEventListener('mousemove', (e) => {
+            const rect = hero.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            hero.style.setProperty('--x', `${x}%`);
+            hero.style.setProperty('--y', `${y}%`);
+        });
+
+        // Trigger Reveal Frame Animations via Intersection Observer API
+        const observerOptions = { threshold: 0.05, rootMargin: '0px 0px -10px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // State Theme Variant Switches
+        function toggleTheme() {
+            const html = document.documentElement;
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+            
+            body.classList.toggle('light-mode');
+            const isLight = body.classList.contains('light-mode');
+            
+            if (isLight) {
+                html.classList.remove('dark');
+                icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                icon.innerHTML = '<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Mock Command Shell Emulator Pipeline
+        const terminalContent = [
+            { text: "$ orbit agent initialize --preset=collaborative_build", c: "#a1a1aa" },
+            { text: "➔ connecting to uplink network node matrix...", c: "#71717a" },
+            { text: "➔ mapping local configuration structural context...", c: "#71717a" },
+            { text: "  [SYSTEM] core_refactor map --optimize=true", c: "var(--text-main)" },
+            { text: "  [SYSTEM] status: active cluster connection validated", c: "var(--text-main)" },
+            { text: "➔ validation complete [SUCCESS] | framework latency: 4ms", c: "#f4f4f5" },
+            { text: "$ listening for automated project triggers...", c: "#a1a1aa" }
+        ];
+
+        let lineIdx = 0;
+        function typeTerminal() {
+            const term = document.getElementById('feature-terminal');
+            if (lineIdx < terminalContent.length) {
+                const line = document.createElement('div');
+                line.className = "mb-2 opacity-0 translate-x-[-2px] transition-all duration-200 font-mono text-xs";
+                line.style.color = terminalContent[lineIdx].c;
+                line.innerHTML = `<span class="terminal-loader">${terminalContent[lineIdx].text}</span>`;
+                term.appendChild(line);
+                
+                setTimeout(() => {
+                    line.classList.remove('opacity-0', 'translate-x-[-2px]');
+                }, 15);
+
+                if (lineIdx > 0) term.children[lineIdx - 1].querySelector('span').classList.remove('terminal-loader');
+                lineIdx++;
+                setTimeout(typeTerminal, 450);
+            } else {
+                setTimeout(() => { term.innerHTML = ''; lineIdx = 0; typeTerminal(); }, 8000);
+            }
+        }
+
+        window.onload = () => {
+            checkAnnouncement();
+            if (!localStorage.getItem('orbit_consent')) {
+                setTimeout(() => {
+                    const banner = document.getElementById('cookie-banner');
+                    banner.classList.remove('hidden');
+                    setTimeout(() => {
+                        banner.classList.remove('translate-y-6', 'opacity-0');
+                    }, 50);
+                }, 800);
+            }
+            
+            // Set initial theme setup safely
+            if (localStorage.getItem('theme') === 'light') {
+                toggleTheme();
+            } else {
+                document.documentElement.classList.add('dark');
+            }
+            typeTerminal();
+        };
+
+        function acceptCookies() { localStorage.setItem('orbit_consent', 'granted'); closeBanner(); }
+        function closeBanner() { 
+            const banner = document.getElementById('cookie-banner');
+            banner.classList.add('translate-y-6', 'opacity-0');
+            setTimeout(() => banner.classList.add('hidden'), 400);
+        } 
+    </script>
+</body>
+</html>

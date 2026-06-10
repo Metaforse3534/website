@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth select-none">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orbit AI — Terms of Service</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="../Public/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="../Public/favicon.svg" />
+  <link rel="shortcut icon" href="../Public/favicon.ico" />
+  
+  <style>
+    :root {
+      --bg: #050505;
+      --panel: rgba(13, 13, 13, 0.7);
+      --text-main: #ffffff;
+      --text-muted: #71717a;
+      --border: rgba(255, 255, 255, 0.04);
+      --accent: #ffffff;
+      --accent-glow: rgba(255, 255, 255, 0.01);
+    }
+
+    .light-mode {
+      --bg: #fafafa;
+      --panel: rgba(244, 244, 245, 0.7);
+      --text-main: #09090b;
+      --text-muted: #71717a;
+      --border: rgba(0, 0, 0, 0.06);
+      --accent: #09090b;
+      --accent-glow: rgba(0, 0, 0, 0.01);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-muted);
+      transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .font-space { 
+      font-family: 'Space Grotesk', sans-serif; 
+      color: var(--text-main);
+    }
+
+    .app-panel {
+      background: var(--panel);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+    }
+
+    .sidebar-link.active {
+      color: var(--text-main);
+      font-weight: 500;
+      border-left: 2px solid var(--text-main);
+      background: linear-gradient(90deg, var(--border), transparent);
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+  </style>
+</head>
+<body class="antialiased">
+
+  <nav class="fixed w-full z-50 border-b border-white/[0.03] dark:border-white/[0.03] light-mode:border-black/[0.05] backdrop-blur-md bg-black/20 transition-colors duration-200">
+    <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+      <a href="../index.html" class="font-space text-sm font-bold tracking-tight text-zinc-400 hover:text-white transition duration-150 flex items-center gap-2">
+        <span>←</span> ORBIT <span class="text-zinc-500 font-light text-xs font-sans tracking-widest">BETA</span>
+      </a>
+      
+      <div class="flex items-center space-x-4">
+        <button onclick="toggleTheme()" class="p-1.5 text-zinc-400 hover:text-zinc-200 transition duration-150">
+          <svg id="theme-icon" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
+          </svg>
+        </button>
+        <a href="https://www.orbitdev.org/" class="text-xs text-zinc-400 hover:text-zinc-200 transition duration-150">Login</a>
+        <a href="https://www.orbitdev.org/" class="bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-black light-mode:bg-zinc-900 light-mode:hover:bg-zinc-800 light-mode:text-white px-3.5 py-1.5 rounded-md text-xs font-medium transition duration-150">Join Orbit</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-7xl mx-auto px-6 pt-28 pb-20 flex flex-col md:flex-row gap-12">
+    
+    <aside class="md:w-60 shrink-0">
+      <div class="sticky top-24">
+        <h3 class="text-[10px] uppercase tracking-wider text-zinc-500 mb-4 px-3 font-semibold">Directives</h3>
+        <nav class="space-y-0.5">
+          <a href="/Routes/terms.html" class="sidebar-link active block px-3 py-2 text-xs transition">Terms of Service</a>
+          <a href="/Routes/privacy.html" class="sidebar-link block px-3 py-2 text-xs text-zinc-400 hover:text-white transition">Privacy Policy</a>
+          <a href="/Routes/cookies.html" class="sidebar-link block px-3 py-2 text-xs text-zinc-400 hover:text-white transition">Cookie Policy</a>
+          <a href="/Routes/acceptabe.html" class="sidebar-link block px-3 py-2 text-xs text-zinc-400 hover:text-white transition">Acceptable Use</a>
+        </nav>
+      </div>
+    </aside>
+
+    <main class="flex-1 max-w-2xl">
+      <div class="mb-10">
+        <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-3 font-space">Terms of Service</h1>
+        <div class="flex items-center gap-4 text-[10px] font-mono text-zinc-500">
+          <span class="px-2 py-0.5 border border-white/5 dark:border-white/5 light-mode:border-black/10 rounded">REF: ORB-2026-TOS</span>
+          <span>Last Synchronized: April 18, 2026</span>
+        </div>
+      </div>
+
+      <div class="space-y-12 text-xs md:text-sm leading-relaxed text-zinc-400">
+        
+        <section class="border-t border-white/[0.03] dark:border-white/[0.03] light-mode:border-black/[0.05] pt-8">
+          <h2 class="text-sm font-semibold flex items-center gap-2 font-space tracking-tight mb-3 text-white">
+            <span class="text-zinc-500 font-mono text-xs font-normal">01 /</span> Introduction
+          </h2>
+          <p>
+            These Regulatory Directives govern your usage and interaction with the Orbit AI environment system clusters. The complete infrastructure is maintained and evaluated under the jurisdiction laws of the <span class="text-zinc-200 font-medium">Netherlands</span> and the <span class="text-zinc-200 font-medium">European Union</span>. By initializing system operational nodes, you sign complete execution compliance to all protocols mapped herein.
+          </p>
+        </section>
+
+        <section class="app-panel p-6 rounded-lg border-l-[3px] border-l-zinc-400 dark:border-l-zinc-500 light-mode:border-l-zinc-800">
+          <h2 class="text-sm font-semibold flex items-center gap-2 font-space tracking-tight mb-3 text-white">
+            <span class="text-zinc-500 font-mono text-xs font-normal">02 /</span> AI Disclaimers & Model Vectors
+          </h2>
+          <ul class="space-y-2.5 list-none text-zinc-400 text-xs">
+            <li class="flex items-start gap-2">
+              <span class="text-zinc-500 mt-0.5">•</span>
+              <span>Generative framework responses and synthetic structures might be inaccurate or functionally incomplete.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-zinc-500 mt-0.5">•</span>
+              <span>System integration operators bear the full verification weight before target repository deployment.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-zinc-500 mt-0.5">•</span>
+              <span>Orbit AI holds zero legal liability or validation requirements regarding automated script decisions or cloud telemetry runs triggered by the platform output layers.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-zinc-500 mt-0.5">•</span>
+              <span>Platform users maintain structural acknowledgment that model layers can hold algorithmic biases or point processing inaccuracies.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-zinc-500 mt-0.5">•</span>
+              <span>Orbit Core pipelines retain total platform privilege to change node limits, alter endpoints, or end environment access at any designated checkpoint interval.</span>
+            </li>
+          </ul>
+        </section>
+
+        <section class="border-t border-white/[0.03] dark:border-white/[0.03] light-mode:border-black/[0.05] pt-8">
+          <h2 class="text-sm font-semibold flex items-center gap-2 font-space tracking-tight mb-3 text-white">
+            <span class="text-zinc-500 font-mono text-xs font-normal">03 /</span> Boundary Metrics & Operational Limits
+          </h2>
+          <p class="mb-4">All pipeline interactions are bound to secure, regulated architecture paths. Threat protection restrictions encompass:</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 border border-white/[0.03] dark:border-white/[0.03] light-mode:border-black/[0.05] bg-white/[0.005] rounded-md">
+              <strong class="text-zinc-200 block mb-1 text-xs font-medium">System Integrity</strong>
+              <p class="text-xs text-zinc-500">Malicious penetration scripts, loop stress checks, or API payload overflows without custom telemetry waivers will result in automated node exclusion.</p>
+            </div>
+            <div class="p-4 border border-white/[0.03] dark:border-white/[0.03] light-mode:border-black/[0.05] bg-white/[0.005] rounded-md">
+              <strong class="text-zinc-200 block mb-1 text-xs font-medium">Compliance Mapping</strong>
+              <p class="text-xs text-zinc-500">Unlawful orchestration frameworks, explicit payload routing, or proxy evasions around region nodes are restricted by architecture filters.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="border-t border-white/[0.03] dark:border-white/[0.03] light-mode:border-black/[0.05] pt-8">
+          <h2 class="text-sm font-semibold flex items-center gap-2 font-space tracking-tight mb-3 text-white">
+            <span class="text-zinc-500 font-mono text-xs font-normal">04 /</span> EU Withdrawal Exemptions
+          </h2>
+          <p class="mb-3">
+            In compliance with regional EU Consumer Guidelines, standard purchases maintain a 14-day statutory return logic window. However, the direct tactical loading and continuous initialization of dedicated AI model weights results in immediate execution behavior:
+          </p>
+          <div class="bg-white/[0.01] border border-white/[0.04] p-3 text-xs rounded text-zinc-400">
+            <span class="font-semibold text-zinc-300">Exemption Protocol:</span> Requesting instant computational provisioning removes right-of-withdrawal permissions standard under European digital asset activation profiles.
+          </div>
+        </section>
+
+        <section class="border-t border-white/[0.03] dark:border-white/[0.03] light-mode:border-black/[0.05] pt-8">
+          <h2 class="text-sm font-semibold flex items-center gap-2 font-space tracking-tight mb-3 text-white">
+            <span class="text-zinc-500 font-mono text-xs font-normal">05 /</span> Jurisdictional Authority
+          </h2>
+          <p>
+            Any conflicts or structural disagreements stemming from platform parameters fall under the direct execution metrics of <span class="text-zinc-200 font-medium">Dutch Law</span>. Final dispute resolutions will be analyzed and determined via assigned competent courts inside the Netherlands.
+          </p>
+        </section>
+
+      </div>
+
+      <footer class="mt-16 pt-6 border-t border-white/[0.03] dark:border-t-white/[0.03] light-mode:border-t-black/[0.05] text-xs">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+          <p class="text-zinc-500 text-[11px]">System Support Uplink: <a href="mailto:support@orbitdev.org" class="text-zinc-300 hover:underline">support@orbitdev.org</a></p>
+          <p class="text-zinc-600 font-mono text-[9px] tracking-wider">PROTOCOL // SYSTEM-LEVEL ACCESS SECURED</p>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // System Layout Theme Matching Mechanism
+    function toggleTheme() {
+      const body = document.body;
+      const icon = document.getElementById('theme-icon');
+      body.classList.toggle('light-mode');
+      const isLight = body.classList.contains('light-mode');
+      
+      icon.innerHTML = isLight ? 
+        '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>' : 
+        '<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>';
+      
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    }
+
+    // Read stored system alignment configuration parameters
+    window.onload = () => {
+      if (localStorage.getItem('theme') === 'light') toggleTheme();
+    };
+  </script>
+</body>
+</html>

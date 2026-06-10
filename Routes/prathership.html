@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth select-none">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orbit — Neural Expansion Protocol</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="Public/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="Public/favicon.svg" />
+    <link rel="shortcut icon" href="Public/favicon.ico" />
+    
+    <style>
+        :root {
+            --bg: #050505;
+            --panel: rgba(13, 13, 13, 0.7);
+            --text-main: #ffffff;
+            --text-muted: #71717a;
+            --border: rgba(255, 255, 255, 0.04);
+            --accent: #ffffff;
+        }
+
+        .light-mode {
+            --bg: #fafafa;
+            --panel: rgba(244, 244, 245, 0.7);
+            --text-main: #09090b;
+            --text-muted: #71717a;
+            --border: rgba(0, 0, 0, 0.06);
+            --accent: #09090b;
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text-muted); 
+            transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .font-space { 
+            font-family: 'Space Grotesk', sans-serif; 
+            color: var(--text-main);
+        }
+
+        .noise {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.02; pointer-events: none; z-index: 99;
+        }
+
+        /* Monochromatic Bento Cells */
+        .bento-card {
+            background: var(--panel);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bento-card:hover {
+            border-color: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.01);
+        }
+        
+        .light-mode .bento-card:hover {
+            border-color: rgba(0, 0, 0, 0.15);
+            background: rgba(0, 0, 0, 0.01);
+        }
+
+        /* Subtle Neutral Scanline */
+        .scanline {
+            width: 100%; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--text-muted), transparent);
+            position: absolute;
+            top: -1px;
+            animation: scan 6s linear infinite;
+            opacity: 0.15;
+        }
+
+        @keyframes scan {
+            0% { top: 0%; }
+            100% { top: 100%; }
+        }
+
+        .reveal { 
+            opacity: 0; transform: translateY(16px); 
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .form-input {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            transition: all 0.2s ease;
+        }
+        .light-mode .form-input {
+            background: rgba(255, 255, 255, 0.6);
+        }
+        .form-input:focus { 
+            border-color: var(--text-main); 
+            outline: none; 
+        }
+
+        .status-badge {
+            background: var(--border);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="noise"></div>
+
+    <nav class="fixed w-full z-50 border-b border-white/[0.03] dark:border-white/[0.03] light-mode:border-black/[0.05] backdrop-blur-md bg-black/20 transition-colors duration-200">
+        <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+            <a href="/" class="font-space text-sm font-bold tracking-tight text-zinc-400 hover:text-white transition duration-150 flex items-center gap-2">
+                ORBIT <span class="text-zinc-500 font-light text-xs font-sans tracking-widest">PROTOCOL</span>
+            </a>
+            
+            <div class="flex items-center space-x-6">
+                <div class="hidden md:flex gap-6 text-[10px] uppercase tracking-wider font-mono font-semibold text-zinc-500">
+                    <a href="#vision" class="hover:text-zinc-300 transition">// Vision</a>
+                    <a href="#apply" class="hover:text-zinc-300 transition">// Initialize</a>
+                </div>
+                
+                <div class="h-4 w-px bg-white/[0.05] dark:bg-white/[0.05] light-mode:bg-black/[0.1] hidden md:block"></div>
+
+                <button onclick="toggleTheme()" class="p-1.5 text-zinc-400 hover:text-zinc-200 transition duration-150">
+                    <svg id="theme-icon" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative pt-36 pb-24 px-6">
+        <div class="max-w-5xl mx-auto">
+            
+            <section class="reveal text-center mb-24">
+                <div class="inline-flex items-center gap-2.5 px-3 py-1 status-badge rounded-md text-[9px] uppercase tracking-wider font-mono font-semibold mb-6">
+                    <span class="relative flex h-1.5 w-1.5">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-zinc-400 dark:bg-zinc-300 light-mode:bg-zinc-800 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-zinc-500 dark:bg-zinc-300 light-mode:bg-zinc-800"></span>
+                    </span>
+                    Network Expansion Status: Open
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-6 font-space leading-[1.05]">
+                    Build the Neural Infrastructure.
+                </h1>
+                <p class="text-sm md:text-base text-zinc-400 font-light max-w-2xl mx-auto leading-relaxed">
+                    Orbit functions as a distributed layer. We are verifying system integration access windows for architects, scaling entities, and enterprise operators to tie endpoints directly to our network cluster.
+                </p>
+            </section>
+
+            <div id="vision" class="grid md:grid-cols-3 gap-4 mb-24">
+                
+                <div class="bento-card md:col-span-2 p-8 rounded-lg min-h-[260px] flex flex-col justify-end">
+                    <div class="scanline"></div>
+                    <div class="text-zinc-500 mb-2 font-mono text-[10px] tracking-wider font-semibold">// 01 CORE API INFRASTRUCTURE</div>
+                    <h3 class="text-xl font-bold mb-2 font-space tracking-tight">Direct Node Uplink</h3>
+                    <p class="text-zinc-400 text-xs leading-relaxed max-w-lg">
+                        Operators obtain prioritized workspace lanes directly to core runtime models. Integrate raw token inference models directly into localized structural components or security boundaries.
+                    </p>
+                </div>
+                
+                <div class="bento-card p-8 rounded-lg flex flex-col justify-center text-center">
+                    <div class="text-zinc-500 mb-1 font-mono text-[10px] tracking-wider font-semibold">ALLOCATION</div>
+                    <h3 class="text-4xl font-semibold font-space tracking-tight mb-1">25%</h3>
+                    <p class="text-zinc-500 text-[9px] uppercase tracking-wider font-mono font-semibold">Compute Commission</p>
+                </div>
+
+                <div class="bento-card p-8 rounded-lg flex flex-col justify-end">
+                    <div class="text-zinc-500 mb-2 font-mono text-[10px] tracking-wider font-semibold">// 02 PROTOCOL ALIGNMENT</div>
+                    <h3 class="text-lg font-bold mb-2 font-space tracking-tight">Strategic Map Integration</h3>
+                    <p class="text-zinc-400 text-xs leading-relaxed">
+                        Avoid standard static routing layers. Coordinate with core infrastructure teams to expand capability sets across self-governing logic agents.
+                    </p>
+                </div>
+
+                <div class="bento-card md:col-span-2 p-8 rounded-lg flex flex-col md:flex-row items-center gap-6">
+                    <div class="flex-1">
+                        <div class="text-zinc-500 mb-2 font-mono text-[10px] tracking-wider font-semibold">// 03 SCALING PARAMETERS</div>
+                        <h3 class="text-xl font-bold mb-2 font-space tracking-tight">Compliance Standardization</h3>
+                        <p class="text-zinc-400 text-xs leading-relaxed">
+                            Structured around regional legal guidelines within the EU territory. Orbit clusters offer end-to-end telemetry encryption and full data containment pathways out of the box.
+                        </p>
+                    </div>
+                    <div class="w-full md:w-32 h-32 bg-white/[0.01] dark:bg-white/[0.01] light-mode:bg-black/[0.02] border border-white/5 dark:border-white/5 light-mode:border-black/10 rounded-md flex items-center justify-center shrink-0">
+                        <svg class="w-12 h-12 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <section id="apply" class="max-w-3xl mx-auto bento-card p-6 md:p-10 rounded-lg reveal">
+                <div class="mb-10 text-center">
+                    <h2 class="text-2xl font-bold tracking-tight mb-2 font-space">Alliance Initialization</h2>
+                    <p class="text-zinc-500 text-xs font-mono">// System targets route straight to Apply@orbitdev.org</p>
+                </div>
+
+                <form action="https://formspree.io/f/mbdwpdlr" method="POST" class="space-y-5">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="space-y-1.5">
+                            <label class="block text-[10px] uppercase tracking-wider text-zinc-500 font-mono font-semibold">Lead Architect Identity</label>
+                            <input type="text" name="name" required placeholder="Identity Signature" class="form-input w-full p-3.5 rounded-md text-xs">
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="block text-[10px] uppercase tracking-wider text-zinc-500 font-mono font-semibold">Encryption Endpoint / Email</label>
+                            <input type="email" name="_replyto" required placeholder="name@domain.ext" class="form-input w-full p-3.5 rounded-md text-xs">
+                        </div>
+                    </div>
+
+                    <div class="space-y-1.5">
+                        <label class="block text-[10px] uppercase tracking-wider text-zinc-500 font-mono font-semibold">Partnership Matrix Tier</label>
+                        <select name="tier" class="form-input w-full p-3.5 rounded-md text-xs bg-black/40 light-mode:bg-white/80 text-zinc-400">
+                            <option class="bg-zinc-900 text-white">Strategic Integration Architect</option>
+                            <option class="bg-zinc-900 text-white">Hardware Node Provider</option>
+                            <option class="bg-zinc-900 text-white">Enterprise AI Solutions</option>
+                            <option class="bg-zinc-900 text-white">Venture & Scaling Partner</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-1.5">
+                        <label class="block text-[10px] uppercase tracking-wider text-zinc-500 font-mono font-semibold">Structural Network Proposal</label>
+                        <textarea name="proposal" rows="5" required placeholder="Outline target use-cases, network requirements, or integration timelines..." class="form-input w-full p-3.5 rounded-md text-xs"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-black light-mode:bg-zinc-900 light-mode:hover:bg-zinc-800 light-mode:text-white py-4 rounded-md font-medium uppercase text-[10px] tracking-widest transition-all duration-300">
+                        Transmit Proposal Packet
+                    </button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <footer class="py-12 text-center border-t border-white/[0.03] dark:border-t-white/[0.03] light-mode:border-t-black/[0.05]">
+        <div class="text-[9px] text-zinc-600 font-mono uppercase tracking-[0.4em]">&copy; 2026 Orbit Systems B.V. // Protocol V4.0</div>
+    </footer>
+
+    <script>
+        // System Layout Theme Matching Mechanism
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+            body.classList.toggle('light-mode');
+            const isLight = body.classList.contains('light-mode');
+            
+            icon.innerHTML = isLight ? 
+                '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>' : 
+                '<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>';
+            
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        }
+
+        // Viewport Intersection Animator Loader
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.05 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Initial setup validation parameters 
+        window.onload = () => {
+            if (localStorage.getItem('theme') === 'light') toggleTheme();
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,1989 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth select-none">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orbit AI — Your Intelligence, Amplified</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <link rel="icon" type="image/png" href="Public/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="Public/favicon.svg" />
+    <link rel="shortcut icon" href="Public/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="Public/apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+
+    <style>
+        :root {
+            --bg: #050505;
+            --panel: rgba(13, 13, 13, 0.7);
+            --panel-solid: #0d0d0d;
+            --text-main: #ffffff;
+            --text-muted: #71717a;
+            --border: rgba(255, 255, 255, 0.04);
+            --accent: #ffffff;
+            --accent-glow: rgba(255, 255, 255, 0.02);
+            --announcement-bg: rgba(255, 255, 255, 0.03);
+        }
+
+        .light-mode {
+            --bg: #fafafa;
+            --panel: rgba(244, 244, 245, 0.7);
+            --panel-solid: #f4f4f5;
+            --text-main: #09090b;
+            --text-muted: #71717a;
+            --border: rgba(0, 0, 0, 0.06);
+            --accent: #09090b;
+            --accent-glow: rgba(0, 0, 0, 0.015);
+            --announcement-bg: rgba(0, 0, 0, 0.03);
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text-main); 
+            transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .font-space { font-family: 'Space Grotesk', sans-serif; }
+
+        .reveal { 
+            opacity: 0; 
+            transform: translateY(15px); 
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); 
+            will-change: transform, opacity;
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+
+        #hero-glow {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(800px circle at var(--x, 50%) var(--y, 30%), var(--accent-glow), transparent 60%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .app-panel {
+            background: var(--panel);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .app-panel:hover {
+            border-color: rgba(255, 255, 255, 0.08);
+            background: rgba(20, 20, 20, 0.8);
+        }
+        
+        .light-mode .app-panel:hover {
+            border-color: rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .terminal-loader { border-right: 1px solid var(--text-main); animation: blink 0.8s step-end infinite; }
+        @keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--text-main); } }
+
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+        /* ============================================================
+   ORBIT AI — Premium VIP Stylesheet
+   Aesthetic: Refined dark luxury · Obsidian & platinum
+   Author: Generated for Orbit Systems B.V.
+   ============================================================ */
+
+
+/* ============================================================
+   1. DESIGN TOKENS — CSS Custom Properties
+   ============================================================ */
+
+:root {
+  /* Core palette */
+  --clr-void:        #030305;
+  --clr-obsidian:    #08080d;
+  --clr-surface:     #0e0e16;
+  --clr-lift:        #141420;
+  --clr-overlay:     rgba(255, 255, 255, 0.03);
+  --clr-overlay-md:  rgba(255, 255, 255, 0.06);
+  --clr-overlay-hi:  rgba(255, 255, 255, 0.10);
+
+  /* Platinum accent system */
+  --clr-platinum:    #e8e6f0;
+  --clr-silver:      #a8a6b8;
+  --clr-muted:       #525264;
+  --clr-ghost:       #2a2a3a;
+
+  /* Luminous micro-accents */
+  --clr-glow-cool:   rgba(160, 148, 255, 0.08);
+  --clr-glow-warm:   rgba(255, 220, 160, 0.06);
+  --clr-iris:        #9b8fff;
+  --clr-iris-dim:    rgba(155, 143, 255, 0.15);
+
+  /* Borders */
+  --bdr-hairline:    rgba(255, 255, 255, 0.04);
+  --bdr-subtle:      rgba(255, 255, 255, 0.07);
+  --bdr-active:      rgba(255, 255, 255, 0.14);
+  --bdr-iris:        rgba(155, 143, 255, 0.25);
+
+  /* Typography */
+  --font-display:    'Syne', 'DM Sans', sans-serif;
+  --font-body:       'DM Sans', 'Instrument Sans', sans-serif;
+  --font-mono:       'JetBrains Mono', 'Fira Code', monospace;
+
+  --size-xs:  0.6875rem;   /* 11px */
+  --size-sm:  0.75rem;     /* 12px */
+  --size-md:  0.875rem;    /* 14px */
+  --size-lg:  1rem;        /* 16px */
+  --size-xl:  1.25rem;     /* 20px */
+  --size-2xl: 1.75rem;     /* 28px */
+  --size-3xl: 2.5rem;      /* 40px */
+  --size-4xl: 3.5rem;      /* 56px */
+  --size-5xl: 5rem;        /* 80px */
+
+  --lh-tight:  1.1;
+  --lh-snug:   1.3;
+  --lh-base:   1.6;
+  --lh-loose:  1.8;
+
+  --ls-tight:  -0.03em;
+  --ls-snug:   -0.02em;
+  --ls-normal:  0;
+  --ls-wide:    0.06em;
+  --ls-wider:   0.12em;
+
+  /* Spacing scale */
+  --sp-1:  0.25rem;
+  --sp-2:  0.5rem;
+  --sp-3:  0.75rem;
+  --sp-4:  1rem;
+  --sp-5:  1.25rem;
+  --sp-6:  1.5rem;
+  --sp-8:  2rem;
+  --sp-10: 2.5rem;
+  --sp-12: 3rem;
+  --sp-16: 4rem;
+  --sp-20: 5rem;
+  --sp-24: 6rem;
+
+  /* Radii */
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  16px;
+  --radius-xl:  24px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-sm:   0 1px 3px rgba(0,0,0,0.5), 0 1px 2px rgba(0,0,0,0.4);
+  --shadow-md:   0 4px 12px rgba(0,0,0,0.6), 0 2px 4px rgba(0,0,0,0.5);
+  --shadow-lg:   0 16px 48px rgba(0,0,0,0.7), 0 4px 12px rgba(0,0,0,0.5);
+  --shadow-glow: 0 0 40px rgba(155, 143, 255, 0.08), 0 0 80px rgba(155, 143, 255, 0.04);
+  --shadow-panel: 0 8px 32px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
+
+  /* Motion */
+  --ease-out-expo:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart:  cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out:     cubic-bezier(0.45, 0, 0.55, 1);
+  --dur-fast:   150ms;
+  --dur-base:   300ms;
+  --dur-slow:   500ms;
+  --dur-xslow:  800ms;
+}
+
+/* Light mode overrides */
+.light-mode {
+  --clr-void:        #f8f8fc;
+  --clr-obsidian:    #f2f2f8;
+  --clr-surface:     #ebebf5;
+  --clr-lift:        #e4e4f0;
+  --clr-overlay:     rgba(0, 0, 0, 0.02);
+  --clr-overlay-md:  rgba(0, 0, 0, 0.05);
+  --clr-overlay-hi:  rgba(0, 0, 0, 0.08);
+  --clr-platinum:    #12111a;
+  --clr-silver:      #3d3c52;
+  --clr-muted:       #8888a0;
+  --clr-ghost:       #d8d8e8;
+  --bdr-hairline:    rgba(0, 0, 0, 0.05);
+  --bdr-subtle:      rgba(0, 0, 0, 0.08);
+  --bdr-active:      rgba(0, 0, 0, 0.14);
+  --shadow-panel:    0 8px 32px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+
+/* ============================================================
+   2. RESET & BASE
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--size-md);
+  line-height: var(--lh-base);
+  background-color: var(--clr-void);
+  color: var(--clr-platinum);
+  overflow-x: hidden;
+  transition:
+    background-color var(--dur-slow) var(--ease-out-expo),
+    color var(--dur-slow) var(--ease-out-expo);
+}
+
+img, video { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font: inherit; border: none; background: none; }
+
+
+/* ============================================================
+   3. TYPOGRAPHY SYSTEM
+   ============================================================ */
+
+.t-display {
+  font-family: var(--font-display);
+  font-size: clamp(var(--size-3xl), 7vw, var(--size-5xl));
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  color: var(--clr-platinum);
+}
+
+.t-headline {
+  font-family: var(--font-display);
+  font-size: clamp(var(--size-2xl), 4vw, var(--size-4xl));
+  font-weight: 700;
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-snug);
+}
+
+.t-title {
+  font-family: var(--font-display);
+  font-size: var(--size-xl);
+  font-weight: 600;
+  line-height: var(--lh-snug);
+  letter-spacing: -0.01em;
+}
+
+.t-label {
+  font-size: var(--size-xs);
+  font-weight: 600;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--clr-muted);
+}
+
+.t-body {
+  font-size: var(--size-md);
+  line-height: var(--lh-loose);
+  color: var(--clr-silver);
+}
+
+.t-caption {
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  letter-spacing: var(--ls-wide);
+  color: var(--clr-muted);
+}
+
+.t-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--clr-platinum) 0%,
+    var(--clr-silver) 50%,
+    var(--clr-iris) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.t-muted { color: var(--clr-muted); }
+.t-iris  { color: var(--clr-iris); }
+
+
+/* ============================================================
+   4. LAYOUT CONTAINERS
+   ============================================================ */
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: var(--sp-6);
+}
+
+.container--narrow {
+  max-width: 860px;
+  margin-inline: auto;
+  padding-inline: var(--sp-6);
+}
+
+.container--wide {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: var(--sp-8);
+}
+
+.section {
+  padding-block: var(--sp-24);
+}
+
+.section--border-top {
+  border-top: 1px solid var(--bdr-hairline);
+}
+
+.section--tinted {
+  background: var(--clr-obsidian);
+}
+
+@media (max-width: 768px) {
+  .container,
+  .container--narrow,
+  .container--wide {
+    padding-inline: var(--sp-5);
+  }
+  .section {
+    padding-block: var(--sp-16);
+  }
+}
+
+
+/* ============================================================
+   5. ANNOUNCEMENT BAR
+   ============================================================ */
+
+.announcement-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 60;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    90deg,
+    rgba(155, 143, 255, 0.06) 0%,
+    rgba(255, 220, 160, 0.04) 50%,
+    rgba(155, 143, 255, 0.06) 100%
+  );
+  border-bottom: 1px solid var(--bdr-hairline);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.announcement-bar__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  font-size: var(--size-xs);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--clr-silver);
+}
+
+.announcement-bar__badge {
+  padding: 2px 6px;
+  background: var(--clr-iris-dim);
+  border: 1px solid var(--bdr-iris);
+  color: var(--clr-iris);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+
+.announcement-bar__link {
+  color: var(--clr-platinum);
+  transition: color var(--dur-fast) ease;
+}
+.announcement-bar__link:hover {
+  color: var(--clr-iris);
+}
+
+.announcement-bar__close {
+  position: absolute;
+  right: var(--sp-4);
+  color: var(--clr-muted);
+  padding: var(--sp-1);
+  transition: color var(--dur-fast) ease;
+  line-height: 1;
+}
+.announcement-bar__close:hover {
+  color: var(--clr-silver);
+}
+
+
+/* ============================================================
+   6. NAVIGATION
+   ============================================================ */
+
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 50;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--bdr-hairline);
+  background: rgba(3, 3, 5, 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  transition:
+    background var(--dur-base) ease,
+    border-color var(--dur-base) ease,
+    top var(--dur-base) var(--ease-out-expo);
+}
+
+.light-mode .nav {
+  background: rgba(248, 248, 252, 0.75);
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-8);
+  width: 100%;
+}
+
+/* Wordmark */
+.nav__wordmark {
+  font-family: var(--font-display);
+  font-size: var(--size-sm);
+  font-weight: 700;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--clr-platinum);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  user-select: none;
+}
+
+.nav__wordmark-badge {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: var(--ls-wider);
+  color: var(--clr-muted);
+  margin-top: 2px;
+}
+
+/* Nav links */
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-8);
+  list-style: none;
+}
+
+.nav__link {
+  font-size: var(--size-xs);
+  font-weight: 500;
+  color: var(--clr-muted);
+  letter-spacing: 0.01em;
+  position: relative;
+  padding-block: var(--sp-1);
+  transition: color var(--dur-base) ease;
+}
+
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--clr-iris);
+  transition: width var(--dur-base) var(--ease-out-expo);
+}
+
+.nav__link:hover {
+  color: var(--clr-platinum);
+}
+.nav__link:hover::after {
+  width: 100%;
+}
+
+/* Nav actions */
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+}
+
+@media (max-width: 768px) {
+  .nav__links { display: none; }
+}
+
+
+/* ============================================================
+   7. BUTTONS
+   ============================================================ */
+
+/* Base button */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  font-family: var(--font-body);
+  font-size: var(--size-xs);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  transition:
+    background var(--dur-base) var(--ease-out-expo),
+    color var(--dur-base) ease,
+    border-color var(--dur-base) ease,
+    transform var(--dur-fast) ease,
+    box-shadow var(--dur-base) ease;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* Shimmer sweep on hover */
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255,255,255,0.06) 50%,
+    transparent 60%
+  );
+  transform: translateX(-100%);
+  transition: transform var(--dur-slow) var(--ease-out-expo);
+}
+.btn:hover::before {
+  transform: translateX(100%);
+}
+
+/* Primary button */
+.btn--primary {
+  background: var(--clr-platinum);
+  color: var(--clr-void);
+  border-color: var(--clr-platinum);
+  box-shadow: var(--shadow-sm), 0 0 0 0 rgba(232, 230, 240, 0);
+}
+
+.btn--primary:hover {
+  background: #ffffff;
+  box-shadow: var(--shadow-md), 0 0 24px rgba(232, 230, 240, 0.12);
+  transform: translateY(-1px);
+}
+
+/* Ghost button */
+.btn--ghost {
+  background: var(--clr-overlay);
+  color: var(--clr-silver);
+  border-color: var(--bdr-subtle);
+  backdrop-filter: blur(8px);
+}
+
+.btn--ghost:hover {
+  background: var(--clr-overlay-md);
+  border-color: var(--bdr-active);
+  color: var(--clr-platinum);
+  transform: translateY(-1px);
+}
+
+/* Iris accent button */
+.btn--iris {
+  background: var(--clr-iris-dim);
+  color: var(--clr-iris);
+  border-color: var(--bdr-iris);
+}
+
+.btn--iris:hover {
+  background: rgba(155, 143, 255, 0.22);
+  box-shadow: 0 0 20px rgba(155, 143, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+/* Icon button (theme toggle, etc.) */
+.btn--icon {
+  padding: var(--sp-2);
+  border-radius: var(--radius-sm);
+  color: var(--clr-muted);
+  background: transparent;
+  border: 1px solid transparent;
+}
+.btn--icon:hover {
+  color: var(--clr-platinum);
+  background: var(--clr-overlay-md);
+  border-color: var(--bdr-hairline);
+}
+
+/* Small variant */
+.btn--sm {
+  font-size: 10px;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+}
+
+/* Large variant */
+.btn--lg {
+  font-size: var(--size-md);
+  padding: 14px 28px;
+  border-radius: var(--radius-lg);
+}
+
+
+/* ============================================================
+   8. GLASS PANEL (Core Surface Component)
+   ============================================================ */
+
+.panel {
+  background: var(--clr-overlay);
+  border: 1px solid var(--bdr-hairline);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  box-shadow: var(--shadow-panel);
+  transition:
+    background var(--dur-base) ease,
+    border-color var(--dur-base) ease,
+    box-shadow var(--dur-base) ease,
+    transform var(--dur-base) var(--ease-out-expo);
+}
+
+.panel:hover {
+  background: var(--clr-overlay-md);
+  border-color: var(--bdr-subtle);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Elevated variant */
+.panel--elevated {
+  background: var(--clr-surface);
+  border-color: var(--bdr-subtle);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+
+/* Active/highlighted variant */
+.panel--active {
+  border-color: var(--bdr-active);
+  box-shadow:
+    var(--shadow-lg),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Inset panel header */
+.panel__header {
+  padding: var(--sp-3) var(--sp-5);
+  border-bottom: 1px solid var(--bdr-hairline);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--clr-overlay);
+}
+
+.panel__body {
+  padding: var(--sp-6);
+}
+
+
+/* ============================================================
+   9. HERO SECTION
+   ============================================================ */
+
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: 8rem var(--sp-20);
+  padding-inline: var(--sp-6);
+  overflow: hidden;
+  border-bottom: 1px solid var(--bdr-hairline);
+}
+
+/* Layered ambient background */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(155, 143, 255, 0.07) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 30% at 80% 80%, rgba(255, 220, 160, 0.04) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Fine grain texture overlay */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 780px;
+  width: 100%;
+}
+
+/* Mouse-tracked radial glow */
+.hero__glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    700px circle at var(--mouse-x, 50%) var(--mouse-y, 35%),
+    var(--clr-glow-cool),
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: 0;
+  transition: background var(--dur-base) ease;
+}
+
+/* Status pill */
+.hero__status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-1) var(--sp-3);
+  border: 1px solid var(--bdr-hairline);
+  border-radius: var(--radius-pill);
+  font-size: var(--size-xs);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--clr-muted);
+  background: var(--clr-overlay);
+  margin-bottom: var(--sp-6);
+  transition: border-color var(--dur-base) ease;
+}
+.hero__status:hover {
+  border-color: var(--bdr-subtle);
+}
+
+.hero__status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 6px rgba(34, 197, 94, 0.5); }
+  50%       { opacity: 0.7; box-shadow: 0 0 12px rgba(34, 197, 94, 0.8); }
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--clr-platinum);
+  margin-bottom: var(--sp-6);
+}
+
+.hero__title-sub {
+  display: block;
+  color: var(--clr-muted);
+}
+
+.hero__body {
+  font-size: clamp(var(--size-md), 2vw, var(--size-lg));
+  line-height: var(--lh-loose);
+  color: var(--clr-silver);
+  max-width: 540px;
+  margin-inline: auto;
+  margin-bottom: var(--sp-10);
+  font-weight: 400;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-16);
+}
+
+/* Terminal card within hero */
+.hero__terminal {
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+@media (max-width: 600px) {
+  .hero__title {
+    font-size: clamp(2rem, 9vw, 3rem);
+  }
+  .hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero__actions .btn {
+    width: 100%;
+  }
+}
+
+
+/* ============================================================
+   10. TERMINAL COMPONENT
+   ============================================================ */
+
+.terminal {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,0.05);
+  border: 1px solid var(--bdr-hairline);
+  background: rgba(5, 5, 10, 0.9);
+}
+
+.light-mode .terminal {
+  background: rgba(10, 10, 16, 0.94);
+}
+
+.terminal__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-3) var(--sp-4);
+  border-bottom: 1px solid var(--bdr-hairline);
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.terminal__filename {
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  color: var(--clr-muted);
+  letter-spacing: 0.01em;
+}
+
+.terminal__dots {
+  display: flex;
+  gap: 5px;
+}
+.terminal__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--clr-ghost);
+}
+.terminal__dot--close  { background: #ff5f57; }
+.terminal__dot--min    { background: #febc2e; }
+.terminal__dot--max    { background: #28c840; }
+
+.terminal__body {
+  padding: var(--sp-5);
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  line-height: 2;
+  min-height: 240px;
+  background: transparent;
+}
+
+.terminal__line {
+  display: block;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity var(--dur-base) ease, transform var(--dur-base) var(--ease-out-expo);
+}
+.terminal__line--visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.terminal__cursor {
+  display: inline-block;
+  width: 7px;
+  height: 13px;
+  background: var(--clr-platinum);
+  vertical-align: middle;
+  animation: cursor-blink 0.9s step-end infinite;
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Syntax colours */
+.t-cmd   { color: #a8a6b8; }
+.t-arrow { color: var(--clr-muted); }
+.t-sys   { color: var(--clr-platinum); }
+.t-ok    { color: #6ee7b7; }
+.t-iris  { color: var(--clr-iris); }
+
+
+/* ============================================================
+   11. CAPABILITIES GRID
+   ============================================================ */
+
+.capabilities {
+  container-type: inline-size;
+}
+
+.capabilities__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-5);
+}
+
+@container (max-width: 900px) {
+  .capabilities__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@container (max-width: 500px) {
+  .capabilities__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Fallback for browsers without container queries */
+@media (max-width: 900px) {
+  .capabilities__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 500px) {
+  .capabilities__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Capability card */
+.cap-card {
+  padding: var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+
+/* Hover shimmer line */
+.cap-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--clr-iris), transparent);
+  opacity: 0;
+  transition: opacity var(--dur-base) ease;
+}
+.cap-card:hover::after {
+  opacity: 1;
+}
+
+.cap-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--bdr-subtle);
+}
+
+.cap-card__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: var(--clr-obsidian);
+  border: 1px solid var(--bdr-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-silver);
+  margin-bottom: var(--sp-5);
+  transition:
+    background var(--dur-base) ease,
+    border-color var(--dur-base) ease,
+    color var(--dur-base) ease;
+}
+
+.cap-card:hover .cap-card__icon {
+  background: var(--clr-iris-dim);
+  border-color: var(--bdr-iris);
+  color: var(--clr-iris);
+}
+
+.cap-card__title {
+  font-family: var(--font-display);
+  font-size: var(--size-md);
+  font-weight: 600;
+  margin-bottom: var(--sp-2);
+  color: var(--clr-platinum);
+}
+
+.cap-card__body {
+  font-size: var(--size-xs);
+  color: var(--clr-muted);
+  line-height: var(--lh-loose);
+}
+
+.cap-card__tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: var(--ls-wide);
+  color: var(--clr-ghost);
+  margin-top: var(--sp-6);
+  text-transform: uppercase;
+}
+
+
+/* ============================================================
+   12. MODEL CARDS
+   ============================================================ */
+
+.models__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-5);
+}
+
+@media (max-width: 768px) {
+  .models__grid { grid-template-columns: 1fr; }
+}
+
+.model-card {
+  padding: var(--sp-6);
+  position: relative;
+  overflow: hidden;
+}
+
+.model-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, var(--clr-glow-cool), transparent);
+  opacity: 0;
+  transition: opacity var(--dur-slow) ease;
+}
+.model-card:hover::before {
+  opacity: 1;
+}
+
+.model-card:hover {
+  transform: translateY(-2px);
+}
+
+.model-card--featured {
+  border-color: var(--bdr-iris);
+  box-shadow: var(--shadow-lg), 0 0 40px var(--clr-iris-dim);
+}
+.model-card--featured::before {
+  opacity: 0.5;
+}
+
+.model-card__badge {
+  display: inline-block;
+  padding: 3px 8px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: var(--ls-wide);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--sp-5);
+}
+
+.model-card__badge--default {
+  background: var(--clr-obsidian);
+  border: 1px solid var(--bdr-subtle);
+  color: var(--clr-muted);
+}
+
+.model-card__badge--featured {
+  background: var(--clr-iris-dim);
+  border: 1px solid var(--bdr-iris);
+  color: var(--clr-iris);
+}
+
+.model-card__title {
+  font-family: var(--font-display);
+  font-size: var(--size-lg);
+  font-weight: 600;
+  margin-bottom: var(--sp-2);
+  color: var(--clr-platinum);
+}
+
+.model-card__body {
+  font-size: var(--size-xs);
+  line-height: var(--lh-loose);
+  color: var(--clr-muted);
+}
+
+
+/* ============================================================
+   13. PRICING CARDS
+   ============================================================ */
+
+.pricing__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-5);
+  align-items: stretch;
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+@media (max-width: 768px) {
+  .pricing__grid { grid-template-columns: 1fr; }
+}
+
+.pricing-card {
+  padding: var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--sp-6);
+}
+
+.pricing-card--featured {
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  background: linear-gradient(
+    160deg,
+    rgba(155, 143, 255, 0.06) 0%,
+    var(--clr-overlay) 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-card--featured::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--clr-iris), transparent);
+}
+
+.pricing-card__tier {
+  font-size: var(--size-xs);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--clr-muted);
+}
+
+.pricing-card__tier--featured {
+  color: var(--clr-iris);
+}
+
+.pricing-card__price {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: var(--ls-tight);
+  color: var(--clr-platinum);
+  line-height: 1;
+  margin-block: var(--sp-3) var(--sp-5);
+}
+
+.pricing-card__price sup {
+  font-size: 0.45em;
+  font-weight: 400;
+  color: var(--clr-silver);
+  vertical-align: super;
+}
+
+.pricing-card__features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-6);
+  flex: 1;
+}
+
+.pricing-card__feature {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--size-xs);
+  color: var(--clr-silver);
+}
+
+.pricing-card__feature-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--clr-ghost);
+  flex-shrink: 0;
+}
+
+.pricing-card--featured .pricing-card__feature-dot {
+  background: var(--clr-iris);
+  box-shadow: 0 0 6px rgba(155, 143, 255, 0.5);
+}
+
+
+/* ============================================================
+   14. SECTION HEADER (reusable)
+   ============================================================ */
+
+.section-header {
+  margin-bottom: var(--sp-12);
+}
+
+.section-header--center {
+  text-align: center;
+}
+
+.section-header__eyebrow {
+  font-size: var(--size-xs);
+  font-weight: 600;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--clr-muted);
+  margin-bottom: var(--sp-2);
+}
+
+.section-header__title {
+  font-family: var(--font-display);
+  font-size: clamp(var(--size-2xl), 4vw, var(--size-3xl));
+  font-weight: 700;
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-snug);
+  color: var(--clr-platinum);
+}
+
+
+/* ============================================================
+   15. COOKIE BANNER
+   ============================================================ */
+
+.cookie-banner {
+  position: fixed;
+  bottom: var(--sp-6);
+  right: var(--sp-6);
+  left: auto;
+  width: 360px;
+  z-index: 100;
+  padding: var(--sp-5);
+  transform: translateY(16px);
+  opacity: 0;
+  transition:
+    transform var(--dur-slow) var(--ease-out-expo),
+    opacity var(--dur-slow) ease;
+}
+
+.cookie-banner--visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.cookie-banner__inner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+}
+
+.cookie-banner__icon {
+  color: var(--clr-muted);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.cookie-banner__title {
+  font-family: var(--font-display);
+  font-size: var(--size-xs);
+  font-weight: 600;
+  margin-bottom: var(--sp-1);
+  color: var(--clr-platinum);
+}
+
+.cookie-banner__body {
+  font-size: var(--size-xs);
+  line-height: var(--lh-base);
+  color: var(--clr-muted);
+  margin-bottom: var(--sp-4);
+}
+
+.cookie-banner__actions {
+  display: flex;
+  gap: var(--sp-2);
+}
+
+@media (max-width: 480px) {
+  .cookie-banner {
+    left: var(--sp-4);
+    right: var(--sp-4);
+    width: auto;
+  }
+}
+
+
+/* ============================================================
+   16. FOOTER
+   ============================================================ */
+
+.footer {
+  border-top: 1px solid var(--bdr-hairline);
+  background: var(--clr-obsidian);
+  padding-block: var(--sp-16);
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 4fr 8fr;
+  gap: var(--sp-10);
+}
+
+@media (max-width: 768px) {
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp-8);
+  }
+}
+
+.footer__brand-name {
+  font-family: var(--font-display);
+  font-size: var(--size-md);
+  font-weight: 700;
+  letter-spacing: var(--ls-wide);
+  margin-bottom: var(--sp-3);
+}
+
+.footer__brand-caption {
+  font-size: var(--size-xs);
+  line-height: var(--lh-loose);
+  color: var(--clr-muted);
+  max-width: 260px;
+}
+
+.footer__nav-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-6);
+}
+
+@media (max-width: 600px) {
+  .footer__nav-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.footer__nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.footer__nav-label {
+  font-size: var(--size-xs);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--clr-silver);
+}
+
+.footer__nav-link {
+  font-size: var(--size-xs);
+  color: var(--clr-muted);
+  transition: color var(--dur-fast) ease;
+}
+
+.footer__nav-link:hover {
+  color: var(--clr-platinum);
+}
+
+.footer__copyright {
+  margin-top: var(--sp-12);
+  padding-top: var(--sp-6);
+  border-top: 1px solid var(--bdr-hairline);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--ls-wide);
+  color: var(--clr-ghost);
+}
+
+
+/* ============================================================
+   17. REVEAL ANIMATIONS
+   ============================================================ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity var(--dur-xslow) var(--ease-out-expo),
+    transform var(--dur-xslow) var(--ease-out-expo);
+  will-change: transform, opacity;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal--up      { transform: translateY(24px); }
+.reveal--fade    { transform: none; }
+.reveal--scale   { transform: scale(0.96); }
+
+.reveal.is-visible.reveal--scale {
+  transform: scale(1);
+}
+
+/* Stagger delays */
+.reveal-d1 { transition-delay: 80ms; }
+.reveal-d2 { transition-delay: 160ms; }
+.reveal-d3 { transition-delay: 240ms; }
+.reveal-d4 { transition-delay: 320ms; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal--up,
+  .reveal--fade,
+  .reveal--scale {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+
+/* ============================================================
+   18. UTILITY CLASSES
+   ============================================================ */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--bdr-hairline);
+}
+
+.divider--iris {
+  background: linear-gradient(90deg, transparent, var(--clr-iris-dim), transparent);
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--bdr-subtle) transparent;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Animated iris underline for links */
+.link-hover {
+  position: relative;
+  color: var(--clr-silver);
+  transition: color var(--dur-base) ease;
+}
+.link-hover::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -1px;
+  width: 0; height: 1px;
+  background: var(--clr-iris);
+  transition: width var(--dur-base) var(--ease-out-expo);
+}
+.link-hover:hover {
+  color: var(--clr-platinum);
+}
+.link-hover:hover::after {
+  width: 100%;
+}
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="announcement-bar" class="fixed top-0 left-0 w-full z-[60] border-b border-white/[0.04] dark:border-white/[0.04] light-mode:border-black/[0.05] transition-all duration-300 hidden" style="background-color: var(--announcement-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+        <div class="max-w-7xl mx-auto px-6 h-9 flex items-center justify-between text-[11px] font-medium tracking-tight">
+            <div class="flex items-center gap-2 mx-auto">
+                <span class="px-1.5 py-0.5 bg-zinc-900 text-zinc-100 dark:bg-zinc-800 dark:text-zinc-200 light-mode:bg-zinc-200 light-mode:text-zinc-800 text-[9px] font-mono rounded font-bold uppercase tracking-wider">Update</span>
+                <span class="text-zinc-400 dark:text-zinc-300 light-mode:text-zinc-600">Orbit 0.13</span>
+                <a href="" class="text-zinc-100 hover:underline dark:text-white light-mode:text-zinc-900 ml-1">Learn more &rarr;</a>
+            </div>
+            <button onclick="dismissAnnouncement()" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-700 p-1 transition duration-150 absolute right-4">
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <div id="cookie-banner" class="fixed bottom-6 right-6 left-6 md:left-auto md:w-[380px] z-[100] app-panel p-5 rounded-xl hidden shadow-2xl transition-all duration-500 translate-y-6 opacity-0">
+        <div class="flex items-start gap-3.5">
+            <div class="text-zinc-400 mt-0.5">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 2a10 10 0 0 1 10 10h-2a8 8 0 0 0-8-8V2z"/></svg>
+            </div>
+            <div class="flex-1">
+                <h4 class="text-xs font-semibold tracking-tight mb-1">Telemetry Protocol</h4>
+                <p class="text-xs leading-relaxed mb-4 text-zinc-400 light-mode:text-zinc-500">Orbit uses dynamic configurations to preserve secure agent environments. Review our <a href="/Routes/cookies.html" class="text-zinc-200 light-mode:text-zinc-800 hover:underline">Cookie Directive</a>.</p>
+                <div class="flex gap-2">
+                    <button onclick="acceptCookies()" class="flex-1 px-3 py-1.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-black light-mode:bg-zinc-900 light-mode:hover:bg-zinc-800 light-mode:text-white text-xs font-medium rounded-md transition duration-150">Accept</button>
+                    <button onclick="closeBanner()" class="px-3 py-1.5 border border-white/5 light-mode:border-black/5 hover:border-white/10 text-zinc-400 dark:text-zinc-400 light-mode:text-zinc-500 hover:text-zinc-200 text-xs font-medium rounded-md transition duration-150">Decline</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav id="main-nav" class="fixed w-full z-50 border-b border-white/[0.03] dark:border-white/[0.03] light-mode:border-black/[0.05] backdrop-blur-md bg-black/10 dark:bg-black/10 light-mode:bg-white/10 transition-all duration-200 top-0">
+        <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+            <div class="font-space text-sm font-bold tracking-tight cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                ORBIT <span class="text-zinc-500 font-light text-[10px] font-sans tracking-widest ml-1.5">BETA</span>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#capabilities" class="text-xs text-zinc-400 light-mode:text-zinc-600 hover:text-zinc-200 light-mode:hover:text-zinc-900 transition duration-150">Capabilities</a>
+                <a href="#models" class="text-xs text-zinc-400 light-mode:text-zinc-600 hover:text-zinc-200 light-mode:hover:text-zinc-900 transition duration-150">AI Models</a>
+                <a href="#pricing" class="text-xs text-zinc-400 light-mode:text-zinc-600 hover:text-zinc-200 light-mode:hover:text-zinc-900 transition duration-150">Pricing</a>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <button onclick="toggleTheme()" class="p-1.5 text-zinc-400 light-mode:text-zinc-600 hover:text-zinc-200 light-mode:hover:text-zinc-900 transition duration-150" aria-label="Toggle Theme">
+                    <svg id="theme-icon" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
+                    </svg>
+                </button>
+                <a href="https://www.orbitdev.org/" class="text-xs text-zinc-400 light-mode:text-zinc-600 hover:text-zinc-200 light-mode:hover:text-zinc-900 transition duration-150">Login</a>
+                <a href="https://www.orbitdev.org/" class="bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-black light-mode:bg-zinc-900 light-mode:hover:bg-zinc-800 light-mode:text-white px-3.5 py-1.5 rounded-md text-xs font-medium transition duration-150">Join Orbit</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative pt-36 pb-20 px-6 min-h-[90vh] flex items-center justify-center border-b border-white/[0.02]">
+        <div id="hero-glow"></div>
+        <div class="max-w-4xl mx-auto relative z-10 text-center">
+            <div class="reveal inline-flex items-center gap-2 px-3 py-1 border border-white/5 dark:border-white/5 light-mode:border-black/5 bg-white/[0.01] rounded-full text-[11px] font-medium text-zinc-400 light-mode:text-zinc-600 mb-6">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                System Live
+            </div>
+            <h1 class="reveal reveal-delay-1 text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-[1.1] font-space">
+                What are we working on?<br><span class="text-zinc-400 light-mode:text-zinc-500">Your Mission is ours.</span>
+            </h1>
+            <p class="reveal reveal-delay-2 max-w-xl mx-auto text-sm md:text-base mb-10 text-zinc-400 light-mode:text-zinc-600 font-normal leading-relaxed">
+                Deploy autonomous intelligence systems, interface natively with sandboxed knowledge containers, and scale distributed workflows instantly.
+            </p>
+            <div class="reveal reveal-delay-2 flex flex-wrap justify-center gap-3.5 mb-14">
+                <a href="https://www.orbitdev.org/" class="px-5 py-2.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-black light-mode:bg-zinc-900 light-mode:hover:bg-zinc-800 light-mode:text-white font-medium rounded-lg transition duration-150 text-xs shadow-sm">
+                    Initialize Access
+                </a>
+                <a href="" class="px-5 py-2.5 app-panel text-zinc-300 light-mode:text-zinc-700 font-medium rounded-lg transition duration-150 text-xs">
+                    Download
+                </a>
+            </div>
+            
+            <div class="hero__terminal reveal is-visible reveal-d4">
+                
+                <div class="bg-white/[0.02] px-4 py-2.5 border-b border-white/[0.04] light-mode:border-black/[0.05] flex items-center justify-between">
+                    <span class="text-[11px] text-zinc-500 font-mono">agent_simulation_pipeline.sh</span>
+                    <div class="flex space-x-1.5">
+                        <div class="w-2 h-2 rounded-full bg-zinc-800 light-mode:bg-zinc-300"></div>
+                        <div class="w-2 h-2 rounded-full bg-zinc-800 light-mode:bg-zinc-300"></div>
+                        <div class="w-2 h-2 rounded-full bg-zinc-800 light-mode:bg-zinc-300"></div>
+                    </div>
+                </div>
+                <div class="p-5 font-mono text-xs flex-1 bg-black/20 light-mode:bg-zinc-50/50 leading-relaxed">
+                    <div id="feature-terminal"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+  <section id="capabilities" class="section section--border-top capabilities">
+    <div class="container">
+ 
+      <div class="section-header reveal">
+        <p class="section-header__eyebrow">Core Capabilities</p>
+        <h2 class="section-header__title">Autonomous interface modules.</h2>
+      </div>
+ 
+      <div class="capabilities__grid">
+ 
+        <div class="cap-card panel reveal reveal-d1">
+          <div>
+            <div class="cap-card__icon">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/>
+              </svg>
+            </div>
+            <h3 class="cap-card__title">Voice Pipeline</h3>
+            <p class="cap-card__body">Stream native complex commands over high-frequency voice streams. Built for real-time protocols.</p>
+          </div>
+          <span class="cap-card__tag">01 // Integrated</span>
+        </div>
+ 
+        <div class="cap-card panel reveal reveal-d2">
+          <div>
+            <div class="cap-card__icon">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+              </svg>
+            </div>
+            <h3 class="cap-card__title">Knowledge Synthesis</h3>
+            <p class="cap-card__body">Append localized context data frameworks and live script repositories effortlessly.</p>
+          </div>
+          <span class="cap-card__tag">02 // Contextual</span>
+        </div>
+ 
+        <div class="cap-card panel reveal reveal-d3">
+          <div>
+            <div class="cap-card__icon">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+              </svg>
+            </div>
+            <h3 class="cap-card__title">Agent Multi-Build</h3>
+            <p class="cap-card__body">Map complex multi-layer architectures or spawn asynchronous nodes in sandboxed container meshes.</p>
+          </div>
+          <span class="cap-card__tag">03 // Distributed</span>
+        </div>
+ 
+        <div class="cap-card panel reveal reveal-d4">
+          <div>
+            <div class="cap-card__icon">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+              </svg>
+            </div>
+            <h3 class="cap-card__title">Browser Sync</h3>
+            <p class="cap-card__body">Seamlessly integrate with modern web environments to compile and interact with live instances.</p>
+          </div>
+          <span class="cap-card__tag">04 // Orchestrated</span>
+        </div>
+ 
+      </div>
+    </div>
+  </section>
+
+   <section id="models" class="section section--border-top">
+    <div class="container">
+ 
+      <div class="section-header reveal">
+        <p class="section-header__eyebrow">Inventory</p>
+        <h2 class="section-header__title">Multi-Model Orchestration</h2>
+      </div>
+ 
+      <div class="models__grid">
+    
+ 
+       
+ 
+       
+          <div class="model-card panel reveal reveal-d2">
+          <span class="model-card__badge model-card__badge--default">CLAUD-2</span>
+          <img src="/Public/Claude.png" alt="Claude Logo" class="w-16 h-16 object-contain mb-4">
+          <h3 class="model-card__title">Claude</h3>
+          <p class="model-card__body">Highly capable AI assistant for complex reasoning and creative tasks.</p>
+        </div>
+         <div class="model-card panel model-card--featured reveal reveal-d3">
+          <span class="model-card__badge model-card__badge--featured">PROPRIETARY</span>
+          <h3 class="model-card__title">ProPulsar</h3>
+          <img src="/Public/puslar.png" alt="ProPulsar Logo" class="w-16 h-16 object-contain mb-4">
+          <p class="model-card__body">Sub-millisecond latency framework configured directly for multi-layered autonomous state routing.</p>
+        </div>
+   <div class="model-card panel reveal reveal-d2">
+          <span class="model-card__badge model-card__badge--default">Orbit AI</span>
+          <img src="/Public/web-app-manifest-512x512.png" alt="Orbit AI Logo" class="w-16 h-16 object-contain mb-4">
+          <h3 class="model-card__title">Orbit AI</h3>
+          <p class="model-card__body">Orbit AI is a cutting-edge artificial intelligence platform designed for seamless integration and advanced analytics.</p>
+ 
+      </div>
+       <div class="model-card panel reveal reveal-d1">
+          <span class="model-card__badge model-card__badge--default">GPT-5_CORE</span>
+          <h3 class="model-card__title">ChatGPT 5</h3>
+          <img src="/Public/open-ai-logo.png" alt="ProPulsar Logo" class="w-16 h-16 object-contain mb-4">
+          
+    
+          <p class="model-card__body">Advanced dynamic context parsing optimised for complex semantic and cross-linguistic arrays.</p>
+        </div>
+ 
+        <div class="model-card panel reveal reveal-d2">
+          <span class="model-card__badge model-card__badge--default">GEMINI_3_ULTRA</span>
+          <h3 class="model-card__title">Gemini 3</h3>
+            <img src="/Public/Google_Gemini_icon_2025.png" alt="Gemini Logo" class="w-16 h-16 object-contain mb-4">
+          <p class="model-card__body">High-volume data processing windows mapped with adaptive native multimodal structural analytics.</p>
+        </div>
+    </div>
+  </section>
+
+    <section id="pricing" class="section section--border-top">
+    <div class="container">
+ 
+      <div class="section-header section-header--center reveal">
+        <p class="section-header__eyebrow">Uplink Allocation</p>
+        <h2 class="section-header__title">Predictable Node Structure</h2>
+      </div>
+ 
+      <div class="pricing__grid">
+ 
+        <div class="pricing-card panel reveal reveal-d1">
+          <div>
+            <p class="pricing-card__tier">Standard Node</p>
+            <p class="pricing-card__price"><sup>€</sup>0</p>
+            <ul class="pricing-card__features">
+              <li class="pricing-card__feature"><span class="pricing-card__feature-dot"></span>1,000 Queries</li>
+              <li class="pricing-card__feature"><span class="pricing-card__feature-dot"></span>Standard Queue Priority</li>
+            </ul>
+          </div>
+          <a href="#" class="btn btn--ghost" style="width:100%; justify-content:center">Initialize</a>
+        </div>
+ 
+        <div class="pricing-card panel pricing-card--featured reveal reveal-d2">
+          <div>
+            <p class="pricing-card__tier pricing-card__tier--featured">Pro Pulsar</p>
+            <p class="pricing-card__price"><sup>€</sup>29</p>
+            <ul class="pricing-card__features">
+              <li class="pricing-card__feature"><span class="pricing-card__feature-dot"></span>Unlimited Engine Runtime</li>
+              <li class="pricing-card__feature"><span class="pricing-card__feature-dot"></span>Priority Queue Uplink</li>
+              <li class="pricing-card__feature"><span class="pricing-card__feature-dot"></span>Complete Agent Access</li>
+            </ul>
+          </div>
+          <a href="#" class="btn btn--primary" style="width:100%; justify-content:center">Initialize</a>
+        </div>
+ 
+        <div class="pricing-card panel reveal reveal-d3">
+          <div>
+            <p class="pricing-card__tier">Pulsar Node</p>
+            <p class="pricing-card__price"><sup>€</sup>10</p>
+            <ul class="pricing-card__features">
+              <li class="pricing-card__feature"><span class="pricing-card__feature-dot"></span>Unlimited Instances</li>
+              <li class="pricing-card__feature"><span class="pricing-card__feature-dot"></span>Autonomous Fleet Manager</li>
+              <li class="pricing-card__feature"><span class="pricing-card__feature-dot"></span>Standard Cluster Latency</li>
+            </ul>
+          </div>
+          <a href="#" class="btn btn--ghost" style="width:100%; justify-content:center">Initialize</a>
+        </div>
+ 
+      </div>
+    </div>
+  </section>
+
+    <footer class="py-16 border-t border-white/[0.03] dark:border-white/[0.03] light-mode:border-black/[0.05] bg-[#020202] dark:bg-[#020202] light-mode:bg-zinc-50">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-12 gap-10">
+            <div class="md:col-span-4">
+                <div class="font-space text-base font-bold mb-3 tracking-tight">ORBIT AI</div>
+                <p class="text-xs text-zinc-500 leading-relaxed max-w-xs">Operating under standard EU regulatory guidelines.<br>Registered Entity: Orbit Systems B.V.</p>
+            </div>
+            
+            <div class="md:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-6 text-xs">
+                <div class="flex flex-col space-y-2.5">
+                    <span class="text-zinc-400 dark:text-zinc-400 light-mode:text-zinc-800 font-medium tracking-tight">Directives</span>
+                    <a href="/Routes/terms.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Terms</a>
+                    <a href="/Routes/acceptabe.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Acceptable Use</a>
+                    <a href="/Routes/prathership.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Partnership Map</a>
+                    <a href="/Routes/stage.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Orbit Academy</a>
+                    <a href="/Routes/doc.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Documentation</a>
+                </div>
+                <div class="flex flex-col space-y-2.5">
+                    <span class="text-zinc-400 dark:text-zinc-400 light-mode:text-zinc-800 font-medium tracking-tight">Compliance</span>
+                    <a href="/Routes/privacy.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Privacy Regulation</a>
+                    <a href="/Routes/cookies.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Cookie Directives</a>
+                </div>
+                <div class="flex flex-col space-y-2.5">
+                    <span class="text-zinc-400 dark:text-zinc-400 light-mode:text-zinc-800 font-medium tracking-tight">Corporate</span>
+                    <a href="/Routes/architects.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Architects ↗</a>
+                    <a href="/Routes/Career.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Careers ↗</a>
+                    <a href="/Routes/network.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Network Topology ↗</a>
+                </div>
+                <div class="flex flex-col space-y-2.5">
+                    <span class="text-zinc-400 dark:text-zinc-400 light-mode:text-zinc-800 font-medium tracking-tight">Assistance</span>
+                    <a href="/Routes/support.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Support Center ↗</a>
+                    <a href="https://discord.gg/8VcqeZK2" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Discord ↗</a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-12 text-center text-[10px] text-zinc-600 tracking-wider">&copy; 2026 Orbit Systems B.V. Platform environment configured.</div>
+    </footer>
+
+    <script>
+        const ANNOUNCEMENT_ID = "Carshed_Announcement_v1";
+
+        // Layout shifts balancing the top navbar based on announcement visibility status
+        function checkAnnouncement() {
+            const bar = document.getElementById('announcement-bar');
+            const nav = document.getElementById('main-nav');
+            
+            if (!localStorage.getItem(ANNOUNCEMENT_ID)) {
+                bar.classList.remove('hidden');
+                nav.style.top = "36px";
+                document.body.style.paddingTop = "36px";
+            } else {
+                bar.classList.add('hidden');
+                nav.style.top = "0px";
+                document.body.style.paddingTop = "0px";
+            }
+        }
+
+        function dismissAnnouncement() {
+            localStorage.setItem(ANNOUNCEMENT_ID, 'dismissed');
+            const bar = document.getElementById('announcement-bar');
+            const nav = document.getElementById('main-nav');
+            
+            bar.classList.add('hidden');
+            nav.style.top = "0px";
+            document.body.style.paddingTop = "0px";
+        }
+
+        // Mouse Move Radial Flare Effect Tracker
+        const hero = document.querySelector('section');
+        hero.addEventListener('mousemove', (e) => {
+            const rect = hero.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            hero.style.setProperty('--x', `${x}%`);
+            hero.style.setProperty('--y', `${y}%`);
+        });
+
+        // Trigger Reveal Frame Animations via Intersection Observer API
+        const observerOptions = { threshold: 0.05, rootMargin: '0px 0px -10px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // State Theme Variant Switches
+        function toggleTheme() {
+            const html = document.documentElement;
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+            
+            body.classList.toggle('light-mode');
+            const isLight = body.classList.contains('light-mode');
+            
+            if (isLight) {
+                html.classList.remove('dark');
+                icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                icon.innerHTML = '<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Mock Command Shell Emulator Pipeline
+        const terminalContent = [
+            { text: "$ orbit agent initialize --preset=collaborative_build", c: "#a1a1aa" },
+            { text: "➔ connecting to uplink network node matrix...", c: "#71717a" },
+            { text: "➔ mapping local configuration structural context...", c: "#71717a" },
+            { text: "  [SYSTEM] core_refactor map --optimize=true", c: "var(--text-main)" },
+            { text: "  [SYSTEM] status: active cluster connection validated", c: "var(--text-main)" },
+            { text: "➔ validation complete [SUCCESS] | framework latency: 4ms", c: "#f4f4f5" },
+            { text: "$ listening for automated project triggers...", c: "#a1a1aa" }
+        ];
+
+        let lineIdx = 0;
+        function typeTerminal() {
+            const term = document.getElementById('feature-terminal');
+            if (lineIdx < terminalContent.length) {
+                const line = document.createElement('div');
+                line.className = "mb-2 opacity-0 translate-x-[-2px] transition-all duration-200 font-mono text-xs";
+                line.style.color = terminalContent[lineIdx].c;
+                line.innerHTML = `<span class="terminal-loader">${terminalContent[lineIdx].text}</span>`;
+                term.appendChild(line);
+                
+                setTimeout(() => {
+                    line.classList.remove('opacity-0', 'translate-x-[-2px]');
+                }, 15);
+
+                if (lineIdx > 0) term.children[lineIdx - 1].querySelector('span').classList.remove('terminal-loader');
+                lineIdx++;
+                setTimeout(typeTerminal, 450);
+            } else {
+                setTimeout(() => { term.innerHTML = ''; lineIdx = 0; typeTerminal(); }, 8000);
+            }
+        }
+
+        window.onload = () => {
+            checkAnnouncement();
+            if (!localStorage.getItem('orbit_consent')) {
+                setTimeout(() => {
+                    const banner = document.getElementById('cookie-banner');
+                    banner.classList.remove('hidden');
+                    setTimeout(() => {
+                        banner.classList.remove('translate-y-6', 'opacity-0');
+                    }, 50);
+                }, 800);
+            }
+            
+            // Set initial theme setup safely
+            if (localStorage.getItem('theme') === 'light') {
+                toggleTheme();
+            } else {
+                document.documentElement.classList.add('dark');
+            }
+            typeTerminal();
+        };
+
+        function acceptCookies() { localStorage.setItem('orbit_consent', 'granted'); closeBanner(); }
+        function closeBanner() { 
+            const banner = document.getElementById('cookie-banner');
+            banner.classList.add('translate-y-6', 'opacity-0');
+            setTimeout(() => banner.classList.add('hidden'), 400);
+        } 
+    </script>
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth select-none">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Orbit Shop — Initialize Your Uplink</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #050505;
+            --panel: rgba(13,13,13,0.7);
+            --panel-solid: #0d0d0d;
+            --text-main: #ffffff;
+            --text-muted: #52525b;
+            --border: rgba(255,255,255,0.05);
+            --accent: #ffffff;
+            --accent-glow: rgba(255,255,255,0.015);
+            --input-bg: #09090b;
+        }
+
+        .light-mode {
+            --bg: #fafafa;
+            --panel: rgba(244,244,245,0.7);
+            --panel-solid: #f4f4f5;
+            --text-main: #09090b;
+            --text-muted: #71717a;
+            --border: rgba(0,0,0,0.06);
+            --accent: #09090b;
+            --accent-glow: rgba(0,0,0,0.015);
+            --input-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text-muted);
+            overflow-x: hidden;
+            transition: 0.3s;
+        }
+
+        h1, h2, h3, .font-space {
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--text-main);
+        }
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .app-panel {
+            background: var(--panel);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+        }
+
+        .ticket-input {
+            background: var(--input-bg);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        .ticket-input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .stripe-element-container {
+            padding: 14px 16px;
+            border-radius: 8px;
+            background: var(--input-bg);
+            border: 1px solid var(--border);
+        }
+
+        .glow-button {
+            background: var(--accent);
+            color: var(--bg);
+            transition: 0.25s;
+        }
+
+        .glow-button:hover {
+            opacity: .9;
+            transform: translateY(-1px);
+        }
+
+        .glow-button:disabled {
+            opacity: .4;
+            cursor: not-allowed;
+        }
+
+        #hero-glow {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(800px circle at var(--x, 50%) var(--y, -200px), var(--accent-glow), transparent 60%);
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex items-center justify-center p-6 relative">
+
+<div id="hero-glow"></div>
+
+<div class="absolute top-6 right-6 z-50">
+    <button id="theme-toggle" class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 hover:text-white transition">
+        Toggle Theme
+    </button>
+</div>
+
+<div class="max-w-4xl w-full grid md:grid-cols-2 gap-12 items-center relative z-10">
+
+    <div class="space-y-6">
+        <a href="index.html" class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 hover:text-white transition flex items-center gap-2">
+            ← Return to Center Matrix
+        </a>
+
+        <div>
+            <h1 class="text-5xl font-bold leading-none uppercase tracking-tight">
+                Pro Pulsar <br>
+                <span class="italic font-light opacity-90">Subscription</span>
+            </h1>
+        </div>
+
+        <div class="space-y-4 text-sm text-zinc-400">
+            <div class="flex items-start gap-3">
+                <div class="text-zinc-500 border border-zinc-800 rounded-full w-5 h-5 flex items-center justify-center text-xs">✓</div>
+                <p>Unlimited parallel neural queries routing across standard edge clusters.</p>
+            </div>
+
+            <div class="flex items-start gap-3">
+                <div class="text-zinc-500 border border-zinc-800 rounded-full w-5 h-5 flex items-center justify-center text-xs">✓</div>
+                <p>Priority system uplink pipeline access allocation parameters active.</p>
+            </div>
+        </div>
+
+        <div class="border border-zinc-900 bg-zinc-950/40 p-4 rounded-xl flex items-center gap-4">
+            <div class="bg-white text-black p-3 rounded-xl flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
+                </svg>
+            </div>
+            <div>
+                <div class="font-mono text-[10px] text-zinc-400 tracking-wider font-bold">// DYNAMIC_INJECTION</div>
+                <p class="text-xs text-zinc-500 mt-0.5">+500 Processing tokens injected transparently into your account cluster arrays every cycle loop.</p>
+            </div>
+        </div>
+
+        <div class="pt-4">
+            <div class="text-4xl font-bold text-white font-space">
+                €29.00 <span class="text-xs tracking-widest uppercase text-zinc-600 font-mono ml-2">/ month</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-panel p-8 rounded-2xl shadow-2xl max-w-md w-full ml-auto">
+        <h2 class="text-sm font-mono tracking-widest uppercase mb-6 text-white border-b border-zinc-900 pb-3">
+            Secure Ledger Handshake
+        </h2>
+
+        <form id="payment-form" class="space-y-5">
+            <div>
+                <label class="block font-mono text-[10px] text-zinc-500 uppercase tracking-wider mb-2">
+                    Operator Identity Vectors
+                </label>
+                <input type="email" id="email" required placeholder="operator@orbit.com" class="ticket-input font-mono w-full rounded-lg px-4 py-3.5 text-sm">
+            </div>
+
+            <div>
+                <label class="block font-mono text-[10px] text-zinc-500 uppercase tracking-wider mb-2">
+                    Cryptographic Card Instrument
+                </label>
+                <div class="stripe-element-container">
+                    <div id="card-element"></div>
+                </div>
+                <div id="card-errors" class="text-red-500 font-mono text-xs mt-2 min-h-[18px]"></div>
+            </div>
+
+            <button id="submit" class="glow-button w-full py-4 rounded-xl uppercase tracking-widest font-mono text-xs font-bold mt-2">
+                Authorize Core Uplink
+            </button>
+        </form>
+
+        <p class="font-mono text-[9px] text-zinc-600 text-center mt-6 uppercase tracking-wider leading-relaxed">
+            Processing verified via localized Stripe runtime tokens. Pipelines may be modified transparently.
+        </p>
+    </div>
+</div>
+
+<script>
+    // Theme Switcher & Interaction logic
+    const toggleBtn = document.getElementById('theme-toggle');
+    toggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('light-mode');
+    });
+
+    window.addEventListener('mousemove', (e) => {
+        const glow = document.getElementById('hero-glow');
+        glow.style.setProperty('--x', e.clientX + 'px');
+        glow.style.setProperty('--y', e.clientY + 'px');
+    });
+
+    // STRIPE ELEMENT INTEGRATION
+    // Replace with your real Stripe publishable key if testing live payments
+    const stripe = Stripe("pk_test_51PxxxYOURxPUBLISHABLExKEYxxx"); 
+    const elements = stripe.elements();
+
+    const style = {
+        base: {
+            color: "#ffffff",
+            fontFamily: '"JetBrains Mono", monospace',
+            fontSmoothing: "antialiased",
+            fontSize: "14px",
+            "::placeholder": {
+                color: "#3f3f46"
+            }
+        },
+        invalid: {
+            color: "#ef4444",
+            iconColor: "#ef4444"
+        }
+    };
+
+    const cardElement = elements.create("card", { 
+        style: style,
+        hidePostalCode: true 
+    });
+    cardElement.mount("#card-element");
+
+    // Real-time Validation Error Rendering
+    cardElement.on('change', (event) => {
+        const displayError = document.getElementById('card-errors');
+        if (event.error) {
+            // Translates messages or passes standard Stripe localized error
+            displayError.textContent = event.error.message;
+        } else {
+            displayError.textContent = '';
+        }
+    });
+
+    // Form submission processing
+    const form = document.getElementById("payment-form");
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const submitBtn = document.getElementById("submit");
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Processing Handshake...";
+
+        // Step 1: Request client secret setup from your server
+        const response = await fetch("/create-payment-intent", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: document.getElementById("email").value })
+        });
+        
+        const data = await response.json();
+        const clientSecret = data.clientSecret;
+
+        // Step 2: Confirm card logic
+        const { paymentIntent, error } = await stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: cardElement,
+                billing_details: {
+                    email: document.getElementById("email").value
+                }
+            }
+        });
+
+        if (error) {
+            document.getElementById("card-errors").textContent = error.message;
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Authorize Core Uplink";
+        } else if (paymentIntent && paymentIntent.status === 'succeeded') {
+            submitBtn.textContent = "Uplink Secure // Linked";
+            alert("Subscription Authorized Successfully!");
+        }
+    });
+</script>
+
+</body>
+</html>

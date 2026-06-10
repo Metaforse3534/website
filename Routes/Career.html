@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth select-none">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers — Orbit AI</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="Public/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="Public/favicon.svg" />
+    <link rel="shortcut icon" href="Public/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #030303;
+            --panel: rgba(255, 255, 255, 0.015);
+            --panel-solid: #09090b;
+            --text-main: #ffffff;
+            --text-muted: #71717a;
+            --border: rgba(255, 255, 255, 0.04);
+            --border-hover: rgba(255, 255, 255, 0.12);
+            --accent: #6366f1;
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text-muted); 
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .font-space { 
+            font-family: 'Space Grotesk', sans-serif; 
+            color: var(--text-main);
+        }
+
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* Delicate Grain Overlay Layer */
+        .noise {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.012; pointer-events: none; z-index: 99;
+        }
+
+        .glow-mesh {
+            background: radial-gradient(circle at 50% -20%, #121026 0%, var(--bg) 70%);
+        }
+
+        /* Glassmorphism Structural Tokens */
+        .glass-panel {
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+        }
+
+        .job-card {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .job-card:hover {
+            border-color: var(--border-hover);
+            background: rgba(255, 255, 255, 0.03);
+            transform: translateY(-1px);
+        }
+
+        /* Interactive Element Slits */
+        .apply-btn {
+            background: var(--accent);
+            clip-path: polygon(6% 0, 100% 0, 94% 100%, 0% 100%);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .apply-btn:hover {
+            filter: brightness(1.15);
+            transform: scale(1.02);
+        }
+
+        /* Micro System Badges */
+        .tag {
+            font-size: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            padding: 3px 10px;
+            text-transform: uppercase;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        /* Modal Visibility Architecture */
+        #job-modal {
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        #job-modal.active {
+            pointer-events: auto;
+            opacity: 1;
+        }
+        .modal-container {
+            transform: scale(0.98) translateY(10px);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        #job-modal.active .modal-container {
+            transform: scale(1) translateY(0);
+        }
+
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="noise"></div>
+
+    <nav class="fixed w-full z-50 border-b border-white/[0.03] backdrop-blur-md bg-black/10">
+        <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+            <div class="font-space font-bold text-sm tracking-tight text-zinc-400 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                ORBIT <span class="text-zinc-500 font-light text-xs font-sans tracking-widest">CAREERS</span>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8 text-[10px] uppercase tracking-wider font-mono font-semibold text-zinc-500">
+                <a href="#" class="hover:text-zinc-300 transition">Capabilities</a>
+                <a href="#" class="hover:text-zinc-300 transition">AI Models</a>
+                <a href="#" class="text-zinc-100">// Open Positions</a>
+                <a href="https://www.orbitdev.org/" class="hover:text-zinc-300 transition">Terminal Platform</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative pt-36 pb-16 px-6 glow-mesh text-center">
+        <div class="max-w-3xl mx-auto space-y-4">
+            <div class="inline-block px-3 py-1 border border-indigo-500/20 bg-indigo-500/[0.03] rounded-full">
+                <span class="text-indigo-400 font-mono text-[9px] uppercase tracking-widest font-medium">Protocol: Expansion_2026</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold tracking-tight uppercase leading-none">
+                Build the Ecosystem.
+            </h1>
+            <p class="max-w-xl mx-auto text-zinc-400 text-xs md:text-sm leading-relaxed font-light">
+                Orbit operates as a decentralized topology of specialized internal automation pipelines. We map critical operations directly to high-performing digital operators.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-12 px-6 max-w-4xl mx-auto">
+        <div class="grid gap-3">
+            
+            <div onclick="openModal('Social Media Operations', '€5 / Hour', '14+', 'High-impact asset generation, narrative pacing, multi-channel growth systems, and interactive editing pipelines.')" 
+                 class="glass-panel job-card p-6 rounded flex justify-between items-center cursor-pointer">
+                <div class="space-y-1">
+                    <span class="text-indigo-400 font-mono text-[9px] uppercase tracking-wider block">// Operations_Growth</span>
+                    <h2 class="text-xl font-bold tracking-tight">Social Media Operations</h2>
+                </div>
+                <div class="text-right hidden sm:flex items-center space-x-3">
+                    <span class="tag">Age 14+</span>
+                    <span class="tag">€5 / HR</span>
+                </div>
+            </div>
+
+            <div onclick="openModal('Safety & Network Support', '€5 / Hour', '16+', 'Monitoring platform boundaries, executing system moderation rules, and routing tier-2 diagnostic operational inquiries.')" 
+                 class="glass-panel job-card p-6 rounded flex justify-between items-center cursor-pointer">
+                <div class="space-y-1">
+                    <span class="text-emerald-400 font-mono text-[9px] uppercase tracking-wider block">// Ecosystem_Security</span>
+                    <h2 class="text-xl font-bold tracking-tight">Safety & Network Support</h2>
+                </div>
+                <div class="text-right hidden sm:flex items-center space-x-3">
+                    <span class="tag">Age 16+</span>
+                    <span class="tag">€5 / HR</span>
+                </div>
+            </div>
+
+            <div onclick="openModal('Discord Infrastructure Admin', 'Growth Allocation / Equity Path', '14+', 'Community structure orchestration, security automation maintenance, and direct platform containment enforcement.')" 
+                 class="glass-panel job-card p-6 rounded flex justify-between items-center cursor-pointer">
+                <div class="space-y-1">
+                    <span class="text-purple-400 font-mono text-[9px] uppercase tracking-wider block">// Infrastructure_Management</span>
+                    <h2 class="text-xl font-bold tracking-tight">Discord Infrastructure Admin</h2>
+                </div>
+                <div class="text-right hidden sm:flex items-center space-x-3">
+                    <span class="tag">Age 14+</span>
+                    <span class="tag">Equity Allocation</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div id="job-modal" class="fixed inset-0 z-[100] bg-zinc-950/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="modal-container glass-panel w-full max-w-2xl overflow-hidden rounded bg-zinc-950 border-white/[0.06] shadow-xl">
+            
+            <div class="px-6 py-4 border-b border-white/[0.04] flex justify-between items-center bg-white/[0.01]">
+                <span id="modal-id" class="font-mono text-[9px] text-zinc-400 uppercase tracking-wider">Registry_Profile: Operational_Unit</span>
+                <button onclick="closeModal()" class="text-zinc-500 hover:text-zinc-200 transition font-mono text-[10px] tracking-wider">// Terminate_Session</button>
+            </div>
+
+            <div class="p-8 space-y-8">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <h3 id="modal-title" class="text-2xl font-bold tracking-tight">Position Profile</h3>
+                        
+                        <div class="space-y-2">
+                            <p class="text-[9px] uppercase text-zinc-500 font-mono font-semibold tracking-wider">// Metrics Hierarchy</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span id="modal-pay" class="tag text-indigo-400 border-indigo-500/20 bg-indigo-500/[0.03]">Allocation</span>
+                                <span id="modal-age" class="tag">Tier Requirements</span>
+                            </div>
+                        </div>
+                        
+                        <p id="modal-desc" class="text-xs text-zinc-400 leading-relaxed font-light border-l border-zinc-700 pl-4 py-1">
+                            Operational details loading...
+                        </p>
+                    </div>
+
+                    <div class="bg-white/[0.01] p-5 rounded border border-white/[0.03] font-mono text-[10px] leading-relaxed text-zinc-400 space-y-4">
+                        <div>
+                            <span class="text-indigo-400 font-semibold">// CRITICAL_EXPECTATIONS</span>
+                            <p class="text-zinc-500 mt-1">
+                                • Stable & Low-Latency Pipeline Connectivity<br>
+                                • Structured Written Communication Protocol<br>
+                                • Deep Functional Alignment with Systems Logic
+                            </p>
+                        </div>
+                        <div>
+                            <span class="text-indigo-400 font-semibold">// TRANSMISSION_FORMAT</span>
+                            <p class="text-zinc-500 mt-1">Provide Legal Signature, Age Registry, and Core Core Vectors inside the email submission pipeline.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-white/[0.04] flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="text-center sm:text-left">
+                        <p class="text-[9px] text-zinc-500 font-mono uppercase tracking-wider">Central Ingestion Endpoint</p>
+                        <p class="font-mono text-sm font-semibold text-indigo-400">apply@orbitdev.org</p>
+                    </div>
+                    <a id="apply-mailto" href="mailto:apply@orbitdev.org" class="apply-btn px-8 py-3 text-white font-mono text-[10px] font-bold uppercase tracking-wider text-center min-w-[200px] rounded-sm">
+                        Initialize Pipeline
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <footer class="py-12 border-t border-white/[0.03] bg-black/10">
+        <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-center">
+            <div class="text-left space-y-1">
+                <div class="font-space text-xs font-bold tracking-wider text-zinc-400">ORBIT SYSTEMS B.V.</div>
+                <p class="text-[10px] text-zinc-600 font-light leading-normal">Operating under regional framework regulations.<br>A registered corporate entity located in the Netherlands.</p>
+            </div>
+            <div class="flex flex-wrap gap-x-6 gap-y-2 md:justify-end text-[9px] uppercase tracking-wider font-mono font-medium text-zinc-500">
+                <a href="#" class="hover:text-zinc-300 transition">Terms</a>
+                <a href="#" class="hover:text-zinc-300 transition">Acceptable Use</a>
+                <a href="#" class="hover:text-zinc-300 transition">Privacy</a>
+                <a href="#" class="hover:text-zinc-300 transition">Cookies</a>
+                <a href="#" class="hover:text-zinc-300 transition text-zinc-400">Support Cluster ↗</a>
+            </div>
+        </div>
+        <div class="mt-8 text-center text-[9px] text-zinc-700 font-mono uppercase tracking-widest">&copy; 2026 Orbit Systems</div>
+    </footer>
+
+    <script>
+        const modal = document.getElementById('job-modal');
+        
+        function openModal(title, pay, age, desc) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-pay').innerText = pay;
+            document.getElementById('modal-age').innerText = `REQ_AGE: ${age}`;
+            document.getElementById('modal-desc').innerText = desc;
+            document.getElementById('modal-id').innerText = `Registry_Profile: ${title.replace(/\s+/g, '_').toUpperCase()}`;
+            
+            const emailSubject = encodeURIComponent(`Application Pipeline Access: ${title}`);
+            document.getElementById('apply-mailto').href = `mailto:apply@orbitdev.org?subject=${emailSubject}`;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) closeModal();
+        }
+    </script>
+</body>
+</html>

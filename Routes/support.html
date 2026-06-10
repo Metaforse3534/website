@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth select-none">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Support Protocol // Orbit Systems</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/svg+xml" href="Public/favicon.svg" />
+    <link rel="shortcut icon" href="Public/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #030303;
+            --accent: #6366f1;
+            --panel: rgba(10, 10, 12, 0.45);
+            --border: rgba(255, 255, 255, 0.04);
+            --border-hover: rgba(255, 255, 255, 0.12);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: #a1a1aa;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo-font { 
+            font-family: 'Space Grotesk', sans-serif; 
+            color: #ffffff; 
+        }
+
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* Grain Noise Texture Layer Overlay */
+        .noise {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.012; pointer-events: none; z-index: 99;
+        }
+
+        .glass-panel {
+            background: var(--panel);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .ticket-input {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border);
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+        .ticket-input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.08);
+        }
+
+        .status-pill {
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            background: rgba(34, 197, 94, 0.08);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.15);
+        }
+
+        /* Subtle Scanline Layer Mesh */
+        .scanline {
+            position: absolute; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            background-size: 100% 3px, 3px 100%;
+            pointer-events: none; opacity: 0.15;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-indigo-500/30">
+    <div class="noise"></div>
+
+    <nav class="fixed w-full z-50 border-b border-white/[0.03] bg-black/20 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="logo-font text-sm font-bold tracking-tight uppercase flex items-center gap-2 text-zinc-300">
+                <span class="text-indigo-500">○</span> ORBIT <span class="text-zinc-600 text-[10px] font-mono tracking-widest ml-1">// SUPPORT</span>
+            </a>
+            <div class="flex items-center gap-6">
+                <div class="hidden sm:flex items-center gap-2">
+                    <span class="status-pill font-mono">Systems Live</span>
+                </div>
+                <a href="#ticket" class="bg-zinc-100 text-zinc-950 text-[9px] font-mono font-bold px-4 py-2 rounded-full uppercase tracking-widest hover:bg-indigo-500 hover:text-white transition duration-300 shadow-xl shadow-black/20">Create Ticket</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6 pt-36 pb-24">
+        
+        <header class="max-w-2xl mb-24 md:mb-32">
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6 uppercase leading-none">RESOURCES & <br><span class="text-indigo-500 italic">ASSISTANCE.</span></h1>
+            <p class="text-sm md:text-base text-zinc-500 mb-8 font-light leading-relaxed">Access our structural cluster documentation or bridge an instantaneous connection matrix to a human architect channel.</p>
+            <div class="relative group">
+                <input type="text" placeholder="Search the protocol infrastructure..." class="ticket-input w-full p-4 rounded-xl pl-12 text-xs">
+                <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600 group-focus-within:text-indigo-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </div>
+        </header>
+
+        <div class="grid md:grid-cols-3 gap-4 mb-24 md:mb-32">
+            <div class="glass-panel p-8 rounded-2xl hover:border-zinc-800 group cursor-pointer">
+                <div class="text-indigo-400 mb-6 font-mono text-[9px] tracking-wider">// DOCS_V.01</div>
+                <h3 class="text-xl font-semibold mb-2">Neural Guides</h3>
+                <p class="text-xs text-zinc-500 leading-relaxed mb-6">Detailed parameters on API endpoint integration, node pipeline scaling, and logic engine deployment.</p>
+                <a href="#" class="text-[9px] font-mono uppercase font-medium tracking-widest text-zinc-300 group-hover:text-indigo-400 transition">Read Docs →</a>
+            </div>
+
+            <div class="glass-panel p-8 rounded-2xl hover:border-zinc-800 group cursor-pointer">
+                <div class="text-indigo-400 mb-6 font-mono text-[9px] tracking-wider">// COMM_UPLINK</div>
+                <h3 class="text-xl font-semibold mb-2">Architect Forum</h3>
+                <p class="text-xs text-zinc-500 leading-relaxed mb-6">Discuss pipeline workflows, automation loops, and processing structures with other Orbit developers.</p>
+                <a href="#" class="text-[9px] font-mono uppercase font-medium tracking-widest text-zinc-300 group-hover:text-indigo-400 transition">Join Forum →</a>
+            </div>
+
+            <div class="glass-panel p-8 rounded-2xl hover:border-zinc-800 group cursor-pointer">
+                <div class="text-indigo-400 mb-6 font-mono text-[9px] tracking-wider">// INFRA_STATUS</div>
+                <h3 class="text-xl font-semibold mb-2">Node Health</h3>
+                <p class="text-xs text-zinc-500 leading-relaxed mb-6">Real-time infrastructure telemetry for all globally distributed clusters. System latency: <span class="text-emerald-500 font-mono">14ms</span>.</p>
+                <a href="#" class="text-[9px] font-mono uppercase font-medium tracking-widest text-zinc-300 group-hover:text-indigo-400 transition">View Telemetry →</a>
+            </div>
+        </div>
+
+        <section id="ticket" class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-start border-t border-white/[0.03] pt-24">
+            <div class="lg:col-span-5 space-y-6">
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight uppercase leading-none">Open a <br> Support Ticket.</h2>
+                <p class="text-xs md:text-sm text-zinc-500 leading-relaxed max-w-sm">Our engineering network handles processing vectors within 24–48 hours. Please supply an analytical breakdown of the system anomaly.</p>
+                
+                <div class="space-y-4 pt-4 max-w-sm">
+                    <div class="flex items-start gap-3">
+                        <div class="w-6 h-6 rounded flex-shrink-0 bg-indigo-500/10 flex items-center justify-center text-indigo-400 font-mono text-[10px] font-semibold">1</div>
+                        <div>
+                            <h4 class="text-zinc-200 text-xs font-semibold">Priority Routing Matrix</h4>
+                            <p class="text-[11px] text-zinc-500 mt-0.5">Tickets are classified dynamically by production latency impacts to maintain node stability.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-6 h-6 rounded flex-shrink-0 bg-indigo-500/10 flex items-center justify-center text-indigo-400 font-mono text-[10px] font-semibold">2</div>
+                        <div>
+                            <h4 class="text-zinc-200 text-xs font-semibold">Encrypted Transmissions</h4>
+                            <p class="text-[11px] text-zinc-500 mt-0.5">Payload structures and session data variables are cryptographically isolated via local TLS.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-7 glass-panel p-6 md:p-10 rounded-2xl relative overflow-hidden w-full">
+                <div class="scanline"></div>
+                
+                <form id="supportTicket" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="space-y-4 relative z-10">
+                    <input type="hidden" id="caseID" name="case_id" value="">
+                    
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div class="space-y-1">
+                            <label class="text-[9px] font-mono uppercase tracking-wider font-semibold text-zinc-500">Your Identity</label>
+                            <input type="text" name="name" required placeholder="John Doe" class="ticket-input w-full p-3.5 rounded-xl text-xs">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[9px] font-mono uppercase tracking-wider font-semibold text-zinc-500">Urgency Metrics</label>
+                            <select name="urgency" class="ticket-input w-full p-3.5 rounded-xl text-xs bg-zinc-950 cursor-pointer">
+                                <option value="low">Low - Informational / Ask</option>
+                                <option value="med">Medium - Cluster Bug Report</option>
+                                <option value="high">High - Total Pipeline Breakdown</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-[9px] font-mono uppercase tracking-wider font-semibold text-zinc-500">Routing Email Address</label>
+                        <input type="email" name="email" required placeholder="architect@orbit.io" class="ticket-input w-full p-3.5 rounded-xl text-xs">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-[9px] font-mono uppercase tracking-wider font-semibold text-zinc-500">Incident Subject Vector</label>
+                        <input type="text" name="subject" required placeholder="e.g. Node Latency on EU-West" class="ticket-input w-full p-3.5 rounded-xl text-xs">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-[9px] font-mono uppercase tracking-wider font-semibold text-zinc-500">Detailed Diagnostic Narrative</label>
+                        <textarea name="description" rows="4" required placeholder="Provide precise variables, steps to reproduce, or exception logs..." class="ticket-input w-full p-3.5 rounded-xl text-xs resize-none"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-mono font-medium py-4 rounded-xl uppercase text-[10px] tracking-widest transition-all duration-300 shadow-lg shadow-indigo-500/10 mt-2">
+                        Transmit Ticket Payload
+                    </button>
+                    
+                    <div class="text-[8px] font-mono text-center text-zinc-600 uppercase tracking-widest mt-2">Transmission State: AES-256 Protocol Verified</div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="py-12 border-t border-white/[0.03] bg-black/20">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-6">
+            <div class="logo-font text-xs font-bold tracking-wider text-zinc-400">ORBIT SYSTEMS B.V.</div>
+            <div class="flex flex-wrap justify-center gap-x-8 gap-y-2 text-[9px] font-mono uppercase tracking-wider font-medium text-zinc-600">
+                <a href="#" class="hover:text-zinc-300 transition">Privacy Policy</a>
+                <a href="#" class="hover:text-zinc-300 transition">Security Framework</a>
+                <a href="mailto:support@orbitdev.org" class="text-indigo-400 hover:text-indigo-300 transition">support@orbitdev.org</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Generate a random localized Case identifier context
+        document.addEventListener('DOMContentLoaded', () => {
+            const randomID = "CASE-ORB" + Math.floor(10000 + Math.random() * 90000);
+            const inputField = document.getElementById('caseID');
+            if (inputField) {
+                inputField.value = randomID;
+                console.log("Telemetry Matrix Channel Activated: " + randomID);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth select-none">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Network | Orbit AI</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="Public/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="Public/favicon.svg" />
+    <link rel="shortcut icon" href="Public/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #030303;
+            --accent: #6366f1;
+            --glass: rgba(255, 255, 255, 0.015);
+            --border: rgba(255, 255, 255, 0.04);
+            --border-hover: rgba(255, 255, 255, 0.12);
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg); 
+            color: #a1a1aa; 
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .font-space { 
+            font-family: 'Space Grotesk', sans-serif; 
+            color: #ffffff;
+        }
+        
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* Delicate Grain Overlay Layer */
+        .noise {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.012; pointer-events: none; z-index: 99;
+        }
+
+        /* The Sliding Terminal Panel Framework */
+        .slith-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 90;
+        }
+
+        .slith-panel {
+            position: fixed;
+            right: -460px;
+            top: 0;
+            width: 100%;
+            max-width: 450px;
+            height: 100vh;
+            background: #09090b;
+            border-left: 1px solid var(--border);
+            padding: 3rem 2.5rem;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 100;
+        }
+
+        /* Panel State Classes toggled via DOM Engine */
+        .system-open .slith-panel { transform: translateX(-460px); }
+        .system-open .slith-overlay { opacity: 1; pointer-events: auto; }
+
+        /* Animated Infrastructure State Indicators */
+        .node-status {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .status-online { background: #22c55e; box-shadow: 0 0 12px rgba(34, 197, 94, 0.5); }
+        .status-sync { background: var(--accent); box-shadow: 0 0 12px rgba(99, 102, 241, 0.5); animation: pulse 2s infinite ease-in-out; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.95); }
+        }
+
+        .nav-link {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #71717a;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active { color: #ffffff; }
+
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="noise"></div>
+    <div class="slith-overlay" onclick="toggleSystem()"></div>
+
+    <nav class="fixed w-full z-[80] px-6 md:px-12 h-14 flex items-center justify-between border-b border-white/[0.03] backdrop-blur-md bg-black/10">
+        <div class="font-space font-bold text-sm tracking-tight text-zinc-400 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            ORBIT <span class="text-zinc-500 font-light text-xs font-sans tracking-widest">NETWORK</span>
+        </div>
+        
+        <div class="hidden md:flex space-x-10 text-[10px] font-mono font-semibold tracking-wider">
+            <a href="/core.html" class="nav-link">Core</a>
+            <a href="/architects.html" class="nav-link">Architects</a>
+            <a href="/network.html" class="nav-link active">// Grid Mappings</a>
+        </div>
+
+        <button onclick="toggleSystem()" class="group flex items-center space-x-3">
+            <span class="nav-link group-hover:text-zinc-200">Terminal Panel</span>
+            <div class="w-6 h-[1px] bg-white/20 group-hover:bg-indigo-500 transition-all duration-300"></div>
+        </button>
+    </nav>
+
+    <aside class="slith-panel flex flex-col justify-between">
+        <div class="space-y-10">
+            <div>
+                <span class="text-[9px] font-mono uppercase tracking-widest text-indigo-400 font-semibold">// Network_Monitor_Live</span>
+                <h2 class="font-space text-2xl font-bold mt-1">Telemetry Metrics</h2>
+            </div>
+
+            <div class="space-y-6">
+                <div>
+                    <span class="text-[9px] font-mono text-zinc-500 uppercase tracking-wider block mb-1">Global Core Throughput</span>
+                    <div class="flex items-baseline space-x-1">
+                        <span id="traffic-val" class="font-space text-4xl font-semibold text-white">1,242</span>
+                        <span class="text-[10px] font-mono text-zinc-600">REQ_PER_SEC</span>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-white/[0.04]">
+                    <span class="text-[9px] font-mono text-zinc-500 uppercase tracking-wider block mb-3">Live Internal Core Routing logs</span>
+                    <div id="console-log" class="font-mono text-[10px] text-zinc-500 space-y-1.5 h-64 overflow-hidden bg-black/30 p-3 rounded border border-white/[0.02]">
+                        <p class="text-indigo-400 font-semibold">> System telemetry node pipeline established.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pt-6 border-t border-white/[0.04] font-mono text-[9px] text-zinc-600 flex justify-between items-center">
+            <span>CLUSTER_REGION: EU-WEST</span>
+            <span id="uptime-clock" class="text-zinc-400 font-semibold">00:00:00</span>
+        </div>
+    </aside>
+
+    <main class="pt-36 pb-24 px-6 md:px-12 max-w-5xl mx-auto space-y-12">
+        <div class="space-y-2">
+            <h1 class="font-space text-4xl md:text-5xl font-bold tracking-tight uppercase">MESH GRID INFRASTRUCTURE</h1>
+            <p class="text-zinc-500 text-xs md:text-sm font-light">Real-time processing routing topologies, latency tracking matrices, and node status profiles.</p>
+        </div>
+
+        <div class="grid gap-px bg-white/[0.04] border border-white/[0.04] rounded overflow-hidden shadow-2xl shadow-black/50">
+            
+            <div class="bg-zinc-950/40 p-6 flex flex-col sm:flex-row gap-4 sm:gap-0 sm:items-center justify-between group hover:bg-white/[0.015] transition-all duration-300">
+                <div class="flex items-center space-x-4">
+                    <div class="node-status status-online flex-shrink-0"></div>
+                    <div>
+                        <span class="font-space font-medium text-white tracking-tight block">Amsterdam-IX</span>
+                        <span class="text-[9px] font-mono text-zinc-600 uppercase tracking-wider">Primary System Node Ingestion Hub</span>
+                    </div>
+                </div>
+                <div class="flex space-x-8 items-center justify-between sm:justify-end">
+                    <div class="text-left sm:text-right">
+                        <span class="text-[9px] font-mono text-zinc-600 uppercase block tracking-wider">Interface Latency</span>
+                        <span class="font-mono text-xs text-emerald-500 font-medium">4ms</span>
+                    </div>
+                    <div class="w-24 h-[2px] bg-white/[0.03] rounded-full overflow-hidden">
+                        <div class="bg-indigo-500 h-full w-2/3"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-zinc-950/40 p-6 flex flex-col sm:flex-row gap-4 sm:gap-0 sm:items-center justify-between group hover:bg-white/[0.015] transition-all duration-300">
+                <div class="flex items-center space-x-4">
+                    <div class="node-status status-sync flex-shrink-0"></div>
+                    <div>
+                        <span class="font-space font-medium text-white tracking-tight block">Frankfurt-Node</span>
+                        <span class="text-[9px] font-mono text-zinc-600 uppercase tracking-wider">Neural Compute Sync Relay Pipeline</span>
+                    </div>
+                </div>
+                <div class="flex space-x-8 items-center justify-between sm:justify-end">
+                    <div class="text-left sm:text-right">
+                        <span class="text-[9px] font-mono text-zinc-600 uppercase block tracking-wider">Interface Latency</span>
+                        <span class="font-mono text-xs text-indigo-400 font-medium">12ms</span>
+                    </div>
+                    <div class="w-24 h-[2px] bg-white/[0.03] rounded-full overflow-hidden">
+                        <div class="bg-indigo-500 h-full w-1/2"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-zinc-950/40 p-6 flex flex-col sm:flex-row gap-4 sm:gap-0 sm:items-center justify-between group hover:bg-white/[0.015] transition-all duration-300">
+                <div class="flex items-center space-x-4">
+                    <div class="node-status bg-zinc-800 flex-shrink-0"></div>
+                    <div class="opacity-40">
+                        <span class="font-space font-medium text-white tracking-tight block">New York-Nexus</span>
+                        <span class="text-[9px] font-mono text-zinc-600 uppercase tracking-wider">Standby Cluster Backup Vector</span>
+                    </div>
+                </div>
+                <div class="flex space-x-8 items-center justify-between sm:justify-end opacity-20">
+                    <div class="text-left sm:text-right">
+                        <span class="text-[9px] font-mono text-zinc-600 uppercase block tracking-wider">Interface Latency</span>
+                        <span class="font-mono text-xs text-zinc-400 font-medium">--</span>
+                    </div>
+                    <div class="w-24 h-[2px] bg-white/[0.03] rounded-full"></div>
+                </div>
+            </div>
+            
+        </div>
+    </main>
+
+    <footer class="py-12 border-t border-white/[0.03] bg-black/10">
+        <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-center">
+            <div class="text-left space-y-1">
+                <div class="font-space text-xs font-bold tracking-wider text-zinc-400">ORBIT SYSTEMS B.V.</div>
+                <p class="text-[10px] text-zinc-600 font-light leading-normal">Operating under regional framework regulations.<br>A registered corporate entity located in the Netherlands.</p>
+            </div>
+            <div class="flex flex-wrap gap-x-6 gap-y-2 md:justify-end text-[9px] uppercase tracking-wider font-mono font-medium text-zinc-500">
+                <a href="terms.html" class="hover:text-zinc-300 transition">Terms</a>
+                <a href="acceptable-use.html" class="hover:text-zinc-300 transition">Acceptable Use</a>
+                <a href="Privacy.html" class="hover:text-zinc-300 transition">Privacy</a>
+                <a href="cookies.html" class="hover:text-zinc-300 transition">Cookies</a>
+                <a href="support.html" class="text-indigo-400 hover:text-indigo-300 transition font-semibold">Support Cluster ↗</a>
+            </div>
+        </div>
+        <div class="mt-8 text-center text-[9px] text-zinc-700 font-mono uppercase tracking-widest">&copy; 2026 Orbit Systems</div>
+    </footer>
+
+    <script>
+        function toggleSystem() {
+            document.body.classList.toggle('system-open');
+        }
+
+        // Live Real-Time Data Automation Engine
+        function simulateData() {
+            // 1. Process Traffic Metric Variances cleanly avoiding string formatting errors
+            const traffic = document.getElementById('traffic-val');
+            setInterval(() => {
+                const change = Math.floor(Math.random() * 20) - 10;
+                let current = parseInt(traffic.innerText.replace(/,/g, ''), 10);
+                if (!isNaN(current)) {
+                    traffic.innerText = (current + change).toLocaleString();
+                }
+            }, 2000);
+
+            // 2. Continuous Console Node Log Stream Ingestion
+            const logs = [
+                "Inbound secure handshake authorized from region: NL-AMS",
+                "Optimizing logic validation gates at address offset 0x42F",
+                "Routing network sequence load packet through Frankfurt relays",
+                "Neural telemetry processing channels fully stabilized",
+                "Executing automated autonomous system validation protocols...",
+                "Cryptographic transport session keys rotated successfully"
+            ];
+            const consoleBox = document.getElementById('console-log');
+            setInterval(() => {
+                const p = document.createElement('p');
+                p.innerText = `> ${logs[Math.floor(Math.random() * logs.length)]}`;
+                p.className = "text-zinc-500 transition-all duration-300";
+                consoleBox.prepend(p);
+                if (consoleBox.children.length > 10) consoleBox.lastChild.remove();
+            }, 3000);
+
+            // 3. Absolute Precision System Uptime Clock Execution
+            let seconds = 0;
+            const clock = document.getElementById('uptime-clock');
+            setInterval(() => {
+                seconds++;
+                let h = Math.floor(seconds / 3600).toString().padStart(2, '0');
+                let m = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
+                let s = (seconds % 60).toString().padStart(2, '0');
+                clock.innerText = `${h}:${m}:${s}`;
+            }, 1000);
+        }
+
+        window.onload = simulateData;
+    </script>
+</body>
+</html>

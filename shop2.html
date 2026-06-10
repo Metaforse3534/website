@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth select-none">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orbit Shop — Initialize Your Uplink</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <link rel="icon" type="image/svg+xml" href="Public/favicon.svg" />
+    <link rel="shortcut icon" href="Public/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #050505;
+            --panel: rgba(13, 13, 13, 0.7);
+            --panel-solid: #0d0d0d;
+            --text-main: #ffffff;
+            --text-muted: #71717a;
+            --border: rgba(255, 255, 255, 0.04);
+            --accent: #ffffff;
+            --accent-glow: rgba(255, 255, 255, 0.02);
+            --input-bg: rgba(0, 0, 0, 0.4);
+        }
+
+        .light-mode {
+            --bg: #fafafa;
+            --panel: rgba(244, 244, 245, 0.7);
+            --panel-solid: #f4f4f5;
+            --text-main: #09090b;
+            --text-muted: #71717a;
+            --border: rgba(0, 0, 0, 0.06);
+            --accent: #09090b;
+            --accent-glow: rgba(0, 0, 0, 0.02);
+            --input-bg: rgba(255, 255, 255, 0.6);
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text-muted); 
+            transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .font-space { 
+            font-family: 'Space Grotesk', sans-serif; 
+            color: var(--text-main);
+            transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* Animation Reveal Architecture */
+        .reveal { 
+            opacity: 0; 
+            transform: translateY(15px); 
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); 
+            will-change: transform, opacity;
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+
+        /* Mouse Tracking Aura Field Grid */
+        #hero-glow {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(800px circle at var(--x, 50%) var(--y, -200px), var(--accent-glow), transparent 60%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .app-panel {
+            background: var(--panel);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .app-panel:hover {
+            border-color: rgba(255, 255, 255, 0.08);
+            background: rgba(20, 20, 20, 0.8);
+        }
+        
+        .light-mode .app-panel:hover {
+            border-color: rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Dynamic Input Interfaces styles */
+        .ticket-input {
+            background: var(--input-bg);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .ticket-input:focus, .stripe-element-container.focused {
+            border-color: var(--text-main);
+            outline: none;
+        }
+
+        .stripe-element-container {
+            padding: 14px;
+            border-radius: 12px;
+            background: var(--input-bg);
+            border: 1px solid var(--border);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glow-button {
+            background: var(--accent);
+            color: var(--bg);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glow-button:hover:not(:disabled) {
+            transform: translateY(-1px);
+            opacity: 0.9;
+        }
+
+        .glow-button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .bonus-tag {
+            background: var(--text-main);
+            color: var(--bg);
+        }
+
+        /* Custom Vector Scrollbar mapping */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-6 relative">
+    <div id="hero-glow"></div>
+
+    <div class="absolute top-6 right-6 z-50">
+        <button id="theme-toggle" class="font-mono text-[9px] uppercase tracking-widest text-zinc-500 hover:text-zinc-400 transition duration-300">
+            // Toggle System Theme
+        </button>
+    </div>
+
+    <div class="max-w-4xl w-full grid md:grid-cols-2 gap-12 md:gap-16 items-center py-12 relative z-10">
+        
+        <div class="space-y-8 reveal">
+            <div>
+                <a href="/index.html" class="text-[9px] font-mono uppercase tracking-widest text-zinc-500 inline-flex items-center gap-2 hover:text-zinc-400 transition duration-300">
+                    <span>←</span> Return to Orbit Core
+                </a>
+                <h1 class="text-4xl md:text-5xl font-bold tracking-tight uppercase leading-none mt-6">Pro Pulsar <br><span class="italic font-light opacity-75">Subscription</span></h1>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="flex items-start gap-3">
+                    <div class="w-5 h-5 rounded-full border border-zinc-700/50 flex items-center justify-center text-zinc-400 text-[10px] font-mono flex-shrink-0 mt-0.5">✓</div>
+                    <p class="text-xs leading-normal">Unlimited parallel neural queries routing across standard edge clusters.</p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <div class="w-5 h-5 rounded-full border border-zinc-700/50 flex items-center justify-center text-zinc-400 text-[10px] font-mono flex-shrink-0 mt-0.5">✓</div>
+                    <p class="text-xs leading-normal">Priority system uplink pipeline access allocation parameters active.</p>
+                </div>
+                
+                <div class="flex items-center gap-4 p-5 app-panel rounded-2xl">
+                    <div class="w-10 h-10 rounded-xl bonus-tag flex items-center justify-center font-bold flex-shrink-0">⚡</div>
+                    <div>
+                        <p class="font-mono font-semibold text-[9px] tracking-wider uppercase" style="color: var(--text-main)">// Subscriber_Bonus</p>
+                        <p class="text-[11px] mt-0.5 leading-relaxed">+100 Processing tokens injected transparently into your account cluster arrays every cycle loop.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pt-4 border-t border-white/[0.03]">
+                <div class="text-3xl font-space font-bold">€10.00 <span class="text-xs font-mono opacity-40 uppercase tracking-widest font-normal ml-1">/ month</span></div>
+            </div>
+        </div>
+
+        <div class="app-panel p-6 md:p-8 rounded-3xl shadow-xl shadow-black/10 w-full relative reveal reveal-delay-1">
+            <h2 class="text-base font-semibold mb-6 uppercase tracking-tight font-space">Secure Ledger Handshake</h2>
+            
+            <form id="payment-form" class="space-y-5">
+                <div class="space-y-1.5">
+                    <label class="block text-[9px] font-mono uppercase tracking-wider text-zinc-500">Operator Identity Vectors</label>
+                    <input type="email" id="email" required class="ticket-input w-full rounded-xl px-4 py-3.5 text-xs placeholder-zinc-700 font-mono" placeholder="operator@orbit.com">
+                </div>
+
+                <div class="space-y-1.5">
+                    <label class="block text-[9px] font-mono uppercase tracking-wider text-zinc-500">Cryptographic Card Instrument</label>
+                    <div id="card-element-wrapper" class="stripe-element-container">
+                        <div id="card-element"></div>
+                    </div>
+                    <div id="card-errors" role="alert" class="text-red-400 font-mono text-[10px] tracking-wide mt-1.5 min-h-[14px]"></div>
+                </div>
+
+                <button id="submit" class="w-full py-4 rounded-xl font-mono font-medium uppercase tracking-widest glow-button text-[10px] mt-2">
+                    Authorize Core Uplink
+                </button>
+                
+                <div class="text-[8px] font-mono text-center opacity-40 uppercase tracking-wider mt-4">
+                    Processing verified via localized Stripe runtime tokens. Pipelines may be modified transparently.
+                </div>
+            </form>
+        </div>
+        
+    </div>
+
+    <script>
+        // System Theme Synchronization Hook Pipeline
+        const toggleBtn = document.getElementById('theme-toggle');
+        toggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            
+            const isLight = document.body.classList.contains('light-mode');
+            card.update({
+                style: {
+                    base: {
+                        color: isLight ? '#09090b' : '#ffffff',
+                        '::placeholder': { color: isLight ? '#a1a1aa' : '#3f3f46' }
+                    }
+                }
+            });
+        });
+
+        // Mouse Aura Track Vector Coordinate Mapper
+        window.addEventListener('mousemove', (e) => {
+            const glow = document.getElementById('hero-glow');
+            glow.style.setProperty('--x', e.clientX + 'px');
+            glow.style.setProperty('--y', e.clientY + 'px');
+        });
+
+        // Activation Triggers for Global Structural Reveal Pipelines
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
+            }, 100);
+        });
+
+        // Initialize Stripe Secure Component Configuration
+        const stripe = Stripe('');
+        const elements = stripe.elements();
+
+        const styleConfig = {
+            base: {
+                color: '#ffffff',
+                fontFamily: '"Inter", sans-serif',
+                fontSmoothing: 'antialiased',
+                fontSize: '13px',
+                '::placeholder': { color: '#3f3f46' }
+            },
+            invalid: { color: '#ef4444', iconColor: '#ef4444' }
+        };
+
+        const card = elements.create('card', { style: styleConfig, hidePostalCode: true });
+        card.mount('#card-element');
+
+        // Dynamic State Changes Tracking
+        const wrapper = document.getElementById('card-element-wrapper');
+        card.on('focus', () => wrapper.classList.add('focused'));
+        card.on('blur', () => wrapper.classList.remove('focused'));
+        
+        card.on('change', (event) => {
+            const displayError = document.getElementById('card-errors');
+            displayError.textContent = event.error ? event.error.message : '';
+        });
+
+        // Secure Form Submission Execution Pipeline Loop
+        const form = document.getElementById('payment-form');
+        const submitBtn = document.getElementById('submit');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Processing Handshake...";
+
+            const { token, error } = await stripe.createToken(card);
+
+            if (error) {
+                document.getElementById('card-errors').textContent = error.message;
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Authorize Core Uplink";
+            } else {
+                alert('Secure Token Sequence Generated: ' + token.id + '\n\nPipeline handoff ready. In production, transmit this generated authorization object directly to your secure endpoints.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Authorize Core Uplink";
+            }
+        });
+    </script>
+</body>
+</html>
