@@ -136,6 +136,7 @@
         ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
     </style>
+    <link rel="stylesheet" href="/site.css">
 </head>
 <body class="antialiased min-h-screen flex items-center justify-center p-6 relative">
     <div id="hero-glow"></div>
@@ -240,55 +241,15 @@
             }, 100);
         });
 
-        // Initialize Stripe Secure Component Configuration
-        const stripe = Stripe('');
-        const elements = stripe.elements();
-
-        const styleConfig = {
-            base: {
-                color: '#ffffff',
-                fontFamily: '"Inter", sans-serif',
-                fontSmoothing: 'antialiased',
-                fontSize: '13px',
-                '::placeholder': { color: '#3f3f46' }
-            },
-            invalid: { color: '#ef4444', iconColor: '#ef4444' }
-        };
-
-        const card = elements.create('card', { style: styleConfig, hidePostalCode: true });
-        card.mount('#card-element');
-
-        // Dynamic State Changes Tracking
-        const wrapper = document.getElementById('card-element-wrapper');
-        card.on('focus', () => wrapper.classList.add('focused'));
-        card.on('blur', () => wrapper.classList.remove('focused'));
-        
-        card.on('change', (event) => {
-            const displayError = document.getElementById('card-errors');
-            displayError.textContent = event.error ? event.error.message : '';
-        });
-
-        // Secure Form Submission Execution Pipeline Loop
         const form = document.getElementById('payment-form');
         const submitBtn = document.getElementById('submit');
-
-        form.addEventListener('submit', async (event) => {
+        document.getElementById('card-element').innerHTML = '<span class="text-[11px] text-zinc-500">Secure checkout continues inside your Orbit account.</span>';
+        submitBtn.textContent = "Continue in Orbit Billing";
+        form.addEventListener('submit', (event) => {
             event.preventDefault();
-            submitBtn.disabled = true;
-            submitBtn.textContent = "Processing Handshake...";
-
-            const { token, error } = await stripe.createToken(card);
-
-            if (error) {
-                document.getElementById('card-errors').textContent = error.message;
-                submitBtn.disabled = false;
-                submitBtn.textContent = "Authorize Core Uplink";
-            } else {
-                alert('Secure Token Sequence Generated: ' + token.id + '\n\nPipeline handoff ready. In production, transmit this generated authorization object directly to your secure endpoints.');
-                submitBtn.disabled = false;
-                submitBtn.textContent = "Authorize Core Uplink";
-            }
+            window.location.href = "https://www.orbitdev.org/billing";
         });
     </script>
+    <script src="/site.js" defer></script>
 </body>
 </html>

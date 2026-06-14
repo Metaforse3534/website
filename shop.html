@@ -98,6 +98,7 @@
             pointer-events: none;
         }
     </style>
+    <link rel="stylesheet" href="/site.css">
 </head>
 
 <body class="min-h-screen flex items-center justify-center p-6 relative">
@@ -202,82 +203,15 @@
         glow.style.setProperty('--y', e.clientY + 'px');
     });
 
-    // STRIPE ELEMENT INTEGRATION
-    // Replace with your real Stripe publishable key if testing live payments
-    const stripe = Stripe("pk_test_51PxxxYOURxPUBLISHABLExKEYxxx"); 
-    const elements = stripe.elements();
-
-    const style = {
-        base: {
-            color: "#ffffff",
-            fontFamily: '"JetBrains Mono", monospace',
-            fontSmoothing: "antialiased",
-            fontSize: "14px",
-            "::placeholder": {
-                color: "#3f3f46"
-            }
-        },
-        invalid: {
-            color: "#ef4444",
-            iconColor: "#ef4444"
-        }
-    };
-
-    const cardElement = elements.create("card", { 
-        style: style,
-        hidePostalCode: true 
-    });
-    cardElement.mount("#card-element");
-
-    // Real-time Validation Error Rendering
-    cardElement.on('change', (event) => {
-        const displayError = document.getElementById('card-errors');
-        if (event.error) {
-            // Translates messages or passes standard Stripe localized error
-            displayError.textContent = event.error.message;
-        } else {
-            displayError.textContent = '';
-        }
-    });
-
-    // Form submission processing
     const form = document.getElementById("payment-form");
-    form.addEventListener("submit", async (e) => {
+    const cardElement = document.getElementById("card-element");
+    cardElement.innerHTML = '<span class="text-xs text-zinc-500">Secure checkout continues inside your Orbit account.</span>';
+    form.addEventListener("submit", (e) => {
         e.preventDefault();
-        const submitBtn = document.getElementById("submit");
-        submitBtn.disabled = true;
-        submitBtn.textContent = "Processing Handshake...";
-
-        // Step 1: Request client secret setup from your server
-        const response = await fetch("/create-payment-intent", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email: document.getElementById("email").value })
-        });
-        
-        const data = await response.json();
-        const clientSecret = data.clientSecret;
-
-        // Step 2: Confirm card logic
-        const { paymentIntent, error } = await stripe.confirmCardPayment(clientSecret, {
-            payment_method: {
-                card: cardElement,
-                billing_details: {
-                    email: document.getElementById("email").value
-                }
-            }
-        });
-
-        if (error) {
-            document.getElementById("card-errors").textContent = error.message;
-            submitBtn.disabled = false;
-            submitBtn.textContent = "Authorize Core Uplink";
-        } else if (paymentIntent && paymentIntent.status === 'succeeded') {
-            submitBtn.textContent = "Uplink Secure // Linked";
-            alert("Subscription Authorized Successfully!");
-        }
+        window.location.href = "https://www.orbitdev.org/billing";
     });
 </script>
 
+    <script src="/site.js" defer></script>
 </body>
 </html>

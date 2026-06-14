@@ -1551,6 +1551,7 @@ button { cursor: pointer; font: inherit; border: none; background: none; }
   width: 100%;
 }
     </style>
+    <link rel="stylesheet" href="/site.css">
 </head>
 <body class="antialiased">
 
@@ -1558,8 +1559,8 @@ button { cursor: pointer; font: inherit; border: none; background: none; }
         <div class="max-w-7xl mx-auto px-6 h-9 flex items-center justify-between text-[11px] font-medium tracking-tight">
             <div class="flex items-center gap-2 mx-auto">
                 <span class="px-1.5 py-0.5 bg-zinc-900 text-zinc-100 dark:bg-zinc-800 dark:text-zinc-200 light-mode:bg-zinc-200 light-mode:text-zinc-800 text-[9px] font-mono rounded font-bold uppercase tracking-wider">Update</span>
-                <span class="text-zinc-400 dark:text-zinc-300 light-mode:text-zinc-600">Orbit 0.13</span>
-                <a href="/Routes/blog.html" class="text-zinc-100 hover:underline dark:text-white light-mode:text-zinc-900 ml-1">Learn more &rarr;</a>
+                <span class="text-zinc-400 dark:text-zinc-300 light-mode:text-zinc-600">Orbit 0.14 is live</span>
+                <a href="Orbit-ai-Setup-0.0.14.exe" download class="text-zinc-100 hover:underline dark:text-white light-mode:text-zinc-900 ml-1">Download for Windows &rarr;</a>
             </div>
             <button onclick="dismissAnnouncement()" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-700 p-1 transition duration-150 absolute right-4">
                 <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
@@ -1601,8 +1602,8 @@ button { cursor: pointer; font: inherit; border: none; background: none; }
                         <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
                     </svg>
                 </button>
-                <a href="https://www.orbitdev.org/" class="text-xs text-zinc-400 light-mode:text-zinc-600 hover:text-zinc-200 light-mode:hover:text-zinc-900 transition duration-150">Login</a>
-                <a href="https://www.orbitdev.org/" class="bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-black light-mode:bg-zinc-900 light-mode:hover:bg-zinc-800 light-mode:text-white px-3.5 py-1.5 rounded-md text-xs font-medium transition duration-150">Join Orbit</a>
+                <a href="https://www.orbitdev.org/auth" data-app-path="/auth" class="text-xs text-zinc-400 light-mode:text-zinc-600 hover:text-zinc-200 light-mode:hover:text-zinc-900 transition duration-150">Login</a>
+                <a href="https://www.orbitdev.org/auth" data-app-path="/auth" class="bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-black light-mode:bg-zinc-900 light-mode:hover:bg-zinc-800 light-mode:text-white px-3.5 py-1.5 rounded-md text-xs font-medium transition duration-150">Open Orbit</a>
             </div>
         </div>
     </nav>
@@ -1610,10 +1611,10 @@ button { cursor: pointer; font: inherit; border: none; background: none; }
     <section class="relative pt-36 pb-20 px-6 min-h-[90vh] flex items-center justify-center border-b border-white/[0.02]">
         <div id="hero-glow"></div>
         <div class="max-w-4xl mx-auto relative z-10 text-center">
-            <div class="reveal inline-flex items-center gap-2 px-3 py-1 border border-white/5 dark:border-white/5 light-mode:border-black/5 bg-white/[0.01] rounded-full text-[11px] font-medium text-zinc-400 light-mode:text-zinc-600 mb-6">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                System Live
-            </div>
+            <a href="https://www.orbitdev.org/" data-app-path="/" id="app-status" class="reveal inline-flex items-center gap-2 px-3 py-1 border border-white/5 dark:border-white/5 light-mode:border-black/5 bg-white/[0.01] rounded-full text-[11px] font-medium text-zinc-400 light-mode:text-zinc-600 mb-6">
+                <span id="app-status-dot" class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+                <span id="app-status-text">Connecting to Orbit app...</span>
+            </a>
             <h1 class="reveal reveal-delay-1 text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-[1.1] font-space">
                 What are we working on?<br><span class="text-zinc-400 light-mode:text-zinc-500">Your Mission is ours.</span>
             </h1>
@@ -1621,11 +1622,11 @@ button { cursor: pointer; font: inherit; border: none; background: none; }
                 Deploy autonomous intelligence systems, interface natively with sandboxed knowledge containers, and scale distributed workflows instantly.
             </p>
             <div class="reveal reveal-delay-2 flex flex-wrap justify-center gap-3.5 mb-14">
-                <a href="https://www.orbitdev.org/" class="px-5 py-2.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-black light-mode:bg-zinc-900 light-mode:hover:bg-zinc-800 light-mode:text-white font-medium rounded-lg transition duration-150 text-xs shadow-sm">
-                    Initialize Access
+                <a href="https://www.orbitdev.org/auth" data-app-path="/auth" class="px-5 py-2.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-black light-mode:bg-zinc-900 light-mode:hover:bg-zinc-800 light-mode:text-white font-medium rounded-lg transition duration-150 text-xs shadow-sm">
+                    Launch Orbit App
                 </a>
-                <a href="" class="px-5 py-2.5 app-panel text-zinc-300 light-mode:text-zinc-700 font-medium rounded-lg transition duration-150 text-xs">
-                    Download
+                <a href="Orbit-ai-Setup-0.0.14.exe" download class="px-5 py-2.5 app-panel text-zinc-300 light-mode:text-zinc-700 font-medium rounded-lg transition duration-150 text-xs">
+                    Download for Windows
                 </a>
             </div>
             
@@ -1784,7 +1785,7 @@ button { cursor: pointer; font: inherit; border: none; background: none; }
               <li class="pricing-card__feature"><span class="pricing-card__feature-dot"></span>Standard Queue Priority</li>
             </ul>
           </div>
-          <a href="#" class="btn btn--ghost" style="width:100%; justify-content:center">Initialize</a>
+          <a href="https://www.orbitdev.org/auth" data-app-path="/auth" class="btn btn--ghost" style="width:100%; justify-content:center">Start Free</a>
         </div>
  
         <div class="pricing-card panel pricing-card--featured reveal reveal-d2">
@@ -1797,7 +1798,7 @@ button { cursor: pointer; font: inherit; border: none; background: none; }
               <li class="pricing-card__feature"><span class="pricing-card__feature-dot"></span>Complete Agent Access</li>
             </ul>
           </div>
-          <a href="#" class="btn btn--primary" style="width:100%; justify-content:center">Initialize</a>
+          <a href="https://www.orbitdev.org/billing" data-app-path="/billing" class="btn btn--primary" style="width:100%; justify-content:center">Open Billing</a>
         </div>
  
         <div class="pricing-card panel reveal reveal-d3">
@@ -1810,7 +1811,7 @@ button { cursor: pointer; font: inherit; border: none; background: none; }
               <li class="pricing-card__feature"><span class="pricing-card__feature-dot"></span>Standard Cluster Latency</li>
             </ul>
           </div>
-          <a href="#" class="btn btn--ghost" style="width:100%; justify-content:center">Initialize</a>
+          <a href="https://www.orbitdev.org/billing" data-app-path="/billing" class="btn btn--ghost" style="width:100%; justify-content:center">Open Billing</a>
         </div>
  
       </div>
@@ -1829,6 +1830,7 @@ button { cursor: pointer; font: inherit; border: none; background: none; }
                     <span class="text-zinc-400 dark:text-zinc-400 light-mode:text-zinc-800 font-medium tracking-tight">Directives</span>
                     <a href="/Routes/terms.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Terms</a>
                     <a href="/Routes/acceptabe.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Acceptable Use</a>
+                    <a href="/Routes/rules.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Orbit Rules</a>
                     <a href="/Routes/prathership.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Partnership Map</a>
                     <a href="/Routes/stage.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Orbit Academy</a>
                     <a href="/Routes/doc.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Documentation</a>
@@ -1855,7 +1857,34 @@ button { cursor: pointer; font: inherit; border: none; background: none; }
     </footer>
 
     <script>
-        const ANNOUNCEMENT_ID = "Carshed_Announcement_v1";
+        const ANNOUNCEMENT_ID = "Orbit_Announcement_0.14";
+        const ORBIT_APP_ORIGIN = "https://www.orbitdev.org";
+
+        function connectAppLinks() {
+            document.querySelectorAll('[data-app-path]').forEach((link) => {
+                link.href = `${ORBIT_APP_ORIGIN}${link.dataset.appPath}`;
+            });
+        }
+
+        function checkAppConnection() {
+            const statusText = document.getElementById('app-status-text');
+            const statusDot = document.getElementById('app-status-dot');
+            const probe = new Image();
+            let finished = false;
+
+            const setStatus = (online) => {
+                if (finished) return;
+                finished = true;
+                statusText.textContent = online ? 'Orbit app connected - open workspace' : 'Orbit app unavailable - retry';
+                statusDot.classList.remove('bg-amber-400');
+                statusDot.classList.add(online ? 'bg-emerald-500' : 'bg-red-500');
+            };
+
+            probe.onload = () => setStatus(true);
+            probe.onerror = () => setStatus(false);
+            probe.src = `${ORBIT_APP_ORIGIN}/favicon.ico?status=${Date.now()}`;
+            setTimeout(() => setStatus(false), 6000);
+        }
 
         // Layout shifts balancing the top navbar based on announcement visibility status
         function checkAnnouncement() {
@@ -1958,6 +1987,8 @@ button { cursor: pointer; font: inherit; border: none; background: none; }
         }
 
         window.onload = () => {
+            connectAppLinks();
+            checkAppConnection();
             checkAnnouncement();
             if (!localStorage.getItem('orbit_consent')) {
                 setTimeout(() => {
@@ -1985,5 +2016,6 @@ button { cursor: pointer; font: inherit; border: none; background: none; }
             setTimeout(() => banner.classList.add('hidden'), 400);
         } 
     </script>
+    <script src="/site.js" defer></script>
 </body>
 </html>

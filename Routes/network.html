@@ -100,6 +100,7 @@
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
     </style>
+    <link rel="stylesheet" href="/site.css">
 </head>
 <body class="antialiased">
     <div class="noise"></div>
@@ -111,9 +112,9 @@
         </div>
         
         <div class="hidden md:flex space-x-10 text-[10px] font-mono font-semibold tracking-wider">
-            <a href="/core.html" class="nav-link">Core</a>
-            <a href="/architects.html" class="nav-link">Architects</a>
-            <a href="/network.html" class="nav-link active">// Grid Mappings</a>
+            <a href="/Routes/core.html" class="nav-link">Core</a>
+            <a href="/Routes/architects.html" class="nav-link">Architects</a>
+            <a href="/Routes/network.html" class="nav-link active">// Grid Mappings</a>
         </div>
 
         <button onclick="toggleSystem()" class="group flex items-center space-x-3">
@@ -226,11 +227,11 @@
                 <p class="text-[10px] text-zinc-600 font-light leading-normal">Operating under regional framework regulations.<br>A registered corporate entity located in the Netherlands.</p>
             </div>
             <div class="flex flex-wrap gap-x-6 gap-y-2 md:justify-end text-[9px] uppercase tracking-wider font-mono font-medium text-zinc-500">
-                <a href="terms.html" class="hover:text-zinc-300 transition">Terms</a>
-                <a href="acceptable-use.html" class="hover:text-zinc-300 transition">Acceptable Use</a>
-                <a href="Privacy.html" class="hover:text-zinc-300 transition">Privacy</a>
-                <a href="cookies.html" class="hover:text-zinc-300 transition">Cookies</a>
-                <a href="support.html" class="text-indigo-400 hover:text-indigo-300 transition font-semibold">Support Cluster ↗</a>
+                <a href="/Routes/terms.html" class="hover:text-zinc-300 transition">Terms</a>
+                <a href="/Routes/acceptabe.html" class="hover:text-zinc-300 transition">Acceptable Use</a>
+                <a href="/Routes/privacy.html" class="hover:text-zinc-300 transition">Privacy</a>
+                <a href="/Routes/cookies.html" class="hover:text-zinc-300 transition">Cookies</a>
+                <a href="/Routes/support.html" class="text-indigo-400 hover:text-indigo-300 transition font-semibold">Support Cluster ↗</a>
             </div>
         </div>
         <div class="mt-8 text-center text-[9px] text-zinc-700 font-mono uppercase tracking-widest">&copy; 2026 Orbit Systems</div>
@@ -285,5 +286,6 @@
 
         window.onload = simulateData;
     </script>
+    <script src="/site.js" defer></script>
 </body>
 </html>

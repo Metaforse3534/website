@@ -83,6 +83,7 @@
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
   </style>
+    <link rel="stylesheet" href="/site.css">
 </head>
 <body class="antialiased">
 
@@ -102,8 +103,8 @@
             <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
           </svg>
         </button>
-        <a href="https://www.orbitdev.org/" class="text-xs text-zinc-400 hover:text-zinc-200 transition duration-150">Login</a>
-        <a href="https://www.orbitdev.org/" class="bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-black light-mode:bg-zinc-900 light-mode:hover:bg-zinc-800 light-mode:text-white px-3.5 py-1.5 rounded-md text-xs font-medium transition duration-150">Join Orbit</a>
+        <a href="https://www.orbitdev.org/auth" class="text-xs text-zinc-400 hover:text-zinc-200 transition duration-150">Login</a>
+        <a href="https://www.orbitdev.org/auth" class="bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-black light-mode:bg-zinc-900 light-mode:hover:bg-zinc-800 light-mode:text-white px-3.5 py-1.5 rounded-md text-xs font-medium transition duration-150">Open Orbit</a>
       </div>
     </div>
   </nav>
@@ -118,6 +119,7 @@
           <a href="/Routes/privacy.html" class="sidebar-link active block px-3 py-2 text-xs transition">Privacy Policy</a>
           <a href="/Routes/cookies.html" class="sidebar-link block px-3 py-2 text-xs text-zinc-400 hover:text-white transition">Cookie Policy</a>
           <a href="/Routes/acceptabe.html" class="sidebar-link block px-3 py-2 text-xs text-zinc-400 hover:text-white transition">Acceptable Use</a>
+          <a href="/Routes/rules.html" class="sidebar-link block px-3 py-2 text-xs text-zinc-400 hover:text-white transition">Orbit Rules</a>
         </nav>
       </div>
     </aside>
@@ -236,5 +238,6 @@
       if (localStorage.getItem('theme') === 'light') toggleTheme();
     };
   </script>
+    <script src="/site.js" defer></script>
 </body>
 </html>

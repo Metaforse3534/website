@@ -100,6 +100,7 @@
         ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
     </style>
+    <link rel="stylesheet" href="/site.css">
 </head>
 <body class="antialiased">
 
@@ -151,8 +152,8 @@
                         <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
                     </svg>
                 </button>
-                <a href="https://www.orbitdev.org/" class="text-xs text-zinc-400 light-mode:text-zinc-600 hover:text-zinc-200 light-mode:hover:text-zinc-900 transition duration-150">Login</a>
-                <a href="https://www.orbitdev.org/" class="bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-black light-mode:bg-zinc-900 light-mode:hover:bg-zinc-800 light-mode:text-white px-3.5 py-1.5 rounded-md text-xs font-medium transition duration-150">Join Orbit</a>
+                <a href="https://www.orbitdev.org/auth" class="text-xs text-zinc-400 light-mode:text-zinc-600 hover:text-zinc-200 light-mode:hover:text-zinc-900 transition duration-150">Login</a>
+                <a href="https://www.orbitdev.org/auth" class="bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-black light-mode:bg-zinc-900 light-mode:hover:bg-zinc-800 light-mode:text-white px-3.5 py-1.5 rounded-md text-xs font-medium transition duration-150">Open Orbit</a>
             </div>
         </div>
     </nav>
@@ -171,7 +172,7 @@
                 Deploy autonomous intelligence systems, interface natively with sandboxed knowledge containers, and scale distributed workflows instantly.
             </p>
             <div class="reveal reveal-delay-2 flex flex-wrap justify-center gap-3.5 mb-14">
-                <a href="https://www.orbitdev.org/" class="px-5 py-2.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-black light-mode:bg-zinc-900 light-mode:hover:bg-zinc-800 light-mode:text-white font-medium rounded-lg transition duration-150 text-xs shadow-sm">
+                <a href="https://www.orbitdev.org/auth" class="px-5 py-2.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-black light-mode:bg-zinc-900 light-mode:hover:bg-zinc-800 light-mode:text-white font-medium rounded-lg transition duration-150 text-xs shadow-sm">
                     Initialize Access
                 </a>
                 <a href="https://github.com/Metaforse3534/OrbitAIPublic" class="px-5 py-2.5 app-panel text-zinc-300 light-mode:text-zinc-700 font-medium rounded-lg transition duration-150 text-xs">
@@ -297,7 +298,7 @@
                         <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-zinc-600"></span> Standard Queue Priority</li>
                     </ul>
                 </div>
-                <button onclick="location.href='https://www.orbitdev.org/'" class="w-full py-2 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-900 border border-white/5 text-zinc-300 text-xs font-medium rounded-md transition duration-150">Initialize</button>
+                <button onclick="location.href='https://www.orbitdev.org/billing'" class="w-full py-2 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-900 border border-white/5 text-zinc-300 text-xs font-medium rounded-md transition duration-150">Open Billing</button>
             </div>
             
             <div class="app-panel p-6 rounded-xl bg-white/[0.01] flex flex-col justify-between relative reveal reveal-delay-1 shadow-2xl border-zinc-700 dark:border-zinc-700 light-mode:border-zinc-300">
@@ -313,7 +314,7 @@
                         <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-white light-mode:bg-black"></span> Complete Agent Access</li>
                     </ul>
                 </div>
-                <button onclick="location.href='shop.html'" class="w-full py-2 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-black light-mode:bg-zinc-900 light-mode:hover:bg-zinc-800 light-mode:text-white text-xs font-medium rounded-md transition duration-150 shadow-sm">Initialize</button>
+                <button onclick="location.href='https://www.orbitdev.org/billing'" class="w-full py-2 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-black light-mode:bg-zinc-900 light-mode:hover:bg-zinc-800 light-mode:text-white text-xs font-medium rounded-md transition duration-150 shadow-sm">Initialize</button>
             </div>
             
             <div class="app-panel p-6 rounded-xl flex flex-col justify-between reveal reveal-delay-2">
@@ -326,7 +327,7 @@
                         <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-zinc-600"></span> Standard Cluster Latency</li>
                     </ul>
                 </div>
-                <button onclick="location.href='shop2.html'" class="w-full py-2 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-900 border border-white/5 text-zinc-300 text-xs font-medium rounded-md transition duration-150">Initialize</button>
+                <button onclick="location.href='https://www.orbitdev.org/billing'" class="w-full py-2 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-900 border border-white/5 text-zinc-300 text-xs font-medium rounded-md transition duration-150">Initialize</button>
             </div>
         </div>
     </section>
@@ -343,7 +344,8 @@
                     <span class="text-zinc-400 dark:text-zinc-400 light-mode:text-zinc-800 font-medium tracking-tight">Directives</span>
                     <a href="/Routes/terms.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Terms</a>
                     <a href="/Routes/acceptabe.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Acceptable Use</a>
-                    <a href="/Routes/partnership.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Partnership Map</a>
+                    <a href="/Routes/rules.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Orbit Rules</a>
+                    <a href="/Routes/prathership.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Partnership Map</a>
                     <a href="/Routes/stage.html" class="text-zinc-500 hover:text-zinc-300 light-mode:hover:text-zinc-900 transition">Orbit Academy</a>
                 </div>
                 <div class="flex flex-col space-y-2.5">
@@ -497,5 +499,6 @@
             setTimeout(() => banner.classList.add('hidden'), 400);
         } 
     </script>
+    <script src="/site.js" defer></script>
 </body>
 </html>
