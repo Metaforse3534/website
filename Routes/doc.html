@@ -2,203 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Real product documentation for Orbit AI version 0.0.14.">
-  <title>Orbit AI Documentation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Official Orbit Developer API v1 documentation.">
+  <title>Orbit Developer API</title>
   <link rel="icon" href="../Public/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/site.css">
   <style>
-    :root { --bg:#070708; --panel:#0d0d10; --line:rgba(255,255,255,.09); --muted:#9696a1; --text:#f4f4f5; --accent:#93a2ff; }
-    * { box-sizing:border-box; }
-    body { margin:0; color:var(--text); background:var(--bg); font-family:Inter,sans-serif; line-height:1.65; }
-    a { color:inherit; }
-    .layout { display:grid; grid-template-columns:250px minmax(0,780px); gap:56px; max-width:1120px; margin:auto; padding:42px 24px 120px; }
-    .sidebar { position:sticky; top:24px; align-self:start; max-height:calc(100vh - 48px); overflow:auto; }
-    .brand { display:flex; gap:10px; align-items:center; margin-bottom:28px; text-decoration:none; font-weight:700; }
-    .brand img { width:28px; height:28px; border-radius:8px; }
-    .nav-title, .eyebrow { color:#64646f; font:500 10px/1.4 "JetBrains Mono",monospace; letter-spacing:.15em; text-transform:uppercase; }
-    .sidebar nav { display:grid; gap:3px; margin-top:10px; }
-    .sidebar nav a { padding:8px 10px; border-radius:8px; color:#9696a1; font-size:12px; text-decoration:none; }
-    .sidebar nav a:hover { color:white; background:rgba(255,255,255,.05); }
-    .hero { padding:36px 0 48px; border-bottom:1px solid var(--line); }
-    .hero h1 { max-width:680px; margin:12px 0 16px; font-size:clamp(42px,7vw,72px); line-height:1; letter-spacing:-.06em; }
-    .hero p { max-width:670px; margin:0; color:var(--muted); font-size:16px; }
-    .meta { display:flex; flex-wrap:wrap; gap:8px; margin-top:24px; }
-    .pill { padding:6px 9px; border:1px solid var(--line); border-radius:999px; color:#b9bac4; background:rgba(255,255,255,.025); font:500 10px "JetBrains Mono",monospace; }
-    section { padding:46px 0; border-bottom:1px solid var(--line); scroll-margin-top:30px; }
-    h2 { margin:8px 0 12px; font-size:28px; letter-spacing:-.04em; }
-    h3 { margin:28px 0 8px; font-size:16px; }
-    p, li { color:var(--muted); font-size:14px; }
-    strong { color:#e8e8ed; }
-    ul, ol { padding-left:20px; }
-    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:22px; }
-    .card { padding:18px; border:1px solid var(--line); border-radius:14px; background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.012)); }
-    .card h3 { margin:0 0 6px; }
-    .card p { margin:0; font-size:12px; }
-    .steps { display:grid; gap:10px; margin-top:20px; counter-reset:step; }
-    .step { display:grid; grid-template-columns:32px 1fr; gap:12px; padding:16px; border:1px solid var(--line); border-radius:12px; }
-    .step::before { counter-increment:step; content:counter(step); display:grid; place-items:center; width:28px; height:28px; border-radius:8px; color:#101116; background:#e8e9ef; font:700 11px "JetBrains Mono"; }
-    .step p { margin:2px 0 0; }
-    code { padding:2px 5px; border:1px solid var(--line); border-radius:5px; color:#cbd2ff; background:#101117; font-family:"JetBrains Mono",monospace; font-size:.9em; }
-    table { width:100%; margin-top:18px; border-collapse:collapse; font-size:12px; }
-    th,td { padding:12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
-    th { color:#70717d; font:500 10px "JetBrains Mono"; text-transform:uppercase; letter-spacing:.1em; }
-    td { color:#b6b7c0; }
-    .notice { margin-top:20px; padding:16px; border:1px solid rgba(147,162,255,.25); border-radius:12px; color:#bfc6ef; background:rgba(100,120,255,.07); font-size:13px; }
-    .actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
-    .button { padding:10px 14px; border:1px solid var(--line); border-radius:9px; color:#d9dae1; background:rgba(255,255,255,.04); text-decoration:none; font-size:12px; font-weight:600; }
-    .button.primary { color:#090a0e; background:#f2f3f7; }
-    @media(max-width:850px){ .layout{display:block;padding-top:24px}.sidebar{position:relative;max-height:none;margin-bottom:30px}.sidebar nav{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr} }
+    :root{--bg:#070708;--panel:#0d0d10;--line:rgba(255,255,255,.09);--muted:#9696a1;--text:#f4f4f5;--accent:#74e8c4}*{box-sizing:border-box}body{margin:0;color:var(--text);background:var(--bg);font-family:Inter,sans-serif;line-height:1.65}.layout{display:grid;grid-template-columns:240px minmax(0,820px);gap:56px;max-width:1160px;margin:auto;padding:40px 24px 120px}.sidebar{position:sticky;top:24px;align-self:start}.brand{display:flex;gap:10px;align-items:center;margin-bottom:28px;color:inherit;text-decoration:none;font-weight:700}.brand img{width:28px;border-radius:8px}.sidebar nav{display:grid;gap:3px}.sidebar nav a{padding:8px 10px;border-radius:8px;color:var(--muted);font-size:12px;text-decoration:none}.sidebar nav a:hover{color:white;background:rgba(255,255,255,.05)}header,section{padding:42px 0;border-bottom:1px solid var(--line);scroll-margin-top:24px}h1{max-width:720px;margin:12px 0;font-size:clamp(42px,7vw,72px);line-height:1;letter-spacing:-.06em}h2{margin:8px 0 14px;font-size:28px;letter-spacing:-.04em}h3{margin:26px 0 8px;font-size:16px}p,li{color:var(--muted);font-size:14px}.eyebrow{color:var(--accent);font:500 10px "JetBrains Mono";letter-spacing:.16em;text-transform:uppercase}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:20px}.card,.notice{padding:18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.025)}.card h3{margin:0 0 6px}.card p{margin:0;font-size:12px}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.button{padding:10px 14px;border:1px solid var(--line);border-radius:9px;color:#ddd;text-decoration:none;font-size:12px;font-weight:600}.button.primary{color:#07100d;background:var(--accent)}code,pre{font-family:"JetBrains Mono",monospace}code{color:#bcebdc}pre{overflow:auto;padding:18px;border:1px solid var(--line);border-radius:12px;background:#030404;color:#d5d7dc;font-size:12px;line-height:1.7}table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}th{color:#70717d;text-transform:uppercase;letter-spacing:.1em}.method{color:var(--accent);font-family:"JetBrains Mono"}body.light-mode{--bg:#f5f6f8;--panel:#fff;--line:rgba(25,31,43,.12);--muted:#596170;--text:#171a21;--accent:#167b60}body.light-mode pre{background:#fff;color:#252a34}body.light-mode .sidebar nav a:hover{color:#171a21;background:rgba(25,31,43,.05)}@media(max-width:850px){.layout{display:block;padding-top:24px}.sidebar{position:relative;margin-bottom:30px}.sidebar nav{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
   <div class="layout">
-    <aside class="sidebar">
-      <a class="brand" href="/"><img src="../Public/web-app-manifest-192x192.png" alt="">Orbit AI</a>
-      <div class="nav-title">Documentation · v0.0.14</div>
-      <nav>
-        <a href="#overview">Overview</a>
-        <a href="#start">Getting started</a>
-        <a href="#chat">Chat and files</a>
-        <a href="#models">Models and access</a>
-        <a href="#agents">Agents and workflows</a>
-        <a href="#voice">Voice</a>
-        <a href="#desktop">Desktop app</a>
-        <a href="#extension">Browser extension</a>
-        <a href="#account">Account and billing</a>
-        <a href="#routes">App routes</a>
-        <a href="/Routes/rules.html">Orbit Rules</a>
-      </nav>
-    </aside>
-
+    <aside class="sidebar"><a class="brand" href="/"><img src="../Public/web-app-manifest-192x192.png" alt="">Orbit Platform</a><nav><a href="#overview">Overview</a><a href="#authentication">Authentication</a><a href="#limits">Limits and credits</a><a href="#endpoints">Endpoints</a><a href="#examples">Examples</a><a href="#errors">Errors</a><a href="/Routes/rules.html">Orbit Rules</a></nav></aside>
     <main>
-      <header class="hero">
-        <div class="eyebrow">Real product documentation</div>
-        <h1>How Orbit actually works.</h1>
-        <p>This guide documents the features implemented in Orbit AI version 0.0.14. It does not describe a public REST API or promise features that are not present in the app.</p>
-        <div class="meta"><span class="pill">Version 0.0.14</span><span class="pill">Web + Windows desktop</span><span class="pill">Authentication required</span></div>
-        <div class="actions"><a class="button primary" href="https://www.orbitdev.org/auth">Open Orbit</a><a class="button" href="/Orbit-ai-Setup-0.0.14.exe" download>Download Windows installer</a><a class="button" href="/Routes/rules.html">Read Orbit Rules</a></div>
-      </header>
-
-      <section id="overview">
-        <div class="eyebrow">Overview</div><h2>What Orbit AI is</h2>
-        <p>Orbit is an authenticated AI workspace for chat, file analysis, voice interaction, artifact creation, agent teamwork, automations, and selected desktop actions. The same React application runs on the web and is packaged as a Windows desktop application. Mobile projects are also configured through Capacitor.</p>
-        <div class="grid">
-          <div class="card"><h3>Workspace chat</h3><p>Ask questions, request coding help, analyze supported text files, generate images, and create documents.</p></div>
-          <div class="card"><h3>Agent team</h3><p>Orbit creates Lead, Builder, Researcher, and Reviewer starter agents and records their runs.</p></div>
-          <div class="card"><h3>Voice</h3><p>Speak with Orbit, hear responses, and use approved voice actions with confirm or instant execution modes.</p></div>
-          <div class="card"><h3>Desktop tools</h3><p>The Windows app can open approved sites, apps, and folders, write files, generate artifacts, and run Pro Pulsar when access permits.</p></div>
-        </div>
-        <div class="notice">Orbit output may be incorrect or incomplete. Review generated answers, code, files, and actions before relying on them.</div>
-      </section>
-
-      <section id="start">
-        <div class="eyebrow">Getting started</div><h2>Start using Orbit</h2>
-        <div class="steps">
-          <div class="step"><div><strong>Create or sign in to an account.</strong><p>Open <a href="https://www.orbitdev.org/auth">orbitdev.org/auth</a>. Account creation uses email, password, display name, and acceptance of the Terms and Privacy Policy.</p></div></div>
-          <div class="step"><div><strong>Verify email and secure the account.</strong><p>Orbit supports password reset and optional six-digit TOTP two-factor authentication from Settings.</p></div></div>
-          <div class="step"><div><strong>Open the workspace.</strong><p>The main workspace is protected. Signed-out users are redirected to the authentication page.</p></div></div>
-          <div class="step"><div><strong>Choose a task.</strong><p>Chat normally, attach a file, start a voice call, create an artifact, or launch a team build.</p></div></div>
-        </div>
-      </section>
-
-      <section id="chat">
-        <div class="eyebrow">Workspace</div><h2>Chat, files, images, and artifacts</h2>
-        <h3>Chat history</h3>
-        <p>Orbit stores up to the latest 40 messages per user and mode in browser storage or desktop storage. Large inline generated images are excluded from stored history to avoid breaking the interface.</p>
-        <h3>Supported text attachments</h3>
-        <p>You can attach up to <strong>3 files per message</strong>. Each file must be under <strong>250 KB</strong>. Supported text-readable extensions include:</p>
-        <p><code>txt</code> <code>md</code> <code>csv</code> <code>json</code> <code>js</code> <code>jsx</code> <code>ts</code> <code>tsx</code> <code>html</code> <code>css</code> <code>py</code> <code>java</code> <code>c</code> <code>cpp</code> <code>rs</code> <code>go</code> <code>xml</code> <code>yml</code> <code>yaml</code></p>
-        <h3>Create commands</h3>
-        <table><thead><tr><th>Command</th><th>Result</th><th>Availability</th></tr></thead><tbody>
-          <tr><td><code>/image ...</code></td><td>Generates an image through Orbit's image function.</td><td>Web and desktop, when backend is configured.</td></tr>
-          <tr><td><code>/pdf ...</code></td><td>Creates a PDF artifact.</td><td>Desktop bridge required.</td></tr>
-          <tr><td><code>/powerpoint ...</code></td><td>Creates a PowerPoint presentation.</td><td>Desktop bridge required.</td></tr>
-          <tr><td><code>/excel ...</code></td><td>Creates an Excel workbook.</td><td>Desktop bridge required.</td></tr>
-          <tr><td><code>/word ...</code></td><td>Creates a Word document.</td><td>Desktop bridge required.</td></tr>
-          <tr><td><code>/csv ...</code></td><td>Creates a CSV file.</td><td>Desktop bridge required.</td></tr>
-        </tbody></table>
-      </section>
-
-      <section id="models">
-        <div class="eyebrow">Access</div><h2>Models and modes</h2>
-        <p>The workspace exposes <strong>Normal</strong>, <strong>Orbit</strong>, <strong>Pulsar</strong>, and <strong>Pro</strong> modes. Access depends on the user's plan and model entitlements. Locked modes explain that Gemini and GPT remain free while premium modes require a model access code or Premium plan.</p>
-        <p>Settings includes model preferences for automatic selection and available model-specific options. Model access packs implemented by Orbit include Auto, Orbit, Claude, Pulsar, ProPulsar, Coding models, and All Pro models.</p>
-        <div class="notice">Model availability is controlled by the live app and may change. The website does not guarantee a specific third-party model or version.</div>
-      </section>
-
-      <section id="agents">
-        <div class="eyebrow">Agent workspace</div><h2>Agents, runs, and automations</h2>
-        <p>On first use, Orbit can create four starter agents:</p>
-        <div class="grid">
-          <div class="card"><h3>Lead</h3><p>Breaks goals into steps, coordinates the team, and produces the final result.</p></div>
-          <div class="card"><h3>Builder</h3><p>Produces code, structures, copy, configurations, and concrete deliverables.</p></div>
-          <div class="card"><h3>Researcher</h3><p>Finds information when needed and returns concise findings and sources.</p></div>
-          <div class="card"><h3>Reviewer</h3><p>Checks work for gaps, risks, security issues, and weak assumptions.</p></div>
-        </div>
-        <h3>Deployments / Runs</h3>
-        <p>The Runs page displays up to 20 recent agent runs, live status updates, run steps, final results, errors, and source links recorded by agents.</p>
-        <h3>Automations</h3>
-        <p>Automations are user-built workflows made from trigger, AI agent, condition, delay, and save-result nodes. Workflows use cloud persistence when the required table exists and fall back to local browser storage otherwise. Current triggers are manual. Agent steps time out after two minutes.</p>
-      </section>
-
-      <section id="voice">
-        <div class="eyebrow">Voice</div><h2>Voice calls and commands</h2>
-        <p>Orbit can listen for speech, send recognized speech as a chat message, and read responses aloud. Web voice uses browser speech capabilities; the desktop app can provide native voice support.</p>
-        <ul>
-          <li>Voice speed is adjustable from <strong>0.5x to 2.0x</strong> and saved to the profile.</li>
-          <li><strong>Confirm</strong> mode asks before approved voice actions. <strong>Instant</strong> mode runs them without the extra question.</li>
-          <li>Workspace voice actions include navigation, opening approved targets, starting a team run, clearing chat, reading the latest response, and stopping speech.</li>
-          <li>The Runs page supports voice selection and reading of goals, steps, and results.</li>
-        </ul>
-      </section>
-
-      <section id="desktop">
-        <div class="eyebrow">Windows app</div><h2>Desktop-only capabilities</h2>
-        <p>The desktop build uses an Electron bridge. When available, Orbit can execute supported actions that a normal website cannot perform:</p>
-        <ul>
-          <li>Open approved websites and URLs.</li><li>Search YouTube.</li><li>Open apps and folders.</li><li>Write a file and reveal it.</li><li>Create PDF, PowerPoint, Excel, Word, and CSV artifacts.</li><li>Use native listening and speech.</li><li>Open Pro Pulsar for entitled users.</li>
-        </ul>
-        <p>Users remain responsible for reviewing desktop actions and generated files. See the <a href="/Routes/rules.html">Orbit Rules</a>.</p>
-      </section>
-
-      <section id="extension">
-        <div class="eyebrow">Browser companion</div><h2>Orbit Extension Pro</h2>
-        <p>Extension Pro is a subscriber-only private download. It connects to a signed-in Orbit browser session and provides page-aware chat, readable page scans, and reviewed form drafting.</p>
-        <ol><li>Activate Extension Pro through Stripe or redeem a Premium code.</li><li>Download and unzip the private release.</li><li>Open <code>chrome://extensions</code> and enable Developer mode.</li><li>Choose Load unpacked and select the extracted folder.</li><li>Press Connect while Orbit is signed in.</li></ol>
-        <p>Form drafting is designed for review. Orbit should not submit sensitive or consequential forms without the user's direct review and approval.</p>
-      </section>
-
-      <section id="account">
-        <div class="eyebrow">Account</div><h2>Settings, credits, billing, and support</h2>
-        <ul>
-          <li><strong>Settings:</strong> update profile information and avatar, select an available model, set voice speed, redeem model-access codes, change/reset password, configure TOTP 2FA, or permanently delete the account by typing <code>DELETE</code>.</li>
-          <li><strong>Credits:</strong> the app displays the current plan and available credits. Current shop packs are Starter: 25 credits for €4.99, Power: 100 credits for €14.99, and Elite: 500 credits for €49.99. Credits are described in-app as non-expiring.</li>
-          <li><strong>Billing:</strong> shows current plan, credits, extension subscription, premium-code redemptions, and recorded Stripe payment history. Billing management opens the Stripe customer portal when available.</li>
-          <li><strong>Support:</strong> signed-in users can create support tickets with a subject up to 200 characters and description up to 5,000 characters. Admins can reply and change ticket status.</li>
-          <li><strong>Podcast:</strong> converts pasted notes or recent history into an educational Dutch dialogue and reads it using browser speech synthesis.</li>
-        </ul>
-      </section>
-
-      <section id="routes">
-        <div class="eyebrow">Reference</div><h2>Implemented app routes</h2>
-        <table><thead><tr><th>Route</th><th>Purpose</th><th>Access</th></tr></thead><tbody>
-          <tr><td><code>/auth</code></td><td>Sign in, create account, password recovery, MFA verification.</td><td>Public</td></tr>
-          <tr><td><code>/</code></td><td>Main Orbit chat workspace.</td><td>Signed in</td></tr>
-          <tr><td><code>/automations</code></td><td>Agents and workflow builder.</td><td>Signed in</td></tr>
-          <tr><td><code>/deployments</code></td><td>Recent agent runs and steps.</td><td>Signed in</td></tr>
-          <tr><td><code>/history</code></td><td>Saved question and answer history.</td><td>Signed in</td></tr>
-          <tr><td><code>/settings</code></td><td>Profile, security, model, and voice settings.</td><td>Signed in</td></tr>
-          <tr><td><code>/shop</code> · <code>/billing</code></td><td>Credit packs and account billing.</td><td>Signed in</td></tr>
-          <tr><td><code>/podcast</code> · <code>/extension</code> · <code>/Support</code></td><td>Podcast tool, Extension Pro, and support tickets.</td><td>Signed in</td></tr>
-          <tr><td><code>/portal</code></td><td>Desktop portal.</td><td>Desktop app only</td></tr>
-          <tr><td><code>/admin</code></td><td>Administration tools.</td><td>Admin only</td></tr>
-          <tr><td><code>/privacy</code> · <code>/terms</code></td><td>Public legal pages.</td><td>Public</td></tr>
-        </tbody></table>
-        <div class="notice"><strong>No public developer API is documented at this time.</strong> Orbit uses internal Supabase functions and database access from the authenticated app. Do not rely on invented endpoints or tokens from older documentation.</div>
-      </section>
+      <header><div class="eyebrow">Public Developer API · v1</div><h1>Build with Orbit AI.</h1><p>Use Orbit completions and your Orbit agents from external applications through a secure, key-authenticated API.</p><div class="actions"><a class="button primary" href="https://www.orbitdev.org/developer">Open Developer Dashboard</a><a class="button" href="https://www.orbitdev.org/auth">Create account</a><a class="button" href="/Routes/rules.html">Orbit Rules</a></div></header>
+      <section id="overview"><div class="eyebrow">Overview</div><h2>API base URL</h2><pre>https://api.orbitdev.org/v1</pre><div class="grid"><div class="card"><h3>AI completions</h3><p>Send chat-style messages and receive an Orbit AI response.</p></div><div class="card"><h3>Agent runs</h3><p>Start asynchronous runs for agents owned by your Orbit account.</p></div><div class="card"><h3>Usage analytics</h3><p>Review recent requests, remaining quotas, latency, and credit usage.</p></div><div class="card"><h3>Secure keys</h3><p>Raw keys are shown once and stored by Orbit only as cryptographic digests.</p></div></div></section>
+      <section id="authentication"><div class="eyebrow">Authentication</div><h2>Use an API key</h2><p>Create keys in the Developer Dashboard. Send the key in every request as a Bearer token.</p><pre>Authorization: Bearer orb_your_api_key</pre><div class="notice"><strong>Keep keys server-side.</strong> Do not place API keys in public browser code, mobile bundles, repositories, or logs. Revoke or regenerate exposed keys immediately.</div></section>
+      <section id="limits"><div class="eyebrow">Access tiers</div><h2>Limits and Orbit credits</h2><table><thead><tr><th>Tier</th><th>Minute limit</th><th>Monthly limit</th><th>Access</th></tr></thead><tbody><tr><td>Free</td><td>5 requests</td><td>100 requests</td><td>Included with an Orbit account</td></tr><tr><td>Paid</td><td>30 requests</td><td>10,000 requests</td><td>One-time €10 payment</td></tr></tbody></table><p>Cost-bearing AI and agent requests consume one Orbit credit. Usage and agent-result reads do not consume credits.</p></section>
+      <section id="endpoints"><div class="eyebrow">Reference</div><h2>Endpoints</h2><table><thead><tr><th>Method</th><th>Path</th><th>Purpose</th></tr></thead><tbody><tr><td class="method">POST</td><td><code>/chat/completions</code></td><td>Create an AI response from up to 40 messages.</td></tr><tr><td class="method">POST</td><td><code>/agents/{agentId}/runs</code></td><td>Start an asynchronous run for an agent owned by the API-key account.</td></tr><tr><td class="method">GET</td><td><code>/agent-runs/{runId}</code></td><td>Read status, result, or error for an owned run.</td></tr><tr><td class="method">GET</td><td><code>/usage</code></td><td>Read recent API usage and remaining limits.</td></tr></tbody></table></section>
+      <section id="examples"><div class="eyebrow">Quick start</div><h2>Example request</h2><pre>curl https://api.orbitdev.org/v1/chat/completions \
+  -H "Authorization: Bearer orb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"messages":[{"role":"user","content":"Explain orbital velocity"}]}'</pre><h3>Start an agent run</h3><pre>curl https://api.orbitdev.org/v1/agents/YOUR_AGENT_ID/runs \
+  -H "Authorization: Bearer orb_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"goal":"Research and summarize the latest project notes"}'</pre></section>
+      <section id="errors"><div class="eyebrow">Errors</div><h2>Consistent error responses</h2><pre>{"error":{"code":"rate_limit_exceeded","message":"Minute rate limit exceeded","request_id":"..."}}</pre><p>Common statuses: <code>401</code> invalid key, <code>402</code> insufficient credits, <code>422</code> validation error, <code>429</code> quota exceeded, and <code>500</code> unexpected server error. Responses include request and rate-limit headers.</p></section>
     </main>
   </div>
   <script src="/site.js" defer></script>

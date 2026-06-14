@@ -112,6 +112,9 @@ button:hover, .btn:hover, a[class*="button"]:hover {
 
 .orbit-dock__link {
   padding: 0 12px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
 }
 
 .orbit-dock__link:hover, .orbit-dock__link[aria-current="page"] {

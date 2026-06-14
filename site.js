@@ -100,9 +100,14 @@
     dock.innerHTML = `
       <a class="orbit-dock__brand" href="/">ORBIT</a>
       ${links.map(([label, href]) => `<a class="orbit-dock__link" href="${href}" ${path === href.toLowerCase() ? 'aria-current="page"' : ""}>${label}</a>`).join("")}
+      <button class="orbit-dock__link orbit-theme-toggle" type="button" aria-label="Toggle light mode">Theme</button>
       <a class="orbit-dock__link orbit-dock__link--primary" href="${APP_ORIGIN}/auth">Open App</a>
     `;
     document.body.appendChild(dock);
+    dock.querySelector(".orbit-theme-toggle").addEventListener("click", () => {
+      const enabled = document.body.classList.toggle("light-mode");
+      localStorage.setItem("orbit-site-theme", enabled ? "light" : "dark");
+    });
   }
 
   function addProgress() {
@@ -141,6 +146,7 @@
   }
 
   document.addEventListener("DOMContentLoaded", () => {
+    if (localStorage.getItem("orbit-site-theme") === "light") document.body.classList.add("light-mode");
     repairLinks();
     addDock();
     addProgress();
