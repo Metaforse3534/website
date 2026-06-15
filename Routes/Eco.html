@@ -1,0 +1,597 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Orbit Ecosystem by Lumi, including Orbit Engine and Lumi Images." />
+
+  <title>Orbit Ecosystem | Lumi</title>
+
+  <link rel="icon" href="../Public/favicon.ico" />
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap");
+
+    /* ============================================================
+       00. CSS SYSTEM VARIABLES (FIXED & EXPANDED)
+       ============================================================ */
+    :root {
+      --sp-2: 8px;
+      --sp-4: 16px;
+      --sp-5: 20px;
+      --sp-6: 24px;
+      --radius-sm: 6px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      
+      --clr-platinum: #f4f4f5;
+      --clr-muted: #a1a1aa;
+      --clr-obsidian: #0e0e11;
+      --bdr-subtle: rgba(255, 255, 255, 0.08);
+      
+      --clr-iris: #818cf8;
+      --clr-iris-dim: rgba(129, 140, 248, 0.15);
+      --bdr-iris: rgba(129, 140, 248, 0.4);
+      --clr-glow-cool: rgba(168, 85, 247, 0.12);
+      
+      --font-mono: monospace;
+      --font-display: "Space Grotesk", sans-serif;
+      --ls-wide: 0.15em;
+      --dur-slow: 0.4s;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(99, 102, 241, 0.18), transparent 32rem),
+        radial-gradient(circle at top right, rgba(168, 85, 247, 0.14), transparent 30rem),
+        #070708;
+      color: #a1a1aa;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(14px);
+      background: rgba(7, 7, 8, 0.72);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .nav {
+      max-width: 1152px;
+      height: 64px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      font-weight: 800;
+      color: #f4f4f5;
+      letter-spacing: -0.02em;
+    }
+
+    .brand span {
+      margin-left: 8px;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      color: #71717a;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 12px;
+      font-size: 12px;
+    }
+
+    .btn {
+      border-radius: 10px;
+      padding: 10px 14px;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #e4e4e7;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .btn-primary {
+      background: #f4f4f5;
+      color: #09090b;
+      font-weight: 700;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.12);
+    }
+
+    main {
+      max-width: 1152px;
+      margin: 0 auto;
+      padding: 80px 24px 120px;
+    }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: #818cf8;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      color: #f4f4f5;
+    }
+
+    h1 {
+      margin-top: 16px;
+      max-width: 900px;
+      font-size: clamp(48px, 8vw, 92px);
+      line-height: 0.94;
+      letter-spacing: -0.06em;
+    }
+
+    .hero-text {
+      margin-top: 24px;
+      max-width: 760px;
+      font-size: 17px;
+      line-height: 1.8;
+      color: #b6b6c1;
+    }
+
+    .hero-actions {
+      margin-top: 36px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .hero-actions a {
+      border-radius: 14px;
+      padding: 14px 18px;
+      font-size: 14px;
+    }
+
+    .showcase {
+      margin-top: 64px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 28px;
+      overflow: hidden;
+      background: rgba(24, 24, 27, 0.45);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
+    }
+
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .product-card {
+      position: relative;
+      min-height: 420px;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.02);
+      transition: transform 0.45s ease, filter 0.45s ease;
+      filter: saturate(0.9) brightness(0.78);
+    }
+
+    .product-card:hover img {
+      transform: scale(1.08);
+      filter: saturate(1.1) brightness(0.92);
+    }
+
+    .product-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.16)),
+        radial-gradient(circle at top, rgba(129, 140, 248, 0.2), transparent 55%);
+      z-index: 1;
+    }
+
+    .product-content {
+      position: absolute;
+      inset: auto 0 0 0;
+      z-index: 2;
+      padding: 30px;
+    }
+
+    .product-tag {
+      display: inline-flex;
+      margin-bottom: 14px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.08);
+      color: #c7d2fe;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .product-content h2 {
+      font-size: 32px;
+      letter-spacing: -0.04em;
+    }
+
+    .product-content p {
+      margin-top: 12px;
+      color: #d4d4d8;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .section-title {
+      margin-top: 96px;
+      max-width: 720px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(34px, 5vw, 56px);
+      line-height: 1.1;
+      letter-spacing: -0.05em;
+    }
+
+    .section-title p {
+      margin-top: 18px;
+      line-height: 1.8;
+      color: #b6b6c1;
+    }
+
+    /* ============================================================
+       12. MODEL CARDS SECTION (UPDATED & ALIGNED)
+       ============================================================ */
+    .section-header {
+      margin-top: 48px;
+      margin-bottom: 32px;
+    }
+    
+    .section-header__eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--clr-iris);
+      margin-bottom: 8px;
+    }
+
+    .section-header__title {
+      font-size: 28px;
+      letter-spacing: -0.03em;
+    }
+
+    .models__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-5);
+    }
+
+    .model-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--bdr-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transition: transform var(--dur-slow) cubic-bezier(0.16, 1, 0.3, 1), 
+                  border-color var(--dur-slow) ease, 
+                  box-shadow var(--dur-slow) ease;
+    }
+
+    .model-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 50% at 50% 0%, var(--clr-glow-cool), transparent);
+      opacity: 0;
+      transition: opacity var(--dur-slow) ease;
+      pointer-events: none;
+    }
+
+    .model-card:hover::before {
+      opacity: 1;
+    }
+
+    .model-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .model-card--featured {
+      border-color: var(--bdr-iris);
+      background: rgba(129, 140, 248, 0.03);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 30px var(--clr-iris-dim);
+    }
+    
+    .model-card--featured:hover {
+      border-color: #818cf8;
+    }
+
+    .model-card--featured::before {
+      opacity: 0.5;
+      background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(129, 140, 248, 0.25), transparent);
+    }
+
+    .model-card__badge {
+      display: inline-block;
+      padding: 4px 8px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: var(--ls-wide);
+      border-radius: var(--radius-sm);
+      margin-bottom: var(--sp-4);
+      text-transform: uppercase;
+    }
+
+    .model-card__badge--default {
+      background: var(--clr-obsidian);
+      border: 1px solid var(--bdr-subtle);
+      color: var(--clr-muted);
+    }
+
+    .model-card__badge--featured {
+      background: var(--clr-iris-dim);
+      border: 1px solid var(--bdr-iris);
+      color: #a5b4fc;
+    }
+
+    .model-card__title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: var(--sp-2);
+      color: var(--clr-platinum);
+      letter-spacing: -0.02em;
+    }
+
+    .model-card__body {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--clr-muted);
+      margin-top: auto; /* Pushes content clean if descriptions vary */
+    }
+
+    /* Missing Custom Logo Utility Framework Support Built Directly */
+    .w-16 { width: 64px; }
+    .h-16 { height: 64px; }
+    .mb-4 { margin-bottom: 16px; }
+    .object-contain { object-fit: contain; }
+
+    .support-box {
+      margin-top: 64px;
+      border-radius: 22px;
+      border: 1px solid rgba(129, 140, 248, 0.28);
+      background: rgba(129, 140, 248, 0.08);
+      padding: 24px;
+      color: rgba(224, 231, 255, 0.82);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .support-box strong {
+      color: #e0e7ff;
+    }
+
+    .support-box a {
+      color: #e0e7ff;
+      text-decoration: underline;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 32px 24px;
+      text-align: center;
+      color: #71717a;
+      font-size: 13px;
+      margin-top: 40px;
+    }
+
+    /* Responsive Grid Controls */
+    @media (max-width: 1024px) {
+      .models__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 900px) {
+      .showcase-grid {
+        grid-template-columns: 1fr;
+      }
+      .product-card, .product-card img {
+        min-height: 360px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .models__grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .nav { padding: 0 18px; }
+      .brand span { display: none; }
+      .nav-links { gap: 8px; }
+      .btn { padding: 9px 11px; }
+      main { padding: 64px 18px 96px; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions a { text-align: center; }
+      .product-content { padding: 24px; }
+      .product-content h2 { font-size: 28px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav">
+      <a href="/" class="brand">
+        ORBIT <span>ECOSYSTEM</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="/Routes/doc.html" class="btn btn-secondary">Docs</a>
+        <a href="https://www.orbitdev.org/auth" class="btn btn-primary">Open Orbit</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <p class="eyebrow">LUMI • ORBIT ENGINE • LUMI IMAGES</p>
+
+    <h1>The Orbit Ecosystem</h1>
+
+    <p class="hero-text">
+      A unified AI ecosystem by Lumi. Orbit Engine powers intelligent assistants,
+      agent workflows, automation, creative tools, and Lumi Images for high-quality
+      AI image generation.
+    </p>
+
+    <div class="hero-actions">
+      <a href="https://www.orbitdev.org/auth" class="btn btn-primary">Open Orbit</a>
+      <a href="/Routes/doc.html" class="btn btn-secondary">Read Docs</a>
+      <a href="mailto:support@orbitdev.org" class="btn btn-secondary">Contact Support</a>
+    </div>
+
+    <section class="showcase" aria-label="Orbit Ecosystem products">
+      <div class="showcase-grid">
+        <article class="product-card">
+          <img src="/Public/ORTEX.png" alt="Vortex company visual" />
+          <div class="product-content">
+            <span class="product-tag">Company</span>
+            <h2>Vortex</h2>
+            <p>
+              The company behind Orbit, building practical AI products for creators,
+              developers, teams, and everyday workflows.
+            </p>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img src="/Public/web-app-manifest-512x512.png" alt="Orbit Engine LLM visual" />
+          <div class="product-content">
+            <span class="product-tag">LLM Platform</span>
+            <h2>Orbit Engine</h2>
+            <p>
+              The core language model engine powering assistants, tools, agents,
+              documents, code workflows, research, and automation.
+            </p>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img src="/Public/lumi.png" alt="Lumi Images AI generation visual" />
+          <div class="product-content">
+            <span class="product-tag">Image Generation</span>
+            <h2>Lumi Images</h2>
+            <p>
+              AI image generation for visual ideas, creative production, marketing,
+              concept art, product visuals, and rapid design work.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-title">
+      <h2>Plain-language ecosystem rules</h2>
+      <p>
+        These rules help keep Orbit, Lumi, Orbit Engine, and Lumi Images safe,
+        useful, and not immediately ruined by the internet’s worst instincts.
+      </p>
+    </section>
+
+    <!-- FIXED NESTING & REMOVED BLANK WRAPPERS -->
+    <section id="models" class="section section--border-top">
+      <div class="section-header">
+        <p class="section-header__eyebrow">Inventory</p>
+        <h2 class="section-header__title">Multi-Model Orchestration</h2>
+      </div>
+
+      <div class="models__grid">
+        <div class="model-card panel">
+          <span class="model-card__badge model-card__badge--default">CLAUD-2</span>
+          <img src="/Public/Claude.png" alt="Claude Logo" class="w-16 h-16 object-contain mb-4">
+          <h3 class="model-card__title">Claude</h3>
+          <p class="model-card__body">Highly capable AI assistant for complex reasoning and creative tasks.</p>
+        </div>
+
+        <div class="model-card panel model-card--featured">
+          <span class="model-card__badge model-card__badge--featured">PROPRIETARY</span>
+          <img src="/Public/puslar.png" alt="ProPulsar Logo" class="w-16 h-16 object-contain mb-4">
+          <h3 class="model-card__title">ProPulsar</h3>
+          <p class="model-card__body">Sub-millisecond latency framework configured directly for multi-layered autonomous state routing.</p>
+        </div>
+
+        <div class="model-card panel">
+          <span class="model-card__badge model-card__badge--default">Orbit AI</span>
+          <img src="/Public/web-app-manifest-512x512.png" alt="Orbit AI Logo" class="w-16 h-16 object-contain mb-4">
+          <h3 class="model-card__title">Orbit AI</h3>
+          <p class="model-card__body">Orbit AI is a cutting-edge artificial intelligence platform designed for seamless integration and advanced analytics.</p>
+        </div>
+
+        <div class="model-card panel">
+          <span class="model-card__badge model-card__badge--default">GPT-5_CORE</span>
+          <img src="/Public/open-ai-logo.png" alt="ProPulsar Logo" class="w-16 h-16 object-contain mb-4">
+          <h3 class="model-card__title">ChatGPT 5</h3>
+          <p class="model-card__body">Advanced dynamic context parsing optimised for complex semantic and cross-linguistic arrays.</p>
+        </div>
+
+        <div class="model-card panel">
+          <span class="model-card__badge model-card__badge--default">GEMINI_3_ULTRA</span>
+          <img src="/Public/Google_Gemini_icon_2025.png" alt="Gemini Logo" class="w-16 h-16 object-contain mb-4">
+          <h3 class="model-card__title">Gemini 3</h3>
+          <p class="model-card__body">High-volume data processing windows mapped with adaptive native multimodal structural analytics.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="support-box">
+      <strong>Unsure whether something is allowed?</strong>
+      Stop before running it and contact support through the signed-in Orbit app
+      or email <a href="mailto:support@orbitdev.org">support@orbitdev.org</a>.
+    </div>
+  </main>
+
+  <footer>
+    © 2026 Lumi. Orbit Engine and Lumi Images are part of the Orbit Ecosystem.
+  </footer>
+</body>
+</html>
+
