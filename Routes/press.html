@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Orbit — Press</title>
+<meta name="description" content="Orbit's official press page. Sort of.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#020202;
+    --surface:#0d0d0d;
+    --border:rgba(255,255,255,.06);
+    --text:#f4f4f5;
+    --muted:#71717a;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.04), transparent 50%);
+    pointer-events:none;
+}
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    backdrop-filter:blur(12px);
+    background:rgba(2,2,2,.75);
+    border-bottom:1px solid var(--border);
+}
+
+.nav-inner{
+    max-width:1152px;
+    margin:auto;
+    padding:18px 24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:18px;
+    color:white;
+    text-decoration:none;
+}
+
+.back-link{
+    color:var(--muted);
+    text-decoration:none;
+    font-size:13px;
+}
+
+.back-link:hover{
+    color:white;
+}
+
+.hero{
+    padding:120px 24px;
+}
+
+.hero-inner{
+    max-width:800px;
+    margin:auto;
+    text-align:center;
+}
+
+.orbit-badge{
+    display:inline-block;
+    font-family:monospace;
+    font-size:10px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    background:#18181b;
+    color:#a1a1aa;
+    padding:4px 10px;
+    border-radius:6px;
+}
+
+h1{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:clamp(42px,8vw,88px);
+    line-height:1;
+    letter-spacing:-.04em;
+    margin-top:28px;
+}
+
+.hero-sub{
+    margin:28px auto 0;
+    max-width:600px;
+    color:var(--muted);
+    font-size:16px;
+    line-height:1.9;
+}
+
+.cards{
+    max-width:1100px;
+    margin:80px auto;
+    padding:0 24px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:28px;
+}
+
+.card-title{
+    font-weight:600;
+    margin-bottom:10px;
+}
+
+.card p{
+    color:var(--muted);
+    line-height:1.8;
+    font-size:14px;
+}
+
+.chat-box{
+    max-width:760px;
+    margin:0 auto 80px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:18px;
+    overflow:hidden;
+}
+
+.chat-header{
+    padding:18px 24px;
+    border-bottom:1px solid var(--border);
+    font-size:12px;
+    color:var(--muted);
+}
+
+.chat-body{
+    padding:28px;
+}
+
+.msg{
+    margin-bottom:20px;
+}
+
+.msg strong{
+    display:block;
+    margin-bottom:6px;
+}
+
+.msg p{
+    color:var(--muted);
+}
+
+.quote{
+    max-width:900px;
+    margin:120px auto;
+    padding:0 24px;
+    text-align:center;
+}
+
+.quote blockquote{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:clamp(28px,4vw,52px);
+    line-height:1.2;
+    letter-spacing:-.03em;
+}
+
+.quote span{
+    display:block;
+    margin-top:18px;
+    color:var(--muted);
+    font-size:14px;
+}
+
+.faq{
+    max-width:800px;
+    margin:0 auto 120px;
+    padding:0 24px;
+}
+
+.faq-item{
+    padding:24px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.faq-item h3{
+    margin-bottom:10px;
+}
+
+.faq-item p{
+    color:var(--muted);
+    line-height:1.8;
+}
+
+.cta{
+    text-align:center;
+    padding-bottom:120px;
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:12px 24px;
+    border-radius:10px;
+    background:white;
+    color:black;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+}
+
+.btn:hover{
+    opacity:.9;
+}
+
+footer{
+    border-top:1px solid var(--border);
+    padding:40px 24px;
+    text-align:center;
+    color:#52525b;
+    font-size:12px;
+}
+
+@media(max-width:900px){
+    .cards{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="/" class="logo">Orbit</a>
+        <a href="/" class="back-link">Back to Orbit</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-inner">
+
+        <span class="orbit-badge">// press</span>
+
+        <h1>We don't do press.</h1>
+
+        <p class="hero-sub">
+            Most companies have media kits, press contacts, official statements,
+            and carefully rehearsed interviews.
+            <br><br>
+            We have developers who haven't slept because production broke at 2 AM.
+        </p>
+
+    </div>
+</section>
+
+<section class="cards">
+
+    <div class="card">
+        <div class="card-title">Media Inquiries</div>
+        <p>
+            We appreciate your interest.
+            We are currently busy building Orbit.
+            And fixing Orbit.
+            And accidentally breaking Orbit.
+        </p>
+    </div>
+
+    <div class="card">
+        <div class="card-title">Interviews</div>
+        <p>
+            If you ask for an interview, there is a strong chance someone replies
+            with a Git commit instead.
+        </p>
+    </div>
+
+    <div class="card">
+        <div class="card-title">Press Statements</div>
+        <p>
+            Our official statement is usually:
+            "We shipped an update."
+        </p>
+    </div>
+
+</section>
+
+<div class="chat-box">
+
+    <div class="chat-header">
+        INTERNAL PRESS COMMUNICATION LOG
+    </div>
+
+    <div class="chat-body">
+
+        <div class="msg">
+            <strong>Journalist</strong>
+            <p>Can we schedule an interview?</p>
+        </div>
+
+        <div class="msg">
+            <strong>Orbit</strong>
+            <p>We're deploying.</p>
+        </div>
+
+        <div class="msg">
+            <strong>Journalist</strong>
+            <p>What about next week?</p>
+        </div>
+
+        <div class="msg">
+            <strong>Orbit</strong>
+            <p>We'll probably still be deploying.</p>
+        </div>
+
+        <div class="msg">
+            <strong>Journalist</strong>
+            <p>Can we at least get a quote?</p>
+        </div>
+
+        <div class="msg">
+            <strong>Orbit</strong>
+            <p>We thought it would be faster if the computer did it.</p>
+        </div>
+
+    </div>
+
+</div>
+
+<section class="quote">
+
+    <blockquote>
+        “We thought it would be faster if the computer did it.”
+    </blockquote>
+
+    <span>— Orbit, probably</span>
+
+</section>
+
+<section class="faq">
+
+    <div class="faq-item">
+        <h3>Can I write about Orbit?</h3>
+        <p>Absolutely. We can't stop you.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>Can I use your logo?</h3>
+        <p>Yes. That's why it's on the website.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>Who handles media relations?</h3>
+        <p>Currently nobody. Which is technically very efficient.</p>
+    </div>
+
+    <div class="faq-item">
+        <h3>Where is the press kit?</h3>
+        <p>
+            Somewhere between the roadmap,
+            the bug tracker,
+            and the list of things we said we'd do later.
+        </p>
+    </div>
+
+</section>
+
+<div class="cta">
+    <a href="/" class="btn">Return To Reality</a>
+</div>
+
+<footer>
+    Orbit AI • Not a press company.
+</footer>
+
+</body>
+</html>
+
