@@ -65,6 +65,11 @@
         .reveal.active { opacity: 1; transform: translateY(0); }
         .reveal-delay-1 { transition-delay: 0.1s; }
         .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-d1 { transition-delay: .08s; }
+        .reveal-d2 { transition-delay: .16s; }
+        .reveal-d3 { transition-delay: .24s; }
+        .reveal-d4 { transition-delay: .32s; }
+        .reveal-d5 { transition-delay: .40s; }
 
         #hero-glow {
             position: absolute;
@@ -99,8 +104,577 @@
         ::-webkit-scrollbar-track { background: var(--bg); }
         ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+        /* Orbit unified pricing-style sections */
+        .orbit-section {
+            padding: 96px 24px;
+            border-top: 1px solid rgba(255,255,255,0.035);
+            position: relative;
+            overflow: hidden;
+        }
+        .light-mode .orbit-section { border-top-color: rgba(0,0,0,0.06); }
+        .pricing-wrap {
+            width: min(1180px, calc(100% - 24px));
+            margin: 0 auto;
+        }
+        .pricing-header {
+            max-width: 680px;
+            margin: 0 auto 54px;
+            text-align: center;
+        }
+        .pricing-header h2 {
+            margin: 0;
+            color: var(--text-main);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(32px, 5vw, 58px);
+            line-height: 0.98;
+            letter-spacing: -0.055em;
+        }
+        .pricing-header p {
+            margin: 18px auto 0;
+            max-width: 560px;
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.75;
+        }
+        .orbit-badge {
+            color: rgba(255,255,255,0.62);
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.025);
+            border-radius: 999px;
+            padding: 7px 11px;
+            font: 600 10px/1 'Inter', sans-serif;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+        }
+        .light-mode .orbit-badge {
+            color: rgba(9,9,11,0.65);
+            border-color: rgba(0,0,0,0.08);
+            background: rgba(0,0,0,0.025);
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+        .pricing-grid.grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        .pricing-card {
+            min-height: 100%;
+            padding: 26px;
+            border: 1px solid rgba(255,255,255,0.075);
+            border-radius: 24px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.014));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 26px;
+            transition: transform .25s ease, border-color .25s ease, background .25s ease;
+        }
+        .pricing-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(255,255,255,0.16);
+            background: linear-gradient(180deg, rgba(255,255,255,0.065), rgba(255,255,255,0.018));
+        }
+        .light-mode .pricing-card {
+            border-color: rgba(0,0,0,0.075);
+            background: linear-gradient(180deg, rgba(255,255,255,0.84), rgba(244,244,245,0.55));
+        }
+        .pricing-card.featured {
+            border-color: rgba(255,255,255,0.20);
+            box-shadow: 0 24px 80px rgba(255,255,255,0.045);
+            background: linear-gradient(180deg, rgba(255,255,255,0.075), rgba(255,255,255,0.025));
+        }
+        .pricing-tier {
+            color: var(--text-main);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+        .pricing-amount {
+            margin-top: 14px;
+            color: var(--text-main);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 42px;
+            font-weight: 700;
+            letter-spacing: -0.055em;
+            line-height: 1;
+        }
+        .pricing-amount sup {
+            font-size: 18px;
+            margin-right: 2px;
+            color: var(--text-muted);
+        }
+        .pricing-desc {
+            margin-top: 16px;
+            color: var(--text-muted);
+            font-size: 12px;
+            line-height: 1.75;
+        }
+        .pricing-card-bottom { margin-top: auto; }
+        .pricing-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 24px;
+            display: grid;
+            gap: 12px;
+        }
+        .pricing-features li {
+            color: rgba(255,255,255,0.68);
+            font-size: 12px;
+            line-height: 1.45;
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+        }
+        .light-mode .pricing-features li { color: rgba(9,9,11,0.68); }
+        .check {
+            flex: 0 0 auto;
+            margin-top: 1px;
+            color: var(--text-main);
+        }
+        .btn-primary, .btn-ghost {
+            width: 100%;
+            min-height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform .2s ease, background .2s ease, border-color .2s ease;
+        }
+        .btn-primary {
+            background: var(--text-main);
+            color: var(--bg);
+        }
+        .btn-ghost {
+            background: rgba(255,255,255,0.025);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: var(--text-main);
+        }
+        .btn-primary:hover, .btn-ghost:hover { transform: translateY(-1px); }
+        .btn-ghost:hover { border-color: rgba(255,255,255,0.16); background: rgba(255,255,255,0.045); }
+        .model-logo {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+            margin: 16px 0 4px;
+            border-radius: 12px;
+        }
+        .logos-marquee {
+            overflow: hidden;
+            mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+            -webkit-mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+        }
+        .logos-track {
+            display: flex;
+            width: max-content;
+            gap: 16px;
+            animation: logos-scroll 28s linear infinite;
+        }
+        .logos-marquee:hover .logos-track { animation-play-state: paused; }
+        .logo-cell {
+            min-width: 190px;
+            height: 74px;
+            padding: 0 24px;
+            border: 1px solid rgba(255,255,255,0.075);
+            border-radius: 20px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015));
+            color: rgba(255,255,255,0.58);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .logo-mark {
+            width: 28px; height: 28px; border-radius: 999px;
+            background: rgba(255,255,255,0.075);
+            border: 1px solid rgba(255,255,255,0.09);
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 14px;
+        }
+        @keyframes logos-scroll { to { transform: translateX(-50%); } }
+        .zigzag { display: grid; gap: 72px; }
+        .zigzag-row {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 42px;
+            align-items: center;
+        }
+        .approach-text h3 {
+            margin: 18px 0 14px;
+            color: var(--text-main);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(24px, 3vw, 38px);
+            line-height: 1.05;
+            letter-spacing: -0.05em;
+        }
+        .approach-text p {
+            max-width: 520px;
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        .panel-visual {
+            border: 1px solid rgba(255,255,255,0.075);
+            border-radius: 28px;
+            padding: 28px;
+            background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.065), transparent 50%), rgba(255,255,255,0.014);
+        }
+        .app-card, .uptime-card, .spend-card {
+            border: 1px solid rgba(255,255,255,0.085);
+            border-radius: 20px;
+            background: rgba(5,5,5,0.72);
+            padding: 18px;
+            box-shadow: 0 20px 70px rgba(0,0,0,0.35);
+        }
+        .app-card-header, .app-row, .uptime-stats, .spend-item, .spend-item-left {
+            display: flex; align-items: center;
+        }
+        .app-card-header, .spend-item { justify-content: space-between; }
+        .app-card-header { color: var(--text-main); font-size: 12px; font-weight: 700; margin-bottom: 16px; }
+        .live { color:#10b981; font-size: 10px; display:flex; align-items:center; gap:6px; }
+        .live-dot { width:6px; height:6px; border-radius:50%; background:#10b981; box-shadow:0 0 16px rgba(16,185,129,.8); }
+        .app-row { gap: 12px; padding: 12px 0; border-top: 1px solid rgba(255,255,255,0.055); }
+        .app-row-text p { margin: 0; color: rgba(255,255,255,0.82); font-size: 12px; }
+        .app-row-text .ts { color: var(--text-muted); font-size: 10px; margin-top: 2px; }
+        .status-dot { width: 16px; height: 16px; border-radius: 50%; display:flex; align-items:center; justify-content:center; background: rgba(255,255,255,.06); }
+        .status-dot .inner { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+        .sd-green { color:#10b981; } .sd-blue { color:#93a2ff; } .sd-amber { color:#f59e0b; }
+        .uptime-num, .spend-amount { color: var(--text-main); font-family:'Space Grotesk',sans-serif; font-size: 42px; font-weight: 700; letter-spacing: -.05em; }
+        .uptime-bars { display:flex; gap:4px; margin:18px 0; }
+        .bar { flex:1; height:42px; border-radius: 7px; background: rgba(255,255,255,.18); }
+        .bar.warn { background: rgba(245,158,11,.45); }
+        .uptime-stats { gap: 8px; }
+        .stat-box { flex:1; border:1px solid rgba(255,255,255,.07); border-radius:12px; padding:10px; }
+        .stat-box .val { color: var(--text-main); font-weight:700; font-size:12px; }
+        .stat-box .lbl { color: var(--text-muted); font-size:9px; margin-top:3px; }
+        .spend-delta { margin-left:10px; color:#10b981; font-size:11px; font-weight:700; }
+        .spend-bar { display:flex; overflow:hidden; height:12px; border-radius:999px; margin:16px 0 18px; background:rgba(255,255,255,.05); }
+        .spend-items { display:grid; gap:10px; }
+        .spend-item { font-size: 12px; color: rgba(255,255,255,.78); }
+        .spend-item-left { gap:8px; }
+        .spend-dot { width:7px; height:7px; border-radius:50%; }
+        @media (max-width: 980px) {
+            .pricing-grid, .pricing-grid.grid-4, .zigzag-row { grid-template-columns: 1fr; }
+            .pricing-header { text-align: left; margin-left: 0; }
+        }
+        @media (max-width: 640px) {
+            .orbit-section { padding: 72px 16px; }
+            .pricing-wrap { width: 100%; }
+            .pricing-card { padding: 22px; border-radius: 20px; }
+        }
+
     </style>
     <link rel="stylesheet" href="/site.css">
+
+<style id="orbit-black-style-override">
+
+/* ============================================================
+   ORBIT BLACK STYLE OVERRIDE
+   Matches the original black Orbit interface: compact, dark,
+   subtle borders, neutral text, minimal glow.
+   ============================================================ */
+:root {
+  --bg: #020202 !important;
+  --surface: #0d0d0d !important;
+  --surface-2: #141414 !important;
+  --panel: rgba(13,13,13,0.72) !important;
+  --panel-solid: #0d0d0d !important;
+  --glass: rgba(13,13,13,0.72) !important;
+  --border: rgba(255,255,255,0.06) !important;
+  --border-hover: rgba(255,255,255,0.12) !important;
+  --line: rgba(255,255,255,0.08) !important;
+  --text: #f4f4f5 !important;
+  --text-main: #f4f4f5 !important;
+  --text-muted: #71717a !important;
+  --muted: #71717a !important;
+  --text-dim: #3f3f46 !important;
+  --accent: #f4f4f5 !important;
+  --accent-glow: rgba(255,255,255,0.025) !important;
+  --primary: #f4f4f5 !important;
+  --primary-hover: #e4e4e7 !important;
+}
+
+html, body {
+  background:
+    radial-gradient(700px circle at 50% -20%, rgba(255,255,255,0.035), transparent 60%),
+    #020202 !important;
+  color: #71717a !important;
+  font-family: 'Inter', sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+  background-size: 54px 54px;
+  opacity: .22;
+  mask-image: radial-gradient(circle at 50% 18%, black, transparent 72%);
+  -webkit-mask-image: radial-gradient(circle at 50% 18%, black, transparent 72%);
+}
+
+body > * { position: relative; z-index: 1; }
+
+h1, h2, h3, h4, .font-space, .logo-font {
+  font-family: 'Space Grotesk', sans-serif !important;
+  color: #f4f4f5 !important;
+  letter-spacing: -0.025em;
+}
+
+p, li, span, label {
+  color: inherit;
+}
+
+a { text-decoration: none; }
+
+/* Navigation / headers */
+nav, header {
+  background: rgba(2,2,2,0.76) !important;
+  border-color: rgba(255,255,255,0.06) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+}
+
+.nav, .nav-inner, header > div {
+  max-width: 1152px !important;
+}
+
+.nav-links a, .sidebar nav a, .sidebar-link, header a {
+  color: #71717a !important;
+  transition: color .16s ease, background .16s ease, border-color .16s ease;
+}
+
+.nav-links a:hover, .sidebar nav a:hover, .sidebar-link:hover, header a:hover {
+  color: #e4e4e7 !important;
+}
+
+.nav-logo, .brand, .logo, header .font-bold {
+  color: #f4f4f5 !important;
+}
+
+/* Buttons */
+.btn-primary, .btn--primary, .apply-btn, .form-submit, .nav-cta,
+a[href*="auth"], a[href*="billing"].btn-primary, button[type="submit"] {
+  background: #f4f4f5 !important;
+  color: #09090b !important;
+  border: 1px solid #f4f4f5 !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  clip-path: none !important;
+  transition: background .16s ease, transform .16s ease, border-color .16s ease !important;
+}
+
+.btn-primary:hover, .btn--primary:hover, .apply-btn:hover, .form-submit:hover, .nav-cta:hover,
+button[type="submit"]:hover {
+  background: #e4e4e7 !important;
+  transform: translateY(-1px) !important;
+  filter: none !important;
+}
+
+.btn-ghost, .btn--ghost, .btn-outline, .btn-secondary, header a.rounded-lg.border {
+  background: rgba(255,255,255,0.03) !important;
+  color: #a1a1aa !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  border-radius: 8px !important;
+  transition: border-color .16s ease, color .16s ease, background .16s ease, transform .16s ease !important;
+}
+
+.btn-ghost:hover, .btn--ghost:hover, .btn-outline:hover, .btn-secondary:hover, header a.rounded-lg.border:hover {
+  color: #e4e4e7 !important;
+  border-color: rgba(255,255,255,0.14) !important;
+  background: rgba(255,255,255,0.045) !important;
+}
+
+/* Panels / cards */
+.app-panel, .glass-panel, .panel, .bento-card, .card, .notice, .rule, .right-box,
+.job-card, .model-card, .cap-card, .pricing-card, .member-card, .terminal,
+.uptime-card, .app-card, .spend-card, .contact-inner, .team-wrap, .slith-panel,
+.system-tray, .logo-cell, .status-card, .feature-card {
+  background:
+    radial-gradient(ellipse 80% 45% at 50% 0%, rgba(255,255,255,0.026), transparent 65%),
+    #0d0d0d !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  color: #71717a !important;
+  box-shadow: none !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+
+.app-panel:hover, .glass-panel:hover, .panel:hover, .bento-card:hover, .card:hover,
+.rule:hover, .right-box:hover, .job-card:hover, .model-card:hover, .cap-card:hover,
+.pricing-card:hover, .member-card:hover, .logo-cell:hover, .feature-card:hover {
+  border-color: rgba(255,255,255,0.12) !important;
+  background:
+    radial-gradient(ellipse 80% 45% at 50% 0%, rgba(255,255,255,0.04), transparent 65%),
+    #101010 !important;
+  transform: translateY(-1px);
+}
+
+.pricing-wrap, .section-wrap, .team-wrap, .contact-inner {
+  background:
+    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(255,255,255,0.03), transparent 60%),
+    #080808 !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  border-radius: 20px !important;
+}
+
+/* Sections */
+section, .section, header, main > div {
+  border-color: rgba(255,255,255,0.06) !important;
+}
+
+.orbit-section, #pricing, #approach, #team, #story, #contact, #logos {
+  border-color: rgba(255,255,255,0.06) !important;
+  background: transparent !important;
+}
+
+.section-eyebrow, .eyebrow, .nav-title, .orbit-badge, .data-tag, .tag,
+.model-card__badge, .pricing-tier, .logos-label, .hero-badge {
+  color: #a1a1aa !important;
+  background: #18181b !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  border-radius: 6px !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: .10em !important;
+  text-transform: uppercase !important;
+  padding: 3px 9px !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.section-eyebrow, .eyebrow, .nav-title, .logos-label {
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  color: #52525b !important;
+}
+
+.section-title, .pricing-header h2, .hero h1, h1 {
+  color: #f4f4f5 !important;
+}
+
+.pricing-header p, .hero-sub, .tl-body, .member-bio, .model-card__body,
+.cap-card__body, .pricing-desc, .card p, .notice p, main p, p, li {
+  color: #71717a !important;
+}
+
+/* Pricing exact black tab feel */
+.pricing-grid {
+  gap: 20px !important;
+}
+
+.pricing-card {
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+}
+
+.pricing-card-top {
+  padding: 28px 28px 24px !important;
+  border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+}
+
+.pricing-card-bottom {
+  padding: 24px 28px 28px !important;
+}
+
+.pricing-amount {
+  color: #f4f4f5 !important;
+  font-size: 36px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.03em !important;
+}
+
+.pricing-features {
+  list-style: none !important;
+  padding-left: 0 !important;
+}
+
+.pricing-features li {
+  color: #71717a !important;
+  font-size: 13px !important;
+}
+
+.check { color: #f4f4f5 !important; }
+
+/* Forms / inputs */
+input, textarea, select, .ticket-input {
+  background: #0d0d0d !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  color: #f4f4f5 !important;
+  border-radius: 8px !important;
+  outline: none !important;
+}
+
+input:focus, textarea:focus, select:focus, .ticket-input:focus {
+  border-color: rgba(255,255,255,0.18) !important;
+  box-shadow: none !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #3f3f46 !important;
+}
+
+/* Status colors kept subtle */
+.status-pill {
+  background: rgba(16,185,129,0.09) !important;
+  color: #10b981 !important;
+  border: 1px solid rgba(16,185,129,0.18) !important;
+}
+
+.noise {
+  opacity: .012 !important;
+}
+
+.glow-mesh, #hero-glow {
+  background: radial-gradient(800px circle at 50% 0%, rgba(255,255,255,0.035), transparent 60%) !important;
+}
+
+/* Tables/code/docs */
+pre, code, .font-mono {
+  font-family: 'JetBrains Mono', monospace !important;
+}
+
+pre {
+  background: #0d0d0d !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  border-radius: 12px !important;
+  color: #d4d4d8 !important;
+}
+
+table {
+  border-color: rgba(255,255,255,0.06) !important;
+}
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: #020202; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.10); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
+
+@media (max-width: 768px) {
+  .pricing-wrap, .team-wrap, .contact-inner {
+    padding: 32px 22px !important;
+  }
+}
+
+</style>
+
 </head>
 <body class="antialiased">
 
@@ -196,140 +770,253 @@
         </div>
     </section>
 
-    <section id="capabilities" class="py-24 px-6 max-w-7xl mx-auto">
-        <div class="mb-12 reveal">
-            <h2 class="text-xs uppercase tracking-wider text-zinc-500 mb-2 font-semibold">Core Capabilities</h2>
-            <h3 class="text-2xl md:text-3xl font-bold tracking-tight font-space">Autonomous interface modules.</h3>
+
+    <section id="capabilities" class="orbit-section">
+      <div class="pricing-wrap">
+        <div class="pricing-header reveal">
+          <span class="orbit-badge" style="margin-bottom:16px;display:inline-block;">// core capabilities</span>
+          <h2>Autonomous interface modules</h2>
+          <p>Orbit connects voice, browser, knowledge, and agent systems into one automation layer for browser and desktop workflows.</p>
         </div>
-        
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
-            <div class="app-panel p-6 rounded-xl reveal flex flex-col justify-between">
-                <div>
-                    <div class="w-8 h-8 rounded-lg bg-zinc-900 border border-white/5 flex items-center justify-center text-zinc-400 mb-5">
-                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/></svg>
-                    </div>
-                    <h4 class="text-sm font-semibold mb-2 font-space">Voice Pipeline</h4>
-                    <p class="text-xs text-zinc-400 light-mode:text-zinc-500 leading-relaxed">Stream native complex commands over high-frequency voice streams. Built natively for real-time app protocols.</p>
-                </div>
-                <div class="text-[10px] font-mono text-zinc-600 mt-6 tracking-wider">01 // INTEGRATED</div>
-            </div>
 
-            <div class="app-panel p-6 rounded-xl reveal reveal-delay-1 flex flex-col justify-between">
-                <div>
-                    <div class="w-8 h-8 rounded-lg bg-zinc-900 border border-white/5 flex items-center justify-center text-zinc-400 mb-5">
-                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
-                    </div>
-                    <h4 class="text-sm font-semibold mb-2 font-space">Knowledge Synthesis</h4>
-                    <p class="text-xs text-zinc-400 light-mode:text-zinc-500 leading-relaxed">Append localized context data frameworks, live script repositories, or unstructured runtime structures effortlessly.</p>
-                </div>
-                <div class="text-[10px] font-mono text-zinc-600 mt-6 tracking-wider">02 // CONTEXTUAL</div>
+        <div class="pricing-grid grid-4">
+          <div class="pricing-card reveal reveal-d1">
+            <div class="pricing-card-top">
+              <div class="pricing-tier">Voice Pipeline</div>
+              <div class="pricing-desc">Stream commands through Orbit and control complex workflows with natural voice and text input.</div>
             </div>
+            <div class="pricing-card-bottom">
+              <ul class="pricing-features">
+                <li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Real-time command input</li>
+                <li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Natural workflow control</li>
+                <li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Low-latency execution</li>
+              </ul>
+            </div>
+          </div>
 
-            <div class="app-panel p-6 rounded-xl reveal reveal-delay-2 flex flex-col justify-between">
-                <div>
-                    <div class="w-8 h-8 rounded-lg bg-zinc-900 border border-white/5 flex items-center justify-center text-zinc-400 mb-5">
-                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                    </div>
-                    <h4 class="text-sm font-semibold mb-2 font-space">Agent Multi-Build</h4>
-                    <p class="text-xs text-zinc-400 light-mode:text-zinc-500 leading-relaxed">Map complex multi-layer architectures or spawn asynchronous processing nodes in sandboxed container meshes.</p>
-                </div>
-                <div class="text-[10px] font-mono text-zinc-600 mt-6 tracking-wider">03 // DISTRIBUTED</div>
+          <div class="pricing-card reveal reveal-d2">
+            <div class="pricing-card-top">
+              <div class="pricing-tier">Knowledge Synthesis</div>
+              <div class="pricing-desc">Add context from pages, documents, code, and live repositories so Orbit can reason with your actual workspace.</div>
             </div>
+            <div class="pricing-card-bottom">
+              <ul class="pricing-features">
+                <li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Context-aware answers</li>
+                <li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>File and page analysis</li>
+                <li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Repository support</li>
+              </ul>
+            </div>
+          </div>
 
-            <div class="app-panel p-6 rounded-xl reveal reveal-delay-2 flex flex-col justify-between">
-                <div>
-                    <div class="w-8 h-8 rounded-lg bg-zinc-900 border border-white/5 flex items-center justify-center text-zinc-400 mb-5">
-                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
-                    </div>
-                    <h4 class="text-sm font-semibold mb-2 font-space">Browser Sync</h4>
-                    <p class="text-xs text-zinc-400 light-mode:text-zinc-500 leading-relaxed">Seamlessly integrate with modern web environments to compile, observe, and interact with live instances.</p>
-                </div>
-                <div class="text-[10px] font-mono text-zinc-600 mt-6 tracking-wider">04 // ORCHESTRATED</div>
+          <div class="pricing-card reveal reveal-d3">
+            <div class="pricing-card-top">
+              <div class="pricing-tier">Agent Multi-Build</div>
+              <div class="pricing-desc">Run multiple Orbit agents together to research, plan, write, build, and automate larger tasks.</div>
             </div>
+            <div class="pricing-card-bottom">
+              <ul class="pricing-features">
+                <li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Multi-agent workflows</li>
+                <li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Parallel task execution</li>
+                <li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Autonomous routing</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="pricing-card reveal reveal-d4">
+            <div class="pricing-card-top">
+              <div class="pricing-tier">Browser Sync</div>
+              <div class="pricing-desc">Use Orbit directly with modern web environments so it can observe, assist, and execute browser-based work.</div>
+            </div>
+            <div class="pricing-card-bottom">
+              <ul class="pricing-features">
+                <li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Browser interaction</li>
+                <li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Live page context</li>
+                <li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Desktop bridge</li>
+              </ul>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <section id="models" class="py-24 px-6 border-y border-white/[0.02] bg-white/[0.005] dark:bg-white/[0.005] light-mode:bg-black/[0.005]">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-12 reveal">
-                <h2 class="text-xs uppercase tracking-wider text-zinc-500 mb-2 font-semibold">Neural Inventory</h2>
-                <h3 class="text-2xl md:text-3xl font-bold tracking-tight font-space">Multi-Model Orchestration</h3>
-            </div>
-            <div class="grid md:grid-cols-3 gap-5">
-                <div class="app-panel p-6 rounded-xl reveal">
-                    <div class="flex justify-between items-center mb-5">
-                        <div class="text-zinc-400 bg-zinc-900 border border-white/5 px-2 py-0.5 rounded text-[10px] font-mono">GPT-5_CORE</div>
-                    </div>
-                    <h4 class="text-base font-semibold mb-1.5 font-space">ChatGPT 5</h4>
-                    <p class="text-xs text-zinc-400 light-mode:text-zinc-500 leading-relaxed">Advanced dynamic context parsing optimized specifically for complex semantic and cross-linguistic arrays.</p>
-                </div>
-                
-                <div class="app-panel p-6 rounded-xl reveal reveal-delay-1">
-                    <div class="flex justify-between items-center mb-5">
-                        <div class="text-zinc-400 bg-zinc-900 border border-white/5 px-2 py-0.5 rounded text-[10px] font-mono">GEMINI_3_ULTRA</div>
-                    </div>
-                    <h4 class="text-base font-semibold mb-1.5 font-space">Gemini 3</h4>
-                    <p class="text-xs text-zinc-400 light-mode:text-zinc-500 leading-relaxed">High-volume data processing windows mapped with adaptive native multimodal structural analytics.</p>
-                </div>
-                
-                <div class="app-panel p-6 rounded-xl relative overflow-hidden reveal reveal-delay-2 border-zinc-800 dark:border-zinc-800 light-mode:border-zinc-200">
-                    <div class="flex justify-between items-center mb-5">
-                        <div class="text-zinc-200 bg-white/5 border border-white/10 light-mode:bg-black/5 light-mode:border-black/10 light-mode:text-zinc-800 px-2 py-0.5 rounded text-[10px] font-mono font-medium">PROPRIETARY</div>
-                    </div>
-                    <h4 class="text-base font-semibold mb-1.5 font-space">ProPulsar</h4>
-                    <p class="text-xs text-zinc-400 light-mode:text-zinc-500 leading-relaxed">Sub-millisecond latency framework configured directly for multi-layered autonomous system state routing.</p>
-                </div>
-            </div>
+    <section id="models" class="orbit-section">
+      <div class="pricing-wrap">
+        <div class="pricing-header reveal">
+          <span class="orbit-badge" style="margin-bottom:16px;display:inline-block;">// inventory</span>
+          <h2>Multi-model orchestration</h2>
+          <p>Orbit routes work across different AI systems so each request can use the best model for reasoning, coding, automation, or multimodal tasks.</p>
         </div>
+
+        <div class="pricing-grid">
+          <div class="pricing-card reveal reveal-d1">
+            <div class="pricing-card-top">
+              <div class="pricing-tier">Claude</div>
+              <img src="/Public/Claude.png" alt="Claude Logo" class="model-logo">
+              <div class="pricing-desc">Highly capable assistant for long-context reasoning, writing, and creative work.</div>
+            </div>
+            <div class="pricing-card-bottom">
+              <ul class="pricing-features"><li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Complex reasoning</li><li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Creative generation</li></ul>
+            </div>
+          </div>
+
+          <div class="pricing-card featured reveal reveal-d2">
+            <div class="pricing-card-top">
+              <div class="pricing-tier">ProPulsar</div>
+              <img src="/Public/puslar.png" alt="ProPulsar Logo" class="model-logo">
+              <div class="pricing-desc">Orbit's proprietary routing layer for autonomous execution and multi-agent state control.</div>
+            </div>
+            <div class="pricing-card-bottom">
+              <ul class="pricing-features"><li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Autonomous routing</li><li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Fast execution layer</li></ul>
+            </div>
+          </div>
+
+          <div class="pricing-card reveal reveal-d3">
+            <div class="pricing-card-top">
+              <div class="pricing-tier">Orbit AI</div>
+              <img src="/Public/web-app-manifest-512x512.png" alt="Orbit AI Logo" class="model-logo">
+              <div class="pricing-desc">The native Orbit assistant layer for automation, analytics, workflow coordination, and browser action.</div>
+            </div>
+            <div class="pricing-card-bottom">
+              <ul class="pricing-features"><li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Workflow automation</li><li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Browser + desktop support</li></ul>
+            </div>
+          </div>
+
+          <div class="pricing-card reveal reveal-d4">
+            <div class="pricing-card-top">
+              <div class="pricing-tier">ChatGPT 5</div>
+              <img src="/Public/open-ai-logo.png" alt="OpenAI Logo" class="model-logo">
+              <div class="pricing-desc">Advanced semantic reasoning and context processing for complex problem solving.</div>
+            </div>
+            <div class="pricing-card-bottom">
+              <ul class="pricing-features"><li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Deep context handling</li><li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Technical assistance</li></ul>
+            </div>
+          </div>
+
+          <div class="pricing-card reveal reveal-d5">
+            <div class="pricing-card-top">
+              <div class="pricing-tier">Gemini 3</div>
+              <img src="/Public/Google_Gemini_icon_2025.png" alt="Gemini Logo" class="model-logo">
+              <div class="pricing-desc">High-volume multimodal processing for data analysis, visual context, and structured research.</div>
+            </div>
+            <div class="pricing-card-bottom">
+              <ul class="pricing-features"><li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Multimodal analysis</li><li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Large data windows</li></ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="pricing" class="py-24 px-6 max-w-7xl mx-auto">
-        <div class="text-center mb-16 reveal">
-            <h2 class="text-xs uppercase tracking-wider text-zinc-500 mb-2 font-semibold">Uplink Allocation</h2>
-            <h3 class="text-2xl md:text-3xl font-bold tracking-tight font-space">Predictable Node Structure</h3>
+    <section id="logos" class="orbit-section">
+      <div class="pricing-wrap">
+        <div class="pricing-header reveal">
+          <span class="orbit-badge" style="margin-bottom:16px;display:inline-block;">// ecosystem</span>
+          <h2>Built for modern teams</h2>
+          <p>Orbit is designed to sit between your browser, apps, models, and workflows.</p>
         </div>
-        <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-5 items-stretch">
-            <div class="app-panel p-6 rounded-xl flex flex-col justify-between reveal">
-                <div>
-                    <div class="text-zinc-500 text-xs font-semibold mb-3">Standard Node</div>
-                    <div class="text-3xl font-bold font-space mb-5">€0</div>
-                    <ul class="text-xs space-y-3 text-zinc-400 light-mode:text-zinc-500 mb-6">
-                        <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-zinc-600"></span> 1,000 Queries</li>
-                        <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-zinc-600"></span> Standard Queue Priority</li>
-                    </ul>
-                </div>
-                <button onclick="location.href='https://www.orbitdev.org/billing'" class="w-full py-2 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-900 border border-white/5 text-zinc-300 text-xs font-medium rounded-md transition duration-150">Open Billing</button>
-            </div>
-            
-            <div class="app-panel p-6 rounded-xl bg-white/[0.01] flex flex-col justify-between relative reveal reveal-delay-1 shadow-2xl border-zinc-700 dark:border-zinc-700 light-mode:border-zinc-300">
-                <div>
-                    <div class="flex justify-between items-center mb-3">
-                        <span class="text-zinc-200 light-mode:text-zinc-800 text-xs font-semibold">Pro Pulsar</span>
-                        <span class="text-[9px] bg-white/10 text-white light-mode:bg-black/5 light-mode:text-zinc-800 px-1.5 py-0.5 rounded font-medium">Active</span>
-                    </div>
-                    <div class="text-3xl font-bold font-space mb-5">€29</div>
-                    <ul class="text-xs space-y-3 text-zinc-300 light-mode:text-zinc-600 mb-6">
-                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-white light-mode:bg-black"></span> Unlimited Engine Runtime</li>
-                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-white light-mode:bg-black"></span> Priority Queue Uplink</li>
-                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-white light-mode:bg-black"></span> Complete Agent Access</li>
-                    </ul>
-                </div>
-                <button onclick="location.href='https://www.orbitdev.org/billing'" class="w-full py-2 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-black light-mode:bg-zinc-900 light-mode:hover:bg-zinc-800 light-mode:text-white text-xs font-medium rounded-md transition duration-150 shadow-sm">Initialize</button>
-            </div>
-            
-            <div class="app-panel p-6 rounded-xl flex flex-col justify-between reveal reveal-delay-2">
-                <div>
-                    <div class="text-zinc-500 text-xs font-semibold mb-3">Pulsar Node</div>
-                    <div class="text-3xl font-bold font-space mb-5">€10</div>
-                    <ul class="text-xs space-y-3 text-zinc-400 light-mode:text-zinc-500 mb-6">
-                        <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-zinc-600"></span> Unlimited Instances</li>
-                        <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-zinc-600"></span> Autonomous Fleet Manager</li>
-                        <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-zinc-600"></span> Standard Cluster Latency</li>
-                    </ul>
-                </div>
-                <button onclick="location.href='https://www.orbitdev.org/billing'" class="w-full py-2 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-900 border border-white/5 text-zinc-300 text-xs font-medium rounded-md transition duration-150">Initialize</button>
-            </div>
+        <div class="logos-marquee reveal reveal-d1">
+          <div class="logos-track">
+            <div class="logo-cell"><span class="logo-mark">◈</span><span>Arcline</span></div>
+            <div class="logo-cell"><span class="logo-mark">⌘</span><span>GitHub</span></div>
+            <div class="logo-cell"><span class="logo-mark">✦</span><span>Solara</span></div>
+            <div class="logo-cell"><span class="logo-mark">▰</span><span>Pavelock</span></div>
+            <div class="logo-cell"><span class="logo-mark">△</span><span>Nimbus</span></div>
+            <div class="logo-cell"><span class="logo-mark">▦</span><span>Quartex</span></div>
+            <div class="logo-cell"><span class="logo-mark">〰</span><span>Wavefront</span></div>
+            <div class="logo-cell"><span class="logo-mark">◈</span><span>Arcline</span></div>
+            <div class="logo-cell"><span class="logo-mark">⌘</span><span>GitHub</span></div>
+            <div class="logo-cell"><span class="logo-mark">✦</span><span>Solara</span></div>
+            <div class="logo-cell"><span class="logo-mark">▰</span><span>Pavelock</span></div>
+            <div class="logo-cell"><span class="logo-mark">△</span><span>Nimbus</span></div>
+            <div class="logo-cell"><span class="logo-mark">▦</span><span>Quartex</span></div>
+            <div class="logo-cell"><span class="logo-mark">〰</span><span>Wavefront</span></div>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <section id="approach" class="orbit-section">
+      <div class="pricing-wrap">
+        <div class="pricing-header reveal">
+          <span class="orbit-badge" style="margin-bottom:16px;display:inline-block;">// how orbit works</span>
+          <h2>Three-phase automation protocol</h2>
+          <p>Connect Orbit to your workspace, let it understand your intent, then automate the browser and desktop work around it.</p>
+        </div>
+
+        <div class="zigzag">
+          <div class="zigzag-row">
+            <div class="approach-text reveal">
+              <span class="orbit-badge">01 // Connect</span>
+              <h3>Connect Orbit to your workflow</h3>
+              <p>Orbit integrates directly into your browser and desktop environment. Connect websites, documents, applications, and workflows in minutes. No complex setup. Just tell Orbit what you want to accomplish.</p>
+            </div>
+            <div class="panel-visual reveal reveal-d1">
+              <div class="app-card">
+                <div class="app-card-header"><span>Orbit Connection Hub</span><span class="live"><span class="live-dot"></span>Connected</span></div>
+                <div class="app-row"><div class="status-dot sd-green"><div class="inner"></div></div><div class="app-row-text"><p>Browser extension <span style="color:#52525b;font-weight:400">connected</span></p><p class="ts">2 sec ago</p></div></div>
+                <div class="app-row"><div class="status-dot sd-blue"><div class="inner"></div></div><div class="app-row-text"><p>Desktop runtime <span class="mono">online</span></p><p class="ts">12 sec ago</p></div></div>
+                <div class="app-row"><div class="status-dot sd-amber"><div class="inner"></div></div><div class="app-row-text"><p>Workspace sync <span style="color:#52525b;font-weight:400">active</span></p><p class="ts">18 sec ago</p></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="zigzag-row">
+            <div class="panel-visual reveal">
+              <div class="uptime-card">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;"><span style="font-size:11px;font-weight:600">AI Understanding</span><span style="font-size:9px;color:#10b981;background:rgba(16,185,129,0.1);padding:2px 7px;border-radius:99px;font-weight:600">Optimized</span></div>
+                <div class="uptime-num">98.7<span style="font-size:16px;color:#52525b">%</span></div>
+                <div style="font-size:10px;color:#52525b">Task completion accuracy</div>
+                <div class="uptime-bars"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+                <div class="uptime-stats"><div class="stat-box"><div class="val">12K</div><div class="lbl">Actions</div></div><div class="stat-box"><div class="val">38</div><div class="lbl">Integrations</div></div><div class="stat-box"><div class="val">24/7</div><div class="lbl">Available</div></div></div>
+              </div>
+            </div>
+            <div class="approach-text reveal reveal-d1">
+              <span class="orbit-badge">02 // Understand</span>
+              <h3>Turn requests into intelligent actions</h3>
+              <p>Orbit is more than a chatbot. It understands context, remembers ongoing tasks, researches information, analyzes content, and plans multi-step workflows. Like a digital operator, it turns simple instructions into execution.</p>
+            </div>
+          </div>
+
+          <div class="zigzag-row">
+            <div class="approach-text reveal">
+              <span class="orbit-badge">03 // Automate</span>
+              <h3>Execute work across browser and desktop</h3>
+              <p>Orbit acts as your personal AI assistant. Open websites, summarize documents, automate repetitive tasks, generate content, perform research, manage projects, and coordinate workflows from one interface.</p>
+            </div>
+            <div class="panel-visual reveal reveal-d1">
+              <div class="spend-card">
+                <div style="display:flex;align-items:center;justify-content:space-between;"><span style="font-size:11px;font-weight:600">Automation Activity</span><span style="font-size:10px;color:#52525b">Live Runtime</span></div>
+                <div style="display:flex;align-items:baseline;"><span class="spend-amount">1,247</span><span class="spend-delta">tasks today</span></div>
+                <div class="spend-bar"><div class="seg" style="width:45%;background:#f4f4f5;"></div><div class="seg" style="width:28%;background:#71717a;"></div><div class="seg" style="width:17%;background:#3f3f46;"></div><div class="seg" style="width:10%;background:#27272a;"></div></div>
+                <div class="spend-items"><div class="spend-item"><div class="spend-item-left"><div class="spend-dot" style="background:#f4f4f5"></div><span class="lbl">Research</span></div><span class="val">421</span></div><div class="spend-item"><div class="spend-item-left"><div class="spend-dot" style="background:#71717a"></div><span class="lbl">Automation</span></div><span class="val">338</span></div><div class="spend-item"><div class="spend-item-left"><div class="spend-dot" style="background:#3f3f46"></div><span class="lbl">Writing</span></div><span class="val">291</span></div><div class="spend-item"><div class="spend-item-left"><div class="spend-dot" style="background:#27272a"></div><span class="lbl">Other</span></div><span class="val">197</span></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="orbit-section">
+      <div class="pricing-wrap">
+        <div class="pricing-header reveal">
+          <span class="orbit-badge" style="margin-bottom:16px;display:inline-block;">// uplink allocation</span>
+          <h2>Predictable node structure</h2>
+          <p>Choose your Orbit node. Start free, upgrade when you need more runtime, priority, and agent access.</p>
+        </div>
+        <div class="pricing-grid">
+          <div class="pricing-card reveal reveal-d1">
+            <div class="pricing-card-top"><div class="pricing-tier">Standard Node</div><div class="pricing-amount"><sup>€</sup>0</div><div class="pricing-desc">Start using Orbit with a free node built for simple queries and standard access.</div></div>
+            <div class="pricing-card-bottom"><ul class="pricing-features"><li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>1,000 Queries</li><li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Standard Queue Priority</li></ul><a href="https://www.orbitdev.org/auth" data-app-path="/auth" class="btn-ghost">Start Free</a></div>
+          </div>
+          <div class="pricing-card featured reveal reveal-d2">
+            <div class="pricing-card-top"><div class="pricing-tier">Pro Pulsar</div><div class="pricing-amount"><sup>€</sup>29</div><div class="pricing-desc">Unlock the full Orbit system with unlimited runtime, priority uplink, and complete agent access.</div></div>
+            <div class="pricing-card-bottom"><ul class="pricing-features"><li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Unlimited Engine Runtime</li><li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Priority Queue Uplink</li><li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Complete Agent Access</li></ul><a href="https://www.orbitdev.org/billing" data-app-path="/billing" class="btn-primary">Open Billing</a></div>
+          </div>
+          <div class="pricing-card reveal reveal-d3">
+            <div class="pricing-card-top"><div class="pricing-tier">Pulsar Node</div><div class="pricing-amount"><sup>€</sup>10</div><div class="pricing-desc">Run larger Orbit workflows with unlimited instances, fleet automation, and stable cluster latency.</div></div>
+            <div class="pricing-card-bottom"><ul class="pricing-features"><li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Unlimited Instances</li><li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Autonomous Fleet Manager</li><li><svg class="check" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Standard Cluster Latency</li></ul><a href="https://www.orbitdev.org/billing" data-app-path="/billing" class="btn-ghost">Open Billing</a></div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <footer class="py-16 border-t border-white/[0.03] dark:border-white/[0.03] light-mode:border-black/[0.05] bg-[#020202] dark:bg-[#020202] light-mode:bg-zinc-50">

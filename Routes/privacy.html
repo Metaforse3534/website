@@ -84,6 +84,308 @@
     ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
   </style>
     <link rel="stylesheet" href="/site.css">
+
+<style id="orbit-black-style-override">
+
+/* ============================================================
+   ORBIT BLACK STYLE OVERRIDE
+   Matches the original black Orbit interface: compact, dark,
+   subtle borders, neutral text, minimal glow.
+   ============================================================ */
+:root {
+  --bg: #020202 !important;
+  --surface: #0d0d0d !important;
+  --surface-2: #141414 !important;
+  --panel: rgba(13,13,13,0.72) !important;
+  --panel-solid: #0d0d0d !important;
+  --glass: rgba(13,13,13,0.72) !important;
+  --border: rgba(255,255,255,0.06) !important;
+  --border-hover: rgba(255,255,255,0.12) !important;
+  --line: rgba(255,255,255,0.08) !important;
+  --text: #f4f4f5 !important;
+  --text-main: #f4f4f5 !important;
+  --text-muted: #71717a !important;
+  --muted: #71717a !important;
+  --text-dim: #3f3f46 !important;
+  --accent: #f4f4f5 !important;
+  --accent-glow: rgba(255,255,255,0.025) !important;
+  --primary: #f4f4f5 !important;
+  --primary-hover: #e4e4e7 !important;
+}
+
+html, body {
+  background:
+    radial-gradient(700px circle at 50% -20%, rgba(255,255,255,0.035), transparent 60%),
+    #020202 !important;
+  color: #71717a !important;
+  font-family: 'Inter', sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+  background-size: 54px 54px;
+  opacity: .22;
+  mask-image: radial-gradient(circle at 50% 18%, black, transparent 72%);
+  -webkit-mask-image: radial-gradient(circle at 50% 18%, black, transparent 72%);
+}
+
+body > * { position: relative; z-index: 1; }
+
+h1, h2, h3, h4, .font-space, .logo-font {
+  font-family: 'Space Grotesk', sans-serif !important;
+  color: #f4f4f5 !important;
+  letter-spacing: -0.025em;
+}
+
+p, li, span, label {
+  color: inherit;
+}
+
+a { text-decoration: none; }
+
+/* Navigation / headers */
+nav, header {
+  background: rgba(2,2,2,0.76) !important;
+  border-color: rgba(255,255,255,0.06) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+}
+
+.nav, .nav-inner, header > div {
+  max-width: 1152px !important;
+}
+
+.nav-links a, .sidebar nav a, .sidebar-link, header a {
+  color: #71717a !important;
+  transition: color .16s ease, background .16s ease, border-color .16s ease;
+}
+
+.nav-links a:hover, .sidebar nav a:hover, .sidebar-link:hover, header a:hover {
+  color: #e4e4e7 !important;
+}
+
+.nav-logo, .brand, .logo, header .font-bold {
+  color: #f4f4f5 !important;
+}
+
+/* Buttons */
+.btn-primary, .btn--primary, .apply-btn, .form-submit, .nav-cta,
+a[href*="auth"], a[href*="billing"].btn-primary, button[type="submit"] {
+  background: #f4f4f5 !important;
+  color: #09090b !important;
+  border: 1px solid #f4f4f5 !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  clip-path: none !important;
+  transition: background .16s ease, transform .16s ease, border-color .16s ease !important;
+}
+
+.btn-primary:hover, .btn--primary:hover, .apply-btn:hover, .form-submit:hover, .nav-cta:hover,
+button[type="submit"]:hover {
+  background: #e4e4e7 !important;
+  transform: translateY(-1px) !important;
+  filter: none !important;
+}
+
+.btn-ghost, .btn--ghost, .btn-outline, .btn-secondary, header a.rounded-lg.border {
+  background: rgba(255,255,255,0.03) !important;
+  color: #a1a1aa !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  border-radius: 8px !important;
+  transition: border-color .16s ease, color .16s ease, background .16s ease, transform .16s ease !important;
+}
+
+.btn-ghost:hover, .btn--ghost:hover, .btn-outline:hover, .btn-secondary:hover, header a.rounded-lg.border:hover {
+  color: #e4e4e7 !important;
+  border-color: rgba(255,255,255,0.14) !important;
+  background: rgba(255,255,255,0.045) !important;
+}
+
+/* Panels / cards */
+.app-panel, .glass-panel, .panel, .bento-card, .card, .notice, .rule, .right-box,
+.job-card, .model-card, .cap-card, .pricing-card, .member-card, .terminal,
+.uptime-card, .app-card, .spend-card, .contact-inner, .team-wrap, .slith-panel,
+.system-tray, .logo-cell, .status-card, .feature-card {
+  background:
+    radial-gradient(ellipse 80% 45% at 50% 0%, rgba(255,255,255,0.026), transparent 65%),
+    #0d0d0d !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  color: #71717a !important;
+  box-shadow: none !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+
+.app-panel:hover, .glass-panel:hover, .panel:hover, .bento-card:hover, .card:hover,
+.rule:hover, .right-box:hover, .job-card:hover, .model-card:hover, .cap-card:hover,
+.pricing-card:hover, .member-card:hover, .logo-cell:hover, .feature-card:hover {
+  border-color: rgba(255,255,255,0.12) !important;
+  background:
+    radial-gradient(ellipse 80% 45% at 50% 0%, rgba(255,255,255,0.04), transparent 65%),
+    #101010 !important;
+  transform: translateY(-1px);
+}
+
+.pricing-wrap, .section-wrap, .team-wrap, .contact-inner {
+  background:
+    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(255,255,255,0.03), transparent 60%),
+    #080808 !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  border-radius: 20px !important;
+}
+
+/* Sections */
+section, .section, header, main > div {
+  border-color: rgba(255,255,255,0.06) !important;
+}
+
+.orbit-section, #pricing, #approach, #team, #story, #contact, #logos {
+  border-color: rgba(255,255,255,0.06) !important;
+  background: transparent !important;
+}
+
+.section-eyebrow, .eyebrow, .nav-title, .orbit-badge, .data-tag, .tag,
+.model-card__badge, .pricing-tier, .logos-label, .hero-badge {
+  color: #a1a1aa !important;
+  background: #18181b !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  border-radius: 6px !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: .10em !important;
+  text-transform: uppercase !important;
+  padding: 3px 9px !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.section-eyebrow, .eyebrow, .nav-title, .logos-label {
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  color: #52525b !important;
+}
+
+.section-title, .pricing-header h2, .hero h1, h1 {
+  color: #f4f4f5 !important;
+}
+
+.pricing-header p, .hero-sub, .tl-body, .member-bio, .model-card__body,
+.cap-card__body, .pricing-desc, .card p, .notice p, main p, p, li {
+  color: #71717a !important;
+}
+
+/* Pricing exact black tab feel */
+.pricing-grid {
+  gap: 20px !important;
+}
+
+.pricing-card {
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+}
+
+.pricing-card-top {
+  padding: 28px 28px 24px !important;
+  border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+}
+
+.pricing-card-bottom {
+  padding: 24px 28px 28px !important;
+}
+
+.pricing-amount {
+  color: #f4f4f5 !important;
+  font-size: 36px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.03em !important;
+}
+
+.pricing-features {
+  list-style: none !important;
+  padding-left: 0 !important;
+}
+
+.pricing-features li {
+  color: #71717a !important;
+  font-size: 13px !important;
+}
+
+.check { color: #f4f4f5 !important; }
+
+/* Forms / inputs */
+input, textarea, select, .ticket-input {
+  background: #0d0d0d !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  color: #f4f4f5 !important;
+  border-radius: 8px !important;
+  outline: none !important;
+}
+
+input:focus, textarea:focus, select:focus, .ticket-input:focus {
+  border-color: rgba(255,255,255,0.18) !important;
+  box-shadow: none !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #3f3f46 !important;
+}
+
+/* Status colors kept subtle */
+.status-pill {
+  background: rgba(16,185,129,0.09) !important;
+  color: #10b981 !important;
+  border: 1px solid rgba(16,185,129,0.18) !important;
+}
+
+.noise {
+  opacity: .012 !important;
+}
+
+.glow-mesh, #hero-glow {
+  background: radial-gradient(800px circle at 50% 0%, rgba(255,255,255,0.035), transparent 60%) !important;
+}
+
+/* Tables/code/docs */
+pre, code, .font-mono {
+  font-family: 'JetBrains Mono', monospace !important;
+}
+
+pre {
+  background: #0d0d0d !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  border-radius: 12px !important;
+  color: #d4d4d8 !important;
+}
+
+table {
+  border-color: rgba(255,255,255,0.06) !important;
+}
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: #020202; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.10); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
+
+@media (max-width: 768px) {
+  .pricing-wrap, .team-wrap, .contact-inner {
+    padding: 32px 22px !important;
+  }
+}
+
+</style>
+
 </head>
 <body class="antialiased">
 
