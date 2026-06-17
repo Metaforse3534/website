@@ -1,0 +1,199 @@
+/* Orbit AI unified theme layer
+   Keeps the old structure, upgrades colors, panels, cards and motion. */
+:root {
+  --bg: #050508 !important;
+  --panel: rgba(13, 14, 22, 0.72) !important;
+  --panel-solid: #0a0b12 !important;
+  --glass: rgba(255,255,255,0.035) !important;
+  --text-main: #f7f7fb !important;
+  --text: #f7f7fb !important;
+  --text-muted: #9ca0b3 !important;
+  --muted: #9ca0b3 !important;
+  --border: rgba(255, 255, 255, 0.085) !important;
+  --line: rgba(255, 255, 255, 0.085) !important;
+  --border-hover: rgba(160, 173, 255, 0.34) !important;
+  --accent: #9aa7ff !important;
+  --primary: #9aa7ff !important;
+  --primary-hover: #b7c0ff !important;
+  --accent-2: #7dd3fc !important;
+  --accent-3: #c084fc !important;
+  --accent-glow: rgba(154, 167, 255, 0.16) !important;
+  --announcement-bg: rgba(154, 167, 255, 0.055) !important;
+  color-scheme: dark;
+}
+
+.light-mode {
+  --bg: #f7f8ff !important;
+  --panel: rgba(255, 255, 255, 0.74) !important;
+  --panel-solid: #ffffff !important;
+  --glass: rgba(255,255,255,0.78) !important;
+  --text-main: #070712 !important;
+  --text: #070712 !important;
+  --text-muted: #62677b !important;
+  --muted: #62677b !important;
+  --border: rgba(13, 16, 35, 0.09) !important;
+  --line: rgba(13, 16, 35, 0.09) !important;
+  --border-hover: rgba(79, 70, 229, 0.22) !important;
+  --accent: #4f46e5 !important;
+  --primary: #4f46e5 !important;
+  --primary-hover: #4338ca !important;
+  --accent-glow: rgba(79, 70, 229, 0.13) !important;
+  color-scheme: light;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background:
+    radial-gradient(900px circle at 18% -10%, rgba(99,102,241,.18), transparent 42%),
+    radial-gradient(800px circle at 82% 8%, rgba(125,211,252,.11), transparent 38%),
+    radial-gradient(680px circle at 50% 110%, rgba(192,132,252,.10), transparent 40%),
+    var(--bg) !important;
+  color: var(--text-muted) !important;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+body::before {
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(circle at top, black, transparent 76%);
+  -webkit-mask-image: radial-gradient(circle at top, black, transparent 76%);
+  opacity: .45;
+}
+body > * { position: relative; z-index: 1; }
+
+h1, h2, h3, h4, .font-space, .logo-font { color: var(--text-main) !important; }
+p, li { color: var(--text-muted); }
+a { transition: color .2s ease, background .2s ease, border-color .2s ease, transform .2s ease, box-shadow .2s ease; }
+
+/* Navigation and page chrome */
+nav, header {
+  background: rgba(5, 5, 8, .64) !important;
+  border-color: var(--border) !important;
+  backdrop-filter: blur(18px) saturate(135%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(135%) !important;
+}
+.light-mode nav, .light-mode header { background: rgba(255,255,255,.72) !important; }
+
+/* Unified panel/card treatment */
+.app-panel, .glass-panel, .bento-card, .card, .notice, .rule, .right-box, .job-card,
+.pricing-card, .model-card, .cap-card, .panel, .logo-cell, .app-card, .uptime-card, .spend-card,
+.ticket-input, .sidebar, aside, pre, code.block {
+  border-color: var(--border) !important;
+  background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.016)) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.055), 0 18px 55px rgba(0,0,0,.22);
+  backdrop-filter: blur(20px) saturate(135%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(135%) !important;
+}
+.app-panel:hover, .glass-panel:hover, .bento-card:hover, .card:hover, .rule:hover, .right-box:hover,
+.job-card:hover, .pricing-card:hover, .model-card:hover, .cap-card:hover, .panel:hover, .logo-cell:hover {
+  border-color: var(--border-hover) !important;
+  background: linear-gradient(180deg, rgba(154,167,255,.092), rgba(255,255,255,.018)) !important;
+  transform: translateY(-2px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.075), 0 24px 70px rgba(79,70,229,.12);
+}
+
+/* Orbit pricing-style section language, usable on every page */
+.orbit-section, section {
+  border-color: var(--border) !important;
+}
+.section-eyebrow, .eyebrow, .nav-title, .data-tag, .tag, .orbit-badge, .pill, .status-pill,
+.model-card__badge, .cap-card__tag, .logos-label {
+  color: #c8ceff !important;
+  border-color: rgba(154,167,255,.18) !important;
+  background: rgba(154,167,255,.07) !important;
+  border-radius: 999px;
+}
+.section-eyebrow, .eyebrow, .nav-title, .data-tag, .tag, .logos-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 11px;
+  font-size: 10px !important;
+  line-height: 1 !important;
+  letter-spacing: .16em !important;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.section-title, .hero h1, h1 {
+  letter-spacing: -0.055em !important;
+}
+
+/* Buttons */
+.btn-primary, .btn--primary, .apply-btn, a[href*="auth"].bg-zinc-100,
+a[href*="billing"].bg-zinc-100, a[href*="orbitdev.org/auth"].rounded-lg.bg-zinc-100,
+.bg-zinc-100 {
+  background: linear-gradient(135deg, #f8f9ff 0%, #cfd6ff 42%, #9aa7ff 100%) !important;
+  color: #070712 !important;
+  border: 1px solid rgba(255,255,255,.28) !important;
+  box-shadow: 0 16px 40px rgba(154,167,255,.18);
+}
+.btn-primary:hover, .btn--primary:hover, .apply-btn:hover,
+a[href*="auth"].bg-zinc-100:hover, .bg-zinc-100:hover {
+  transform: translateY(-2px) !important;
+  filter: brightness(1.06);
+  box-shadow: 0 22px 60px rgba(154,167,255,.28);
+}
+.btn-ghost, .btn--ghost, .btn-outline, .btn-secondary,
+a.rounded-lg.border, button.rounded-lg.border {
+  background: rgba(255,255,255,.035) !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--border) !important;
+}
+.btn-ghost:hover, .btn--ghost:hover, .btn-outline:hover, .btn-secondary:hover,
+a.rounded-lg.border:hover, button.rounded-lg.border:hover {
+  background: rgba(154,167,255,.08) !important;
+  border-color: var(--border-hover) !important;
+  transform: translateY(-1px);
+}
+
+/* Inputs */
+input, textarea, select, .ticket-input {
+  background: rgba(5, 5, 8, .58) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-main) !important;
+  border-radius: 14px;
+}
+input:focus, textarea:focus, select:focus, .ticket-input:focus {
+  outline: none !important;
+  border-color: rgba(154,167,255,.55) !important;
+  box-shadow: 0 0 0 4px rgba(154,167,255,.10) !important;
+}
+
+/* Status colors tuned to new palette */
+.status-online, .sd-green .inner, .live-dot { background: #7dd3fc !important; box-shadow: 0 0 16px rgba(125,211,252,.45) !important; }
+.status-sync, .sd-blue .inner { background: #9aa7ff !important; box-shadow: 0 0 16px rgba(154,167,255,.45) !important; }
+.sd-amber .inner, .bar.warn { background: #c084fc !important; box-shadow: 0 0 16px rgba(192,132,252,.35) !important; }
+
+/* Tables and code/doc pages */
+table { border-color: var(--border) !important; }
+th, td { border-color: var(--border) !important; }
+pre, code {
+  border-color: var(--border) !important;
+  background: rgba(5,5,8,.62) !important;
+  color: #e8ebff !important;
+}
+
+/* Logos marquee support if present */
+.logos-marquee { mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent); }
+.logos-track { animation: logos-scroll 28s linear infinite; }
+.logos-marquee:hover .logos-track { animation-play-state: paused; }
+@keyframes logos-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* Motion */
+.reveal { transition-timing-function: cubic-bezier(.16,1,.3,1) !important; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .001ms !important; }
+}
+
+@media (max-width: 900px) {
+  .pricing-grid, .pricing-grid.grid-4, .models-grid, .capabilities-grid, .grid { grid-template-columns: 1fr !important; }
+  .layout { grid-template-columns: 1fr !important; }
+  .sidebar { position: relative !important; top: auto !important; }
+}
