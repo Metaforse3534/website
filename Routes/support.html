@@ -418,28 +418,28 @@ table {
                 <div class="text-indigo-400 mb-6 font-mono text-[9px] tracking-wider">// DOCS_V.01</div>
                 <h3 class="text-xl font-semibold mb-2">Neural Guides</h3>
                 <p class="text-xs text-zinc-500 leading-relaxed mb-6">Detailed parameters on API endpoint integration, node pipeline scaling, and logic engine deployment.</p>
-                <a href="#" class="text-[9px] font-mono uppercase font-medium tracking-widest text-zinc-300 group-hover:text-indigo-400 transition">Read Docs →</a>
+                <a href="/Routes/doc.html" class="text-[9px] font-mono uppercase font-medium tracking-widest text-zinc-300 group-hover:text-indigo-400 transition">Read Docs &rarr;</a>
             </div>
 
             <div class="glass-panel p-8 rounded-2xl hover:border-zinc-800 group cursor-pointer">
                 <div class="text-indigo-400 mb-6 font-mono text-[9px] tracking-wider">// COMM_UPLINK</div>
                 <h3 class="text-xl font-semibold mb-2">Architect Forum</h3>
                 <p class="text-xs text-zinc-500 leading-relaxed mb-6">Discuss pipeline workflows, automation loops, and processing structures with other Orbit developers.</p>
-                <a href="#" class="text-[9px] font-mono uppercase font-medium tracking-widest text-zinc-300 group-hover:text-indigo-400 transition">Join Forum →</a>
+                <a href="https://discord.gg/8VcqeZK2" class="text-[9px] font-mono uppercase font-medium tracking-widest text-zinc-300 group-hover:text-indigo-400 transition">Join Forum &rarr;</a>
             </div>
 
             <div class="glass-panel p-8 rounded-2xl hover:border-zinc-800 group cursor-pointer">
                 <div class="text-indigo-400 mb-6 font-mono text-[9px] tracking-wider">// INFRA_STATUS</div>
                 <h3 class="text-xl font-semibold mb-2">Node Health</h3>
                 <p class="text-xs text-zinc-500 leading-relaxed mb-6">Real-time infrastructure telemetry for all globally distributed clusters. System latency: <span class="text-emerald-500 font-mono">14ms</span>.</p>
-                <a href="#" class="text-[9px] font-mono uppercase font-medium tracking-widest text-zinc-300 group-hover:text-indigo-400 transition">View Telemetry →</a>
+                <a href="/Routes/network.html" class="text-[9px] font-mono uppercase font-medium tracking-widest text-zinc-300 group-hover:text-indigo-400 transition">View Telemetry &rarr;</a>
             </div>
         </div>
 
         <section id="ticket" class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-start border-t border-white/[0.03] pt-24">
             <div class="lg:col-span-5 space-y-6">
                 <h2 class="text-3xl md:text-4xl font-bold tracking-tight uppercase leading-none">Open a <br> Support Ticket.</h2>
-                <p class="text-xs md:text-sm text-zinc-500 leading-relaxed max-w-sm">Our engineering network handles processing vectors within 24–48 hours. Please supply an analytical breakdown of the system anomaly.</p>
+                <p class="text-xs md:text-sm text-zinc-500 leading-relaxed max-w-sm">Our engineering network handles processing vectors within 24&ndash;48 hours. Please supply an analytical breakdown of the system anomaly.</p>
                 
                 <div class="space-y-4 pt-4 max-w-sm">
                     <div class="flex items-start gap-3">
@@ -462,7 +462,7 @@ table {
             <div class="lg:col-span-7 glass-panel p-6 md:p-10 rounded-2xl relative overflow-hidden w-full">
                 <div class="scanline"></div>
                 
-                <form id="supportTicket" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="space-y-4 relative z-10">
+                <form id="supportTicket" action="mailto:support@orbitdev.org" method="POST" enctype="text/plain" class="space-y-4 relative z-10">
                     <input type="hidden" id="caseID" name="case_id" value="">
                     
                     <div class="grid sm:grid-cols-2 gap-4">
@@ -510,8 +510,8 @@ table {
         <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-6">
             <div class="logo-font text-xs font-bold tracking-wider text-zinc-400">ORBIT SYSTEMS B.V.</div>
             <div class="flex flex-wrap justify-center gap-x-8 gap-y-2 text-[9px] font-mono uppercase tracking-wider font-medium text-zinc-600">
-                <a href="#" class="hover:text-zinc-300 transition">Privacy Policy</a>
-                <a href="#" class="hover:text-zinc-300 transition">Security Framework</a>
+                <a href="/Routes/privacy.html" class="hover:text-zinc-300 transition">Privacy Policy</a>
+                <a href="/Routes/acceptabe.html" class="hover:text-zinc-300 transition">Security Framework</a>
                 <a href="mailto:support@orbitdev.org" class="text-indigo-400 hover:text-indigo-300 transition">support@orbitdev.org</a>
             </div>
         </div>
@@ -525,6 +525,24 @@ table {
             if (inputField) {
                 inputField.value = randomID;
                 console.log("Telemetry Matrix Channel Activated: " + randomID);
+            }
+
+            const form = document.getElementById('supportTicket');
+            if (form) {
+                form.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    const data = new FormData(form);
+                    const subject = `[${data.get('case_id')}] ${data.get('subject') || 'Orbit support request'}`;
+                    const body = [
+                        `Case ID: ${data.get('case_id')}`,
+                        `Name: ${data.get('name')}`,
+                        `Email: ${data.get('email')}`,
+                        `Urgency: ${data.get('urgency')}`,
+                        '',
+                        data.get('description')
+                    ].join('\n');
+                    window.location.href = `mailto:support@orbitdev.org?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                });
             }
         });
     </script>

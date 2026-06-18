@@ -1,4 +1,26 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/Routes/acceptable-use.html",
+      "destination": "/Routes/acceptabe.html",
+      "permanent": true
+    },
+    {
+      "source": "/Routes/partnership.html",
+      "destination": "/Routes/prathership.html",
+      "permanent": true
+    },
+    {
+      "source": "/Routes/Privacy.html",
+      "destination": "/Routes/privacy.html",
+      "permanent": true
+    },
+    {
+      "source": "/support",
+      "destination": "/Routes/support.html",
+      "permanent": false
+    }
+  ]
 }

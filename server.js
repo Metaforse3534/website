@@ -1,14 +1,20 @@
-require('dotenv').config();
 const express = require('express');
 const app = express();
-const stripe = require('stripe')('sk_test_YOUR_SECRET_KEY'); // Insert your stripe secret test key here
+require('dotenv').config();
+
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+if (!stripeSecretKey) {
+  throw new Error('STRIPE_SECRET_KEY is required to create payment intents.');
+}
+
+const stripe = require('stripe')(stripeSecretKey);
 
 app.use(express.static('.'));
 app.use(express.json());
 
 app.post('/create-payment-intent', async (req, res) => {
   try {
-    // €29.00 mapped out in standard currency cents (2900)
+    // EUR 29.00 mapped out in standard currency cents (2900)
     const paymentIntent = await stripe.paymentIntents.create({
       amount: 2900,
       currency: 'eur',
@@ -24,4 +30,5 @@ app.post('/create-payment-intent', async (req, res) => {
   }
 });
 
-app.listen(4242, () => console.log('Matrix gateway running on port 4242!'));
+const port = process.env.PORT || 4242;
+app.listen(port, () => console.log(`Matrix gateway running on port ${port}!`));

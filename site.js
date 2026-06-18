@@ -42,7 +42,7 @@
   ]);
 
   function normalizedText(element) {
-    return element.textContent.replace(/[↗→←/]/g, " ").replace(/\s+/g, " ").trim().toLowerCase();
+    return element.textContent.replace(/[&rarr;&rarr;&larr;/]/g, " ").replace(/\s+/g, " ").trim().toLowerCase();
   }
 
   function repairLinks() {
