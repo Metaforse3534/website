@@ -1,594 +1,472 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth select-none">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Careers &mdash; Orbit AI</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/png" href="Public/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="Public/favicon.svg" />
-    <link rel="shortcut icon" href="Public/favicon.ico" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg: #030303;
-            --panel: rgba(255, 255, 255, 0.015);
-            --panel-solid: #09090b;
-            --text-main: #ffffff;
-            --text-muted: #71717a;
-            --border: rgba(255, 255, 255, 0.04);
-            --border-hover: rgba(255, 255, 255, 0.12);
-            --accent: #6366f1;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: var(--bg); 
-            color: var(--text-muted); 
-            overflow-x: hidden;
-        }
+  <title>Careers — Orbit AI</title>
 
-        h1, h2, h3, .font-space { 
-            font-family: 'Space Grotesk', sans-serif; 
-            color: var(--text-main);
-        }
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        .font-mono { font-family: 'JetBrains Mono', monospace; }
+  <link rel="icon" type="image/png" href="Public/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="Public/favicon.svg" />
+  <link rel="shortcut icon" href="Public/favicon.ico" />
 
-        /* Delicate Grain Overlay Layer */
-        .noise {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://grainy-gradients.vercel.app/noise.svg');
-            opacity: 0.012; pointer-events: none; z-index: 99;
-        }
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
-        .glow-mesh {
-            background: radial-gradient(circle at 50% -20%, #121026 0%, var(--bg) 70%);
-        }
+  <style>
+    :root {
+      --bg: #020202;
+      --panel: #0d0d0d;
+      --panel-hover: #111111;
+      --text-main: #f4f4f5;
+      --text-muted: #71717a;
+      --text-soft: #a1a1aa;
+      --border: rgba(255,255,255,0.06);
+      --border-hover: rgba(255,255,255,0.14);
+      --accent: #f4f4f5;
+    }
 
-        /* Glassmorphism Structural Tokens */
-        .glass-panel {
-            background: var(--panel);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--border);
-        }
+    * {
+      box-sizing: border-box;
+    }
 
-        .job-card {
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .job-card:hover {
-            border-color: var(--border-hover);
-            background: rgba(255, 255, 255, 0.03);
-            transform: translateY(-1px);
-        }
+    html, body {
+      margin: 0;
+      background:
+        radial-gradient(700px circle at 50% -20%, rgba(255,255,255,0.04), transparent 60%),
+        #020202;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
 
-        /* Interactive Element Slits */
-        .apply-btn {
-            background: var(--accent);
-            clip-path: polygon(6% 0, 100% 0, 94% 100%, 0% 100%);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .apply-btn:hover {
-            filter: brightness(1.15);
-            transform: scale(1.02);
-        }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+      background-size: 54px 54px;
+      opacity: .24;
+      mask-image: radial-gradient(circle at 50% 18%, black, transparent 72%);
+      -webkit-mask-image: radial-gradient(circle at 50% 18%, black, transparent 72%);
+    }
 
-        /* Micro System Badges */
-        .tag {
-            font-size: 8px;
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            padding: 3px 10px;
-            text-transform: uppercase;
-            border: 1px solid var(--border);
-            color: var(--text-main);
-            border-radius: 2px;
-            background: rgba(255, 255, 255, 0.02);
-        }
+    body > * {
+      position: relative;
+      z-index: 1;
+    }
 
-        /* Modal Visibility Architecture */
-        #job-modal {
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        #job-modal.active {
-            pointer-events: auto;
-            opacity: 1;
-        }
-        .modal-container {
-            transform: scale(0.98) translateY(10px);
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        #job-modal.active .modal-container {
-            transform: scale(1) translateY(0);
-        }
+    h1, h2, h3, .font-space {
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--text-main);
+      letter-spacing: -0.025em;
+    }
 
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-    </style>
-    <link rel="stylesheet" href="/site.css">
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
 
-<style id="orbit-black-style-override">
+    .noise {
+      position: fixed;
+      inset: 0;
+      background: url('https://grainy-gradients.vercel.app/noise.svg');
+      opacity: 0.012;
+      pointer-events: none;
+      z-index: 99;
+    }
 
-/* ============================================================
-   ORBIT BLACK STYLE OVERRIDE
-   Matches the original black Orbit interface: compact, dark,
-   subtle borders, neutral text, minimal glow.
-   ============================================================ */
-:root {
-  --bg: #020202 !important;
-  --surface: #0d0d0d !important;
-  --surface-2: #141414 !important;
-  --panel: rgba(13,13,13,0.72) !important;
-  --panel-solid: #0d0d0d !important;
-  --glass: rgba(13,13,13,0.72) !important;
-  --border: rgba(255,255,255,0.06) !important;
-  --border-hover: rgba(255,255,255,0.12) !important;
-  --line: rgba(255,255,255,0.08) !important;
-  --text: #f4f4f5 !important;
-  --text-main: #f4f4f5 !important;
-  --text-muted: #71717a !important;
-  --muted: #71717a !important;
-  --text-dim: #3f3f46 !important;
-  --accent: #f4f4f5 !important;
-  --accent-glow: rgba(255,255,255,0.025) !important;
-  --primary: #f4f4f5 !important;
-  --primary-hover: #e4e4e7 !important;
-}
+    nav {
+      background: rgba(2,2,2,0.76);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
 
-html, body {
-  background:
-    radial-gradient(700px circle at 50% -20%, rgba(255,255,255,0.035), transparent 60%),
-    #020202 !important;
-  color: #71717a !important;
-  font-family: 'Inter', sans-serif !important;
-  -webkit-font-smoothing: antialiased;
-}
+    .glass-panel {
+      background:
+        radial-gradient(ellipse 80% 45% at 50% 0%, rgba(255,255,255,0.026), transparent 65%),
+        var(--panel);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background:
-    linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
-  background-size: 54px 54px;
-  opacity: .22;
-  mask-image: radial-gradient(circle at 50% 18%, black, transparent 72%);
-  -webkit-mask-image: radial-gradient(circle at 50% 18%, black, transparent 72%);
-}
+    .job-card {
+      transition: border-color .18s ease, background .18s ease, transform .18s ease;
+    }
 
-body > * { position: relative; z-index: 1; }
+    .job-card:hover {
+      border-color: var(--border-hover);
+      background:
+        radial-gradient(ellipse 80% 45% at 50% 0%, rgba(255,255,255,0.045), transparent 65%),
+        var(--panel-hover);
+      transform: translateY(-2px);
+    }
 
-h1, h2, h3, h4, .font-space, .logo-font {
-  font-family: 'Space Grotesk', sans-serif !important;
-  color: #f4f4f5 !important;
-  letter-spacing: -0.025em;
-}
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      color: var(--text-soft);
+      border-radius: 6px;
+      background: #18181b;
+      white-space: nowrap;
+    }
 
-p, li, span, label {
-  color: inherit;
-}
+    .apply-btn {
+      background: var(--accent);
+      color: #09090b;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      transition: background .16s ease, transform .16s ease;
+    }
 
-a { text-decoration: none; }
+    .apply-btn:hover {
+      background: #e4e4e7;
+      transform: translateY(-1px);
+    }
 
-/* Navigation / headers */
-nav, header {
-  background: rgba(2,2,2,0.76) !important;
-  border-color: rgba(255,255,255,0.06) !important;
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
-}
+    #job-modal {
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .25s ease;
+    }
 
-.nav, .nav-inner, header > div {
-  max-width: 1152px !important;
-}
+    #job-modal.active {
+      pointer-events: auto;
+      opacity: 1;
+    }
 
-.nav-links a, .sidebar nav a, .sidebar-link, header a {
-  color: #71717a !important;
-  transition: color .16s ease, background .16s ease, border-color .16s ease;
-}
+    .modal-container {
+      transform: scale(.98) translateY(10px);
+      transition: transform .25s ease;
+    }
 
-.nav-links a:hover, .sidebar nav a:hover, .sidebar-link:hover, header a:hover {
-  color: #e4e4e7 !important;
-}
+    #job-modal.active .modal-container {
+      transform: scale(1) translateY(0);
+    }
 
-.nav-logo, .brand, .logo, header .font-bold {
-  color: #f4f4f5 !important;
-}
+    input, textarea, select {
+      background: #0d0d0d;
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      border-radius: 8px;
+      outline: none;
+    }
 
-/* Buttons */
-.btn-primary, .btn--primary, .apply-btn, .form-submit, .nav-cta,
-a[href*="auth"], a[href*="billing"].btn-primary, button[type="submit"] {
-  background: #f4f4f5 !important;
-  color: #09090b !important;
-  border: 1px solid #f4f4f5 !important;
-  border-radius: 8px !important;
-  box-shadow: none !important;
-  clip-path: none !important;
-  transition: background .16s ease, transform .16s ease, border-color .16s ease !important;
-}
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
 
-.btn-primary:hover, .btn--primary:hover, .apply-btn:hover, .form-submit:hover, .nav-cta:hover,
-button[type="submit"]:hover {
-  background: #e4e4e7 !important;
-  transform: translateY(-1px) !important;
-  filter: none !important;
-}
+    ::-webkit-scrollbar-track {
+      background: #020202;
+    }
 
-.btn-ghost, .btn--ghost, .btn-outline, .btn-secondary, header a.rounded-lg.border {
-  background: rgba(255,255,255,0.03) !important;
-  color: #a1a1aa !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  border-radius: 8px !important;
-  transition: border-color .16s ease, color .16s ease, background .16s ease, transform .16s ease !important;
-}
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.10);
+      border-radius: 10px;
+    }
 
-.btn-ghost:hover, .btn--ghost:hover, .btn-outline:hover, .btn-secondary:hover, header a.rounded-lg.border:hover {
-  color: #e4e4e7 !important;
-  border-color: rgba(255,255,255,0.14) !important;
-  background: rgba(255,255,255,0.045) !important;
-}
-
-/* Panels / cards */
-.app-panel, .glass-panel, .panel, .bento-card, .card, .notice, .rule, .right-box,
-.job-card, .model-card, .cap-card, .pricing-card, .member-card, .terminal,
-.uptime-card, .app-card, .spend-card, .contact-inner, .team-wrap, .slith-panel,
-.system-tray, .logo-cell, .status-card, .feature-card {
-  background:
-    radial-gradient(ellipse 80% 45% at 50% 0%, rgba(255,255,255,0.026), transparent 65%),
-    #0d0d0d !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  color: #71717a !important;
-  box-shadow: none !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-}
-
-.app-panel:hover, .glass-panel:hover, .panel:hover, .bento-card:hover, .card:hover,
-.rule:hover, .right-box:hover, .job-card:hover, .model-card:hover, .cap-card:hover,
-.pricing-card:hover, .member-card:hover, .logo-cell:hover, .feature-card:hover {
-  border-color: rgba(255,255,255,0.12) !important;
-  background:
-    radial-gradient(ellipse 80% 45% at 50% 0%, rgba(255,255,255,0.04), transparent 65%),
-    #101010 !important;
-  transform: translateY(-1px);
-}
-
-.pricing-wrap, .section-wrap, .team-wrap, .contact-inner {
-  background:
-    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(255,255,255,0.03), transparent 60%),
-    #080808 !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  border-radius: 20px !important;
-}
-
-/* Sections */
-section, .section, header, main > div {
-  border-color: rgba(255,255,255,0.06) !important;
-}
-
-.orbit-section, #pricing, #approach, #team, #story, #contact, #logos {
-  border-color: rgba(255,255,255,0.06) !important;
-  background: transparent !important;
-}
-
-.section-eyebrow, .eyebrow, .nav-title, .orbit-badge, .data-tag, .tag,
-.model-card__badge, .pricing-tier, .logos-label, .hero-badge {
-  color: #a1a1aa !important;
-  background: #18181b !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  border-radius: 6px !important;
-  font-family: 'JetBrains Mono', monospace !important;
-  font-size: 10px !important;
-  font-weight: 700 !important;
-  letter-spacing: .10em !important;
-  text-transform: uppercase !important;
-  padding: 3px 9px !important;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.section-eyebrow, .eyebrow, .nav-title, .logos-label {
-  background: transparent !important;
-  border: 0 !important;
-  padding: 0 !important;
-  color: #52525b !important;
-}
-
-.section-title, .pricing-header h2, .hero h1, h1 {
-  color: #f4f4f5 !important;
-}
-
-.pricing-header p, .hero-sub, .tl-body, .member-bio, .model-card__body,
-.cap-card__body, .pricing-desc, .card p, .notice p, main p, p, li {
-  color: #71717a !important;
-}
-
-/* Pricing exact black tab feel */
-.pricing-grid {
-  gap: 20px !important;
-}
-
-.pricing-card {
-  border-radius: 14px !important;
-  overflow: hidden !important;
-  padding: 0 !important;
-}
-
-.pricing-card-top {
-  padding: 28px 28px 24px !important;
-  border-bottom: 1px solid rgba(255,255,255,0.06) !important;
-}
-
-.pricing-card-bottom {
-  padding: 24px 28px 28px !important;
-}
-
-.pricing-amount {
-  color: #f4f4f5 !important;
-  font-size: 36px !important;
-  font-weight: 700 !important;
-  letter-spacing: -0.03em !important;
-}
-
-.pricing-features {
-  list-style: none !important;
-  padding-left: 0 !important;
-}
-
-.pricing-features li {
-  color: #71717a !important;
-  font-size: 13px !important;
-}
-
-.check { color: #f4f4f5 !important; }
-
-/* Forms / inputs */
-input, textarea, select, .ticket-input {
-  background: #0d0d0d !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  color: #f4f4f5 !important;
-  border-radius: 8px !important;
-  outline: none !important;
-}
-
-input:focus, textarea:focus, select:focus, .ticket-input:focus {
-  border-color: rgba(255,255,255,0.18) !important;
-  box-shadow: none !important;
-}
-
-input::placeholder, textarea::placeholder {
-  color: #3f3f46 !important;
-}
-
-/* Status colors kept subtle */
-.status-pill {
-  background: rgba(16,185,129,0.09) !important;
-  color: #10b981 !important;
-  border: 1px solid rgba(16,185,129,0.18) !important;
-}
-
-.noise {
-  opacity: .012 !important;
-}
-
-.glow-mesh, #hero-glow {
-  background: radial-gradient(800px circle at 50% 0%, rgba(255,255,255,0.035), transparent 60%) !important;
-}
-
-/* Tables/code/docs */
-pre, code, .font-mono {
-  font-family: 'JetBrains Mono', monospace !important;
-}
-
-pre {
-  background: #0d0d0d !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  border-radius: 12px !important;
-  color: #d4d4d8 !important;
-}
-
-table {
-  border-color: rgba(255,255,255,0.06) !important;
-}
-
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: #020202; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.10); border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
-
-@media (max-width: 768px) {
-  .pricing-wrap, .team-wrap, .contact-inner {
-    padding: 32px 22px !important;
-  }
-}
-
-</style>
-
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255,255,255,0.18);
+    }
+  </style>
 </head>
+
 <body class="antialiased">
-    <div class="noise"></div>
+  <div class="noise"></div>
 
-    <nav class="fixed w-full z-50 border-b border-white/[0.03] backdrop-blur-md bg-black/10">
-        <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
-            <div class="font-space font-bold text-sm tracking-tight text-zinc-400 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                ORBIT <span class="text-zinc-500 font-light text-xs font-sans tracking-widest">CAREERS</span>
-            </div>
-            
-            <div class="hidden md:flex items-center space-x-8 text-[10px] uppercase tracking-wider font-mono font-semibold text-zinc-500">
-                <a href="/#approach" class="hover:text-zinc-300 transition">Capabilities</a>
-                <a href="/Routes/doc.html#models" class="hover:text-zinc-300 transition">AI Models</a>
-                <a href="#positions" class="text-zinc-100">// Open Positions</a>
-                <a href="https://www.orbitdev.org/" class="hover:text-zinc-300 transition">Terminal Platform</a>
-            </div>
-        </div>
-    </nav>
+  <nav class="fixed w-full z-50">
+    <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+      <div class="font-space font-bold text-sm tracking-tight text-zinc-300 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        ORBIT
+        <span class="text-zinc-500 font-light text-xs font-sans tracking-widest">CAREERS</span>
+      </div>
 
-    <section class="relative pt-36 pb-16 px-6 glow-mesh text-center">
-        <div class="max-w-3xl mx-auto space-y-4">
-            <div class="inline-block px-3 py-1 border border-indigo-500/20 bg-indigo-500/[0.03] rounded-full">
-                <span class="text-indigo-400 font-mono text-[9px] uppercase tracking-widest font-medium">Protocol: Expansion_2026</span>
-            </div>
-            <h1 class="text-4xl md:text-6xl font-bold tracking-tight uppercase leading-none">
-                Build the Ecosystem.
-            </h1>
-            <p class="max-w-xl mx-auto text-zinc-400 text-xs md:text-sm leading-relaxed font-light">
-                Orbit operates as a decentralized topology of specialized internal automation pipelines. We map critical operations directly to high-performing digital operators.
-            </p>
-        </div>
-    </section>
+      <div class="hidden md:flex items-center space-x-8 text-[10px] uppercase tracking-wider font-mono font-semibold text-zinc-500">
+        <a href="/#approach" class="hover:text-zinc-300 transition">Capabilities</a>
+        <a href="/Routes/doc.html#models" class="hover:text-zinc-300 transition">AI Models</a>
+        <a href="#positions" class="text-zinc-100">// Open Positions</a>
+        <a href="https://www.orbitdev.org/" class="hover:text-zinc-300 transition">Platform</a>
+      </div>
+    </div>
+  </nav>
 
-    <section id="positions" class="py-12 px-6 max-w-4xl mx-auto">
-        <div class="grid gap-3">
-            
-            <div onclick="openModal('Social Media Operations', '&euro;5 / Hour', '14+', 'High-impact asset generation, narrative pacing, multi-channel growth systems, and interactive editing pipelines.')" 
-                 class="glass-panel job-card p-6 rounded flex justify-between items-center cursor-pointer">
-                <div class="space-y-1">
-                    <span class="text-indigo-400 font-mono text-[9px] uppercase tracking-wider block">// Operations_Growth</span>
-                    <h2 class="text-xl font-bold tracking-tight">Social Media Operations</h2>
-                </div>
-                <div class="text-right hidden sm:flex items-center space-x-3">
-                    <span class="tag">Age 14+</span>
-                    <span class="tag">&euro;5 / HR</span>
-                </div>
-            </div>
+  <section class="relative pt-36 pb-16 px-6 text-center">
+    <div class="max-w-3xl mx-auto space-y-5">
+      <div class="inline-flex px-3 py-1 border border-white/[0.08] bg-white/[0.03] rounded-full">
+        <span class="text-zinc-400 font-mono text-[9px] uppercase tracking-widest font-medium">
+          Now hiring
+        </span>
+      </div>
 
-            <div onclick="openModal('Safety & Network Support', '&euro;5 / Hour', '16+', 'Monitoring platform boundaries, executing system moderation rules, and routing tier-2 diagnostic operational inquiries.')" 
-                 class="glass-panel job-card p-6 rounded flex justify-between items-center cursor-pointer">
-                <div class="space-y-1">
-                    <span class="text-emerald-400 font-mono text-[9px] uppercase tracking-wider block">// Ecosystem_Security</span>
-                    <h2 class="text-xl font-bold tracking-tight">Safety & Network Support</h2>
-                </div>
-                <div class="text-right hidden sm:flex items-center space-x-3">
-                    <span class="tag">Age 16+</span>
-                    <span class="tag">&euro;5 / HR</span>
-                </div>
-            </div>
+      <h1 class="text-4xl md:text-6xl font-bold tracking-tight leading-none">
+        Build the Future with Orbit
+      </h1>
 
-            <div onclick="openModal('Discord Infrastructure Admin', 'Growth Allocation / Equity Path', '14+', 'Community structure orchestration, security automation maintenance, and direct platform containment enforcement.')" 
-                 class="glass-panel job-card p-6 rounded flex justify-between items-center cursor-pointer">
-                <div class="space-y-1">
-                    <span class="text-purple-400 font-mono text-[9px] uppercase tracking-wider block">// Infrastructure_Management</span>
-                    <h2 class="text-xl font-bold tracking-tight">Discord Infrastructure Admin</h2>
-                </div>
-                <div class="text-right hidden sm:flex items-center space-x-3">
-                    <span class="tag">Age 14+</span>
-                    <span class="tag">Equity Allocation</span>
-                </div>
-            </div>
+      <p class="max-w-xl mx-auto text-zinc-400 text-sm md:text-base leading-relaxed">
+        At Orbit, we are creating AI tools that help people get more done.
+        We are looking for creative, motivated people who want to help grow the company,
+        build strong communities, and make Orbit visible around the world.
+      </p>
+    </div>
+  </section>
 
-        </div>
-    </section>
-
-    <div id="job-modal" class="fixed inset-0 z-[100] bg-zinc-950/80 backdrop-blur-md flex items-center justify-center p-4">
-        <div class="modal-container glass-panel w-full max-w-2xl overflow-hidden rounded bg-zinc-950 border-white/[0.06] shadow-xl">
-            
-            <div class="px-6 py-4 border-b border-white/[0.04] flex justify-between items-center bg-white/[0.01]">
-                <span id="modal-id" class="font-mono text-[9px] text-zinc-400 uppercase tracking-wider">Registry_Profile: Operational_Unit</span>
-                <button onclick="closeModal()" class="text-zinc-500 hover:text-zinc-200 transition font-mono text-[10px] tracking-wider">// Terminate_Session</button>
-            </div>
-
-            <div class="p-8 space-y-8">
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="space-y-4">
-                        <h3 id="modal-title" class="text-2xl font-bold tracking-tight">Position Profile</h3>
-                        
-                        <div class="space-y-2">
-                            <p class="text-[9px] uppercase text-zinc-500 font-mono font-semibold tracking-wider">// Metrics Hierarchy</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span id="modal-pay" class="tag text-indigo-400 border-indigo-500/20 bg-indigo-500/[0.03]">Allocation</span>
-                                <span id="modal-age" class="tag">Tier Requirements</span>
-                            </div>
-                        </div>
-                        
-                        <p id="modal-desc" class="text-xs text-zinc-400 leading-relaxed font-light border-l border-zinc-700 pl-4 py-1">
-                            Operational details loading...
-                        </p>
-                    </div>
-
-                    <div class="bg-white/[0.01] p-5 rounded border border-white/[0.03] font-mono text-[10px] leading-relaxed text-zinc-400 space-y-4">
-                        <div>
-                            <span class="text-indigo-400 font-semibold">// CRITICAL_EXPECTATIONS</span>
-                            <p class="text-zinc-500 mt-1">
-                                &bull; Stable & Low-Latency Pipeline Connectivity<br>
-                                &bull; Structured Written Communication Protocol<br>
-                                &bull; Deep Functional Alignment with Systems Logic
-                            </p>
-                        </div>
-                        <div>
-                            <span class="text-indigo-400 font-semibold">// TRANSMISSION_FORMAT</span>
-                            <p class="text-zinc-500 mt-1">Provide Legal Signature, Age Registry, and Core Core Vectors inside the email submission pipeline.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pt-6 border-t border-white/[0.04] flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <div class="text-center sm:text-left">
-                        <p class="text-[9px] text-zinc-500 font-mono uppercase tracking-wider">Central Ingestion Endpoint</p>
-                        <p class="font-mono text-sm font-semibold text-indigo-400">apply@orbitdev.org</p>
-                    </div>
-                    <a id="apply-mailto" href="mailto:apply@orbitdev.org" class="apply-btn px-8 py-3 text-white font-mono text-[10px] font-bold uppercase tracking-wider text-center min-w-[200px] rounded-sm">
-                        Initialize Pipeline
-                    </a>
-                </div>
-            </div>
-            
-        </div>
+  <section id="positions" class="py-12 px-6 max-w-4xl mx-auto">
+    <div class="mb-10 text-center">
+      <span class="text-zinc-500 uppercase tracking-[0.2em] text-xs font-mono">Join Orbit</span>
+      <h2 class="text-4xl font-bold mt-3">Open Positions</h2>
+      <p class="text-zinc-400 mt-4 max-w-2xl mx-auto text-sm leading-relaxed">
+        We are currently opening roles in recruitment and social media.
+        Some positions focus on the Netherlands, while others are international.
+        Choose the role that fits your skills and send us your application.
+      </p>
     </div>
 
-    <footer class="py-12 border-t border-white/[0.03] bg-black/10">
-        <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-center">
-            <div class="text-left space-y-1">
-                <div class="font-space text-xs font-bold tracking-wider text-zinc-400">ORBIT SYSTEMS B.V.</div>
-                <p class="text-[10px] text-zinc-600 font-light leading-normal">Operating under regional framework regulations.<br>A registered corporate entity located in the Netherlands.</p>
-            </div>
-            <div class="flex flex-wrap gap-x-6 gap-y-2 md:justify-end text-[9px] uppercase tracking-wider font-mono font-medium text-zinc-500">
-                <a href="/Routes/terms.html" class="hover:text-zinc-300 transition">Terms</a>
-                <a href="/Routes/acceptabe.html" class="hover:text-zinc-300 transition">Acceptable Use</a>
-                <a href="/Routes/privacy.html" class="hover:text-zinc-300 transition">Privacy</a>
-                <a href="/Routes/cookies.html" class="hover:text-zinc-300 transition">Cookies</a>
-                <a href="/Routes/support.html" class="hover:text-zinc-300 transition text-zinc-400">Support Cluster &rarr;</a>
-            </div>
+    <div class="grid gap-4">
+
+      <div onclick="openModal(
+        'Recruiter (Netherlands)',
+        'To be discussed',
+        '16+',
+        'As a Recruiter for the Netherlands, you help Orbit find talented people locally. You will contact potential team members, explain what Orbit is building, and help us create a strong Dutch hiring pipeline.',
+        'Netherlands'
+      )"
+      class="glass-panel job-card p-6 rounded-xl flex justify-between items-center cursor-pointer">
+        <div class="space-y-1">
+          <span class="text-zinc-500 font-mono text-[10px] uppercase tracking-wider block">Netherlands</span>
+          <h2 class="text-xl font-bold tracking-tight">Recruiter</h2>
+          <p class="text-sm text-zinc-500">Find and connect with new Dutch talent.</p>
         </div>
-        <div class="mt-8 text-center text-[9px] text-zinc-700 font-mono uppercase tracking-widest">&copy; 2026 Orbit Systems</div>
-    </footer>
+        <div class="hidden sm:flex items-center gap-3">
+          <span class="tag">Open</span>
+          <span class="tag">NL</span>
+        </div>
+      </div>
 
-    <script>
-        const modal = document.getElementById('job-modal');
-        
-        function openModal(title, pay, age, desc) {
-            document.getElementById('modal-title').innerText = title;
-            document.getElementById('modal-pay').innerText = pay;
-            document.getElementById('modal-age').innerText = `REQ_AGE: ${age}`;
-            document.getElementById('modal-desc').innerText = desc;
-            document.getElementById('modal-id').innerText = `Registry_Profile: ${title.replace(/\s+/g, '_').toUpperCase()}`;
-            
-            const emailSubject = encodeURIComponent(`Application Pipeline Access: ${title}`);
-            document.getElementById('apply-mailto').href = `mailto:apply@orbitdev.org?subject=${emailSubject}`;
-            
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+      <div onclick="openModal(
+        'Recruitment Manager (International)',
+        'To be discussed',
+        '18+',
+        'As an International Recruitment Manager, you lead recruitment outside the Netherlands. You help manage hiring pipelines, organize applicants, and support Orbit as it grows into new regions.',
+        'International'
+      )"
+      class="glass-panel job-card p-6 rounded-xl flex justify-between items-center cursor-pointer">
+        <div class="space-y-1">
+          <span class="text-zinc-500 font-mono text-[10px] uppercase tracking-wider block">International</span>
+          <h2 class="text-xl font-bold tracking-tight">Recruitment Manager</h2>
+          <p class="text-sm text-zinc-500">Lead global hiring and team growth.</p>
+        </div>
+        <div class="hidden sm:flex items-center gap-3">
+          <span class="tag">Open</span>
+          <span class="tag">Global</span>
+        </div>
+      </div>
 
-        function closeModal() {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
+      <div onclick="openModal(
+        'Social Media Manager (International)',
+        'To be discussed',
+        '16+',
+        'As an International Social Media Manager, you help grow Orbit online. You create content, manage posts, follow trends, and help the brand reach a wider global audience.',
+        'International'
+      )"
+      class="glass-panel job-card p-6 rounded-xl flex justify-between items-center cursor-pointer">
+        <div class="space-y-1">
+          <span class="text-zinc-500 font-mono text-[10px] uppercase tracking-wider block">International</span>
+          <h2 class="text-xl font-bold tracking-tight">Social Media Manager</h2>
+          <p class="text-sm text-zinc-500">Create content and grow Orbit globally.</p>
+        </div>
+        <div class="hidden sm:flex items-center gap-3">
+          <span class="tag">Open</span>
+          <span class="tag">Global</span>
+        </div>
+      </div>
 
-        window.onclick = function(event) {
-            if (event.target == modal) closeModal();
-        }
-    </script>
-    <script src="/site.js" defer></script>
+      <div onclick="openModal(
+        'Social Media Manager (Netherlands)',
+        'To be discussed',
+        '16+',
+        'As a Social Media Manager for the Netherlands, you focus on Dutch content, local communities, and brand growth. You help make Orbit more visible and relatable for users in the Netherlands.',
+        'Netherlands'
+      )"
+      class="glass-panel job-card p-6 rounded-xl flex justify-between items-center cursor-pointer">
+        <div class="space-y-1">
+          <span class="text-zinc-500 font-mono text-[10px] uppercase tracking-wider block">Netherlands</span>
+          <h2 class="text-xl font-bold tracking-tight">Social Media Manager</h2>
+          <p class="text-sm text-zinc-500">Grow Orbit through Dutch social media.</p>
+        </div>
+        <div class="hidden sm:flex items-center gap-3">
+          <span class="tag">Open</span>
+          <span class="tag">NL</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="py-12 px-6 max-w-4xl mx-auto">
+    <div class="glass-panel rounded-2xl p-8 md:p-10 text-center">
+      <h2 class="text-3xl font-bold">How to Apply</h2>
+      <p class="text-zinc-400 mt-4 text-sm leading-relaxed max-w-2xl mx-auto">
+        Send us a short email with your name, age, country, the role you want to apply for,
+        and why you think you would be a good fit for Orbit. You can also include previous work,
+        social media pages, Discord experience, or anything else that shows your skills.
+      </p>
+
+      <a href="mailto:apply@orbitdev.org?subject=Orbit%20Career%20Application"
+         class="apply-btn inline-flex mt-6 px-8 py-3 font-mono text-[11px] font-bold uppercase tracking-wider">
+        Apply Now
+      </a>
+    </div>
+  </section>
+
+  <div id="job-modal" class="fixed inset-0 z-[100] bg-zinc-950/80 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="modal-container glass-panel w-full max-w-2xl overflow-hidden rounded-2xl shadow-xl">
+
+      <div class="px-6 py-4 border-b border-white/[0.06] flex justify-between items-center bg-white/[0.01]">
+        <span id="modal-id" class="font-mono text-[9px] text-zinc-500 uppercase tracking-wider">
+          Position Details
+        </span>
+        <button onclick="closeModal()" class="text-zinc-500 hover:text-zinc-200 transition font-mono text-[10px] tracking-wider">
+          Close
+        </button>
+      </div>
+
+      <div class="p-8 space-y-8">
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="space-y-4">
+            <h3 id="modal-title" class="text-2xl font-bold tracking-tight">Position Profile</h3>
+
+            <div class="space-y-2">
+              <p class="text-[9px] uppercase text-zinc-500 font-mono font-semibold tracking-wider">
+                Role Information
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span id="modal-location" class="tag">Location</span>
+                <span id="modal-pay" class="tag">Pay</span>
+                <span id="modal-age" class="tag">Age</span>
+              </div>
+            </div>
+
+            <p id="modal-desc" class="text-sm text-zinc-400 leading-relaxed border-l border-zinc-700 pl-4 py-1">
+              Role details loading...
+            </p>
+          </div>
+
+          <div class="bg-white/[0.015] p-5 rounded-xl border border-white/[0.06] font-mono text-[10px] leading-relaxed text-zinc-400 space-y-4">
+            <div>
+              <span class="text-zinc-200 font-semibold">What we look for</span>
+              <p class="text-zinc-500 mt-2">
+                • Clear communication<br>
+                • Motivation to learn<br>
+                • Reliable availability<br>
+                • Good understanding of online communities<br>
+                • Professional attitude
+              </p>
+            </div>
+
+            <div>
+              <span class="text-zinc-200 font-semibold">Application email</span>
+              <p class="text-zinc-500 mt-2">
+                Include your name, age, country, role, experience, and why you want to join Orbit.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="text-center sm:text-left">
+            <p class="text-[9px] text-zinc-500 font-mono uppercase tracking-wider">
+              Send your application to
+            </p>
+            <p class="font-mono text-sm font-semibold text-zinc-200">
+              apply@orbitdev.org
+            </p>
+          </div>
+
+          <a id="apply-mailto"
+             href="mailto:apply@orbitdev.org"
+             class="apply-btn px-8 py-3 font-mono text-[10px] font-bold uppercase tracking-wider text-center min-w-[200px]">
+            Apply for this role
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="py-12 border-t border-white/[0.06] bg-black/10">
+    <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-center">
+      <div class="text-left space-y-1">
+        <div class="font-space text-xs font-bold tracking-wider text-zinc-300">
+          ORBIT SYSTEMS B.V.
+        </div>
+        <p class="text-[10px] text-zinc-600 font-light leading-normal">
+          Building AI tools for the next generation.<br>
+          Based in the Netherlands.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap gap-x-6 gap-y-2 md:justify-end text-[9px] uppercase tracking-wider font-mono font-medium text-zinc-500">
+        <a href="/Routes/terms.html" class="hover:text-zinc-300 transition">Terms</a>
+        <a href="/Routes/acceptabe.html" class="hover:text-zinc-300 transition">Acceptable Use</a>
+        <a href="/Routes/privacy.html" class="hover:text-zinc-300 transition">Privacy</a>
+        <a href="/Routes/cookies.html" class="hover:text-zinc-300 transition">Cookies</a>
+        <a href="/Routes/support.html" class="hover:text-zinc-300 transition text-zinc-400">Support</a>
+      </div>
+    </div>
+
+    <div class="mt-8 text-center text-[9px] text-zinc-700 font-mono uppercase tracking-widest">
+      &copy; 2026 Orbit Systems
+    </div>
+  </footer>
+
+  <script>
+    const modal = document.getElementById('job-modal');
+
+    function openModal(title, pay, age, desc, location) {
+      document.getElementById('modal-title').innerText = title;
+      document.getElementById('modal-pay').innerText = pay;
+      document.getElementById('modal-age').innerText = `Age ${age}`;
+      document.getElementById('modal-location').innerText = location;
+      document.getElementById('modal-desc').innerText = desc;
+      document.getElementById('modal-id').innerText = `Position: ${title}`;
+
+      const emailSubject = encodeURIComponent(`Application: ${title}`);
+      document.getElementById('apply-mailto').href = `mailto:apply@orbitdev.org?subject=${emailSubject}`;
+
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    window.onclick = function(event) {
+      if (event.target === modal) {
+        closeModal();
+      }
+    };
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeModal();
+      }
+    });
+  </script>
+
+  <script src="/site.js" defer></script>
 </body>
 </html>
