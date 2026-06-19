@@ -161,6 +161,41 @@
     }
     .btn-primary:hover { background: #e4e4e7; }
 
+    .btn-primary.cta-3d {
+      position: relative;
+      transform-style: preserve-3d;
+      box-shadow: 0 14px 0 #a1a1aa, 0 24px 34px rgba(0,0,0,0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.15s;
+      animation: cta-float-3d 3.2s ease-in-out infinite;
+    }
+
+    .btn-primary.cta-3d::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(120deg, rgba(255,255,255,0.45), transparent 42%);
+      opacity: 0.45;
+      pointer-events: none;
+      transform: translateZ(1px);
+    }
+
+    .btn-primary.cta-3d:hover {
+      background: #ffffff;
+      transform: perspective(700px) rotateX(10deg) rotateY(-8deg) translateY(-6px);
+      box-shadow: 0 18px 0 #a1a1aa, 0 32px 44px rgba(0,0,0,0.45);
+    }
+
+    .btn-primary.cta-3d:active {
+      transform: perspective(700px) rotateX(4deg) rotateY(-3deg) translateY(7px);
+      box-shadow: 0 7px 0 #a1a1aa, 0 14px 22px rgba(0,0,0,0.35);
+    }
+
+    @keyframes cta-float-3d {
+      0%, 100% { transform: perspective(700px) rotateX(0deg) rotateY(0deg) translateY(0); }
+      50% { transform: perspective(700px) rotateX(4deg) rotateY(-5deg) translateY(-4px); }
+    }
+
     .btn-ghost {
       background: rgba(255,255,255,0.03); color: #a1a1aa;
       font-size: 12px; font-weight: 500;
@@ -671,8 +706,8 @@
 <div id="announcement-bar">
   <div class="inner">
     <span class="badge">Update</span>
-    <span>Orbit 0.14 is live</span>
-    <a href="/Orbit-ai-Setup-0.0.14.exe" download>Download for Windows &rarr;</a>
+    <span>Orbit 0.15 is live</span>
+    <a href="/Orbit-ai-Setup-0.0.15.exe" download>Download for Windows &rarr;</a>
   </div>
   <button id="ann-close" onclick="document.getElementById('announcement-bar').style.display='none'; document.querySelector('nav').style.top='0'; document.querySelector('main').style.paddingTop='56px'">
     <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
@@ -688,7 +723,7 @@
       <a href="#team">Team</a>
       <a href="#story">Story</a>
       <a href="#pricing">Pricing</a>
-      <a href="#contact">Contact</a>
+      <a href="https://www.orbitdev.org/support">Contact</a>
     </div>
     <div class="nav-right">
       <a href="https://www.orbitdev.org/auth" style="font-size:12px;color:#71717a;text-decoration:none;">Login</a>
@@ -713,7 +748,7 @@
                 Use Orbit to research, write, automate tasks, and work across your browser and desktop from one clear AI workspace.
             </p>
     <div class="hero-actions reveal reveal-d2">
-      <a href="#contact" class="btn-primary">Start a sprint</a>
+      <a href="https://www.orbitdev.org" class="btn-primary cta-3d">Start a sprint</a>
       <a href="#approach" class="btn-ghost">See our approach</a>
     </div>
 
