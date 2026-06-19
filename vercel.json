@@ -3,6 +3,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/Orbit-ai-Setup-0.0.15.exe",
+      "destination": "https://github.com/Metaforse3534/website/raw/main/Orbit-ai-Setup-0.0.15.exe",
+      "permanent": false
+    },
+    {
       "source": "/Routes/acceptable-use.html",
       "destination": "/Routes/acceptabe.html",
       "permanent": true
