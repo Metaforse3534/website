@@ -1,4 +1,4 @@
-(() => {
+﻿(() => {
   const APP_ORIGIN = "https://www.orbitdev.org";
   const routeMap = new Map([
     ["terms", "/Routes/terms.html"],
@@ -8,13 +8,13 @@
     ["privacy regulation", "/Routes/privacy.html"],
     ["cookies", "/Routes/cookies.html"],
     ["cookie policy", "/Routes/cookies.html"],
-    ["cookie directives", "/Routes/cookies.html"],
+    ["cookie policy", "/Routes/cookies.html"],
     ["acceptable use", "/Routes/acceptabe.html"],
     ["orbit rules", "/Routes/rules.html"],
     ["rules", "/Routes/rules.html"],
     ["support", "/Routes/support.html"],
     ["support center", "/Routes/support.html"],
-    ["support cluster", "/Routes/support.html"],
+    ["support", "/Routes/support.html"],
     ["documentation", "/Routes/doc.html"],
     ["docs", "/Routes/doc.html"],
     ["read docs", "/Routes/doc.html"],
@@ -26,8 +26,8 @@
     ["network", "/Routes/network.html"],
     ["network topology", "/Routes/network.html"],
     ["partnership map", "/Routes/prathership.html"],
-    ["security framework", "/Routes/acceptabe.html"],
-    ["view telemetry", "/Routes/network.html"],
+    ["acceptable use", "/Routes/acceptabe.html"],
+    ["view status", "/Routes/network.html"],
     ["join forum", "https://discord.gg/8VcqeZK2"],
     ["orbit academy", "/Routes/stage.html"],
     ["core map", "/Routes/core.html"],
@@ -100,8 +100,8 @@
     dock.innerHTML = `
       <a class="orbit-dock__brand" href="/">ORBIT</a>
       ${links.map(([label, href]) => `<a class="orbit-dock__link" href="${href}" ${path === href.toLowerCase() ? 'aria-current="page"' : ""}>${label}</a>`).join("")}
-      <button class="orbit-dock__link orbit-theme-toggle" type="button" aria-label="Toggle light mode">Theme</button>
-      <a class="orbit-dock__link orbit-dock__link--primary" href="${APP_ORIGIN}/auth">Open App</a>
+      <button class="orbit-dock__link orbit-theme-toggle" type="button" aria-label="Toggle theme">Theme</button>
+      <a class="orbit-dock__link orbit-dock__link--primary" href="${APP_ORIGIN}/auth">Open Orbit</a>
     `;
     document.body.appendChild(dock);
     dock.querySelector(".orbit-theme-toggle").addEventListener("click", () => {

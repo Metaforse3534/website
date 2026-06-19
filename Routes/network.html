@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="scroll-smooth select-none">
 <head>
     <meta charset="UTF-8">
@@ -434,7 +434,7 @@ table {
 
             <div class="space-y-6">
                 <div>
-                    <span class="text-[9px] font-mono text-zinc-500 uppercase tracking-wider block mb-1">Global Core Throughput</span>
+                    <span class="text-[9px] font-mono text-zinc-500 uppercase tracking-wider block mb-1">Global throughput</span>
                     <div class="flex items-baseline space-x-1">
                         <span id="traffic-val" class="font-space text-4xl font-semibold text-white">1,242</span>
                         <span class="text-[10px] font-mono text-zinc-600">REQ_PER_SEC</span>
@@ -442,9 +442,9 @@ table {
                 </div>
 
                 <div class="pt-6 border-t border-white/[0.04]">
-                    <span class="text-[9px] font-mono text-zinc-500 uppercase tracking-wider block mb-3">Live Internal Core Routing logs</span>
+                    <span class="text-[9px] font-mono text-zinc-500 uppercase tracking-wider block mb-3">Live service logs</span>
                     <div id="console-log" class="font-mono text-[10px] text-zinc-500 space-y-1.5 h-64 overflow-hidden bg-black/30 p-3 rounded border border-white/[0.02]">
-                        <p class="text-indigo-400 font-semibold">> System telemetry node pipeline established.</p>
+                        <p class="text-indigo-400 font-semibold">> Service monitoring is connected.</p>
                     </div>
                 </div>
             </div>
@@ -459,7 +459,7 @@ table {
     <main class="pt-36 pb-24 px-6 md:px-12 max-w-5xl mx-auto space-y-12">
         <div class="space-y-2">
             <h1 class="font-space text-4xl md:text-5xl font-bold tracking-tight uppercase">MESH GRID INFRASTRUCTURE</h1>
-            <p class="text-zinc-500 text-xs md:text-sm font-light">Real-time processing routing topologies, latency tracking matrices, and node status profiles.</p>
+            <p class="text-zinc-500 text-xs md:text-sm font-light">Real-time routing, latency, and service status.</p>
         </div>
 
         <div class="grid gap-px bg-white/[0.04] border border-white/[0.04] rounded overflow-hidden shadow-2xl shadow-black/50">
@@ -488,7 +488,7 @@ table {
                     <div class="node-status status-sync flex-shrink-0"></div>
                     <div>
                         <span class="font-space font-medium text-white tracking-tight block">Frankfurt-Node</span>
-                        <span class="text-[9px] font-mono text-zinc-600 uppercase tracking-wider">Neural Compute Sync Relay Pipeline</span>
+                        <span class="text-[9px] font-mono text-zinc-600 uppercase tracking-wider">AI compute sync</span>
                     </div>
                 </div>
                 <div class="flex space-x-8 items-center justify-between sm:justify-end">
@@ -526,14 +526,14 @@ table {
         <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-center">
             <div class="text-left space-y-1">
                 <div class="font-space text-xs font-bold tracking-wider text-zinc-400">ORBIT SYSTEMS B.V.</div>
-                <p class="text-[10px] text-zinc-600 font-light leading-normal">Operating under regional framework regulations.<br>A registered corporate entity located in the Netherlands.</p>
+                <p class="text-[10px] text-zinc-600 font-light leading-normal">Registered in the Netherlands and operating under applicable regional rules.</p>
             </div>
             <div class="flex flex-wrap gap-x-6 gap-y-2 md:justify-end text-[9px] uppercase tracking-wider font-mono font-medium text-zinc-500">
                 <a href="/Routes/terms.html" class="hover:text-zinc-300 transition">Terms</a>
                 <a href="/Routes/acceptabe.html" class="hover:text-zinc-300 transition">Acceptable Use</a>
                 <a href="/Routes/privacy.html" class="hover:text-zinc-300 transition">Privacy</a>
                 <a href="/Routes/cookies.html" class="hover:text-zinc-300 transition">Cookies</a>
-                <a href="/Routes/support.html" class="text-indigo-400 hover:text-indigo-300 transition font-semibold">Support Cluster &rarr;</a>
+                <a href="/Routes/support.html" class="text-indigo-400 hover:text-indigo-300 transition font-semibold">Support &rarr;</a>
             </div>
         </div>
         <div class="mt-8 text-center text-[9px] text-zinc-700 font-mono uppercase tracking-widest">&copy; 2026 Orbit Systems</div>
@@ -558,11 +558,11 @@ table {
 
             // 2. Continuous Console Node Log Stream Ingestion
             const logs = [
-                "Inbound secure handshake authorized from region: NL-AMS",
+                "Secure request received from region: NL-AMS",
                 "Optimizing logic validation gates at address offset 0x42F",
                 "Routing network sequence load packet through Frankfurt relays",
-                "Neural telemetry processing channels fully stabilized",
-                "Executing automated autonomous system validation protocols...",
+                "Monitoring channels are stable",
+                "Running automated system health checks...",
                 "Cryptographic transport session keys rotated successfully"
             ];
             const consoleBox = document.getElementById('console-log');

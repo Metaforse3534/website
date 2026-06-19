@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="scroll-smooth select-none">
 <head>
     <meta charset="UTF-8">
@@ -399,7 +399,7 @@ table {
         <div class="max-w-7xl mx-auto px-6 h-8 flex items-center justify-between text-[11px] font-medium tracking-tight">
             <div class="flex items-center gap-2 mx-auto">
                 <span class="px-1.5 py-0.5 bg-red-500 text-white text-[9px] font-mono rounded font-bold uppercase tracking-wider">Alert</span>
-                <span class="text-zinc-400 dark:text-zinc-300">Orbit Cluster capacity exceeded. Real-time compute pipelines are temporarily queued.</span>
+                <span class="text-zinc-400 dark:text-zinc-300">Orbit is handling unusually high traffic. Some requests are temporarily queued.</span>
             </div>
             <button onclick="dismissAnnouncement()" class="text-zinc-500 hover:text-zinc-300 p-1 transition duration-150 absolute right-4">
                 <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
@@ -413,8 +413,8 @@ table {
                 <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 2a10 10 0 0 1 10 10h-2a8 8 0 0 0-8-8V2z"/></svg>
             </div>
             <div class="flex-1">
-                <h4 class="text-xs font-semibold tracking-tight mb-1">Telemetry Protocol</h4>
-                <p class="text-xs leading-relaxed mb-4 text-zinc-400">Orbit uses dynamic configurations to preserve secure agent environments. Review our <a href="/Routes/cookies.html" class="text-zinc-200 hover:underline">Cookie Directive</a>.</p>
+                <h4 class="text-xs font-semibold tracking-tight mb-1">Cookie settings</h4>
+                <p class="text-xs leading-relaxed mb-4 text-zinc-400">Orbit uses cookies to keep the site secure and improve your experience. Review our <a href="/Routes/cookies.html" class="text-zinc-200 hover:underline">Cookie Policy</a>.</p>
                 <div class="flex gap-2">
                     <button onclick="acceptCookies()" class="flex-1 px-3 py-1.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-black light-mode:bg-zinc-900 light-mode:hover:bg-zinc-800 light-mode:text-white text-xs font-medium rounded-md transition duration-150">Accept</button>
                     <button onclick="closeBanner()" class="px-3 py-1.5 border border-white/5 hover:border-white/10 text-zinc-400 hover:text-zinc-200 text-xs font-medium rounded-md transition duration-150">Decline</button>
@@ -451,7 +451,7 @@ table {
                 Systems Overloaded.
             </h1>
             <p class="reveal reveal-delay-2 max-w-lg mx-auto text-sm md:text-base mb-10 text-zinc-400 font-normal leading-relaxed">
-                Orbit infrastructure is experiencing an unprecedented surge in execution traffic. Key operational components are disabled or heavily throttled to preserve safe system runtime states.
+                Orbit is experiencing unusually high traffic. Some features are paused or slowed so the service can recover safely.
             </p>
             <div class="reveal reveal-delay-2 flex flex-wrap justify-center gap-3.5">
                 <button onclick="window.location.reload()" class="px-5 py-2.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-black light-mode:bg-zinc-900 light-mode:hover:bg-zinc-800 light-mode:text-white font-medium rounded-lg transition duration-150 text-xs shadow-sm">
@@ -466,8 +466,8 @@ table {
 
     <section id="status-dashboard" class="py-20 px-6 max-w-7xl mx-auto">
         <div class="mb-12 reveal">
-            <h2 class="text-xs uppercase tracking-wider text-red-400 mb-2 font-medium">Infrastructure Diagnostic</h2>
-            <h3 class="text-2xl md:text-3xl font-bold tracking-tight font-space text-white">Component Operational Map</h3>
+            <h2 class="text-xs uppercase tracking-wider text-red-400 mb-2 font-medium">Service status</h2>
+            <h3 class="text-2xl md:text-3xl font-bold tracking-tight font-space text-white">Component status</h3>
         </div>
         
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch reveal reveal-delay-1">
@@ -478,7 +478,7 @@ table {
                         <span class="px-2 py-0.5 bg-red-500/10 text-red-400 border border-red-500/20 rounded font-mono text-[9px] uppercase font-semibold">Offline</span>
                     </div>
                     <h4 class="text-sm font-semibold mb-1 text-white">User Authentication & Ingress</h4>
-                    <p class="text-xs text-zinc-400 leading-relaxed">Incoming secure credential validation requests are dropped at the edge to mitigate system thread pool starvations.</p>
+                    <p class="text-xs text-zinc-400 leading-relaxed">Some sign-in requests are being delayed while we reduce load.</p>
                 </div>
             </div>
 
@@ -489,7 +489,7 @@ table {
                         <span class="px-2 py-0.5 bg-red-500/10 text-red-400 border border-red-500/20 rounded font-mono text-[9px] uppercase font-semibold">Overloaded</span>
                     </div>
                     <h4 class="text-sm font-semibold mb-1 text-white">Multi-Agent Orchestration</h4>
-                    <p class="text-xs text-zinc-400 leading-relaxed">Asynchronous node synthesis routines are running under extreme delays. Memory allocation thresholds breached.</p>
+                    <p class="text-xs text-zinc-400 leading-relaxed">Agent workflows are running much slower than usual because compute capacity is overloaded.</p>
                 </div>
             </div>
 
@@ -499,8 +499,8 @@ table {
                         <span class="text-xs font-mono text-zinc-400 tracking-tight">NEURAL_INVENTORY_PROXY</span>
                         <span class="px-2 py-0.5 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded font-mono text-[9px] uppercase font-semibold">Degraded</span>
                     </div>
-                    <h4 class="text-sm font-semibold mb-1 text-white">Model Routing Matrix</h4>
-                    <p class="text-xs text-zinc-400 leading-relaxed">Fallback logic routing tokens to local configurations are executing at standard rate latency, but high failure rates apply.</p>
+                    <h4 class="text-sm font-semibold mb-1 text-white">Model routing</h4>
+                    <p class="text-xs text-zinc-400 leading-relaxed">Fallback routing is active, but some requests may still fail.</p>
                 </div>
             </div>
 
@@ -511,7 +511,7 @@ table {
                         <span class="px-2 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded font-mono text-[9px] uppercase font-semibold">Operational</span>
                     </div>
                     <h4 class="text-sm font-semibold mb-1 text-white">Storage & Vector Spaces</h4>
-                    <p class="text-xs text-zinc-400 leading-relaxed">Contextual vector search engine read layers remain stable. Code storage instances and structures are fully preserved.</p>
+                    <p class="text-xs text-zinc-400 leading-relaxed">Search and stored project data remain stable and preserved.</p>
                 </div>
             </div>
 
@@ -522,7 +522,7 @@ table {
                         <span class="px-2 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded font-mono text-[9px] uppercase font-semibold">Operational</span>
                     </div>
                     <h4 class="text-sm font-semibold mb-1 text-white">System Monitoring Rails</h4>
-                    <p class="text-xs text-zinc-400 leading-relaxed">Real-time health telemetry monitoring pipelines are fully responsive, distributing metrics to internal DevOps clusters.</p>
+                    <p class="text-xs text-zinc-400 leading-relaxed">Monitoring is fully responsive and our team is receiving live service metrics.</p>
                 </div>
             </div>
 
@@ -532,8 +532,8 @@ table {
                         <span class="text-xs font-mono text-zinc-400 tracking-tight">VOICE_STREAM_VOIP</span>
                         <span class="px-2 py-0.5 bg-red-500/10 text-red-400 border border-red-500/20 rounded font-mono text-[9px] uppercase font-semibold">Offline</span>
                     </div>
-                    <h4 class="text-sm font-semibold mb-1 text-white">Native Audio Pipelines</h4>
-                    <p class="text-xs text-zinc-400 leading-relaxed">Streaming pipelines for low-latency sound streaming applications have been shut down completely to conserve CPU core loops.</p>
+                    <h4 class="text-sm font-semibold mb-1 text-white">Voice features</h4>
+                    <p class="text-xs text-zinc-400 leading-relaxed">Voice streaming is temporarily disabled to reduce system load.</p>
                 </div>
             </div>
         </div>
@@ -543,31 +543,31 @@ table {
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-12 gap-10">
             <div class="md:col-span-4">
                 <div class="font-space text-base font-bold text-white mb-3 tracking-tight">ORBIT AI</div>
-                <p class="text-xs text-zinc-500 leading-relaxed max-w-xs">Operating under standard EU regulatory guidelines.<br>Registered Entity: Orbit Systems B.V.</p>
+                <p class="text-xs text-zinc-500 leading-relaxed max-w-xs">Orbit Systems B.V. is registered in the Netherlands and operates under EU guidelines.</p>
             </div>
             
             <div class="md:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-6 text-xs">
                 <div class="flex flex-col space-y-2.5">
-                    <span class="text-zinc-400 font-medium tracking-tight">Directives</span>
+                    <span class="text-zinc-400 font-medium tracking-tight">Resources</span>
                     <a href="/Routes/terms.html" class="text-zinc-500 hover:text-zinc-300 transition">Terms</a>
                     <a href="/Routes/acceptabe.html" class="text-zinc-500 hover:text-zinc-300 transition">Acceptable Use</a>
                 </div>
                 <div class="flex flex-col space-y-2.5">
                     <span class="text-zinc-400 font-medium tracking-tight">Compliance</span>
-                    <a href="/Routes/privacy.html" class="text-zinc-500 hover:text-zinc-300 transition">Privacy Regulation</a>
-                    <a href="/Routes/cookies.html" class="text-zinc-500 hover:text-zinc-300 transition">Cookie Directives</a>
+                    <a href="/Routes/privacy.html" class="text-zinc-500 hover:text-zinc-300 transition">Privacy Policy</a>
+                    <a href="/Routes/cookies.html" class="text-zinc-500 hover:text-zinc-300 transition">Cookie Policy</a>
                 </div>
                 <div class="flex flex-col space-y-2.5">
                     <span class="text-zinc-400 font-medium tracking-tight">Corporate</span>
-                    <a href="/Routes/network.html" class="text-zinc-500 hover:text-zinc-300 transition">Network Topology &rarr;</a>
+                    <a href="/Routes/network.html" class="text-zinc-500 hover:text-zinc-300 transition">Network status &rarr;</a>
                 </div>
                 <div class="flex flex-col space-y-2.5">
-                    <span class="text-zinc-400 font-medium tracking-tight">Assistance</span>
+                    <span class="text-zinc-400 font-medium tracking-tight">Help</span>
                     <a href="/Routes/support.html" class="text-zinc-500 hover:text-zinc-300 transition">Support Center &rarr;</a>
                 </div>
             </div>
         </div>
-        <div class="mt-12 text-center text-[10px] text-zinc-600 tracking-wider">&copy; 2026 Orbit Systems B.V. Outage protective mode enabled.</div>
+        <div class="mt-12 text-center text-[10px] text-zinc-600 tracking-wider">&copy; 2026 Orbit Systems B.V. Protective outage mode is active.</div>
     </footer>
 
     <script>

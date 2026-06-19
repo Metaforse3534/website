@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -359,7 +359,7 @@ table {
   <div class="layout">
     <aside class="sidebar">
       <a class="brand" href="/"><img src="../Public/web-app-manifest-192x192.png" alt="">Orbit AI</a>
-      <div class="nav-title">Documentation · v0.0.14</div>
+      <div class="nav-title">Documentation Â· v0.0.14</div>
       <nav>
         <a href="#overview">Overview</a>
         <a href="#start">Getting started</a>
@@ -390,7 +390,7 @@ table {
         <div class="grid">
           <div class="card"><h3>Workspace chat</h3><p>Ask questions, request coding help, analyze supported text files, generate images, and create documents.</p></div>
           <div class="card"><h3>Agent team</h3><p>Orbit creates Lead, Builder, Researcher, and Reviewer starter agents and records their runs.</p></div>
-          <div class="card"><h3>Voice</h3><p>Speak with Orbit, hear responses, and use approved voice actions with confirm or instant execution modes.</p></div>
+          <div class="card"><h3>Voice</h3><p>Speak with Orbit, hear responses, and use approved voice actions with confirm or instant action modes.</p></div>
           <div class="card"><h3>Desktop tools</h3><p>The Windows app can open approved sites, apps, and folders, write files, generate artifacts, and run Pro Pulsar when access permits.</p></div>
         </div>
         <div class="notice">Orbit output may be incorrect or incomplete. Review generated answers, code, files, and actions before relying on them.</div>
@@ -415,7 +415,7 @@ table {
         <p><code>txt</code> <code>md</code> <code>csv</code> <code>json</code> <code>js</code> <code>jsx</code> <code>ts</code> <code>tsx</code> <code>html</code> <code>css</code> <code>py</code> <code>java</code> <code>c</code> <code>cpp</code> <code>rs</code> <code>go</code> <code>xml</code> <code>yml</code> <code>yaml</code></p>
         <h3>Create commands</h3>
         <table><thead><tr><th>Command</th><th>Result</th><th>Availability</th></tr></thead><tbody>
-          <tr><td><code>/image ...</code></td><td>Generates an image through Orbit's image function.</td><td>Web and desktop, when backend is configured.</td></tr>
+          <tr><td><code>/image ...</code></td><td>Generates an image through Orbit's image function.</td><td>Web and desktop, when the backend is connected.</td></tr>
           <tr><td><code>/pdf ...</code></td><td>Creates a PDF artifact.</td><td>Desktop bridge required.</td></tr>
           <tr><td><code>/powerpoint ...</code></td><td>Creates a PowerPoint presentation.</td><td>Desktop bridge required.</td></tr>
           <tr><td><code>/excel ...</code></td><td>Creates an Excel workbook.</td><td>Desktop bridge required.</td></tr>
@@ -443,7 +443,7 @@ table {
         <h3>Deployments / Runs</h3>
         <p>The Runs page displays up to 20 recent agent runs, live status updates, run steps, final results, errors, and source links recorded by agents.</p>
         <h3>Automations</h3>
-        <p>Automations are user-built workflows made from trigger, AI agent, condition, delay, and save-result nodes. Workflows use cloud persistence when the required table exists and fall back to local browser storage otherwise. Current triggers are manual. Agent steps time out after two minutes.</p>
+        <p>Automations are user-built workflows made from trigger, AI agent, condition, delay, and save-result steps. Workflows use cloud persistence when the required table exists and fall back to local browser storage otherwise. Current triggers are manual. Agent steps time out after two minutes.</p>
       </section>
 
       <section id="voice">
@@ -493,11 +493,11 @@ table {
           <tr><td><code>/deployments</code></td><td>Recent agent runs and steps.</td><td>Signed in</td></tr>
           <tr><td><code>/history</code></td><td>Saved question and answer history.</td><td>Signed in</td></tr>
           <tr><td><code>/settings</code></td><td>Profile, security, model, and voice settings.</td><td>Signed in</td></tr>
-          <tr><td><code>/shop</code> · <code>/billing</code></td><td>Credit packs and account billing.</td><td>Signed in</td></tr>
-          <tr><td><code>/podcast</code> · <code>/extension</code> · <code>/Support</code></td><td>Podcast tool, Extension Pro, and support tickets.</td><td>Signed in</td></tr>
+          <tr><td><code>/shop</code> Â· <code>/billing</code></td><td>Credit packs and account billing.</td><td>Signed in</td></tr>
+          <tr><td><code>/podcast</code> Â· <code>/extension</code> Â· <code>/Support</code></td><td>Podcast tool, Extension Pro, and support tickets.</td><td>Signed in</td></tr>
           <tr><td><code>/portal</code></td><td>Desktop portal.</td><td>Desktop app only</td></tr>
           <tr><td><code>/admin</code></td><td>Administration tools.</td><td>Admin only</td></tr>
-          <tr><td><code>/privacy</code> · <code>/terms</code></td><td>Public legal pages.</td><td>Public</td></tr>
+          <tr><td><code>/privacy</code> Â· <code>/terms</code></td><td>Public legal pages.</td><td>Public</td></tr>
         </tbody></table>
         <div class="notice"><strong>No public developer API is documented at this time.</strong> Orbit uses internal Supabase functions and database access from the authenticated app. Do not rely on invented endpoints or tokens from older documentation.</div>
       </section>
