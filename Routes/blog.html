@@ -1,652 +1,94 @@
-﻿<!DOCTYPE html>
-<html lang="en" class="scroll-smooth select-none">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orbit AI &mdash; Platform Updates & Changelog</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    
-    <link rel="icon" type="image/png" href="Public/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="Public/favicon.svg" />
-    <link rel="shortcut icon" href="Public/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="Public/apple-touch-icon.png" />
-    
-    <style>
-        :root {
-            --bg: #050505;
-            --panel: rgba(13, 13, 13, 0.7);
-            --panel-solid: #0d0d0d;
-            --text-main: #ffffff;
-            --text-muted: #71717a;
-            --border: rgba(255, 255, 255, 0.04);
-            --accent: #ffffff;
-            --accent-glow: rgba(255, 255, 255, 0.01);
-        }
-
-        .light-mode {
-            --bg: #fafafa;
-            --panel: rgba(244, 244, 245, 0.7);
-            --panel-solid: #f4f4f5;
-            --text-main: #09090b;
-            --text-muted: #71717a;
-            --border: rgba(0, 0, 0, 0.06);
-            --accent: #09090b;
-            --accent-glow: rgba(0, 0, 0, 0.01);
-        }
-
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: var(--bg); 
-            color: var(--text-main); 
-            transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4, .font-space { font-family: 'Space Grotesk', sans-serif; }
-
-        .reveal { 
-            opacity: 0; 
-            transform: translateY(12px); 
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
-            will-change: transform, opacity;
-        }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-
-        .app-panel {
-            background: var(--panel);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--border);
-            transition: border-color 0.2s ease, background-color 0.2s ease;
-        }
-
-        .app-panel:hover {
-            border-color: rgba(255, 255, 255, 0.08);
-            background: rgba(20, 20, 20, 0.8);
-        }
-        
-        .light-mode .app-panel:hover {
-            border-color: rgba(0, 0, 0, 0.1);
-            background: rgba(255, 255, 255, 0.9);
-        }
-
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
-    </style>
-    <link rel="stylesheet" href="/site.css">
-
-<style id="orbit-black-style-override">
-
-/* ============================================================
-   ORBIT BLACK STYLE OVERRIDE
-   Matches the original black Orbit interface: compact, dark,
-   subtle borders, neutral text, minimal glow.
-   ============================================================ */
-:root {
-  --bg: #020202 !important;
-  --surface: #0d0d0d !important;
-  --surface-2: #141414 !important;
-  --panel: rgba(13,13,13,0.72) !important;
-  --panel-solid: #0d0d0d !important;
-  --glass: rgba(13,13,13,0.72) !important;
-  --border: rgba(255,255,255,0.06) !important;
-  --border-hover: rgba(255,255,255,0.12) !important;
-  --line: rgba(255,255,255,0.08) !important;
-  --text: #f4f4f5 !important;
-  --text-main: #f4f4f5 !important;
-  --text-muted: #71717a !important;
-  --muted: #71717a !important;
-  --text-dim: #3f3f46 !important;
-  --accent: #f4f4f5 !important;
-  --accent-glow: rgba(255,255,255,0.025) !important;
-  --primary: #f4f4f5 !important;
-  --primary-hover: #e4e4e7 !important;
-}
-
-html, body {
-  background:
-    radial-gradient(700px circle at 50% -20%, rgba(255,255,255,0.035), transparent 60%),
-    #020202 !important;
-  color: #71717a !important;
-  font-family: 'Inter', sans-serif !important;
-  -webkit-font-smoothing: antialiased;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background:
-    linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
-  background-size: 54px 54px;
-  opacity: .22;
-  mask-image: radial-gradient(circle at 50% 18%, black, transparent 72%);
-  -webkit-mask-image: radial-gradient(circle at 50% 18%, black, transparent 72%);
-}
-
-body > * { position: relative; z-index: 1; }
-
-h1, h2, h3, h4, .font-space, .logo-font {
-  font-family: 'Space Grotesk', sans-serif !important;
-  color: #f4f4f5 !important;
-  letter-spacing: -0.025em;
-}
-
-p, li, span, label {
-  color: inherit;
-}
-
-a { text-decoration: none; }
-
-/* Navigation / headers */
-nav, header {
-  background: rgba(2,2,2,0.76) !important;
-  border-color: rgba(255,255,255,0.06) !important;
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
-}
-
-.nav, .nav-inner, header > div {
-  max-width: 1152px !important;
-}
-
-.nav-links a, .sidebar nav a, .sidebar-link, header a {
-  color: #71717a !important;
-  transition: color .16s ease, background .16s ease, border-color .16s ease;
-}
-
-.nav-links a:hover, .sidebar nav a:hover, .sidebar-link:hover, header a:hover {
-  color: #e4e4e7 !important;
-}
-
-.nav-logo, .brand, .logo, header .font-bold {
-  color: #f4f4f5 !important;
-}
-
-/* Buttons */
-.btn-primary, .btn--primary, .apply-btn, .form-submit, .nav-cta,
-a[href*="auth"], a[href*="billing"].btn-primary, button[type="submit"] {
-  background: #f4f4f5 !important;
-  color: #09090b !important;
-  border: 1px solid #f4f4f5 !important;
-  border-radius: 8px !important;
-  box-shadow: none !important;
-  clip-path: none !important;
-  transition: background .16s ease, transform .16s ease, border-color .16s ease !important;
-}
-
-.btn-primary:hover, .btn--primary:hover, .apply-btn:hover, .form-submit:hover, .nav-cta:hover,
-button[type="submit"]:hover {
-  background: #e4e4e7 !important;
-  transform: translateY(-1px) !important;
-  filter: none !important;
-}
-
-.btn-ghost, .btn--ghost, .btn-outline, .btn-secondary, header a.rounded-lg.border {
-  background: rgba(255,255,255,0.03) !important;
-  color: #a1a1aa !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  border-radius: 8px !important;
-  transition: border-color .16s ease, color .16s ease, background .16s ease, transform .16s ease !important;
-}
-
-.btn-ghost:hover, .btn--ghost:hover, .btn-outline:hover, .btn-secondary:hover, header a.rounded-lg.border:hover {
-  color: #e4e4e7 !important;
-  border-color: rgba(255,255,255,0.14) !important;
-  background: rgba(255,255,255,0.045) !important;
-}
-
-/* Panels / cards */
-.app-panel, .glass-panel, .panel, .bento-card, .card, .notice, .rule, .right-box,
-.job-card, .model-card, .cap-card, .pricing-card, .member-card, .terminal,
-.uptime-card, .app-card, .spend-card, .contact-inner, .team-wrap, .slith-panel,
-.system-tray, .logo-cell, .status-card, .feature-card {
-  background:
-    radial-gradient(ellipse 80% 45% at 50% 0%, rgba(255,255,255,0.026), transparent 65%),
-    #0d0d0d !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  color: #71717a !important;
-  box-shadow: none !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-}
-
-.app-panel:hover, .glass-panel:hover, .panel:hover, .bento-card:hover, .card:hover,
-.rule:hover, .right-box:hover, .job-card:hover, .model-card:hover, .cap-card:hover,
-.pricing-card:hover, .member-card:hover, .logo-cell:hover, .feature-card:hover {
-  border-color: rgba(255,255,255,0.12) !important;
-  background:
-    radial-gradient(ellipse 80% 45% at 50% 0%, rgba(255,255,255,0.04), transparent 65%),
-    #101010 !important;
-  transform: translateY(-1px);
-}
-
-.pricing-wrap, .section-wrap, .team-wrap, .contact-inner {
-  background:
-    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(255,255,255,0.03), transparent 60%),
-    #080808 !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  border-radius: 20px !important;
-}
-
-/* Sections */
-section, .section, header, main > div {
-  border-color: rgba(255,255,255,0.06) !important;
-}
-
-.orbit-section, #pricing, #approach, #team, #story, #contact, #logos {
-  border-color: rgba(255,255,255,0.06) !important;
-  background: transparent !important;
-}
-
-.section-eyebrow, .eyebrow, .nav-title, .orbit-badge, .data-tag, .tag,
-.model-card__badge, .pricing-tier, .logos-label, .hero-badge {
-  color: #a1a1aa !important;
-  background: #18181b !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  border-radius: 6px !important;
-  font-family: 'JetBrains Mono', monospace !important;
-  font-size: 10px !important;
-  font-weight: 700 !important;
-  letter-spacing: .10em !important;
-  text-transform: uppercase !important;
-  padding: 3px 9px !important;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.section-eyebrow, .eyebrow, .nav-title, .logos-label {
-  background: transparent !important;
-  border: 0 !important;
-  padding: 0 !important;
-  color: #52525b !important;
-}
-
-.section-title, .pricing-header h2, .hero h1, h1 {
-  color: #f4f4f5 !important;
-}
-
-.pricing-header p, .hero-sub, .tl-body, .member-bio, .model-card__body,
-.cap-card__body, .pricing-desc, .card p, .notice p, main p, p, li {
-  color: #71717a !important;
-}
-
-/* Pricing exact black tab feel */
-.pricing-grid {
-  gap: 20px !important;
-}
-
-.pricing-card {
-  border-radius: 14px !important;
-  overflow: hidden !important;
-  padding: 0 !important;
-}
-
-.pricing-card-top {
-  padding: 28px 28px 24px !important;
-  border-bottom: 1px solid rgba(255,255,255,0.06) !important;
-}
-
-.pricing-card-bottom {
-  padding: 24px 28px 28px !important;
-}
-
-.pricing-amount {
-  color: #f4f4f5 !important;
-  font-size: 36px !important;
-  font-weight: 700 !important;
-  letter-spacing: -0.03em !important;
-}
-
-.pricing-features {
-  list-style: none !important;
-  padding-left: 0 !important;
-}
-
-.pricing-features li {
-  color: #71717a !important;
-  font-size: 13px !important;
-}
-
-.check { color: #f4f4f5 !important; }
-
-/* Forms / inputs */
-input, textarea, select, .ticket-input {
-  background: #0d0d0d !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  color: #f4f4f5 !important;
-  border-radius: 8px !important;
-  outline: none !important;
-}
-
-input:focus, textarea:focus, select:focus, .ticket-input:focus {
-  border-color: rgba(255,255,255,0.18) !important;
-  box-shadow: none !important;
-}
-
-input::placeholder, textarea::placeholder {
-  color: #3f3f46 !important;
-}
-
-/* Status colors kept subtle */
-.status-pill {
-  background: rgba(16,185,129,0.09) !important;
-  color: #10b981 !important;
-  border: 1px solid rgba(16,185,129,0.18) !important;
-}
-
-.noise {
-  opacity: .012 !important;
-}
-
-.glow-mesh, #hero-glow {
-  background: radial-gradient(800px circle at 50% 0%, rgba(255,255,255,0.035), transparent 60%) !important;
-}
-
-/* Tables/code/docs */
-pre, code, .font-mono {
-  font-family: 'JetBrains Mono', monospace !important;
-}
-
-pre {
-  background: #0d0d0d !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  border-radius: 12px !important;
-  color: #d4d4d8 !important;
-}
-
-table {
-  border-color: rgba(255,255,255,0.06) !important;
-}
-
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: #020202; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.10); border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
-
-@media (max-width: 768px) {
-  .pricing-wrap, .team-wrap, .contact-inner {
-    padding: 32px 22px !important;
-  }
-}
-
-</style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Orbit AI blog, platform updates, and upcoming releases.">
+  <title>Orbit AI &mdash; Blog & Updates</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="../Public/favicon.ico">
+  <link rel="stylesheet" href="/site.css">
+  <style>
+    :root { --bg:#020202; --panel:#0d0d0d; --border:rgba(255,255,255,.06); --text:#f4f4f5; --muted:#71717a; }
+    body { margin:0; background:radial-gradient(700px circle at 50% -20%, rgba(255,255,255,.04), transparent 60%), var(--bg); color:var(--muted); font-family:Inter, sans-serif; }
+    body::before { content:""; position:fixed; inset:0; pointer-events:none; background:linear-gradient(rgba(255,255,255,.012) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.012) 1px, transparent 1px); background-size:54px 54px; opacity:.22; mask-image:radial-gradient(circle at 50% 18%, black, transparent 72%); }
+    body > * { position:relative; z-index:1; }
+    h1,h2,h3,.font-space { font-family:"Space Grotesk", sans-serif; color:var(--text); letter-spacing:-.025em; }
+    .panel { background:radial-gradient(ellipse 80% 45% at 50% 0%, rgba(255,255,255,.026), transparent 65%), var(--panel); border:1px solid var(--border); border-radius:14px; }
+    .tag { display:inline-flex; border:1px solid var(--border); background:#18181b; color:#a1a1aa; border-radius:6px; padding:3px 9px; font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+    .reveal { opacity:0; transform:translateY(12px); transition:.55s ease; }
+    .reveal.active { opacity:1; transform:translateY(0); }
+  </style>
 </head>
-<body class="antialiased">
+<body>
+  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06] bg-black/60 backdrop-blur-md">
+    <div class="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
+      <a href="/" class="font-space text-sm font-bold text-zinc-200">ORBIT <span class="text-zinc-500 font-sans text-xs tracking-widest">BLOG</span></a>
+      <div class="flex items-center gap-5 text-xs">
+        <a href="/Routes/schools.html" class="text-zinc-500 hover:text-zinc-200">Schools</a>
+        <a href="/Routes/doc.html" class="text-zinc-500 hover:text-zinc-200">Docs</a>
+        <a href="/Routes/support.html" class="text-zinc-500 hover:text-zinc-200">Support</a>
+      </div>
+    </div>
+  </nav>
 
-    <nav class="fixed w-full z-50 border-b border-white/[0.03] dark:border-white/[0.03] light-mode:border-black/[0.05] backdrop-blur-md bg-black/20 transition-colors duration-200">
-        <div class="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
-            <a href="index.html" class="font-space text-base font-bold tracking-tight cursor-pointer">
-                ORBIT <span class="text-zinc-500 font-light text-xs font-sans tracking-widest ml-1">UPDATES</span>
-            </a>
-            
-            <div class="flex items-center space-x-4">
-                <button onclick="toggleTheme()" class="p-1.5 text-zinc-400 hover:text-zinc-200 transition duration-150">
-                    <svg id="theme-icon" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
-                    </svg>
-                </button>
-                <a href="Index.html" class="text-xs text-zinc-400 hover:text-zinc-200 transition duration-150">&larr; Back to Terminal</a>
-            </div>
-        </div>
-    </nav>
+  <header class="max-w-4xl mx-auto px-6 pt-32 pb-12 border-b border-white/[0.06]">
+    <div class="tag mb-4">Updates</div>
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">Orbit blog and release notes.</h1>
+    <p class="text-sm leading-7 max-w-2xl">Product notes, upcoming launches, and practical updates for people building with Orbit.</p>
+  </header>
 
-    <header class="pt-32 pb-12 px-6 max-w-4xl mx-auto border-b border-white/[0.02]">
-        <div class="reveal">
-            <div class="inline-flex items-center gap-2 px-2.5 py-0.5 border border-white/5 bg-white/[0.01] rounded-md text-[10px] font-mono text-zinc-500 mb-4 uppercase tracking-wider">
-                System Changelog
-            </div>
-            <h1 class="text-3xl md:text-4xl font-bold tracking-tight font-space text-white mb-3">
-                Engine Iterations & Platform Releases
-            </h1>
-            <p class="text-xs md:text-sm text-zinc-400 max-w-xl font-normal leading-relaxed">
-                Stay up to date with model improvements, platform updates, and agent workflow fixes.
-            </p>
-        </div>
-    </header>
-
-    <main class="py-16 px-6 max-w-4xl mx-auto min-h-[60vh]">
-    <main class="py-16 px-6 max-w-4xl mx-auto min-h-[60vh]">
-    <div class="space-y-16">
-
-```
-    <article class="grid md:grid-cols-12 gap-4 md:gap-8 reveal">
-        <div class="md:col-span-3">
-            <time class="text-xs font-mono text-zinc-500 sticky top-20 block">LATEST</time>
-            <span class="inline-block mt-1 text-[10px] bg-white/5 text-zinc-400 border border-white/5 px-2 py-0.5 rounded font-mono">
-                Platform Update
-            </span>
-        </div>
-
-        <div class="md:col-span-9 space-y-6">
-            <div>
-                <div class="inline-flex items-center gap-1.5 text-[10px] uppercase font-mono tracking-wider text-emerald-500 bg-emerald-500/5 px-2 py-0.5 rounded border border-emerald-500/10 mb-3">
-                    <span class="w-1 h-1 rounded-full bg-emerald-500 animate-pulse"></span>
-                    Latest Updates
-                </div>
-
-                <h2 class="text-xl font-semibold tracking-tight font-space text-white">
-                    MetaForce Platform Expansion & Infrastructure Update
-                </h2>
-
-                <p class="text-xs text-zinc-400 leading-relaxed mt-2">
-                    A broad platform update covering installer improvements, browser extension work, Electron desktop updates, authentication refinements, automation features, backend infrastructure, security cleanup, documentation, and public website restructuring.
-                </p>
-            </div>
-
-            <div class="grid sm:grid-cols-2 gap-4">
-
-                <section class="app-panel p-4 rounded-lg space-y-2">
-                    <h3 class="text-[11px] uppercase tracking-wider text-zinc-300 font-semibold font-space">Installer & Deployment</h3>
-                    <ul class="text-xs space-y-1.5 text-zinc-400 list-disc list-inside">
-                        <li>Moved <code>install.ps1</code> to <code>public/install.ps1</code></li>
-                        <li>Added PowerShell installer setup files</li>
-                        <li>Added code signing support</li>
-                        <li>Added <code>build-sign.cjs</code></li>
-                        <li>Added signing configuration examples</li>
-                        <li>Updated application packaging configuration</li>
-                        <li>Updated build license generation</li>
-                    </ul>
-                </section>
-
-                <section class="app-panel p-4 rounded-lg space-y-2">
-                    <h3 class="text-[11px] uppercase tracking-wider text-zinc-300 font-semibold font-space">Browser Extension</h3>
-                    <ul class="text-xs space-y-1.5 text-zinc-400 list-disc list-inside">
-                        <li>Updated <code>extension/background.js</code></li>
-                        <li>Updated <code>extension/background.ts</code></li>
-                        <li>Improved extension background service functionality</li>
-                        <li>Cleaned up extension repository assets</li>
-                    </ul>
-                </section>
-
-                <section class="app-panel p-4 rounded-lg space-y-2">
-                    <h3 class="text-[11px] uppercase tracking-wider text-zinc-300 font-semibold font-space">Desktop Application</h3>
-                    <ul class="text-xs space-y-1.5 text-zinc-400 list-disc list-inside">
-                        <li>Updated <code>electron/main.js</code></li>
-                        <li>Updated <code>electron/main.cjs</code></li>
-                        <li>Improved application startup and everyday performance</li>
-                        <li>Updated Electron configuration</li>
-                    </ul>
-                </section>
-
-                <section class="app-panel p-4 rounded-lg space-y-2">
-                    <h3 class="text-[11px] uppercase tracking-wider text-zinc-300 font-semibold font-space">Authentication & Users</h3>
-                    <ul class="text-xs space-y-1.5 text-zinc-400 list-disc list-inside">
-                        <li>Updated authentication page <code>Auth.tsx</code></li>
-                        <li>Enhanced login and user access workflows</li>
-                        <li>Updated settings management functionality</li>
-                    </ul>
-                </section>
-
-                <section class="app-panel p-4 rounded-lg space-y-2">
-                    <h3 class="text-[11px] uppercase tracking-wider text-zinc-300 font-semibold font-space">Website & Public Pages</h3>
-                    <ul class="text-xs space-y-1.5 text-zinc-400 list-disc list-inside">
-                        <li>Added Acceptable Use Policy page</li>
-                        <li>Updated landing, privacy, cookies, shop, support, and index pages</li>
-                        <li>Reorganized website structure</li>
-                        <li>Moved legal and compliance pages into dedicated directories</li>
-                    </ul>
-                </section>
-
-                <section class="app-panel p-4 rounded-lg space-y-2">
-                    <h3 class="text-[11px] uppercase tracking-wider text-zinc-300 font-semibold font-space">UI & Components</h3>
-                    <ul class="text-xs space-y-1.5 text-zinc-400 list-disc list-inside">
-                        <li>Updated App Layout and App Component</li>
-                        <li>Updated Extension, Support, Shop, Automation, Settings, and Index pages</li>
-                        <li>Added legal layout components</li>
-                        <li>Improved navigation and interface structure</li>
-                    </ul>
-                </section>
-
-                <section class="app-panel p-4 rounded-lg space-y-2">
-                    <h3 class="text-[11px] uppercase tracking-wider text-zinc-300 font-semibold font-space">AI & Automation</h3>
-                    <ul class="text-xs space-y-1.5 text-zinc-400 list-disc list-inside">
-                        <li>Added Orbit AI model integration</li>
-                        <li>Updated automation workflows</li>
-                        <li>Improved automation page functionality</li>
-                        <li>Added Supabase Edge Function support</li>
-                    </ul>
-                </section>
-
-                <section class="app-panel p-4 rounded-lg space-y-2">
-                    <h3 class="text-[11px] uppercase tracking-wider text-zinc-300 font-semibold font-space">Backend & Infrastructure</h3>
-                    <ul class="text-xs space-y-1.5 text-zinc-400 list-disc list-inside">
-                        <li>Updated Supabase functions</li>
-                        <li>Updated Discord bot integration</li>
-                        <li>Added Discord bot configuration</li>
-                        <li>Updated Discord bot data storage handling</li>
-                        <li>Added Discord bot distribution package</li>
-                    </ul>
-                </section>
-
-                <section class="app-panel p-4 rounded-lg space-y-2">
-                    <h3 class="text-[11px] uppercase tracking-wider text-zinc-300 font-semibold font-space">Security</h3>
-                    <ul class="text-xs space-y-1.5 text-zinc-400 list-disc list-inside">
-                        <li>Removed <code>.env</code> from repository tracking</li>
-                        <li>Updated <code>.gitignore</code></li>
-                        <li>Added example configuration files</li>
-                        <li>Improved secret and configuration handling</li>
-                    </ul>
-                </section>
-
-                <section class="app-panel p-4 rounded-lg space-y-2">
-                    <h3 class="text-[11px] uppercase tracking-wider text-zinc-300 font-semibold font-space">Documentation</h3>
-                    <ul class="text-xs space-y-1.5 text-zinc-400 list-disc list-inside">
-                        <li>Updated README</li>
-                        <li>Added contribution links</li>
-                        <li>Improved project documentation</li>
-                        <li>Updated licensing information</li>
-                    </ul>
-                </section>
-
-                <section class="app-panel p-4 rounded-lg space-y-2 sm:col-span-2">
-                    <h3 class="text-[11px] uppercase tracking-wider text-zinc-300 font-semibold font-space">Cleanup & Maintenance</h3>
-                    <ul class="text-xs space-y-1.5 text-zinc-400 list-disc list-inside columns-1 sm:columns-2">
-                        <li>Removed obsolete cookies page implementation</li>
-                        <li>Removed legacy privacy page implementation</li>
-                        <li>Deleted unused files and reset artifacts</li>
-                        <li>Updated dependencies</li>
-                        <li>Refreshed lockfiles</li>
-                        <li>General repository cleanup and restructuring</li>
-                    </ul>
-                </section>
-
-            </div>
-        </div>
+  <main class="max-w-4xl mx-auto px-6 py-14 space-y-8">
+    <article class="panel p-6 md:p-8 reveal">
+      <div class="flex flex-wrap items-center gap-3 mb-4">
+        <span class="tag">Latest</span>
+        <time class="text-xs text-zinc-600">June 2026</time>
+      </div>
+      <h2 class="text-2xl font-bold mb-3">Orbit 0.15 installer and website refresh</h2>
+      <p class="text-sm leading-7 mb-5">Orbit 0.15 is now the active Windows installer. The public website has clearer copy, repaired download links, and updated routes for support, docs, and billing paths.</p>
+      <div class="grid sm:grid-cols-3 gap-3 text-xs">
+        <div class="panel p-4">Windows installer updated to 0.0.15</div>
+        <div class="panel p-4">Homepage CTA and support links refreshed</div>
+        <div class="panel p-4">Download now targets the real GitHub LFS binary</div>
+      </div>
     </article>
 
-    <hr class="border-white/[0.02] light-mode:border-black/[0.03]">
-
-    <article class="grid md:grid-cols-12 gap-4 md:gap-8 reveal reveal-delay-1">
-        <div class="md:col-span-3">
-            <time class="text-xs font-mono text-zinc-500 sticky top-20 block">INITIAL</time>
-            <span class="inline-block mt-1 text-[10px] bg-white/5 text-zinc-400 border border-white/5 px-2 py-0.5 rounded font-mono">
-                Foundation
-            </span>
-        </div>
-
-        <div class="md:col-span-9 space-y-4">
-            <h2 class="text-lg font-semibold tracking-tight font-space text-white">
-                Initial Release
-            </h2>
-
-            <p class="text-xs text-zinc-400 leading-relaxed">
-                The first MetaForce release introduced the core platform foundation, including the website, Electron desktop app, browser extension, Discord bot integration, Supabase backend, automation system, and deployment documentation.
-            </p>
-
-            <div class="app-panel p-4 rounded-lg">
-                <h3 class="text-[11px] uppercase tracking-wider text-zinc-300 font-semibold font-space mb-2">Core platform</h3>
-                <ul class="text-xs space-y-1.5 text-zinc-400 list-disc list-inside columns-1 sm:columns-2">
-                    <li>Initial MetaForce project setup</li>
-                    <li>Authentication system</li>
-                    <li>Website pages</li>
-                    <li>Electron desktop application</li>
-                    <li>Browser extension</li>
-                    <li>Discord bot integration</li>
-                    <li>Supabase backend integration</li>
-                    <li>Automation system foundation</li>
-                    <li>Documentation and deployment tooling</li>
-                </ul>
-            </div>
-        </div>
+    <article class="panel p-6 md:p-8 reveal">
+      <div class="flex flex-wrap items-center gap-3 mb-4">
+        <span class="tag">Upcoming</span>
+        <time class="text-xs text-zinc-600">Planned</time>
+      </div>
+      <h2 class="text-2xl font-bold mb-3">Orbit School Program</h2>
+      <p class="text-sm leading-7 mb-5">We are preparing a school-only program for verified institutions. Schools will be able to request education discounts, create classroom workspaces, and onboard students through teacher-led access.</p>
+      <div class="grid sm:grid-cols-3 gap-3 text-xs">
+        <div class="panel p-4">School email access requests</div>
+        <div class="panel p-4">Discounted AI seats for education</div>
+        <div class="panel p-4">Classrooms for cohorts and projects</div>
+      </div>
+      <a href="/Routes/schools.html" class="inline-flex mt-6 text-xs font-semibold text-zinc-200 hover:text-white">View school program &rarr;</a>
     </article>
 
-</div>
-```
+    <article class="panel p-6 md:p-8 reveal">
+      <div class="flex flex-wrap items-center gap-3 mb-4">
+        <span class="tag">Initial</span>
+        <time class="text-xs text-zinc-600">Foundation</time>
+      </div>
+      <h2 class="text-2xl font-bold mb-3">Initial platform foundation</h2>
+      <p class="text-sm leading-7">The first Orbit release introduced the public website, Windows desktop app, browser extension foundation, Supabase-backed workflows, documentation, and support routes.</p>
+    </article>
+  </main>
 
-</main>
+  <footer class="border-t border-white/[0.06] py-10 text-center text-[10px] text-zinc-600 uppercase tracking-widest">
+    &copy; 2026 Orbit Systems B.V. Blog
+  </footer>
 
-    </main>
-
-    <footer class="py-12 border-t border-white/[0.03] bg-[#020202]">
-        <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-zinc-500 gap-4">
-            <div class="font-space font-bold text-white tracking-tight">ORBIT AI</div>
-            <div>&copy; 2026 Orbit Systems B.V. All rights reserved.</div>
-        </div>
-    </footer>
-
-    <script>
-        // Intersection Observer Animation Framework
-        const observerOptions = { threshold: 0.05, rootMargin: '0px 0px -10px 0px' };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // State & Layout Theme Management
-        function toggleTheme() {
-            const body = document.body;
-            const icon = document.getElementById('theme-icon');
-            body.classList.toggle('light-mode');
-            const isLight = body.classList.contains('light-mode');
-            
-            icon.innerHTML = isLight ? 
-                '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>' : 
-                '<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>';
-            
-            localStorage.setItem('theme', isLight ? 'light' : 'dark');
-        }
-
-        // Apply chosen theme on load
-        window.onload = () => {
-            if (localStorage.getItem('theme') === 'light') toggleTheme();
-        };
-    </script>
-    <script src="/site.js" defer></script>
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add("active"); });
+    }, { threshold: 0.05 });
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+  </script>
+  <script src="/site.js" defer></script>
 </body>
 </html>

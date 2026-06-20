@@ -8,6 +8,11 @@
       "permanent": false
     },
     {
+      "source": "/schools",
+      "destination": "/Routes/schools.html",
+      "permanent": false
+    },
+    {
       "source": "/Routes/acceptable-use.html",
       "destination": "/Routes/acceptabe.html",
       "permanent": true

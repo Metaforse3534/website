@@ -30,6 +30,9 @@
     ["view status", "/Routes/network.html"],
     ["join forum", "https://discord.gg/8VcqeZK2"],
     ["orbit academy", "/Routes/stage.html"],
+    ["schools", "/Routes/schools.html"],
+    ["school program", "/Routes/schools.html"],
+    ["classrooms", "/Routes/schools.html#classrooms"],
     ["core map", "/Routes/core.html"],
     ["index", "/"],
     ["home", "/"],
@@ -92,6 +95,7 @@
     const links = [
       ["Home", "/"],
       ["Docs", "/Routes/doc.html"],
+      ["Schools", "/Routes/schools.html"],
       ["Support", "/Routes/support.html"],
     ];
     const dock = document.createElement("nav");
