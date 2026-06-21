@@ -15,7 +15,20 @@
     <link rel="manifest" href="/Public/site.webmanifest" />
   
   <style>
-    
+    /* Hide scrollbar but keep scrolling */
+
+html,
+body {
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE & Edge */
+}
+
+/* Chrome, Safari, Opera */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+}
     :root {
       --bg: #020202;
       --surface: #0d0d0d;

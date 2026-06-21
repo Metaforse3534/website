@@ -3,120 +3,240 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Orbit for Schools gives verified schools education discounts, classroom workspaces, and teacher-led AI access.">
-  <title>Orbit for Schools</title>
+  <meta name="description" content="Orbit for Schools provides verified educational institutions with enterprise-grade AI tools, dedicated classroom workspaces, and academic discounts.">
+  <title>Orbit for Schools — Institutional AI Platform</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" href="../Public/favicon.ico">
   <link rel="stylesheet" href="/site.css">
   <style>
-    :root { --bg:#020202; --panel:#0d0d0d; --border:rgba(255,255,255,.06); --text:#f4f4f5; --muted:#71717a; }
-    body { margin:0; background:radial-gradient(700px circle at 50% -20%, rgba(255,255,255,.04), transparent 60%), var(--bg); color:var(--muted); font-family:Inter, sans-serif; }
-    body::before { content:""; position:fixed; inset:0; pointer-events:none; background:linear-gradient(rgba(255,255,255,.012) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.012) 1px, transparent 1px); background-size:54px 54px; opacity:.22; mask-image:radial-gradient(circle at 50% 18%, black, transparent 72%); }
-    body > * { position:relative; z-index:1; }
-    h1,h2,h3,.font-space { font-family:"Space Grotesk", sans-serif; color:var(--text); letter-spacing:-.025em; }
-    .panel { background:radial-gradient(ellipse 80% 45% at 50% 0%, rgba(255,255,255,.026), transparent 65%), var(--panel); border:1px solid var(--border); border-radius:14px; }
-    .eyebrow { color:#a1a1aa; font:700 10px "Space Grotesk", sans-serif; letter-spacing:.12em; text-transform:uppercase; }
-    .input { width:100%; background:#0d0d0d; border:1px solid var(--border); border-radius:8px; color:var(--text); padding:12px 13px; font-size:12px; outline:none; }
-    .input:focus { border-color:rgba(255,255,255,.2); }
-    .btn { display:inline-flex; align-items:center; justify-content:center; border-radius:8px; padding:12px 16px; font-size:12px; font-weight:600; text-decoration:none; }
-    .btn-primary { background:#f4f4f5; color:#09090b; }
-    .btn-ghost { border:1px solid var(--border); color:#d4d4d8; background:rgba(255,255,255,.03); }
-    .reveal { opacity:0; transform:translateY(12px); transition:.55s ease; }
-    .reveal.active { opacity:1; transform:translateY(0); }
+    :root { 
+      --bg: #000000; 
+      --panel: #050507; 
+      --border: rgba(255, 255, 255, 0.045); 
+      --border-hover: rgba(255, 255, 255, 0.09);
+      --text: #f4f4f5; 
+      --muted: #8e8e93; 
+    }
+    body { 
+      margin: 0; 
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at 50% -20%, rgba(255, 255, 255, 0.045) 0%, transparent 60%),
+        radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.015) 0%, transparent 50%);
+      color: var(--muted); 
+      font-family: 'Plus Jakarta Sans', sans-serif; 
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, .font-space { font-family: "Space Grotesk", sans-serif; color: var(--text); letter-spacing: -.03em; }
+    
+    .panel { 
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.01) 0%, transparent 100%), var(--panel); 
+      border: 1px solid var(--border); 
+      border-radius: 14px; 
+      box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.8);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .panel-interactive:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px -4px rgba(0, 0, 0, 0.9);
+    }
+    .eyebrow { color: #636366; font: 600 10px/1 "Space Grotesk", sans-serif; letter-spacing: .2em; text-transform: uppercase; }
+    
+    .input { 
+      width: 100%; 
+      background: #09090b; 
+      border: 1px solid var(--border); 
+      border-radius: 8px; 
+      color: var(--text); 
+      padding: 12px 14px; 
+      font-size: 13px; 
+      outline: none; 
+      transition: all 0.2s ease;
+    }
+    .input:focus { 
+      border-color: rgba(255, 255, 255, 0.16); 
+      background: #0c0c0e;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.015);
+    }
+    .select-wrapper { position: relative; }
+    .select-wrapper::after {
+      content: "＋"; font-size: 10px; color: #48484a; position: absolute; right: 14px; top: 50%; transform: translateY(-50%) rotate(45deg); pointer-events: none;
+    }
+    .select-custom { appearance: none; padding-right: 35px; }
+    
+    .btn { display: inline-flex; align-items: center; justify-content: center; border-radius: 8px; padding: 12px 20px; font-size: 13px; font-weight: 600; text-decoration: none; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
+    .btn-primary { background: linear-gradient(180deg, #ffffff 0%, #e4e4e7 100%); color: #000000; box-shadow: 0 2px 8px rgba(255,255,255,0.05); }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(255,255,255,0.1); filter: brightness(1.05); }
+    .btn-ghost { border: 1px solid var(--border); color: #e4e4e7; background: transparent; }
+    .btn-ghost:hover { background: rgba(255, 255, 255, 0.03); border-color: var(--border-hover); }
+    
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .8s cubic-bezier(0.16, 1, 0.3, 1), transform .8s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, opacity; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
   </style>
 </head>
-<body>
-  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06] bg-black/60 backdrop-blur-md">
-    <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
-      <a href="/" class="font-space text-sm font-bold text-zinc-200">ORBIT <span class="text-zinc-500 font-sans text-xs tracking-widest">SCHOOLS</span></a>
-      <div class="flex items-center gap-5 text-xs">
-        <a href="/Routes/blog.html" class="text-zinc-500 hover:text-zinc-200">Blog</a>
-        <a href="/Routes/doc.html" class="text-zinc-500 hover:text-zinc-200">Docs</a>
-        <a href="/Routes/support.html" class="text-zinc-500 hover:text-zinc-200">Support</a>
+<body class="selection:bg-zinc-800 selection:text-white">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.03] bg-black/30 backdrop-blur-xl">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/" class="font-space text-sm font-bold text-white tracking-tight flex items-center gap-2">
+        ORBIT <span class="text-zinc-600 font-sans text-[10px] font-semibold tracking-[0.25em] uppercase">Academy</span>
+      </a>
+      <div class="flex items-center gap-6 text-xs font-medium">
+        <a href="/Routes/blog.html" class="text-zinc-400 hover:text-white transition-colors">Resources</a>
+        <a href="/Routes/doc.html" class="text-zinc-400 hover:text-white transition-colors">Docs</a>
+        <a href="/Routes/support.html" class="text-zinc-400 hover:text-white transition-colors">Support</a>
+        <a href="#school-gate" class="btn btn-ghost py-1.5 px-3.5 text-[11px] rounded-md">Deploy</a>
       </div>
     </div>
   </nav>
 
-  <main class="max-w-6xl mx-auto px-6 pt-32 pb-24">
-    <section class="grid lg:grid-cols-12 gap-10 items-center mb-20 reveal">
+  <main class="max-w-5xl mx-auto px-6 pt-40 pb-32">
+    <!-- Hero Block -->
+    <section class="grid lg:grid-cols-12 gap-16 items-center mb-32 reveal">
       <div class="lg:col-span-7">
-        <div class="eyebrow mb-4">Verified school access</div>
-        <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-5">AI classrooms with school-only discounts.</h1>
-        <p class="text-sm md:text-base leading-7 max-w-2xl">Orbit for Schools helps teachers create classroom workspaces, invite students, and use Orbit AI with education pricing. Access is reserved for verified schools and learning programs.</p>
-        <div class="flex flex-wrap gap-3 mt-8">
-          <a href="#school-gate" class="btn btn-primary">Request school access</a>
-          <a href="#classrooms" class="btn btn-ghost">See classroom tools</a>
+        <div class="eyebrow mb-5">Institutional Tier</div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.08] tracking-tight mb-6 text-white">
+          Secure AI environments built for your classroom.
+        </h1>
+        <p class="text-sm md:text-base leading-7 text-zinc-400 max-w-lg font-normal">
+          Provision isolated workspaces, manage multi-student cohorts via unified dashboards, and unlock scalable pricing vectors built exclusively for accredited education structures.
+        </p>
+        <div class="flex flex-wrap gap-3.5 mt-8">
+          <a href="#school-gate" class="btn btn-primary">Request Access Validation</a>
+          <a href="#classrooms" class="btn btn-ghost">Platform Mechanics</a>
         </div>
       </div>
-      <div class="lg:col-span-5 panel p-6">
-        <div class="eyebrow mb-5">Program includes</div>
-        <div class="space-y-4 text-sm">
-          <div class="flex justify-between gap-4 border-b border-white/[0.06] pb-3"><span>Education discounts</span><span class="text-zinc-300">School verified</span></div>
-          <div class="flex justify-between gap-4 border-b border-white/[0.06] pb-3"><span>Classroom spaces</span><span class="text-zinc-300">Teacher managed</span></div>
-          <div class="flex justify-between gap-4 border-b border-white/[0.06] pb-3"><span>Student onboarding</span><span class="text-zinc-300">Cohort based</span></div>
-          <div class="flex justify-between gap-4"><span>Support path</span><span class="text-zinc-300">School contact</span></div>
+      <div class="lg:col-span-5 panel p-8">
+        <div class="eyebrow mb-6">Program Standards</div>
+        <div class="space-y-4 text-xs">
+          <div class="flex justify-between items-center border-b border-white/[0.03] pb-3.5">
+            <span class="text-zinc-400 font-medium">Eligibility Network</span>
+            <span class="text-zinc-200 font-mono text-[11px] bg-white/[0.04] border border-white/[0.04] px-2 py-0.5 rounded">Verified Domain</span>
+          </div>
+          <div class="flex justify-between items-center border-b border-white/[0.03] pb-3.5">
+            <span class="text-zinc-400 font-medium">Instance Partitioning</span>
+            <span class="text-zinc-300">Isolated Cohorts</span>
+          </div>
+          <div class="flex justify-between items-center border-b border-white/[0.03] pb-3.5">
+            <span class="text-zinc-400 font-medium">Compliance Auditing</span>
+            <span class="text-zinc-300">FERPA / GDPR Scope</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-zinc-400 font-medium">Dedicated Nodes</span>
+            <span class="text-zinc-300">Priority Tier SLA</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="classrooms" class="grid md:grid-cols-3 gap-4 mb-20">
-      <article class="panel p-6 reveal">
-        <div class="eyebrow mb-3">Classrooms</div>
-        <h2 class="text-xl font-bold mb-3">Create spaces for each class</h2>
-        <p class="text-xs leading-6">Teachers can request classroom workspaces for subjects, projects, or cohorts so students have a focused place to use Orbit.</p>
+    <!-- Grid Features -->
+    <section id="classrooms" class="grid md:grid-cols-3 gap-6 mb-32">
+      <article class="panel panel-interactive p-8 reveal">
+        <div class="eyebrow mb-4">Partitioned Ops</div>
+        <h2 class="text-base font-bold mb-2 text-white">Targeted Workspaces</h2>
+        <p class="text-xs leading-6 text-zinc-400 font-normal">Spin up unique environment boundaries sorted cleanly by department modules, course tags, or individual structural frameworks.</p>
       </article>
-      <article class="panel p-6 reveal">
-        <div class="eyebrow mb-3">Teacher controls</div>
-        <h2 class="text-xl font-bold mb-3">Keep access organized</h2>
-        <p class="text-xs leading-6">Schools can define classroom counts, estimated student seats, and the teacher or administrator who owns the rollout.</p>
+      <article class="panel panel-interactive p-8 reveal">
+        <div class="eyebrow mb-4">Data Vetting</div>
+        <h2 class="text-base font-bold mb-2 text-white">Administrative Guardrails</h2>
+        <p class="text-xs leading-6 text-zinc-400 font-normal">Command full sovereignty over user seats, base prompt limits, institutional retention filters, and internal transfer records.</p>
       </article>
-      <article class="panel p-6 reveal">
-        <div class="eyebrow mb-3">Discounts</div>
-        <h2 class="text-xl font-bold mb-3">Pricing for education</h2>
-        <p class="text-xs leading-6">Verified schools can request discounted access for AI learning, research, writing, coding, and productivity workflows.</p>
+      <article class="panel panel-interactive p-8 reveal">
+        <div class="eyebrow mb-4">Pricing Paradigm</div>
+        <h2 class="text-base font-bold mb-2 text-white">Subsidized Matrix</h2>
+        <p class="text-xs leading-6 text-zinc-400 font-normal">Leverage custom pricing structures calibrated specifically for high-capacity labs, modern research hubs, and multi-user student networks.</p>
       </article>
     </section>
 
-    <section id="school-gate" class="grid lg:grid-cols-12 gap-8 items-start">
+    <!-- Vetting & Intake Form -->
+    <section id="school-gate" class="grid lg:grid-cols-12 gap-16 items-start">
       <div class="lg:col-span-5 reveal">
-        <div class="eyebrow mb-4">Locked for schools</div>
-        <h2 class="text-3xl font-bold mb-4">Request access with a school email.</h2>
-        <p class="text-sm leading-7">This program is not open public checkout. A school or institution email helps us verify eligibility before applying discounts or creating classrooms.</p>
+        <div class="eyebrow mb-5">Validation Protocol</div>
+        <h2 class="text-2xl md:text-3xl font-bold mb-4 text-white">Connect an authoritative domain.</h2>
+        <p class="text-xs md:text-sm leading-6 text-zinc-400 mb-6 font-normal">
+          To maintain workspace security and eligibility requirements, system setups require validation via official educational networks. Private emails will be discarded.
+        </p>
+        <p class="text-xs text-zinc-500">Infrastructure inquiry? Dial directly into <span class="text-zinc-300 font-mono">sysops@orbitdev.org</span></p>
       </div>
-      <form action="mailto:support@orbitdev.org" method="POST" enctype="text/plain" class="lg:col-span-7 panel p-6 md:p-8 space-y-4 reveal">
-        <input type="hidden" name="_subject" value="Orbit for Schools access request">
-        <div class="grid sm:grid-cols-2 gap-4">
-          <input class="input" name="school_name" required placeholder="School name">
-          <input class="input" name="school_email" type="email" required placeholder="School email address">
-        </div>
-        <div class="grid sm:grid-cols-3 gap-4">
-          <select class="input" name="role" required>
-            <option value="">Your role</option>
-            <option>Teacher</option>
-            <option>School administrator</option>
-            <option>IT coordinator</option>
-            <option>Program lead</option>
-          </select>
-          <input class="input" name="classrooms" type="number" min="1" placeholder="Classrooms">
-          <input class="input" name="students" type="number" min="1" placeholder="Estimated students">
-        </div>
-        <textarea class="input" name="message" rows="5" placeholder="Tell us how your school wants to use Orbit AI."></textarea>
-        <button class="btn btn-primary w-full" type="submit">Request school discount</button>
-        <p class="text-[10px] text-zinc-600 text-center uppercase tracking-wider">School access is reviewed manually by Orbit.</p>
-      </form>
+
+      <div class="lg:col-span-7 panel p-8 md:p-10 reveal">
+        <form id="verificationForm" class="space-y-4">
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="sr-only" for="school_name">Institution Identity</label>
+              <input id="school_name" class="input" name="school_name" required placeholder="Institution Name">
+            </div>
+            <div>
+              <label class="sr-only" for="school_email">Official Academic Email</label>
+              <input id="school_email" class="input" name="school_email" type="email" required placeholder="Official Academic Email">
+            </div>
+          </div>
+          <div class="grid sm:grid-cols-3 gap-4">
+            <div class="select-wrapper">
+              <label class="sr-only" for="role">Your Role</label>
+              <select id="role" class="input select-custom" name="role" required>
+                <option value="" disabled selected>Your Role</option>
+                <option value="educator">Faculty / Instructor</option>
+                <option value="administrator">Academic Admin</option>
+                <option value="it_coordinator">IT / Operations Desk</option>
+                <option value="program_lead">Director / Project Lead</option>
+              </select>
+            </div>
+            <div>
+              <label class="sr-only" for="classrooms_count">Workspaces Required</label>
+              <input id="classrooms_count" class="input" name="classrooms" type="number" min="1" placeholder="Target Workspaces">
+            </div>
+            <div>
+              <label class="sr-only" for="students_count">Estimated Seats</label>
+              <input id="students_count" class="input" name="students" type="number" min="1" placeholder="Expected User Seats">
+            </div>
+          </div>
+          <div>
+            <label class="sr-only" for="use_case">Deployment Intentions</label>
+            <textarea id="use_case" class="input" name="message" rows="4" placeholder="Outline integration intent, operational volume goals, or specific data handling parameters..."></textarea>
+          </div>
+          <button class="btn btn-primary w-full tracking-wider text-xs uppercase font-bold pt-3.5 pb-3.5 mt-2" type="submit">Submit Platform Intake</button>
+          <p class="text-[9px] text-zinc-600 text-center uppercase tracking-[0.25em] font-semibold">All submitted requests face rigorous database screening prior to deployment.</p>
+        </form>
+      </div>
     </section>
   </main>
 
-  <footer class="border-t border-white/[0.06] py-10 text-center text-[10px] text-zinc-600 uppercase tracking-widest">
-    &copy; 2026 Orbit Systems B.V. Schools Program
+  <!-- Footer -->
+  <footer class="border-t border-white/[0.03] py-16 text-center text-[9px] text-zinc-600 uppercase tracking-[0.25em] font-semibold">
+    &copy; 2026 Orbit Systems B.V. &bull; Academic Infrastructure Protocols &bull; Global Operations
   </footer>
 
   <script>
+    // Reveal interaction mechanics
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add("active"); });
-    }, { threshold: 0.05 });
+      entries.forEach((entry) => { 
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active"); 
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.01, rootMargin: "0px 0px -40px 0px" });
+    
     document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
+    // Dynamic submit styling updates
+    document.getElementById('verificationForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = "Processing Verification Link...";
+      
+      setTimeout(() => {
+        btn.style.background = "linear-gradient(180deg, #27272a 0%, #09090b 100%)";
+        btn.style.color = "#a1a1aa";
+        btn.style.borderColor = "rgba(255,255,255,0.05)";
+        btn.textContent = "Intake Transmitted";
+      }, 1400);
+    });
   </script>
   <script src="/site.js" defer></script>
 </body>
