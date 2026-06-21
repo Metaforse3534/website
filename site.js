@@ -89,31 +89,6 @@
     showToast.timer = setTimeout(() => toast.classList.remove("is-visible"), 3200);
   }
 
-  function addDock() {
-    if (document.querySelector(".orbit-dock")) return;
-    const path = location.pathname.toLowerCase();
-    const links = [
-      ["Home", "/"],
-      ["Docs", "/Routes/doc.html"],
-      ["Schools", "/Routes/schools.html"],
-      ["Support", "/Routes/support.html"],
-    ];
-    const dock = document.createElement("nav");
-    dock.className = "orbit-dock";
-    dock.setAttribute("aria-label", "Orbit site navigation");
-    dock.innerHTML = `
-      <a class="orbit-dock__brand" href="/">ORBIT</a>
-      ${links.map(([label, href]) => `<a class="orbit-dock__link" href="${href}" ${path === href.toLowerCase() ? 'aria-current="page"' : ""}>${label}</a>`).join("")}
-      <button class="orbit-dock__link orbit-theme-toggle" type="button" aria-label="Toggle theme">Theme</button>
-      <a class="orbit-dock__link orbit-dock__link--primary" href="${APP_ORIGIN}/auth">Open Orbit</a>
-    `;
-    document.body.appendChild(dock);
-    dock.querySelector(".orbit-theme-toggle").addEventListener("click", () => {
-      const enabled = document.body.classList.toggle("light-mode");
-      localStorage.setItem("orbit-site-theme", enabled ? "light" : "dark");
-    });
-  }
-
   function addProgress() {
     const bar = document.createElement("div");
     bar.className = "orbit-progress";
@@ -152,7 +127,6 @@
   document.addEventListener("DOMContentLoaded", () => {
     if (localStorage.getItem("orbit-site-theme") === "light") document.body.classList.add("light-mode");
     repairLinks();
-    addDock();
     addProgress();
     fixFormsAndActions();
   });
