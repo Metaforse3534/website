@@ -13,6 +13,11 @@
       "permanent": false
     },
     {
+      "source": "/terms",
+      "destination": "/routes/terms",
+      "permanent": true
+    },
+    {
       "source": "/Routes/acceptable-use.html",
       "destination": "/Routes/acceptabe.html",
       "permanent": true
@@ -36,6 +41,12 @@
       "source": "/extension",
       "destination": "/Routes/extension.html",
       "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/routes/terms",
+      "destination": "/Routes/terms.html"
     }
   ]
 }

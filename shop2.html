@@ -6,7 +6,6 @@
     <title>Orbit Shop &mdash; Initialize Your Uplink</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://js.stripe.com/v3/"></script>
     <link rel="icon" type="image/svg+xml" href="Public/favicon.svg" />
     <link rel="shortcut icon" href="Public/favicon.ico" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -191,11 +190,10 @@
                 </div>
 
                 <div class="space-y-1.5">
-                    <label class="block text-[9px] font-mono uppercase tracking-wider text-zinc-500">Payment card</label>
-                    <div id="card-element-wrapper" class="stripe-element-container">
-                        <div id="card-element"></div>
+                    <label class="block text-[9px] font-mono uppercase tracking-wider text-zinc-500">Payment method</label>
+                    <div id="billing-redirect-wrapper" class="stripe-element-container">
+                        <span class="text-[11px] text-zinc-500">Debit and credit card checkout continues securely inside Orbit Billing.</span>
                     </div>
-                    <div id="card-errors" role="alert" class="text-red-400 font-mono text-[10px] tracking-wide mt-1.5 min-h-[14px]"></div>
                 </div>
 
                 <button id="submit" class="w-full py-4 rounded-xl font-mono font-medium uppercase tracking-widest glow-button text-[10px] mt-2">
@@ -234,7 +232,6 @@
 
         const form = document.getElementById('payment-form');
         const submitBtn = document.getElementById('submit');
-        document.getElementById('card-element').innerHTML = '<span class="text-[11px] text-zinc-500">Secure checkout continues inside your Orbit account.</span>';
         submitBtn.textContent = "Continue in Orbit Billing";
         form.addEventListener('submit', (event) => {
             event.preventDefault();

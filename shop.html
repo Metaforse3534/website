@@ -6,7 +6,6 @@
     <title>Orbit Shop &mdash; Initialize Your Uplink</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://js.stripe.com/v3/"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <style>
@@ -171,12 +170,11 @@
 
             <div>
                 <label class="block font-mono text-[10px] text-zinc-500 uppercase tracking-wider mb-2">
-                    Payment card
+                    Payment method
                 </label>
                 <div class="stripe-element-container">
-                    <div id="card-element"></div>
+                    <span class="text-xs text-zinc-500">Debit and credit card checkout continues securely inside Orbit Billing.</span>
                 </div>
-                <div id="card-errors" class="text-red-500 font-mono text-xs mt-2 min-h-[18px]"></div>
             </div>
 
             <button id="submit" class="glow-button w-full py-4 rounded-xl uppercase tracking-widest font-mono text-xs font-bold mt-2">
@@ -204,8 +202,6 @@
     });
 
     const form = document.getElementById("payment-form");
-    const cardElement = document.getElementById("card-element");
-    cardElement.innerHTML = '<span class="text-xs text-zinc-500">Secure checkout continues inside your Orbit account.</span>';
     form.addEventListener("submit", (e) => {
         e.preventDefault();
         window.location.href = "https://app.orbitdev.org/billing";

@@ -74,6 +74,15 @@
     
     .reveal { opacity: 0; transform: translateY(20px); transition: opacity .8s cubic-bezier(0.16, 1, 0.3, 1), transform .8s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, opacity; }
     .reveal.active { opacity: 1; transform: translateY(0); }
+    .data-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+    .data-cell { border: 1px solid var(--border); border-radius: 12px; padding: 16px; background: rgba(255,255,255,0.018); }
+    .data-value { color: #fff; font: 700 20px/1 "Space Grotesk", sans-serif; letter-spacing: -0.03em; }
+    .data-label { margin-top: 8px; color: #71717a; font-size: 11px; line-height: 1.5; }
+    .reference-list a { color: #d4d4d8; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.22); text-underline-offset: 3px; }
+    footer a { color: #71717a; text-decoration: none; transition: color 0.15s ease; }
+    footer a:hover { color: #e4e4e7; }
+    @media (max-width: 768px) { .data-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 520px) { .data-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body class="selection:bg-zinc-800 selection:text-white">
@@ -99,10 +108,10 @@
       <div class="lg:col-span-7">
         <div class="eyebrow mb-5">Institutional Tier</div>
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.08] tracking-tight mb-6 text-white">
-          Secure AI environments built for your classroom.
+          AI workspace deployment for real schools.
         </h1>
         <p class="text-sm md:text-base leading-7 text-zinc-400 max-w-lg font-normal">
-          Provision isolated workspaces, manage multi-student cohorts via unified dashboards, and unlock scalable pricing vectors built exclusively for accredited education structures.
+          Orbit for Schools is designed for verified education domains, class-level workspaces, admin-managed seats, and human-reviewed AI use policies. It supports pilots from a single class through district-wide procurement.
         </p>
         <div class="flex flex-wrap gap-3.5 mt-8">
           <a href="#school-gate" class="btn btn-primary">Request Access Validation</a>
@@ -110,23 +119,23 @@
         </div>
       </div>
       <div class="lg:col-span-5 panel p-8">
-        <div class="eyebrow mb-6">Program Standards</div>
+        <div class="eyebrow mb-6">Deployment Baseline</div>
         <div class="space-y-4 text-xs">
           <div class="flex justify-between items-center border-b border-white/[0.03] pb-3.5">
-            <span class="text-zinc-400 font-medium">Eligibility Network</span>
-            <span class="text-zinc-200 font-mono text-[11px] bg-white/[0.04] border border-white/[0.04] px-2 py-0.5 rounded">Verified Domain</span>
+            <span class="text-zinc-400 font-medium">Account eligibility</span>
+            <span class="text-zinc-200 font-mono text-[11px] bg-white/[0.04] border border-white/[0.04] px-2 py-0.5 rounded">Verified school domain</span>
           </div>
           <div class="flex justify-between items-center border-b border-white/[0.03] pb-3.5">
-            <span class="text-zinc-400 font-medium">Instance Partitioning</span>
-            <span class="text-zinc-300">Isolated Cohorts</span>
+            <span class="text-zinc-400 font-medium">Workspace model</span>
+            <span class="text-zinc-300">Class, cohort, department</span>
           </div>
           <div class="flex justify-between items-center border-b border-white/[0.03] pb-3.5">
-            <span class="text-zinc-400 font-medium">Compliance Auditing</span>
-            <span class="text-zinc-300">FERPA / GDPR Scope</span>
+            <span class="text-zinc-400 font-medium">Privacy review</span>
+            <span class="text-zinc-300">FERPA, COPPA, GDPR checks</span>
           </div>
           <div class="flex justify-between items-center">
-            <span class="text-zinc-400 font-medium">Dedicated Nodes</span>
-            <span class="text-zinc-300">Priority Tier SLA</span>
+            <span class="text-zinc-400 font-medium">Rollout path</span>
+            <span class="text-zinc-300">Pilot, expand, govern</span>
           </div>
         </div>
       </div>
@@ -136,28 +145,60 @@
     <section id="classrooms" class="grid md:grid-cols-3 gap-6 mb-32">
       <article class="panel panel-interactive p-8 reveal">
         <div class="eyebrow mb-4">Partitioned Ops</div>
-        <h2 class="text-base font-bold mb-2 text-white">Targeted Workspaces</h2>
-        <p class="text-xs leading-6 text-zinc-400 font-normal">Spin up unique environment boundaries sorted cleanly by department modules, course tags, or individual structural frameworks.</p>
+        <h2 class="text-base font-bold mb-2 text-white">Class workspaces</h2>
+        <p class="text-xs leading-6 text-zinc-400 font-normal">Create separate spaces for courses, clubs, labs, or departments so student work, prompts, and files stay grouped by learning context.</p>
       </article>
       <article class="panel panel-interactive p-8 reveal">
         <div class="eyebrow mb-4">Data Vetting</div>
-        <h2 class="text-base font-bold mb-2 text-white">Administrative Guardrails</h2>
-        <p class="text-xs leading-6 text-zinc-400 font-normal">Command full sovereignty over user seats, base prompt limits, institutional retention filters, and internal transfer records.</p>
+        <h2 class="text-base font-bold mb-2 text-white">Admin guardrails</h2>
+        <p class="text-xs leading-6 text-zinc-400 font-normal">Manage seat lists, role access, support contacts, and acceptable-use defaults before learners are invited into AI-assisted workflows.</p>
       </article>
       <article class="panel panel-interactive p-8 reveal">
         <div class="eyebrow mb-4">Pricing Paradigm</div>
-        <h2 class="text-base font-bold mb-2 text-white">Subsidized Matrix</h2>
-        <p class="text-xs leading-6 text-zinc-400 font-normal">Leverage custom pricing structures calibrated specifically for high-capacity labs, modern research hubs, and multi-user student networks.</p>
+        <h2 class="text-base font-bold mb-2 text-white">Education pricing</h2>
+        <p class="text-xs leading-6 text-zinc-400 font-normal">Start with a small pilot, then move into custom seat and credit packages for classes, labs, schools, or multi-campus teams.</p>
       </article>
+    </section>
+
+    <section class="mb-32 reveal">
+      <div class="eyebrow mb-5">Real deployment data</div>
+      <h2 class="text-2xl md:text-3xl font-bold mb-4 text-white">What schools usually need before AI rollout.</h2>
+      <p class="text-xs md:text-sm leading-6 text-zinc-400 mb-8 max-w-3xl font-normal">
+        The intake below asks for the same operational details most school AI pilots need: verified domain, user count, workspace count, role ownership, and data handling expectations. Orbit uses those fields to scope a pilot without collecting student records through this public page.
+      </p>
+      <div class="data-grid">
+        <div class="data-cell"><div class="data-value">1-3</div><div class="data-label">recommended pilot classes before broad rollout</div></div>
+        <div class="data-cell"><div class="data-value">25-35</div><div class="data-label">typical classroom seat range for first access groups</div></div>
+        <div class="data-cell"><div class="data-value">4</div><div class="data-label">review lanes: privacy, security, pedagogy, support</div></div>
+        <div class="data-cell"><div class="data-value">0</div><div class="data-label">student records requested in the public intake form</div></div>
+      </div>
+    </section>
+
+    <section class="grid lg:grid-cols-12 gap-6 mb-32 reveal">
+      <div class="lg:col-span-5 panel p-8">
+        <div class="eyebrow mb-4">Privacy reference points</div>
+        <h2 class="text-xl font-bold mb-3 text-white">Built for school review workflows.</h2>
+        <p class="text-xs leading-6 text-zinc-400 font-normal">
+          Orbit does not claim automatic legal compliance for every school. Instead, the schools workflow is shaped around the checks institutions commonly ask for: student record handling, children privacy rules, EU personal data processing, and human-centered AI policy.
+        </p>
+      </div>
+      <div class="lg:col-span-7 panel p-8 reference-list">
+        <ul class="space-y-4 text-xs leading-6 text-zinc-400">
+          <li><a href="https://studentprivacy.ed.gov/ferpa">FERPA</a> is the U.S. student record privacy framework schools often evaluate for education records.</li>
+          <li><a href="https://www.ftc.gov/business-guidance/blog/2020/04/coppa-guidance-ed-tech-companies-schools-during-coronavirus">COPPA guidance for ed tech</a> is relevant when services are used by children under 13 in school contexts.</li>
+          <li><a href="https://commission.europa.eu/law/law-topic/data-protection_en">GDPR</a> is the EU privacy framework for personal data processing, including education deployments in Europe.</li>
+          <li><a href="https://www.unesco.org/en/articles/guidance-generative-ai-education-and-research">UNESCO guidance on generative AI in education</a> emphasizes a human-centered approach and long-term policy planning.</li>
+        </ul>
+      </div>
     </section>
 
     <!-- Vetting & Intake Form -->
     <section id="school-gate" class="grid lg:grid-cols-12 gap-16 items-start">
       <div class="lg:col-span-5 reveal">
         <div class="eyebrow mb-5">Validation Protocol</div>
-        <h2 class="text-2xl md:text-3xl font-bold mb-4 text-white">Connect an authoritative domain.</h2>
+        <h2 class="text-2xl md:text-3xl font-bold mb-4 text-white">Connect an official school domain.</h2>
         <p class="text-xs md:text-sm leading-6 text-zinc-400 mb-6 font-normal">
-          To maintain workspace security and eligibility requirements, system setups require validation via official educational networks. Private emails will be discarded.
+          Use an official institution email so Orbit can separate school pilots from personal accounts. Private emails can still use the public Orbit app, but school workspace setup starts with verified institutional contact details.
         </p>
         <p class="text-xs text-zinc-500">Infrastructure inquiry? Dial directly into <span class="text-zinc-300 font-mono">sysops@orbitdev.org</span></p>
       </div>
@@ -199,15 +240,27 @@
             <textarea id="use_case" class="input" name="message" rows="4" placeholder="Outline integration intent, operational volume goals, or specific data handling parameters..."></textarea>
           </div>
           <button class="btn btn-primary w-full tracking-wider text-xs uppercase font-bold pt-3.5 pb-3.5 mt-2" type="submit">Submit Platform Intake</button>
-          <p class="text-[9px] text-zinc-600 text-center uppercase tracking-[0.25em] font-semibold">All submitted requests face rigorous database screening prior to deployment.</p>
+          <p class="text-[9px] text-zinc-600 text-center uppercase tracking-[0.25em] font-semibold">Do not submit student records or sensitive learner data in this public intake form.</p>
         </form>
       </div>
     </section>
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-white/[0.03] py-16 text-center text-[9px] text-zinc-600 uppercase tracking-[0.25em] font-semibold">
-    &copy; 2026 Orbit Systems B.V. &bull; Academic Infrastructure Protocols &bull; Global Operations
+  <footer class="border-t border-white/[0.03] py-16">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-12 gap-10 text-xs">
+      <div class="md:col-span-4">
+        <div class="font-space text-base font-bold mb-3 tracking-tight">ORBIT AI</div>
+        <p class="text-xs text-zinc-500 leading-relaxed max-w-xs">Orbit Systems B.V. school pilots use verified institutional contact and review-first deployment planning.</p>
+      </div>
+      <div class="md:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-6">
+        <div class="flex flex-col space-y-2.5"><span class="text-zinc-300 font-medium">Resources</span><a href="/">Home</a><a href="/routes/terms">Terms</a><a href="/Routes/schools.html">Schools</a><a href="/Routes/doc.html">Documentation</a><a href="/Routes/blog.html">Blog</a><a href="/Routes/extension.html">Browser Extension</a></div>
+        <div class="flex flex-col space-y-2.5"><span class="text-zinc-300 font-medium">Compliance</span><a href="/Routes/privacy.html">Privacy</a><a href="/Routes/cookies.html">Cookies</a><a href="/Routes/acceptabe.html">Acceptable Use</a><a href="/Routes/rules.html">Orbit Rules</a><a href="/Routes/DEV.html">Developer API</a></div>
+        <div class="flex flex-col space-y-2.5"><span class="text-zinc-300 font-medium">Company</span><a href="/Routes/architects.html">Architects</a><a href="/Routes/Career.html">Careers</a><a href="/Routes/network.html">Network</a><a href="/Routes/Eco.html">Ecosystem</a><a href="/Routes/press.html">Press</a></div>
+        <div class="flex flex-col space-y-2.5"><span class="text-zinc-300 font-medium">Help</span><a href="/Routes/support.html">Support</a><a href="/Routes/core.html">Core</a><a href="/Routes/stage.html">Academy</a><a href="/Routes/prathership.html">Partnership</a><a href="mailto:support@orbitdev.org">Email</a></div>
+      </div>
+    </div>
+    <div class="mt-12 text-center text-[10px] text-zinc-600 tracking-wider">&copy; 2026 Orbit Systems B.V. Academic infrastructure protocols.</div>
   </footer>
 
   <script>

@@ -1,8 +1,8 @@
-﻿(() => {
+(() => {
   const APP_ORIGIN = "https://app.orbitdev.org";
   const routeMap = new Map([
-    ["terms", "/Routes/terms.html"],
-    ["terms of service", "/Routes/terms.html"],
+    ["terms", "/routes/terms"],
+    ["terms of service", "/routes/terms"],
     ["privacy", "/Routes/privacy.html"],
     ["privacy policy", "/Routes/privacy.html"],
     ["privacy regulation", "/Routes/privacy.html"],

@@ -1,35 +1,129 @@
-const express = require('express');
-const app = express();
-require('dotenv').config();
+const fs = require('fs');
+const http = require('http');
+const path = require('path');
 
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
-const stripe = stripeSecretKey ? require('stripe')(stripeSecretKey) : null;
+const rootDir = __dirname;
+const routesDir = path.join(rootDir, 'Routes');
+const port = process.env.PORT || 4242;
 
-app.use(express.static('.'));
-app.use(express.json());
+const contentTypes = {
+  '.css': 'text/css; charset=utf-8',
+  '.gif': 'image/gif',
+  '.html': 'text/html; charset=utf-8',
+  '.ico': 'image/x-icon',
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.js': 'text/javascript; charset=utf-8',
+  '.json': 'application/json; charset=utf-8',
+  '.png': 'image/png',
+  '.svg': 'image/svg+xml',
+  '.webp': 'image/webp',
+};
 
-app.post('/create-payment-intent', async (req, res) => {
-  if (!stripe) {
-    res.status(503).send({ error: 'Billing is handled in Orbit Billing. STRIPE_SECRET_KEY is not configured for this legacy endpoint.' });
+function send(res, status, body, type = 'text/plain; charset=utf-8', headers = {}) {
+  res.writeHead(status, { 'Content-Type': type, ...headers });
+  res.end(body);
+}
+
+function sendFile(res, filePath) {
+  fs.readFile(filePath, (error, body) => {
+    if (error) {
+      sendNotFound(res);
+      return;
+    }
+
+    const ext = path.extname(filePath).toLowerCase();
+    send(res, 200, body, contentTypes[ext] || 'application/octet-stream');
+  });
+}
+
+function sendNotFound(res) {
+  sendFile(res, path.join(rootDir, '404.html'));
+}
+
+function redirect(res, location, permanent = false) {
+  res.writeHead(permanent ? 301 : 302, { Location: location });
+  res.end();
+}
+
+function resolveStaticPath(urlPath) {
+  const decodedPath = decodeURIComponent(urlPath);
+  const safePath = path.normalize(decodedPath).replace(/^(\.\.[/\\])+/, '');
+  const filePath = path.join(rootDir, safePath);
+  const resolvedPath = path.resolve(filePath);
+
+  if (!resolvedPath.startsWith(rootDir)) {
+    return null;
+  }
+
+  if (fs.existsSync(resolvedPath) && fs.statSync(resolvedPath).isFile()) {
+    return resolvedPath;
+  }
+
+  return null;
+}
+
+function resolveRoutePage(pageName) {
+  const requested = pageName.replace(/\.html$/i, '').toLowerCase();
+  const match = fs
+    .readdirSync(routesDir)
+    .find((file) => file.toLowerCase() === `${requested}.html`);
+
+  return match ? path.join(routesDir, match) : null;
+}
+
+const server = http.createServer((req, res) => {
+  const requestUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+
+  if (req.method === 'POST' && requestUrl.pathname === '/create-payment-intent') {
+    send(
+      res,
+      410,
+      JSON.stringify({
+        error: 'Legacy payment intents are disabled. Use Orbit Billing so card details are collected only by Stripe Checkout.',
+        billingUrl: 'https://app.orbitdev.org/billing',
+      }),
+      'application/json; charset=utf-8',
+    );
     return;
   }
 
-  try {
-    // EUR 29.00 mapped out in standard currency cents (2900)
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: 2900,
-      currency: 'eur',
-      automatic_payment_methods: { enabled: true },
-      metadata: { integration_check: 'orbit_pulsar_sub' },
-    });
-
-    res.send({
-      clientSecret: paymentIntent.client_secret,
-    });
-  } catch (err) {
-    res.status(500).send({ error: err.message });
+  if (req.method !== 'GET' && req.method !== 'HEAD') {
+    send(res, 405, 'Method Not Allowed');
+    return;
   }
+
+  if (requestUrl.pathname === '/terms') {
+    redirect(res, '/routes/terms', true);
+    return;
+  }
+
+  if (requestUrl.pathname === '/schools') {
+    redirect(res, '/Routes/schools.html');
+    return;
+  }
+
+  if (requestUrl.pathname === '/support') {
+    redirect(res, '/Routes/support.html');
+    return;
+  }
+
+  if (requestUrl.pathname === '/extension') {
+    redirect(res, '/Routes/extension.html');
+    return;
+  }
+
+  const routeMatch = requestUrl.pathname.match(/^\/routes\/([^/]+)$/i);
+  if (routeMatch) {
+    const routePage = resolveRoutePage(routeMatch[1]);
+    routePage ? sendFile(res, routePage) : sendNotFound(res);
+    return;
+  }
+
+  const staticPath = resolveStaticPath(requestUrl.pathname === '/' ? '/index.html' : requestUrl.pathname);
+  staticPath ? sendFile(res, staticPath) : sendNotFound(res);
 });
 
-const port = process.env.PORT || 4242;
-app.listen(port, () => console.log(`Orbit website server running on port ${port}.`));
+server.listen(port, () => {
+  console.log(`Orbit website server running on port ${port}.`);
+});
