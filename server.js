@@ -3,16 +3,17 @@ const app = express();
 require('dotenv').config();
 
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
-if (!stripeSecretKey) {
-  throw new Error('STRIPE_SECRET_KEY is required to create payment intents.');
-}
-
-const stripe = require('stripe')(stripeSecretKey);
+const stripe = stripeSecretKey ? require('stripe')(stripeSecretKey) : null;
 
 app.use(express.static('.'));
 app.use(express.json());
 
 app.post('/create-payment-intent', async (req, res) => {
+  if (!stripe) {
+    res.status(503).send({ error: 'Billing is handled in Orbit Billing. STRIPE_SECRET_KEY is not configured for this legacy endpoint.' });
+    return;
+  }
+
   try {
     // EUR 29.00 mapped out in standard currency cents (2900)
     const paymentIntent = await stripe.paymentIntents.create({
@@ -31,4 +32,4 @@ app.post('/create-payment-intent', async (req, res) => {
 });
 
 const port = process.env.PORT || 4242;
-app.listen(port, () => console.log(`Matrix gateway running on port ${port}!`));
+app.listen(port, () => console.log(`Orbit website server running on port ${port}.`));

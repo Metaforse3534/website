@@ -1,5 +1,5 @@
 ﻿(() => {
-  const APP_ORIGIN = "https://www.orbitdev.org";
+  const APP_ORIGIN = "https://app.orbitdev.org";
   const routeMap = new Map([
     ["terms", "/Routes/terms.html"],
     ["terms of service", "/Routes/terms.html"],
@@ -8,16 +8,17 @@
     ["privacy regulation", "/Routes/privacy.html"],
     ["cookies", "/Routes/cookies.html"],
     ["cookie policy", "/Routes/cookies.html"],
-    ["cookie policy", "/Routes/cookies.html"],
     ["acceptable use", "/Routes/acceptabe.html"],
     ["orbit rules", "/Routes/rules.html"],
     ["rules", "/Routes/rules.html"],
     ["support", "/Routes/support.html"],
     ["support center", "/Routes/support.html"],
-    ["support", "/Routes/support.html"],
     ["documentation", "/Routes/doc.html"],
     ["docs", "/Routes/doc.html"],
     ["read docs", "/Routes/doc.html"],
+    ["extension", "/Routes/extension.html"],
+    ["browser extension", "/Routes/extension.html"],
+    ["extension pro", "/Routes/extension.html"],
     ["capabilities", "/#capabilities"],
     ["ai models", "/#models"],
     ["open positions", "/Routes/Career.html#positions"],
@@ -26,7 +27,6 @@
     ["network", "/Routes/network.html"],
     ["network topology", "/Routes/network.html"],
     ["partnership map", "/Routes/prathership.html"],
-    ["acceptable use", "/Routes/acceptabe.html"],
     ["view status", "/Routes/network.html"],
     ["join forum", "https://discord.gg/8VcqeZK2"],
     ["orbit academy", "/Routes/stage.html"],
@@ -64,7 +64,9 @@
       if (/^Public\//i.test(rawHref) && location.pathname.toLowerCase().includes("/routes/")) link.setAttribute("href", `../${rawHref}`);
       if (rawHref === "https://start.orbitdev.org/") link.setAttribute("href", "/");
       if (rawHref.startsWith("https://start.orbitdev.org/Routes/")) link.setAttribute("href", rawHref.replace("https://start.orbitdev.org", ""));
-      if (rawHref === "https://www.orbitdev.org/" && /login|join orbit|open orbit|initialize/.test(label)) link.setAttribute("href", `${APP_ORIGIN}/auth`);
+      if ((rawHref === "https://www.orbitdev.org/" || rawHref === "https://app.orbitdev.org/") && /login|join orbit|open orbit|initialize|sign up|start free/.test(label)) link.setAttribute("href", `${APP_ORIGIN}/auth`);
+      if (rawHref === "https://www.orbitdev.org/billing") link.setAttribute("href", `${APP_ORIGIN}/billing`);
+      if (rawHref === "https://www.orbitdev.org/extension") link.setAttribute("href", `${APP_ORIGIN}/extension`);
       if (rawHref === "#" && !mapped) {
         link.classList.add("orbit-broken-link");
         link.addEventListener("click", (event) => {

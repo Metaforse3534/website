@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Real product documentation for Orbit AI version 0.0.16.">
+  <meta name="description" content="Real product documentation for Orbit AI version 0.0.17.">
   <title>Orbit AI Documentation</title>
   <link rel="icon" href="../Public/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -359,7 +359,7 @@ table {
   <div class="layout">
     <aside class="sidebar">
       <a class="brand" href="/"><img src="../Public/web-app-manifest-192x192.png" alt="">Orbit AI</a>
-      <div class="nav-title">Documentation Â· v0.0.16</div>
+      <div class="nav-title">Documentation Â· v0.0.17</div>
       <nav>
         <a href="#overview">Overview</a>
         <a href="#start">Getting started</a>
@@ -379,9 +379,9 @@ table {
       <header class="hero">
         <div class="eyebrow">Real product documentation</div>
         <h1>How Orbit actually works.</h1>
-        <p>This guide documents the features implemented in Orbit AI version 0.0.16. It does not describe a public REST API or promise features that are not present in the app.</p>
-        <div class="meta"><span class="pill">Version 0.0.16</span><span class="pill">Web + Windows desktop</span><span class="pill">Authentication required</span></div>
-        <div class="actions"><a class="button primary" href="https://app.orbitdev.org/">Open Orbit</a><a class="button" href="https://github.com/Metaforse3534/website/raw/main/Orbit-ai-Setup-0.0.16.exe">Download Windows installer</a><a class="button" href="/Routes/rules.html">Read Orbit Rules</a></div>
+        <p>This guide documents the features implemented in Orbit AI version 0.0.17. It describes the web app, Windows desktop app, browser extension, Pro Pulsar, and current public developer API surfaces without promising features that are not present in the app.</p>
+        <div class="meta"><span class="pill">Version 0.0.17</span><span class="pill">Web + Windows desktop</span><span class="pill">Authentication required</span></div>
+        <div class="actions"><a class="button primary" href="https://app.orbitdev.org/">Open Orbit</a><a class="button" href="https://github.com/Metaforse3534/website/raw/main/Orbit-ai-Setup-0.0.17.exe">Download Windows installer</a><a class="button" href="/Routes/rules.html">Read Orbit Rules</a></div>
       </header>
 
       <section id="overview">
@@ -468,9 +468,10 @@ table {
 
       <section id="extension">
         <div class="eyebrow">Browser companion</div><h2>Orbit Extension Pro</h2>
-        <p>Extension Pro is a subscriber-only private download. It connects to a signed-in Orbit browser session and provides page-aware chat, readable page scans, and reviewed form drafting.</p>
-        <ol><li>Activate Extension Pro through Stripe or redeem a Premium code.</li><li>Download and unzip the private release.</li><li>Open <code>chrome://extensions</code> and enable Developer mode.</li><li>Choose Load unpacked and select the extracted folder.</li><li>Press Connect while Orbit is signed in.</li></ol>
-        <p>Form drafting is designed for review. Orbit should not submit sensitive or consequential forms without the user's direct review and approval.</p>
+        <p>Extension Pro connects the signed-in Orbit workspace to the browser. It can scan readable page context, answer questions about the current page, attach selected text to chat, and draft form suggestions for review before anything is used.</p>
+        <div class="actions"><a class="button primary" href="https://app.orbitdev.org/extension">Open Extension Hub</a><a class="button" href="/Routes/extension.html">View public overview</a></div>
+        <ol><li>Open <a href="https://app.orbitdev.org/extension">app.orbitdev.org/extension</a> while signed in.</li><li>Subscribe, redeem eligible Premium access, or manage the existing extension subscription.</li><li>Download the private release link generated for your account.</li><li>Open <code>chrome://extensions</code>, enable Developer mode, and load the unzipped folder.</li><li>Press Connect in the extension popup while Orbit is signed in.</li></ol>
+        <p>Form drafting is review-first. Orbit should not submit sensitive, financial, legal, medical, employment, school, or consequential forms without direct user review and approval.</p>
       </section>
 
       <section id="account">
@@ -499,7 +500,7 @@ table {
           <tr><td><code>/admin</code></td><td>Administration tools.</td><td>Admin only</td></tr>
           <tr><td><code>/privacy</code> Â· <code>/terms</code></td><td>Public legal pages.</td><td>Public</td></tr>
         </tbody></table>
-        <div class="notice"><strong>No public developer API is documented at this time.</strong> Orbit uses internal Supabase functions and database access from the authenticated app. Do not rely on invented endpoints or tokens from older documentation.</div>
+        <div class="notice"><strong>Developer API access is managed inside Orbit.</strong> Use the Developer Dashboard for current keys, limits, and endpoint details instead of relying on older copied examples.</div>
       </section>
     </main>
   </div>

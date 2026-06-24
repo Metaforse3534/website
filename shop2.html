@@ -216,15 +216,6 @@
         toggleBtn.addEventListener('click', () => {
             document.body.classList.toggle('light-mode');
             
-            const isLight = document.body.classList.contains('light-mode');
-            card.update({
-                style: {
-                    base: {
-                        color: isLight ? '#09090b' : '#ffffff',
-                        '::placeholder': { color: isLight ? '#a1a1aa' : '#3f3f46' }
-                    }
-                }
-            });
         });
 
         // Mouse Aura Track Vector Coordinate Mapper
@@ -247,7 +238,7 @@
         submitBtn.textContent = "Continue in Orbit Billing";
         form.addEventListener('submit', (event) => {
             event.preventDefault();
-            window.location.href = "https://www.orbitdev.org/billing";
+            window.location.href = "https://app.orbitdev.org/billing";
         });
     </script>
     <script src="/site.js" defer></script>
