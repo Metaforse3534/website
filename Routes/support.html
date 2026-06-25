@@ -1,551 +1,438 @@
-﻿<!DOCTYPE html>
-<html lang="en" class="scroll-smooth select-none">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Support Protocol // Orbit Systems</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/svg+xml" href="Public/favicon.svg" />
-    <link rel="shortcut icon" href="Public/favicon.ico" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg: #030303;
-            --accent: #6366f1;
-            --panel: rgba(10, 10, 12, 0.45);
-            --border: rgba(255, 255, 255, 0.04);
-            --border-hover: rgba(255, 255, 255, 0.12);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Orbit AI support center for account, billing, desktop app, extension, API, and product help." />
+  <title>Orbit Support Center</title>
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: #a1a1aa;
-            overflow-x: hidden;
-        }
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/svg+xml" href="Public/favicon.svg" />
+  <link rel="shortcut icon" href="Public/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
 
-        h1, h2, h3, .logo-font { 
-            font-family: 'Space Grotesk', sans-serif; 
-            color: #ffffff; 
-        }
+  <style>
+    :root {
+      --bg: #020202;
+      --surface: #0d0d0d;
+      --surface-2: #141414;
+      --border: rgba(255,255,255,.07);
+      --border-strong: rgba(255,255,255,.14);
+      --text: #f4f4f5;
+      --muted: #71717a;
+      --dim: #3f3f46;
+      --green: #10b981;
+      --blue: #8ea2ff;
+      --amber: #f59e0b;
+    }
 
-        .font-mono { font-family: 'JetBrains Mono', monospace; }
+    * { box-sizing: border-box; }
 
-        /* Grain Noise Texture Layer Overlay */
-        .noise {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://grainy-gradients.vercel.app/noise.svg');
-            opacity: 0.012; pointer-events: none; z-index: 99;
-        }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(780px circle at 50% -20%, rgba(255,255,255,.045), transparent 62%),
+        radial-gradient(520px circle at 8% 22%, rgba(142,162,255,.075), transparent 52%),
+        #020202;
+      color: var(--text);
+      font-family: Inter, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
 
-        .glass-panel {
-            background: var(--panel);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--border);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,.012) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.012) 1px, transparent 1px);
+      background-size: 54px 54px;
+      opacity: .24;
+      mask-image: radial-gradient(circle at 50% 18%, black, transparent 72%);
+      -webkit-mask-image: radial-gradient(circle at 50% 18%, black, transparent 72%);
+    }
 
-        .ticket-input {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid var(--border);
-            color: #ffffff;
-            transition: all 0.3s ease;
-        }
-        .ticket-input:focus {
-            border-color: var(--accent);
-            outline: none;
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.08);
-        }
+    body > * { position: relative; z-index: 1; }
+    h1, h2, h3, .font-space { font-family: "Space Grotesk", sans-serif; letter-spacing: -.025em; }
+    .font-mono { font-family: "JetBrains Mono", monospace; }
+    a { text-decoration: none; }
 
-        .status-pill {
-            padding: 2px 10px;
-            border-radius: 20px;
-            font-size: 9px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: bold;
-            background: rgba(34, 197, 94, 0.08);
-            color: #22c55e;
-            border: 1px solid rgba(34, 197, 94, 0.15);
-        }
-
-        /* Subtle Scanline Layer Mesh */
-        .scanline {
-            position: absolute; width: 100%; height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%), 
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-            background-size: 100% 3px, 3px 100%;
-            pointer-events: none; opacity: 0.15;
-        }
-    </style>
-    <link rel="stylesheet" href="/site.css">
-
-<style id="orbit-black-style-override">
-
-/* ============================================================
-   ORBIT BLACK STYLE OVERRIDE
-   Matches the original black Orbit interface: compact, dark,
-   subtle borders, neutral text, minimal glow.
-   ============================================================ */
-:root {
-  --bg: #020202 !important;
-  --surface: #0d0d0d !important;
-  --surface-2: #141414 !important;
-  --panel: rgba(13,13,13,0.72) !important;
-  --panel-solid: #0d0d0d !important;
-  --glass: rgba(13,13,13,0.72) !important;
-  --border: rgba(255,255,255,0.06) !important;
-  --border-hover: rgba(255,255,255,0.12) !important;
-  --line: rgba(255,255,255,0.08) !important;
-  --text: #f4f4f5 !important;
-  --text-main: #f4f4f5 !important;
-  --text-muted: #71717a !important;
-  --muted: #71717a !important;
-  --text-dim: #3f3f46 !important;
-  --accent: #f4f4f5 !important;
-  --accent-glow: rgba(255,255,255,0.025) !important;
-  --primary: #f4f4f5 !important;
-  --primary-hover: #e4e4e7 !important;
-}
-
-html, body {
-  background:
-    radial-gradient(700px circle at 50% -20%, rgba(255,255,255,0.035), transparent 60%),
-    #020202 !important;
-  color: #71717a !important;
-  font-family: 'Inter', sans-serif !important;
-  -webkit-font-smoothing: antialiased;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background:
-    linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
-  background-size: 54px 54px;
-  opacity: .22;
-  mask-image: radial-gradient(circle at 50% 18%, black, transparent 72%);
-  -webkit-mask-image: radial-gradient(circle at 50% 18%, black, transparent 72%);
-}
-
-body > * { position: relative; z-index: 1; }
-
-h1, h2, h3, h4, .font-space, .logo-font {
-  font-family: 'Space Grotesk', sans-serif !important;
-  color: #f4f4f5 !important;
-  letter-spacing: -0.025em;
-}
-
-p, li, span, label {
-  color: inherit;
-}
-
-a { text-decoration: none; }
-
-/* Navigation / headers */
-nav, header {
-  background: rgba(2,2,2,0.76) !important;
-  border-color: rgba(255,255,255,0.06) !important;
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
-}
-
-.nav, .nav-inner, header > div {
-  max-width: 1152px !important;
-}
-
-.nav-links a, .sidebar nav a, .sidebar-link, header a {
-  color: #71717a !important;
-  transition: color .16s ease, background .16s ease, border-color .16s ease;
-}
-
-.nav-links a:hover, .sidebar nav a:hover, .sidebar-link:hover, header a:hover {
-  color: #e4e4e7 !important;
-}
-
-.nav-logo, .brand, .logo, header .font-bold {
-  color: #f4f4f5 !important;
-}
-
-/* Buttons */
-.btn-primary, .btn--primary, .apply-btn, .form-submit, .nav-cta,
-a[href*="auth"], a[href*="billing"].btn-primary, button[type="submit"] {
-  background: #f4f4f5 !important;
-  color: #09090b !important;
-  border: 1px solid #f4f4f5 !important;
-  border-radius: 8px !important;
-  box-shadow: none !important;
-  clip-path: none !important;
-  transition: background .16s ease, transform .16s ease, border-color .16s ease !important;
-}
-
-.btn-primary:hover, .btn--primary:hover, .apply-btn:hover, .form-submit:hover, .nav-cta:hover,
-button[type="submit"]:hover {
-  background: #e4e4e7 !important;
-  transform: translateY(-1px) !important;
-  filter: none !important;
-}
-
-.btn-ghost, .btn--ghost, .btn-outline, .btn-secondary, header a.rounded-lg.border {
-  background: rgba(255,255,255,0.03) !important;
-  color: #a1a1aa !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  border-radius: 8px !important;
-  transition: border-color .16s ease, color .16s ease, background .16s ease, transform .16s ease !important;
-}
-
-.btn-ghost:hover, .btn--ghost:hover, .btn-outline:hover, .btn-secondary:hover, header a.rounded-lg.border:hover {
-  color: #e4e4e7 !important;
-  border-color: rgba(255,255,255,0.14) !important;
-  background: rgba(255,255,255,0.045) !important;
-}
-
-/* Panels / cards */
-.app-panel, .glass-panel, .panel, .bento-card, .card, .notice, .rule, .right-box,
-.job-card, .model-card, .cap-card, .pricing-card, .member-card, .terminal,
-.uptime-card, .app-card, .spend-card, .contact-inner, .team-wrap, .slith-panel,
-.system-tray, .logo-cell, .status-card, .feature-card {
-  background:
-    radial-gradient(ellipse 80% 45% at 50% 0%, rgba(255,255,255,0.026), transparent 65%),
-    #0d0d0d !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  color: #71717a !important;
-  box-shadow: none !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-}
-
-.app-panel:hover, .glass-panel:hover, .panel:hover, .bento-card:hover, .card:hover,
-.rule:hover, .right-box:hover, .job-card:hover, .model-card:hover, .cap-card:hover,
-.pricing-card:hover, .member-card:hover, .logo-cell:hover, .feature-card:hover {
-  border-color: rgba(255,255,255,0.12) !important;
-  background:
-    radial-gradient(ellipse 80% 45% at 50% 0%, rgba(255,255,255,0.04), transparent 65%),
-    #101010 !important;
-  transform: translateY(-1px);
-}
-
-.pricing-wrap, .section-wrap, .team-wrap, .contact-inner {
-  background:
-    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(255,255,255,0.03), transparent 60%),
-    #080808 !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  border-radius: 20px !important;
-}
-
-/* Sections */
-section, .section, header, main > div {
-  border-color: rgba(255,255,255,0.06) !important;
-}
-
-.orbit-section, #pricing, #approach, #team, #story, #contact, #logos {
-  border-color: rgba(255,255,255,0.06) !important;
-  background: transparent !important;
-}
-
-.section-eyebrow, .eyebrow, .nav-title, .orbit-badge, .data-tag, .tag,
-.model-card__badge, .pricing-tier, .logos-label, .hero-badge {
-  color: #a1a1aa !important;
-  background: #18181b !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  border-radius: 6px !important;
-  font-family: 'JetBrains Mono', monospace !important;
-  font-size: 10px !important;
-  font-weight: 700 !important;
-  letter-spacing: .10em !important;
-  text-transform: uppercase !important;
-  padding: 3px 9px !important;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.section-eyebrow, .eyebrow, .nav-title, .logos-label {
-  background: transparent !important;
-  border: 0 !important;
-  padding: 0 !important;
-  color: #52525b !important;
-}
-
-.section-title, .pricing-header h2, .hero h1, h1 {
-  color: #f4f4f5 !important;
-}
-
-.pricing-header p, .hero-sub, .tl-body, .member-bio, .model-card__body,
-.cap-card__body, .pricing-desc, .card p, .notice p, main p, p, li {
-  color: #71717a !important;
-}
-
-/* Pricing exact black tab feel */
-.pricing-grid {
-  gap: 20px !important;
-}
-
-.pricing-card {
-  border-radius: 14px !important;
-  overflow: hidden !important;
-  padding: 0 !important;
-}
-
-.pricing-card-top {
-  padding: 28px 28px 24px !important;
-  border-bottom: 1px solid rgba(255,255,255,0.06) !important;
-}
-
-.pricing-card-bottom {
-  padding: 24px 28px 28px !important;
-}
-
-.pricing-amount {
-  color: #f4f4f5 !important;
-  font-size: 36px !important;
-  font-weight: 700 !important;
-  letter-spacing: -0.03em !important;
-}
-
-.pricing-features {
-  list-style: none !important;
-  padding-left: 0 !important;
-}
-
-.pricing-features li {
-  color: #71717a !important;
-  font-size: 13px !important;
-}
-
-.check { color: #f4f4f5 !important; }
-
-/* Forms / inputs */
-input, textarea, select, .ticket-input {
-  background: #0d0d0d !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  color: #f4f4f5 !important;
-  border-radius: 8px !important;
-  outline: none !important;
-}
-
-input:focus, textarea:focus, select:focus, .ticket-input:focus {
-  border-color: rgba(255,255,255,0.18) !important;
-  box-shadow: none !important;
-}
-
-input::placeholder, textarea::placeholder {
-  color: #3f3f46 !important;
-}
-
-/* Status colors kept subtle */
-.status-pill {
-  background: rgba(16,185,129,0.09) !important;
-  color: #10b981 !important;
-  border: 1px solid rgba(16,185,129,0.18) !important;
-}
-
-.noise {
-  opacity: .012 !important;
-}
-
-.glow-mesh, #hero-glow {
-  background: radial-gradient(800px circle at 50% 0%, rgba(255,255,255,0.035), transparent 60%) !important;
-}
-
-/* Tables/code/docs */
-pre, code, .font-mono {
-  font-family: 'JetBrains Mono', monospace !important;
-}
-
-pre {
-  background: #0d0d0d !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  border-radius: 12px !important;
-  color: #d4d4d8 !important;
-}
-
-table {
-  border-color: rgba(255,255,255,0.06) !important;
-}
-
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: #020202; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.10); border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
-
-@media (max-width: 768px) {
-  .pricing-wrap, .team-wrap, .contact-inner {
-    padding: 32px 22px !important;
-  }
-}
-
-</style>
-
+    .shell { max-width: 1152px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+    .panel {
+      background:
+        radial-gradient(ellipse 80% 45% at 50% 0%, rgba(255,255,255,.028), transparent 68%),
+        var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: none;
+    }
+    .panel-hover { transition: transform .16s ease, border-color .16s ease, background .16s ease; }
+    .panel-hover:hover { transform: translateY(-2px); border-color: var(--border-strong); background: #101010; }
+    .eyebrow {
+      color: #52525b;
+      font: 700 10px/1 "JetBrains Mono", monospace;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 7px;
+      background: #18181b;
+      color: #a1a1aa;
+      padding: 5px 9px;
+      font: 700 10px/1 "JetBrains Mono", monospace;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .dot { width: 6px; height: 6px; border-radius: 999px; background: var(--green); box-shadow: 0 0 18px rgba(16,185,129,.42); }
+    .input {
+      width: 100%;
+      background: #0d0d0d;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 8px;
+      color: #f4f4f5;
+      outline: none;
+      transition: border-color .16s ease, background .16s ease;
+    }
+    .input:focus { border-color: rgba(255,255,255,.2); background: #101010; }
+    .input::placeholder { color: #3f3f46; }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border-radius: 8px;
+      border: 1px solid #f4f4f5;
+      background: #f4f4f5;
+      color: #09090b;
+      font-size: 12px;
+      font-weight: 700;
+      transition: transform .16s ease, background .16s ease;
+    }
+    .btn-primary:hover { transform: translateY(-1px); background: #e4e4e7; }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+      color: #d4d4d8;
+      font-size: 12px;
+      font-weight: 700;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+    }
+    .btn-secondary:hover { transform: translateY(-1px); border-color: rgba(255,255,255,.16); background: rgba(255,255,255,.045); }
+    .support-card[hidden], .faq-item[hidden] { display: none; }
+  </style>
 </head>
-<body class="antialiased selection:bg-indigo-500/30">
-    <div class="noise"></div>
 
-    <nav class="fixed w-full z-50 border-b border-white/[0.03] bg-black/20 backdrop-blur-md">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="index.html" class="logo-font text-sm font-bold tracking-tight uppercase flex items-center gap-2 text-zinc-300">
-                <span class="text-indigo-500">â—‹</span> ORBIT <span class="text-zinc-600 text-[10px] font-mono tracking-widest ml-1">// SUPPORT</span>
-            </a>
-            <div class="flex items-center gap-6">
-                <div class="hidden sm:flex items-center gap-2">
-                    <span class="status-pill font-mono">Systems Live</span>
-                </div>
-                <a href="#ticket" class="bg-zinc-100 text-zinc-950 text-[9px] font-mono font-bold px-4 py-2 rounded-full uppercase tracking-widest hover:bg-indigo-500 hover:text-white transition duration-300 shadow-xl shadow-black/20">Create Ticket</a>
-            </div>
-        </div>
-    </nav>
+<body>
+  <nav class="sticky top-0 z-50 border-b border-white/[.06] bg-black/75 backdrop-blur">
+    <div class="shell h-16 flex items-center justify-between gap-4">
+      <a href="/" class="font-space text-sm font-bold tracking-tight text-zinc-100 flex items-center gap-2">
+        <img src="../Public/web-app-manifest-192x192.png" alt="" class="h-7 w-7 rounded-lg">
+        Orbit <span class="hidden sm:inline font-mono text-[10px] tracking-[.18em] text-zinc-600 uppercase">Support</span>
+      </a>
+      <div class="flex items-center gap-2 sm:gap-3">
+        <a href="/Routes/doc.html" class="hidden sm:inline-flex btn-secondary px-4">Docs</a>
+        <a href="#ticket" class="btn-primary px-4">Open Ticket</a>
+      </div>
+    </div>
+  </nav>
 
-    <main class="max-w-6xl mx-auto px-6 pt-36 pb-24">
-        
-        <header class="max-w-2xl mb-24 md:mb-32">
-            <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6 uppercase leading-none">RESOURCES & <br><span class="text-indigo-500 italic">ASSISTANCE.</span></h1>
-            <p class="text-sm md:text-base text-zinc-500 mb-8 font-light leading-relaxed">Find documentation, get help, or contact a real person from the Orbit team.</p>
-            <div class="relative group">
-                <input type="text" placeholder="Search support articles..." class="ticket-input w-full p-4 rounded-xl pl-12 text-xs">
-                <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600 group-focus-within:text-indigo-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-            </div>
-        </header>
-
-        <div class="grid md:grid-cols-3 gap-4 mb-24 md:mb-32">
-            <div class="glass-panel p-8 rounded-2xl hover:border-zinc-800 group cursor-pointer">
-                <div class="text-indigo-400 mb-6 font-mono text-[9px] tracking-wider">// DOCS_V.01</div>
-                <h3 class="text-xl font-semibold mb-2">Product guides</h3>
-                <p class="text-xs text-zinc-500 leading-relaxed mb-6">Clear guidance for API setup, workflow scaling, and deploying Orbit features.</p>
-                <a href="/Routes/doc.html" class="text-[9px] font-mono uppercase font-medium tracking-widest text-zinc-300 group-hover:text-indigo-400 transition">Read Docs &rarr;</a>
-            </div>
-
-            <div class="glass-panel p-8 rounded-2xl hover:border-zinc-800 group cursor-pointer">
-                <div class="text-indigo-400 mb-6 font-mono text-[9px] tracking-wider">// COMMUNITY</div>
-                <h3 class="text-xl font-semibold mb-2">Community forum</h3>
-                <p class="text-xs text-zinc-500 leading-relaxed mb-6">Discuss workflows, automations, and product questions with other Orbit developers.</p>
-                <a href="https://discord.gg/8VcqeZK2" class="text-[9px] font-mono uppercase font-medium tracking-widest text-zinc-300 group-hover:text-indigo-400 transition">Join Forum &rarr;</a>
-            </div>
-
-            <div class="glass-panel p-8 rounded-2xl hover:border-zinc-800 group cursor-pointer">
-                <div class="text-indigo-400 mb-6 font-mono text-[9px] tracking-wider">// STATUS</div>
-                <h3 class="text-xl font-semibold mb-2">Service health</h3>
-                <p class="text-xs text-zinc-500 leading-relaxed mb-6">Real-time service status for Orbit infrastructure. Current latency: <span class="text-emerald-500 font-mono">14ms</span>.</p>
-                <a href="/Routes/network.html" class="text-[9px] font-mono uppercase font-medium tracking-widest text-zinc-300 group-hover:text-indigo-400 transition">View status &rarr;</a>
-            </div>
+  <main>
+    <section class="shell pt-24 pb-16 md:pt-32 md:pb-24">
+      <div class="grid lg:grid-cols-[1.05fr_.95fr] gap-10 lg:gap-16 items-end">
+        <div>
+          <span class="badge"><span class="dot"></span> Systems Live</span>
+          <h1 class="mt-7 max-w-3xl text-5xl md:text-7xl font-bold leading-[.92] text-zinc-100">Get unstuck faster.</h1>
+          <p class="mt-6 max-w-2xl text-sm md:text-base leading-8 text-zinc-500">Search the common paths, check platform status, or send a ticket with the exact details our team needs to help with Orbit AI, billing, desktop, extension, and developer access.</p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-3">
+            <a href="#ticket" class="btn-primary px-5">Create Support Ticket</a>
+            <a href="mailto:support@orbitdev.org" class="btn-secondary px-5">Email Support</a>
+          </div>
         </div>
 
-        <section id="ticket" class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-start border-t border-white/[0.03] pt-24">
-            <div class="lg:col-span-5 space-y-6">
-                <h2 class="text-3xl md:text-4xl font-bold tracking-tight uppercase leading-none">Open a <br> Support Ticket.</h2>
-                <p class="text-xs md:text-sm text-zinc-500 leading-relaxed max-w-sm">Our support team usually responds within 24-48 hours. Please describe the issue, what you expected, and any steps to reproduce it.</p>
-                
-                <div class="space-y-4 pt-4 max-w-sm">
-                    <div class="flex items-start gap-3">
-                        <div class="w-6 h-6 rounded flex-shrink-0 bg-indigo-500/10 flex items-center justify-center text-indigo-400 font-mono text-[10px] font-semibold">1</div>
-                        <div>
-                            <h4 class="text-zinc-200 text-xs font-semibold">Priority handling</h4>
-                            <p class="text-[11px] text-zinc-500 mt-0.5">Tickets are prioritized by severity and impact.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-3">
-                        <div class="w-6 h-6 rounded flex-shrink-0 bg-indigo-500/10 flex items-center justify-center text-indigo-400 font-mono text-[10px] font-semibold">2</div>
-                        <div>
-                            <h4 class="text-zinc-200 text-xs font-semibold">Secure messages</h4>
-                            <p class="text-[11px] text-zinc-500 mt-0.5">Your support details are sent over secure HTTPS/TLS.</p>
-                        </div>
-                    </div>
-                </div>
+        <div class="panel p-5 md:p-6">
+          <div class="flex items-center justify-between gap-4 border-b border-white/[.06] pb-4">
+            <div>
+              <div class="eyebrow">Support readiness</div>
+              <div class="mt-2 text-lg font-semibold text-zinc-100">Current routing</div>
             </div>
-
-            <div class="lg:col-span-7 glass-panel p-6 md:p-10 rounded-2xl relative overflow-hidden w-full">
-                <div class="scanline"></div>
-                
-                <form id="supportTicket" action="mailto:support@orbitdev.org" method="POST" enctype="text/plain" class="space-y-4 relative z-10">
-                    <input type="hidden" id="caseID" name="case_id" value="">
-                    
-                    <div class="grid sm:grid-cols-2 gap-4">
-                        <div class="space-y-1">
-                            <label class="text-[9px] font-mono uppercase tracking-wider font-semibold text-zinc-500">Your name</label>
-                            <input type="text" name="name" required placeholder="John Doe" class="ticket-input w-full p-3.5 rounded-xl text-xs">
-                        </div>
-                        <div class="space-y-1">
-                            <label class="text-[9px] font-mono uppercase tracking-wider font-semibold text-zinc-500">Urgency</label>
-                            <select name="urgency" class="ticket-input w-full p-3.5 rounded-xl text-xs bg-zinc-950 cursor-pointer">
-                                <option value="low">Low - Question</option>
-                                <option value="med">Medium - Bug report</option>
-                                <option value="high">High - Service is blocked</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="space-y-1">
-                        <label class="text-[9px] font-mono uppercase tracking-wider font-semibold text-zinc-500">Email address</label>
-                        <input type="email" name="email" required placeholder="you@company.com" class="ticket-input w-full p-3.5 rounded-xl text-xs">
-                    </div>
-
-                    <div class="space-y-1">
-                        <label class="text-[9px] font-mono uppercase tracking-wider font-semibold text-zinc-500">Subject</label>
-                        <input type="text" name="subject" required placeholder="e.g. Slow responses in EU-West" class="ticket-input w-full p-3.5 rounded-xl text-xs">
-                    </div>
-
-                    <div class="space-y-1">
-                        <label class="text-[9px] font-mono uppercase tracking-wider font-semibold text-zinc-500">Details</label>
-                        <textarea name="description" rows="4" required placeholder="Share steps to reproduce, relevant details, or error logs..." class="ticket-input w-full p-3.5 rounded-xl text-xs resize-none"></textarea>
-                    </div>
-
-                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-mono font-medium py-4 rounded-xl uppercase text-[10px] tracking-widest transition-all duration-300 shadow-lg shadow-indigo-500/10 mt-2">
-                        Send support ticket
-                    </button>
-                    
-                    <div class="text-[8px] font-mono text-center text-zinc-600 uppercase tracking-widest mt-2">Secure support form</div>
-                </form>
+            <div class="font-mono text-[10px] text-emerald-400">ONLINE</div>
+          </div>
+          <div class="grid grid-cols-3 gap-3 py-5">
+            <div class="rounded-lg border border-white/[.06] bg-white/[.025] p-3">
+              <div class="font-mono text-[10px] text-zinc-600 uppercase">First reply</div>
+              <div class="mt-2 text-xl font-bold text-zinc-100">&lt; 48h</div>
             </div>
-        </section>
-
-    </main>
-
-    <footer class="py-12 border-t border-white/[0.03] bg-black/20">
-        <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-6">
-            <div class="logo-font text-xs font-bold tracking-wider text-zinc-400">ORBIT SYSTEMS B.V.</div>
-            <div class="flex flex-wrap justify-center gap-x-8 gap-y-2 text-[9px] font-mono uppercase tracking-wider font-medium text-zinc-600">
-                <a href="/Routes/privacy.html" class="hover:text-zinc-300 transition">Privacy Policy</a>
-                <a href="/Routes/acceptabe.html" class="hover:text-zinc-300 transition">Acceptable Use</a>
-                <a href="mailto:support@orbitdev.org" class="text-indigo-400 hover:text-indigo-300 transition">support@orbitdev.org</a>
+            <div class="rounded-lg border border-white/[.06] bg-white/[.025] p-3">
+              <div class="font-mono text-[10px] text-zinc-600 uppercase">Critical</div>
+              <div class="mt-2 text-xl font-bold text-zinc-100">Priority</div>
             </div>
+            <div class="rounded-lg border border-white/[.06] bg-white/[.025] p-3">
+              <div class="font-mono text-[10px] text-zinc-600 uppercase">Channel</div>
+              <div class="mt-2 text-xl font-bold text-zinc-100">Email</div>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-4 text-xs">
+              <span class="text-zinc-500">App workspace</span><span class="text-emerald-400 font-mono">nominal</span>
+            </div>
+            <div class="flex items-center justify-between gap-4 text-xs">
+              <span class="text-zinc-500">Desktop installer</span><span class="text-emerald-400 font-mono">available</span>
+            </div>
+            <div class="flex items-center justify-between gap-4 text-xs">
+              <span class="text-zinc-500">Developer API</span><span class="text-zinc-400 font-mono">account gated</span>
+            </div>
+          </div>
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <script>
-        // Generate a random support case ID
-        document.addEventListener('DOMContentLoaded', () => {
-            const randomID = "CASE-ORB" + Math.floor(10000 + Math.random() * 90000);
-            const inputField = document.getElementById('caseID');
-            if (inputField) {
-                inputField.value = randomID;
-                console.log("Support channel opened: " + randomID);
-            }
+    <section class="shell pb-20">
+      <div class="panel p-4 md:p-5">
+        <label for="supportSearch" class="sr-only">Search support topics</label>
+        <input id="supportSearch" class="input px-4 py-4 text-sm" type="search" placeholder="Search account, billing, desktop, extension, API, credits, password..." autocomplete="off">
+      </div>
 
-            const form = document.getElementById('supportTicket');
-            if (form) {
-                form.addEventListener('submit', (event) => {
-                    event.preventDefault();
-                    const data = new FormData(form);
-                    const subject = `[${data.get('case_id')}] ${data.get('subject') || 'Orbit support request'}`;
-                    const body = [
-                        `Case ID: ${data.get('case_id')}`,
-                        `Name: ${data.get('name')}`,
-                        `Email: ${data.get('email')}`,
-                        `Urgency: ${data.get('urgency')}`,
-                        '',
-                        data.get('description')
-                    ].join('\n');
-                    window.location.href = `mailto:support@orbitdev.org?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                });
-            }
+      <div id="supportCards" class="mt-5 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a class="support-card panel panel-hover p-6 group" href="/Routes/doc.html" data-keywords="documentation docs setup getting started files models voice agents">
+          <div class="eyebrow">Docs</div>
+          <h3 class="mt-4 text-xl font-bold text-zinc-100">Product guidance</h3>
+          <p class="mt-3 text-sm leading-7 text-zinc-500">Read implemented features, limits, desktop capabilities, app routes, and usage notes.</p>
+          <div class="mt-6 font-mono text-[10px] uppercase tracking-[.16em] text-zinc-400 group-hover:text-zinc-100">Read docs</div>
+        </a>
+
+        <a class="support-card panel panel-hover p-6 group" href="/Routes/network.html" data-keywords="status outage down uptime latency network service health">
+          <div class="eyebrow">Status</div>
+          <h3 class="mt-4 text-xl font-bold text-zinc-100">Service health</h3>
+          <p class="mt-3 text-sm leading-7 text-zinc-500">Check Orbit network status before filing a service or latency report.</p>
+          <div class="mt-6 font-mono text-[10px] uppercase tracking-[.16em] text-zinc-400 group-hover:text-zinc-100">View status</div>
+        </a>
+
+        <a class="support-card panel panel-hover p-6 group" href="https://app.orbitdev.org/billing" data-keywords="billing invoice credits subscription premium stripe plan refund payment">
+          <div class="eyebrow">Billing</div>
+          <h3 class="mt-4 text-xl font-bold text-zinc-100">Plans and payments</h3>
+          <p class="mt-3 text-sm leading-7 text-zinc-500">Manage credit packs, Premium access, subscriptions, receipts, and payment history.</p>
+          <div class="mt-6 font-mono text-[10px] uppercase tracking-[.16em] text-zinc-400 group-hover:text-zinc-100">Open billing</div>
+        </a>
+
+        <a class="support-card panel panel-hover p-6 group" href="https://app.orbitdev.org/settings" data-keywords="account password mfa 2fa login email profile delete security">
+          <div class="eyebrow">Account</div>
+          <h3 class="mt-4 text-xl font-bold text-zinc-100">Sign-in and security</h3>
+          <p class="mt-3 text-sm leading-7 text-zinc-500">Update your profile, reset password, configure 2FA, redeem model codes, or remove an account.</p>
+          <div class="mt-6 font-mono text-[10px] uppercase tracking-[.16em] text-zinc-400 group-hover:text-zinc-100">Open settings</div>
+        </a>
+
+        <a class="support-card panel panel-hover p-6 group" href="/Routes/extension.html" data-keywords="extension browser chrome popup connect forms page scan install">
+          <div class="eyebrow">Extension</div>
+          <h3 class="mt-4 text-xl font-bold text-zinc-100">Browser companion</h3>
+          <p class="mt-3 text-sm leading-7 text-zinc-500">Install, connect, and troubleshoot the Orbit Extension Pro browser workflow.</p>
+          <div class="mt-6 font-mono text-[10px] uppercase tracking-[.16em] text-zinc-400 group-hover:text-zinc-100">Extension help</div>
+        </a>
+
+        <a class="support-card panel panel-hover p-6 group" href="#ticket" data-topic="Developer API" data-keywords="developer api key limit endpoint rate request token integration">
+          <div class="eyebrow">Developers</div>
+          <h3 class="mt-4 text-xl font-bold text-zinc-100">API access</h3>
+          <p class="mt-3 text-sm leading-7 text-zinc-500">Get help with API keys, account-gated access, rate limits, and integration questions.</p>
+          <div class="mt-6 font-mono text-[10px] uppercase tracking-[.16em] text-zinc-400 group-hover:text-zinc-100">Start ticket</div>
+        </a>
+      </div>
+    </section>
+
+    <section id="ticket" class="shell pb-20 scroll-mt-24">
+      <div class="grid lg:grid-cols-[.82fr_1.18fr] gap-8 lg:gap-12 items-start border-t border-white/[.06] pt-16">
+        <div>
+          <div class="eyebrow">Ticket intake</div>
+          <h2 class="mt-4 text-3xl md:text-5xl font-bold leading-tight text-zinc-100">Send the useful details once.</h2>
+          <p class="mt-5 text-sm leading-7 text-zinc-500">Include the product area, what happened, what you expected, and any screenshots, logs, or case details that will shorten the back-and-forth.</p>
+
+          <div class="mt-8 space-y-4">
+            <div class="flex gap-3">
+              <div class="mt-1 grid h-7 w-7 shrink-0 place-items-center rounded-lg border border-white/[.08] bg-white/[.03] font-mono text-[10px] text-zinc-300">1</div>
+              <div>
+                <h3 class="text-sm font-semibold text-zinc-200">Critical issues first</h3>
+                <p class="mt-1 text-xs leading-6 text-zinc-500">Service blockers, payment lockouts, and security concerns receive the fastest triage.</p>
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <div class="mt-1 grid h-7 w-7 shrink-0 place-items-center rounded-lg border border-white/[.08] bg-white/[.03] font-mono text-[10px] text-zinc-300">2</div>
+              <div>
+                <h3 class="text-sm font-semibold text-zinc-200">Private by default</h3>
+                <p class="mt-1 text-xs leading-6 text-zinc-500">Do not send passwords, private keys, payment card numbers, or sensitive secrets in a ticket.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form id="supportTicket" class="panel p-5 md:p-7 space-y-4" action="mailto:support@orbitdev.org" method="POST" enctype="text/plain">
+          <input type="hidden" id="caseID" name="case_id" value="">
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="eyebrow" for="name">Name</label>
+              <input id="name" name="name" class="input mt-2 px-3 py-3 text-sm" type="text" autocomplete="name" required placeholder="Your name">
+            </div>
+            <div>
+              <label class="eyebrow" for="email">Email</label>
+              <input id="email" name="email" class="input mt-2 px-3 py-3 text-sm" type="email" autocomplete="email" required placeholder="you@company.com">
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="eyebrow" for="topic">Topic</label>
+              <select id="topic" name="topic" class="input mt-2 px-3 py-3 text-sm">
+                <option>Orbit app</option>
+                <option>Account or login</option>
+                <option>Billing or credits</option>
+                <option>Desktop app</option>
+                <option>Browser extension</option>
+                <option>Developer API</option>
+                <option>Security concern</option>
+                <option>Enterprise</option>
+              </select>
+            </div>
+            <div>
+              <label class="eyebrow" for="urgency">Urgency</label>
+              <select id="urgency" name="urgency" class="input mt-2 px-3 py-3 text-sm">
+                <option>Low - question</option>
+                <option>Medium - bug or workflow issue</option>
+                <option>High - blocked from using Orbit</option>
+                <option>Critical - security or service outage</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="eyebrow" for="subject">Subject</label>
+            <input id="subject" name="subject" class="input mt-2 px-3 py-3 text-sm" type="text" required maxlength="160" placeholder="Brief summary">
+          </div>
+
+          <div>
+            <label class="eyebrow" for="description">Details</label>
+            <textarea id="description" name="description" class="input mt-2 min-h-36 px-3 py-3 text-sm resize-y" required placeholder="What happened? What did you expect? Which account, browser, app version, route, or error message is involved?"></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary w-full px-5">Send Support Ticket</button>
+          <p id="caseLabel" class="text-center font-mono text-[10px] uppercase tracking-[.16em] text-zinc-600">Generating case id</p>
+        </form>
+      </div>
+    </section>
+
+    <section class="shell pb-24">
+      <div class="grid lg:grid-cols-[.75fr_1.25fr] gap-8 lg:gap-12 border-t border-white/[.06] pt-16">
+        <div>
+          <div class="eyebrow">FAQ</div>
+          <h2 class="mt-4 text-3xl md:text-4xl font-bold text-zinc-100">Before you send it.</h2>
+        </div>
+        <div id="faqList" class="divide-y divide-white/[.06]">
+          <div class="faq-item py-5" data-keywords="response time ticket reply">
+            <h3 class="font-semibold text-zinc-100">How long does support take?</h3>
+            <p class="mt-2 text-sm leading-7 text-zinc-500">Most tickets receive a first reply within 24 to 48 hours. Critical security or service-blocking issues are triaged first.</p>
+          </div>
+          <div class="faq-item py-5" data-keywords="billing refund credits stripe invoice subscription">
+            <h3 class="font-semibold text-zinc-100">Where do I manage billing?</h3>
+            <p class="mt-2 text-sm leading-7 text-zinc-500">Use Orbit Billing for credit packs, Premium access, extension subscriptions, Stripe receipts, and payment history.</p>
+          </div>
+          <div class="faq-item py-5" data-keywords="desktop installer windows download version">
+            <h3 class="font-semibold text-zinc-100">Where is the Windows installer?</h3>
+            <p class="mt-2 text-sm leading-7 text-zinc-500">The latest public installer linked from this site is Orbit AI 0.0.17. If an installer fails, include Windows version and any error text in your ticket.</p>
+          </div>
+          <div class="faq-item py-5" data-keywords="password login account 2fa mfa email">
+            <h3 class="font-semibold text-zinc-100">I cannot sign in.</h3>
+            <p class="mt-2 text-sm leading-7 text-zinc-500">Try password recovery first. For 2FA or account lockout issues, file a ticket from the same email address used on your Orbit account.</p>
+          </div>
+          <div class="faq-item py-5" data-keywords="api developer key rate limit endpoint access">
+            <h3 class="font-semibold text-zinc-100">How do I get API help?</h3>
+            <p class="mt-2 text-sm leading-7 text-zinc-500">Developer API access is managed inside Orbit. Include your route, request id if available, rate limit details, and whether the issue happens in production or development.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/[.06] py-10">
+    <div class="shell flex flex-col sm:flex-row justify-between gap-6">
+      <div>
+        <div class="font-space text-sm font-bold text-zinc-200">ORBIT SYSTEMS B.V.</div>
+        <p class="mt-2 text-xs text-zinc-600">Support center for Orbit AI products and accounts.</p>
+      </div>
+      <div class="flex flex-wrap gap-x-6 gap-y-2 font-mono text-[10px] uppercase tracking-[.14em] text-zinc-600">
+        <a class="hover:text-zinc-300" href="/Routes/privacy.html">Privacy</a>
+        <a class="hover:text-zinc-300" href="/Routes/acceptabe.html">Acceptable Use</a>
+        <a class="hover:text-zinc-300" href="/Routes/rules.html">Rules</a>
+        <a class="hover:text-zinc-300" href="mailto:support@orbitdev.org">support@orbitdev.org</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const randomID = "CASE-ORB-" + Math.floor(10000 + Math.random() * 90000);
+      const caseInput = document.getElementById("caseID");
+      const caseLabel = document.getElementById("caseLabel");
+      if (caseInput) caseInput.value = randomID;
+      if (caseLabel) caseLabel.textContent = randomID + " ready";
+
+      const topicSelect = document.getElementById("topic");
+      const topicLinks = document.querySelectorAll("[data-topic]");
+      topicLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          if (!topicSelect) return;
+          const targetTopic = link.getAttribute("data-topic");
+          Array.from(topicSelect.options).forEach((option) => {
+            option.selected = option.textContent === targetTopic;
+          });
         });
-    </script>
-    <script src="/site.js" defer></script>
+      });
+
+      const search = document.getElementById("supportSearch");
+      const cards = Array.from(document.querySelectorAll(".support-card"));
+      const faqItems = Array.from(document.querySelectorAll(".faq-item"));
+      if (search) {
+        search.addEventListener("input", () => {
+          const query = search.value.trim().toLowerCase();
+          [...cards, ...faqItems].forEach((item) => {
+            const haystack = `${item.textContent} ${item.dataset.keywords || ""}`.toLowerCase();
+            item.hidden = Boolean(query) && !haystack.includes(query);
+          });
+        });
+      }
+
+      const form = document.getElementById("supportTicket");
+      if (form) {
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const data = new FormData(form);
+          const subject = `[${data.get("case_id")}] ${data.get("topic")} - ${data.get("subject") || "Orbit support request"}`;
+          const body = [
+            `Case ID: ${data.get("case_id")}`,
+            `Name: ${data.get("name")}`,
+            `Email: ${data.get("email")}`,
+            `Topic: ${data.get("topic")}`,
+            `Urgency: ${data.get("urgency")}`,
+            "",
+            "Details:",
+            data.get("description")
+          ].join("\n");
+          window.location.href = `mailto:support@orbitdev.org?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        });
+      }
+    });
+  </script>
+  <script src="/site.js" defer></script>
 </body>
 </html>

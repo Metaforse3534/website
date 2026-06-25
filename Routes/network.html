@@ -1,593 +1,77 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth select-none">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Network | Orbit AI</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/png" href="Public/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="Public/favicon.svg" />
-    <link rel="shortcut icon" href="Public/favicon.ico" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg: #030303;
-            --accent: #6366f1;
-            --glass: rgba(255, 255, 255, 0.015);
-            --border: rgba(255, 255, 255, 0.04);
-            --border-hover: rgba(255, 255, 255, 0.12);
-        }
-
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: var(--bg); 
-            color: #a1a1aa; 
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, .font-space { 
-            font-family: 'Space Grotesk', sans-serif; 
-            color: #ffffff;
-        }
-        
-        .font-mono { font-family: 'JetBrains Mono', monospace; }
-
-        /* Delicate Grain Overlay Layer */
-        .noise {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://grainy-gradients.vercel.app/noise.svg');
-            opacity: 0.012; pointer-events: none; z-index: 99;
-        }
-
-        /* The Sliding Terminal Panel Framework */
-        .slith-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: 90;
-        }
-
-        .slith-panel {
-            position: fixed;
-            right: -460px;
-            top: 0;
-            width: 100%;
-            max-width: 450px;
-            height: 100vh;
-            background: #09090b;
-            border-left: 1px solid var(--border);
-            padding: 3rem 2.5rem;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: 100;
-        }
-
-        /* Panel State Classes toggled via DOM Engine */
-        .system-open .slith-panel { transform: translateX(-460px); }
-        .system-open .slith-overlay { opacity: 1; pointer-events: auto; }
-
-        /* Animated Infrastructure State Indicators */
-        .node-status {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            display: inline-block;
-        }
-        .status-online { background: #22c55e; box-shadow: 0 0 12px rgba(34, 197, 94, 0.5); }
-        .status-sync { background: var(--accent); box-shadow: 0 0 12px rgba(99, 102, 241, 0.5); animation: pulse 2s infinite ease-in-out; }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(0.95); }
-        }
-
-        .nav-link {
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: #71717a;
-            transition: color 0.3s ease;
-        }
-        .nav-link:hover, .nav-link.active { color: #ffffff; }
-
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-    </style>
-    <link rel="stylesheet" href="/site.css">
-
-<style id="orbit-black-style-override">
-
-/* ============================================================
-   ORBIT BLACK STYLE OVERRIDE
-   Matches the original black Orbit interface: compact, dark,
-   subtle borders, neutral text, minimal glow.
-   ============================================================ */
-:root {
-  --bg: #020202 !important;
-  --surface: #0d0d0d !important;
-  --surface-2: #141414 !important;
-  --panel: rgba(13,13,13,0.72) !important;
-  --panel-solid: #0d0d0d !important;
-  --glass: rgba(13,13,13,0.72) !important;
-  --border: rgba(255,255,255,0.06) !important;
-  --border-hover: rgba(255,255,255,0.12) !important;
-  --line: rgba(255,255,255,0.08) !important;
-  --text: #f4f4f5 !important;
-  --text-main: #f4f4f5 !important;
-  --text-muted: #71717a !important;
-  --muted: #71717a !important;
-  --text-dim: #3f3f46 !important;
-  --accent: #f4f4f5 !important;
-  --accent-glow: rgba(255,255,255,0.025) !important;
-  --primary: #f4f4f5 !important;
-  --primary-hover: #e4e4e7 !important;
-}
-
-html, body {
-  background:
-    radial-gradient(700px circle at 50% -20%, rgba(255,255,255,0.035), transparent 60%),
-    #020202 !important;
-  color: #71717a !important;
-  font-family: 'Inter', sans-serif !important;
-  -webkit-font-smoothing: antialiased;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background:
-    linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
-  background-size: 54px 54px;
-  opacity: .22;
-  mask-image: radial-gradient(circle at 50% 18%, black, transparent 72%);
-  -webkit-mask-image: radial-gradient(circle at 50% 18%, black, transparent 72%);
-}
-
-body > * { position: relative; z-index: 1; }
-
-h1, h2, h3, h4, .font-space, .logo-font {
-  font-family: 'Space Grotesk', sans-serif !important;
-  color: #f4f4f5 !important;
-  letter-spacing: -0.025em;
-}
-
-p, li, span, label {
-  color: inherit;
-}
-
-a { text-decoration: none; }
-
-/* Navigation / headers */
-nav, header {
-  background: rgba(2,2,2,0.76) !important;
-  border-color: rgba(255,255,255,0.06) !important;
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
-}
-
-.nav, .nav-inner, header > div {
-  max-width: 1152px !important;
-}
-
-.nav-links a, .sidebar nav a, .sidebar-link, header a {
-  color: #71717a !important;
-  transition: color .16s ease, background .16s ease, border-color .16s ease;
-}
-
-.nav-links a:hover, .sidebar nav a:hover, .sidebar-link:hover, header a:hover {
-  color: #e4e4e7 !important;
-}
-
-.nav-logo, .brand, .logo, header .font-bold {
-  color: #f4f4f5 !important;
-}
-
-/* Buttons */
-.btn-primary, .btn--primary, .apply-btn, .form-submit, .nav-cta,
-a[href*="auth"], a[href*="billing"].btn-primary, button[type="submit"] {
-  background: #f4f4f5 !important;
-  color: #09090b !important;
-  border: 1px solid #f4f4f5 !important;
-  border-radius: 8px !important;
-  box-shadow: none !important;
-  clip-path: none !important;
-  transition: background .16s ease, transform .16s ease, border-color .16s ease !important;
-}
-
-.btn-primary:hover, .btn--primary:hover, .apply-btn:hover, .form-submit:hover, .nav-cta:hover,
-button[type="submit"]:hover {
-  background: #e4e4e7 !important;
-  transform: translateY(-1px) !important;
-  filter: none !important;
-}
-
-.btn-ghost, .btn--ghost, .btn-outline, .btn-secondary, header a.rounded-lg.border {
-  background: rgba(255,255,255,0.03) !important;
-  color: #a1a1aa !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  border-radius: 8px !important;
-  transition: border-color .16s ease, color .16s ease, background .16s ease, transform .16s ease !important;
-}
-
-.btn-ghost:hover, .btn--ghost:hover, .btn-outline:hover, .btn-secondary:hover, header a.rounded-lg.border:hover {
-  color: #e4e4e7 !important;
-  border-color: rgba(255,255,255,0.14) !important;
-  background: rgba(255,255,255,0.045) !important;
-}
-
-/* Panels / cards */
-.app-panel, .glass-panel, .panel, .bento-card, .card, .notice, .rule, .right-box,
-.job-card, .model-card, .cap-card, .pricing-card, .member-card, .terminal,
-.uptime-card, .app-card, .spend-card, .contact-inner, .team-wrap, .slith-panel,
-.system-tray, .logo-cell, .status-card, .feature-card {
-  background:
-    radial-gradient(ellipse 80% 45% at 50% 0%, rgba(255,255,255,0.026), transparent 65%),
-    #0d0d0d !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  color: #71717a !important;
-  box-shadow: none !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-}
-
-.app-panel:hover, .glass-panel:hover, .panel:hover, .bento-card:hover, .card:hover,
-.rule:hover, .right-box:hover, .job-card:hover, .model-card:hover, .cap-card:hover,
-.pricing-card:hover, .member-card:hover, .logo-cell:hover, .feature-card:hover {
-  border-color: rgba(255,255,255,0.12) !important;
-  background:
-    radial-gradient(ellipse 80% 45% at 50% 0%, rgba(255,255,255,0.04), transparent 65%),
-    #101010 !important;
-  transform: translateY(-1px);
-}
-
-.pricing-wrap, .section-wrap, .team-wrap, .contact-inner {
-  background:
-    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(255,255,255,0.03), transparent 60%),
-    #080808 !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  border-radius: 20px !important;
-}
-
-/* Sections */
-section, .section, header, main > div {
-  border-color: rgba(255,255,255,0.06) !important;
-}
-
-.orbit-section, #pricing, #approach, #team, #story, #contact, #logos {
-  border-color: rgba(255,255,255,0.06) !important;
-  background: transparent !important;
-}
-
-.section-eyebrow, .eyebrow, .nav-title, .orbit-badge, .data-tag, .tag,
-.model-card__badge, .pricing-tier, .logos-label, .hero-badge {
-  color: #a1a1aa !important;
-  background: #18181b !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  border-radius: 6px !important;
-  font-family: 'JetBrains Mono', monospace !important;
-  font-size: 10px !important;
-  font-weight: 700 !important;
-  letter-spacing: .10em !important;
-  text-transform: uppercase !important;
-  padding: 3px 9px !important;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.section-eyebrow, .eyebrow, .nav-title, .logos-label {
-  background: transparent !important;
-  border: 0 !important;
-  padding: 0 !important;
-  color: #52525b !important;
-}
-
-.section-title, .pricing-header h2, .hero h1, h1 {
-  color: #f4f4f5 !important;
-}
-
-.pricing-header p, .hero-sub, .tl-body, .member-bio, .model-card__body,
-.cap-card__body, .pricing-desc, .card p, .notice p, main p, p, li {
-  color: #71717a !important;
-}
-
-/* Pricing exact black tab feel */
-.pricing-grid {
-  gap: 20px !important;
-}
-
-.pricing-card {
-  border-radius: 14px !important;
-  overflow: hidden !important;
-  padding: 0 !important;
-}
-
-.pricing-card-top {
-  padding: 28px 28px 24px !important;
-  border-bottom: 1px solid rgba(255,255,255,0.06) !important;
-}
-
-.pricing-card-bottom {
-  padding: 24px 28px 28px !important;
-}
-
-.pricing-amount {
-  color: #f4f4f5 !important;
-  font-size: 36px !important;
-  font-weight: 700 !important;
-  letter-spacing: -0.03em !important;
-}
-
-.pricing-features {
-  list-style: none !important;
-  padding-left: 0 !important;
-}
-
-.pricing-features li {
-  color: #71717a !important;
-  font-size: 13px !important;
-}
-
-.check { color: #f4f4f5 !important; }
-
-/* Forms / inputs */
-input, textarea, select, .ticket-input {
-  background: #0d0d0d !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  color: #f4f4f5 !important;
-  border-radius: 8px !important;
-  outline: none !important;
-}
-
-input:focus, textarea:focus, select:focus, .ticket-input:focus {
-  border-color: rgba(255,255,255,0.18) !important;
-  box-shadow: none !important;
-}
-
-input::placeholder, textarea::placeholder {
-  color: #3f3f46 !important;
-}
-
-/* Status colors kept subtle */
-.status-pill {
-  background: rgba(16,185,129,0.09) !important;
-  color: #10b981 !important;
-  border: 1px solid rgba(16,185,129,0.18) !important;
-}
-
-.noise {
-  opacity: .012 !important;
-}
-
-.glow-mesh, #hero-glow {
-  background: radial-gradient(800px circle at 50% 0%, rgba(255,255,255,0.035), transparent 60%) !important;
-}
-
-/* Tables/code/docs */
-pre, code, .font-mono {
-  font-family: 'JetBrains Mono', monospace !important;
-}
-
-pre {
-  background: #0d0d0d !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  border-radius: 12px !important;
-  color: #d4d4d8 !important;
-}
-
-table {
-  border-color: rgba(255,255,255,0.06) !important;
-}
-
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: #020202; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.10); border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
-
-@media (max-width: 768px) {
-  .pricing-wrap, .team-wrap, .contact-inner {
-    padding: 32px 22px !important;
-  }
-}
-
-</style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Orbit AI network status and platform service overview.">
+  <title>Orbit Network Status</title>
+  <link rel="icon" href="../Public/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+  <link rel="stylesheet" href="/Routes/corporate.css">
 </head>
-<body class="antialiased">
-    <div class="noise"></div>
-    <div class="slith-overlay" onclick="toggleSystem()"></div>
+<body>
+  <nav class="site-nav">
+    <div class="shell nav-inner">
+      <a class="brand font-space" href="/"><img src="../Public/web-app-manifest-192x192.png" alt=""><span>Orbit Network</span></a>
+      <div class="nav-links">
+        <a href="/Routes/core.html">Core</a>
+        <a href="/Routes/architects.html">Architects</a>
+        <a class="active" href="/Routes/network.html">Network</a>
+        <a href="/Routes/support.html">Support</a>
+      </div>
+      <a class="btn btn-primary" href="/Routes/support.html">Report Issue</a>
+    </div>
+  </nav>
 
-    <nav class="fixed w-full z-[80] px-6 md:px-12 h-14 flex items-center justify-between border-b border-white/[0.03] backdrop-blur-md bg-black/10">
-        <div class="font-space font-bold text-sm tracking-tight text-zinc-400 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-            ORBIT <span class="text-zinc-500 font-light text-xs font-sans tracking-widest">NETWORK</span>
+  <main>
+    <section class="hero shell">
+      <div class="hero-grid">
+        <div>
+          <span class="pill"><span class="dot"></span> Systems operational</span>
+          <h1>Network status without the drama.</h1>
+          <p class="lead">A public snapshot of Orbit service areas, routing health, and support paths. If something looks wrong from your account, include your region, browser, route, and timestamp in a support ticket.</p>
+          <div class="button-row" style="margin-top:34px">
+            <a class="btn btn-primary" href="/Routes/support.html">Open Support</a>
+            <a class="btn btn-secondary" href="/Routes/doc.html">Read Docs</a>
+          </div>
         </div>
-        
-        <div class="hidden md:flex space-x-10 text-[10px] font-mono font-semibold tracking-wider">
-            <a href="/Routes/core.html" class="nav-link">Core</a>
-            <a href="/Routes/architects.html" class="nav-link">Architects</a>
-            <a href="/Routes/network.html" class="nav-link active">// Grid Mappings</a>
+        <aside class="hero-visual flush">
+          <div style="width:100%">
+            <div class="grid-2">
+              <div class="panel metric"><span class="eyebrow">Uptime</span><div class="value">99.9%</div></div>
+              <div class="panel metric"><span class="eyebrow">Primary</span><div class="value">EU</div></div>
+              <div class="panel metric"><span class="eyebrow">Latency</span><div class="value">14ms</div></div>
+              <div class="panel metric"><span class="eyebrow">State</span><div class="value">Live</div></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-head">
+          <div><span class="eyebrow">Service map</span><h2>Public service health.</h2></div>
+          <p>These are public-facing indicators for the website and Orbit product surfaces. Account-specific billing, login, and entitlement issues should go through Support.</p>
         </div>
-
-        <button onclick="toggleSystem()" class="group flex items-center space-x-3">
-            <span class="nav-link group-hover:text-zinc-200">Terminal Panel</span>
-            <div class="w-6 h-[1px] bg-white/20 group-hover:bg-indigo-500 transition-all duration-300"></div>
-        </button>
-    </nav>
-
-    <aside class="slith-panel flex flex-col justify-between">
-        <div class="space-y-10">
-            <div>
-                <span class="text-[9px] font-mono uppercase tracking-widest text-indigo-400 font-semibold">// Network_Monitor_Live</span>
-                <h2 class="font-space text-2xl font-bold mt-1">Telemetry Metrics</h2>
-            </div>
-
-            <div class="space-y-6">
-                <div>
-                    <span class="text-[9px] font-mono text-zinc-500 uppercase tracking-wider block mb-1">Global throughput</span>
-                    <div class="flex items-baseline space-x-1">
-                        <span id="traffic-val" class="font-space text-4xl font-semibold text-white">1,242</span>
-                        <span class="text-[10px] font-mono text-zinc-600">REQ_PER_SEC</span>
-                    </div>
-                </div>
-
-                <div class="pt-6 border-t border-white/[0.04]">
-                    <span class="text-[9px] font-mono text-zinc-500 uppercase tracking-wider block mb-3">Live service logs</span>
-                    <div id="console-log" class="font-mono text-[10px] text-zinc-500 space-y-1.5 h-64 overflow-hidden bg-black/30 p-3 rounded border border-white/[0.02]">
-                        <p class="text-indigo-400 font-semibold">> Service monitoring is connected.</p>
-                    </div>
-                </div>
-            </div>
+        <div class="panel">
+          <div class="status-row"><span class="dot"></span><div><strong>Orbit web workspace</strong><small>Chat, files, history, settings</small></div><code>Operational</code><div class="bar"><span style="width:96%"></span></div></div>
+          <div class="status-row"><span class="dot"></span><div><strong>Desktop installer</strong><small>Windows package delivery</small></div><code>Available</code><div class="bar"><span style="width:92%"></span></div></div>
+          <div class="status-row"><span class="dot blue"></span><div><strong>Developer access</strong><small>Account-gated API surfaces</small></div><code>Gated</code><div class="bar"><span class="blue" style="width:70%"></span></div></div>
+          <div class="status-row"><span class="dot amber"></span><div><strong>External model routing</strong><small>Provider-dependent behavior</small></div><code>Variable</code><div class="bar"><span class="dim" style="width:58%"></span></div></div>
         </div>
+      </div>
+    </section>
 
-        <div class="pt-6 border-t border-white/[0.04] font-mono text-[9px] text-zinc-600 flex justify-between items-center">
-            <span>CLUSTER_REGION: EU-WEST</span>
-            <span id="uptime-clock" class="text-zinc-400 font-semibold">00:00:00</span>
-        </div>
-    </aside>
+    <section class="shell" style="padding-bottom:72px">
+      <div class="panel notice"><strong>Need help?</strong> Include service area, account email, route, browser or app version, timestamp, and a short description of what you expected.</div>
+    </section>
+  </main>
 
-    <main class="pt-36 pb-24 px-6 md:px-12 max-w-5xl mx-auto space-y-12">
-        <div class="space-y-2">
-            <h1 class="font-space text-4xl md:text-5xl font-bold tracking-tight uppercase">MESH GRID INFRASTRUCTURE</h1>
-            <p class="text-zinc-500 text-xs md:text-sm font-light">Real-time routing, latency, and service status.</p>
-        </div>
-
-        <div class="grid gap-px bg-white/[0.04] border border-white/[0.04] rounded overflow-hidden shadow-2xl shadow-black/50">
-            
-            <div class="bg-zinc-950/40 p-6 flex flex-col sm:flex-row gap-4 sm:gap-0 sm:items-center justify-between group hover:bg-white/[0.015] transition-all duration-300">
-                <div class="flex items-center space-x-4">
-                    <div class="node-status status-online flex-shrink-0"></div>
-                    <div>
-                        <span class="font-space font-medium text-white tracking-tight block">Amsterdam-IX</span>
-                        <span class="text-[9px] font-mono text-zinc-600 uppercase tracking-wider">Primary System Node Ingestion Hub</span>
-                    </div>
-                </div>
-                <div class="flex space-x-8 items-center justify-between sm:justify-end">
-                    <div class="text-left sm:text-right">
-                        <span class="text-[9px] font-mono text-zinc-600 uppercase block tracking-wider">Interface Latency</span>
-                        <span class="font-mono text-xs text-emerald-500 font-medium">4ms</span>
-                    </div>
-                    <div class="w-24 h-[2px] bg-white/[0.03] rounded-full overflow-hidden">
-                        <div class="bg-indigo-500 h-full w-2/3"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-zinc-950/40 p-6 flex flex-col sm:flex-row gap-4 sm:gap-0 sm:items-center justify-between group hover:bg-white/[0.015] transition-all duration-300">
-                <div class="flex items-center space-x-4">
-                    <div class="node-status status-sync flex-shrink-0"></div>
-                    <div>
-                        <span class="font-space font-medium text-white tracking-tight block">Frankfurt-Node</span>
-                        <span class="text-[9px] font-mono text-zinc-600 uppercase tracking-wider">AI compute sync</span>
-                    </div>
-                </div>
-                <div class="flex space-x-8 items-center justify-between sm:justify-end">
-                    <div class="text-left sm:text-right">
-                        <span class="text-[9px] font-mono text-zinc-600 uppercase block tracking-wider">Interface Latency</span>
-                        <span class="font-mono text-xs text-indigo-400 font-medium">12ms</span>
-                    </div>
-                    <div class="w-24 h-[2px] bg-white/[0.03] rounded-full overflow-hidden">
-                        <div class="bg-indigo-500 h-full w-1/2"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-zinc-950/40 p-6 flex flex-col sm:flex-row gap-4 sm:gap-0 sm:items-center justify-between group hover:bg-white/[0.015] transition-all duration-300">
-                <div class="flex items-center space-x-4">
-                    <div class="node-status bg-zinc-800 flex-shrink-0"></div>
-                    <div class="opacity-40">
-                        <span class="font-space font-medium text-white tracking-tight block">New York-Nexus</span>
-                        <span class="text-[9px] font-mono text-zinc-600 uppercase tracking-wider">Standby Cluster Backup Vector</span>
-                    </div>
-                </div>
-                <div class="flex space-x-8 items-center justify-between sm:justify-end opacity-20">
-                    <div class="text-left sm:text-right">
-                        <span class="text-[9px] font-mono text-zinc-600 uppercase block tracking-wider">Interface Latency</span>
-                        <span class="font-mono text-xs text-zinc-400 font-medium">--</span>
-                    </div>
-                    <div class="w-24 h-[2px] bg-white/[0.03] rounded-full"></div>
-                </div>
-            </div>
-            
-        </div>
-    </main>
-
-    <footer class="py-12 border-t border-white/[0.03] bg-black/10">
-        <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-center">
-            <div class="text-left space-y-1">
-                <div class="font-space text-xs font-bold tracking-wider text-zinc-400">ORBIT SYSTEMS B.V.</div>
-                <p class="text-[10px] text-zinc-600 font-light leading-normal">Registered in the Netherlands and operating under applicable regional rules.</p>
-            </div>
-            <div class="flex flex-wrap gap-x-6 gap-y-2 md:justify-end text-[9px] uppercase tracking-wider font-mono font-medium text-zinc-500">
-                <a href="/routes/terms" class="hover:text-zinc-300 transition">Terms</a>
-                <a href="/Routes/acceptabe.html" class="hover:text-zinc-300 transition">Acceptable Use</a>
-                <a href="/Routes/privacy.html" class="hover:text-zinc-300 transition">Privacy</a>
-                <a href="/Routes/cookies.html" class="hover:text-zinc-300 transition">Cookies</a>
-                <a href="/Routes/support.html" class="text-indigo-400 hover:text-indigo-300 transition font-semibold">Support &rarr;</a>
-            </div>
-        </div>
-        <div class="mt-8 text-center text-[9px] text-zinc-700 font-mono uppercase tracking-widest">&copy; 2026 Orbit Systems</div>
-    </footer>
-
-    <script>
-        function toggleSystem() {
-            document.body.classList.toggle('system-open');
-        }
-
-        // Live Real-Time Data Automation Engine
-        function simulateData() {
-            // 1. Process Traffic Metric Variances cleanly avoiding string formatting errors
-            const traffic = document.getElementById('traffic-val');
-            setInterval(() => {
-                const change = Math.floor(Math.random() * 20) - 10;
-                let current = parseInt(traffic.innerText.replace(/,/g, ''), 10);
-                if (!isNaN(current)) {
-                    traffic.innerText = (current + change).toLocaleString();
-                }
-            }, 2000);
-
-            // 2. Continuous Console Node Log Stream Ingestion
-            const logs = [
-                "Secure request received from region: NL-AMS",
-                "Optimizing logic validation gates at address offset 0x42F",
-                "Routing network sequence load packet through Frankfurt relays",
-                "Monitoring channels are stable",
-                "Running automated system health checks...",
-                "Cryptographic transport session keys rotated successfully"
-            ];
-            const consoleBox = document.getElementById('console-log');
-            setInterval(() => {
-                const p = document.createElement('p');
-                p.innerText = `> ${logs[Math.floor(Math.random() * logs.length)]}`;
-                p.className = "text-zinc-500 transition-all duration-300";
-                consoleBox.prepend(p);
-                if (consoleBox.children.length > 10) consoleBox.lastChild.remove();
-            }, 3000);
-
-            // 3. Absolute Precision System Uptime Clock Execution
-            let seconds = 0;
-            const clock = document.getElementById('uptime-clock');
-            setInterval(() => {
-                seconds++;
-                let h = Math.floor(seconds / 3600).toString().padStart(2, '0');
-                let m = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
-                let s = (seconds % 60).toString().padStart(2, '0');
-                clock.innerText = `${h}:${m}:${s}`;
-            }, 1000);
-        }
-
-        window.onload = simulateData;
-    </script>
-    <script src="/site.js" defer></script>
+  <footer class="footer">
+    <div class="shell"><span>Orbit Network Status.</span><div class="footer-links"><a href="/Routes/privacy.html">Privacy</a><a href="/Routes/support.html">Support</a></div></div>
+  </footer>
 </body>
 </html>

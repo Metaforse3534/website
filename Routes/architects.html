@@ -1,596 +1,79 @@
-﻿<!DOCTYPE html>
-<html lang="en" class="scroll-smooth select-none">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Architects & Systems &mdash; Orbit AI</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/png" href="Public/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="Public/favicon.svg" />
-    <link rel="shortcut icon" href="Public/favicon.ico" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg: #050505;
-            --panel: rgba(13, 13, 13, 0.7);
-            --panel-solid: #09090b;
-            --text-main: #ffffff;
-            --text-muted: #71717a;
-            --border: rgba(255, 255, 255, 0.04);
-            --border-hover: rgba(255, 255, 255, 0.12);
-        }
-
-        .light-mode {
-            --bg: #fafafa;
-            --panel: rgba(244, 244, 245, 0.7);
-            --panel-solid: #f4f4f5;
-            --text-main: #09090b;
-            --text-muted: #71717a;
-            --border: rgba(0, 0, 0, 0.06);
-            --border-hover: rgba(0, 0, 0, 0.15);
-        }
-
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: var(--bg); 
-            color: var(--text-muted); 
-            transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, .font-space { 
-            font-family: 'Space Grotesk', sans-serif; 
-            color: var(--text-main);
-        }
-        
-        .font-mono { font-family: 'JetBrains Mono', monospace; }
-
-        .noise {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://grainy-gradients.vercel.app/noise.svg');
-            opacity: 0.015; pointer-events: none; z-index: 99;
-        }
-
-        /* Clean System Slide Drawer Tray */
-        .system-tray {
-            position: fixed; right: -420px; top: 0;
-            width: 420px; height: 100vh;
-            background: var(--panel-solid);
-            border-left: 1px solid var(--border);
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: 100;
-        }
-
-        .system-tray.open { transform: translateX(-420px); }
-
-        .tray-toggle {
-            position: absolute; left: -32px; top: 50%;
-            transform: translateY(-50%);
-            background: var(--panel-solid);
-            border: 1px solid var(--border);
-            border-right: none;
-            width: 32px; height: 90px;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer;
-            border-radius: 4px 0 0 4px;
-        }
-
-        /* Minimal Design System Data Tags */
-        .data-tag {
-            font-size: 8px;
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            padding: 2px 8px;
-            background: var(--border);
-            border: 1px solid var(--border-hover);
-            color: var(--text-main);
-            border-radius: 2px;
-        }
-
-        /* Dynamic Scroll Reveal Mechanics */
-        .scroll-reveal { opacity: 0; transform: translateY(16px); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-        .scroll-reveal.visible { opacity: 1; transform: translateY(0); }
-
-        /* Clean Platform Grid Cells */
-        .row-cell {
-            background: var(--panel);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--border);
-        }
-
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-    </style>
-    <link rel="stylesheet" href="/site.css">
-
-<style id="orbit-black-style-override">
-
-/* ============================================================
-   ORBIT BLACK STYLE OVERRIDE
-   Matches the original black Orbit interface: compact, dark,
-   subtle borders, neutral text, minimal glow.
-   ============================================================ */
-:root {
-  --bg: #020202 !important;
-  --surface: #0d0d0d !important;
-  --surface-2: #141414 !important;
-  --panel: rgba(13,13,13,0.72) !important;
-  --panel-solid: #0d0d0d !important;
-  --glass: rgba(13,13,13,0.72) !important;
-  --border: rgba(255,255,255,0.06) !important;
-  --border-hover: rgba(255,255,255,0.12) !important;
-  --line: rgba(255,255,255,0.08) !important;
-  --text: #f4f4f5 !important;
-  --text-main: #f4f4f5 !important;
-  --text-muted: #71717a !important;
-  --muted: #71717a !important;
-  --text-dim: #3f3f46 !important;
-  --accent: #f4f4f5 !important;
-  --accent-glow: rgba(255,255,255,0.025) !important;
-  --primary: #f4f4f5 !important;
-  --primary-hover: #e4e4e7 !important;
-}
-
-html, body {
-  background:
-    radial-gradient(700px circle at 50% -20%, rgba(255,255,255,0.035), transparent 60%),
-    #020202 !important;
-  color: #71717a !important;
-  font-family: 'Inter', sans-serif !important;
-  -webkit-font-smoothing: antialiased;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background:
-    linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
-  background-size: 54px 54px;
-  opacity: .22;
-  mask-image: radial-gradient(circle at 50% 18%, black, transparent 72%);
-  -webkit-mask-image: radial-gradient(circle at 50% 18%, black, transparent 72%);
-}
-
-body > * { position: relative; z-index: 1; }
-
-h1, h2, h3, h4, .font-space, .logo-font {
-  font-family: 'Space Grotesk', sans-serif !important;
-  color: #f4f4f5 !important;
-  letter-spacing: -0.025em;
-}
-
-p, li, span, label {
-  color: inherit;
-}
-
-a { text-decoration: none; }
-
-/* Navigation / headers */
-nav, header {
-  background: rgba(2,2,2,0.76) !important;
-  border-color: rgba(255,255,255,0.06) !important;
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
-}
-
-.nav, .nav-inner, header > div {
-  max-width: 1152px !important;
-}
-
-.nav-links a, .sidebar nav a, .sidebar-link, header a {
-  color: #71717a !important;
-  transition: color .16s ease, background .16s ease, border-color .16s ease;
-}
-
-.nav-links a:hover, .sidebar nav a:hover, .sidebar-link:hover, header a:hover {
-  color: #e4e4e7 !important;
-}
-
-.nav-logo, .brand, .logo, header .font-bold {
-  color: #f4f4f5 !important;
-}
-
-/* Buttons */
-.btn-primary, .btn--primary, .apply-btn, .form-submit, .nav-cta,
-a[href*="auth"], a[href*="billing"].btn-primary, button[type="submit"] {
-  background: #f4f4f5 !important;
-  color: #09090b !important;
-  border: 1px solid #f4f4f5 !important;
-  border-radius: 8px !important;
-  box-shadow: none !important;
-  clip-path: none !important;
-  transition: background .16s ease, transform .16s ease, border-color .16s ease !important;
-}
-
-.btn-primary:hover, .btn--primary:hover, .apply-btn:hover, .form-submit:hover, .nav-cta:hover,
-button[type="submit"]:hover {
-  background: #e4e4e7 !important;
-  transform: translateY(-1px) !important;
-  filter: none !important;
-}
-
-.btn-ghost, .btn--ghost, .btn-outline, .btn-secondary, header a.rounded-lg.border {
-  background: rgba(255,255,255,0.03) !important;
-  color: #a1a1aa !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  border-radius: 8px !important;
-  transition: border-color .16s ease, color .16s ease, background .16s ease, transform .16s ease !important;
-}
-
-.btn-ghost:hover, .btn--ghost:hover, .btn-outline:hover, .btn-secondary:hover, header a.rounded-lg.border:hover {
-  color: #e4e4e7 !important;
-  border-color: rgba(255,255,255,0.14) !important;
-  background: rgba(255,255,255,0.045) !important;
-}
-
-/* Panels / cards */
-.app-panel, .glass-panel, .panel, .bento-card, .card, .notice, .rule, .right-box,
-.job-card, .model-card, .cap-card, .pricing-card, .member-card, .terminal,
-.uptime-card, .app-card, .spend-card, .contact-inner, .team-wrap, .slith-panel,
-.system-tray, .logo-cell, .status-card, .feature-card {
-  background:
-    radial-gradient(ellipse 80% 45% at 50% 0%, rgba(255,255,255,0.026), transparent 65%),
-    #0d0d0d !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  color: #71717a !important;
-  box-shadow: none !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-}
-
-.app-panel:hover, .glass-panel:hover, .panel:hover, .bento-card:hover, .card:hover,
-.rule:hover, .right-box:hover, .job-card:hover, .model-card:hover, .cap-card:hover,
-.pricing-card:hover, .member-card:hover, .logo-cell:hover, .feature-card:hover {
-  border-color: rgba(255,255,255,0.12) !important;
-  background:
-    radial-gradient(ellipse 80% 45% at 50% 0%, rgba(255,255,255,0.04), transparent 65%),
-    #101010 !important;
-  transform: translateY(-1px);
-}
-
-.pricing-wrap, .section-wrap, .team-wrap, .contact-inner {
-  background:
-    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(255,255,255,0.03), transparent 60%),
-    #080808 !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  border-radius: 20px !important;
-}
-
-/* Sections */
-section, .section, header, main > div {
-  border-color: rgba(255,255,255,0.06) !important;
-}
-
-.orbit-section, #pricing, #approach, #team, #story, #contact, #logos {
-  border-color: rgba(255,255,255,0.06) !important;
-  background: transparent !important;
-}
-
-.section-eyebrow, .eyebrow, .nav-title, .orbit-badge, .data-tag, .tag,
-.model-card__badge, .pricing-tier, .logos-label, .hero-badge {
-  color: #a1a1aa !important;
-  background: #18181b !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  border-radius: 6px !important;
-  font-family: 'JetBrains Mono', monospace !important;
-  font-size: 10px !important;
-  font-weight: 700 !important;
-  letter-spacing: .10em !important;
-  text-transform: uppercase !important;
-  padding: 3px 9px !important;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.section-eyebrow, .eyebrow, .nav-title, .logos-label {
-  background: transparent !important;
-  border: 0 !important;
-  padding: 0 !important;
-  color: #52525b !important;
-}
-
-.section-title, .pricing-header h2, .hero h1, h1 {
-  color: #f4f4f5 !important;
-}
-
-.pricing-header p, .hero-sub, .tl-body, .member-bio, .model-card__body,
-.cap-card__body, .pricing-desc, .card p, .notice p, main p, p, li {
-  color: #71717a !important;
-}
-
-/* Pricing exact black tab feel */
-.pricing-grid {
-  gap: 20px !important;
-}
-
-.pricing-card {
-  border-radius: 14px !important;
-  overflow: hidden !important;
-  padding: 0 !important;
-}
-
-.pricing-card-top {
-  padding: 28px 28px 24px !important;
-  border-bottom: 1px solid rgba(255,255,255,0.06) !important;
-}
-
-.pricing-card-bottom {
-  padding: 24px 28px 28px !important;
-}
-
-.pricing-amount {
-  color: #f4f4f5 !important;
-  font-size: 36px !important;
-  font-weight: 700 !important;
-  letter-spacing: -0.03em !important;
-}
-
-.pricing-features {
-  list-style: none !important;
-  padding-left: 0 !important;
-}
-
-.pricing-features li {
-  color: #71717a !important;
-  font-size: 13px !important;
-}
-
-.check { color: #f4f4f5 !important; }
-
-/* Forms / inputs */
-input, textarea, select, .ticket-input {
-  background: #0d0d0d !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  color: #f4f4f5 !important;
-  border-radius: 8px !important;
-  outline: none !important;
-}
-
-input:focus, textarea:focus, select:focus, .ticket-input:focus {
-  border-color: rgba(255,255,255,0.18) !important;
-  box-shadow: none !important;
-}
-
-input::placeholder, textarea::placeholder {
-  color: #3f3f46 !important;
-}
-
-/* Status colors kept subtle */
-.status-pill {
-  background: rgba(16,185,129,0.09) !important;
-  color: #10b981 !important;
-  border: 1px solid rgba(16,185,129,0.18) !important;
-}
-
-.noise {
-  opacity: .012 !important;
-}
-
-.glow-mesh, #hero-glow {
-  background: radial-gradient(800px circle at 50% 0%, rgba(255,255,255,0.035), transparent 60%) !important;
-}
-
-/* Tables/code/docs */
-pre, code, .font-mono {
-  font-family: 'JetBrains Mono', monospace !important;
-}
-
-pre {
-  background: #0d0d0d !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  border-radius: 12px !important;
-  color: #d4d4d8 !important;
-}
-
-table {
-  border-color: rgba(255,255,255,0.06) !important;
-}
-
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: #020202; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.10); border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
-
-@media (max-width: 768px) {
-  .pricing-wrap, .team-wrap, .contact-inner {
-    padding: 32px 22px !important;
-  }
-}
-
-</style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Orbit architects and the operating principles behind Orbit AI systems.">
+  <title>Orbit Architects</title>
+  <link rel="icon" href="../Public/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+  <link rel="stylesheet" href="/Routes/corporate.css">
 </head>
-<body class="antialiased">
-    <div class="noise"></div>
+<body>
+  <nav class="site-nav">
+    <div class="shell nav-inner">
+      <a class="brand font-space" href="/"><img src="../Public/web-app-manifest-192x192.png" alt=""><span>Orbit Architects</span></a>
+      <div class="nav-links">
+        <a class="active" href="/Routes/architects.html">Architects</a>
+        <a href="/Routes/network.html">Network</a>
+        <a href="/Routes/Eco.html">Ecosystem</a>
+        <a href="/Routes/support.html">Support</a>
+      </div>
+      <a class="btn btn-primary" href="https://app.orbitdev.org/">Open Orbit</a>
+    </div>
+  </nav>
 
-    <nav class="fixed w-full z-50 px-6 md:px-12 h-14 flex items-center justify-between border-b border-white/[0.03] light-mode:border-black/[0.05] backdrop-blur-md bg-black/10">
-        <div class="font-space font-bold text-sm tracking-tight text-zinc-400 hover:text-white transition duration-150 flex items-center gap-2">
-            ORBIT <span class="text-zinc-500 font-light text-xs font-sans tracking-widest">ARCHITECTS</span>
+  <main>
+    <section class="hero shell">
+      <div class="hero-grid">
+        <div>
+          <span class="pill"><span class="dot blue"></span> System design</span>
+          <h1>Designed by people who ship.</h1>
+          <p class="lead">Orbit's architecture work is practical: keep the product reliable, make powerful features understandable, and build the guardrails that let users move quickly without losing control.</p>
+          <div class="button-row" style="margin-top:34px">
+            <a class="btn btn-primary" href="/Routes/core.html">View Core Map</a>
+            <a class="btn btn-secondary" href="/Routes/doc.html">Read Docs</a>
+          </div>
         </div>
-        
-        <div class="hidden md:flex space-x-8 text-[10px] uppercase tracking-wider font-mono font-semibold text-zinc-500">
-            <a href="core.html" class="hover:text-zinc-300 transition">Platform map</a>
-            <a href="architects.html" class="text-zinc-200 dark:text-zinc-100 light-mode:text-zinc-900">// Architects</a>
-            <a href="network.html" class="hover:text-zinc-300 transition">Network</a>
-            <a href="index.html" class="hover:text-zinc-300 transition">Index</a>
+        <aside class="hero-visual flush">
+          <img src="../Public/ORTEX.png" alt="Orbit architecture visual">
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-head">
+          <div><span class="eyebrow">Operating model</span><h2>Small systems, clear ownership.</h2></div>
+          <p>Orbit is built around visible product surfaces, accountable system boundaries, and reviewable actions. The goal is a platform that feels fast without hiding what it is doing.</p>
         </div>
-
-        <div class="flex items-center space-x-6">
-            <button onclick="toggleTray()" class="text-[10px] font-mono border border-zinc-800 light-mode:border-zinc-300 px-3 py-1.5 rounded hover:border-zinc-400 transition uppercase tracking-wider">
-                System Data
-            </button>
-
-            <div class="h-4 w-px bg-white/[0.05] light-mode:bg-black/[0.1]"></div>
-
-            <button onclick="toggleTheme()" class="p-1 text-zinc-500 hover:text-zinc-300 transition duration-150">
-                <svg id="theme-icon" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
-                </svg>
-            </button>
+        <div class="grid-3">
+          <article class="panel panel-hover card"><h3>Product architecture</h3><p>Shape chat, files, voice, agents, billing, extension, and desktop flows into one coherent workspace.</p></article>
+          <article class="panel panel-hover card"><h3>Safety architecture</h3><p>Keep sensitive actions review-first, especially around browser forms, desktop actions, billing, and account controls.</p></article>
+          <article class="panel panel-hover card"><h3>Delivery architecture</h3><p>Document what exists, ship what works, and keep public pages aligned with the actual app.</p></article>
         </div>
-    </nav>
+      </div>
+    </section>
 
-    <aside id="systemTray" class="system-tray">
-        <div onclick="toggleTray()" class="tray-toggle">
-            <span class="rotate-90 font-mono text-[9px] tracking-widest text-zinc-500">DATA</span>
+    <section class="section">
+      <div class="shell grid-2">
+        <div>
+          <span class="eyebrow">Principles</span>
+          <h2 style="margin-top:14px">What guides the build.</h2>
         </div>
-        <div class="p-8 h-full flex flex-col justify-between">
-            <div>
-                <div class="mb-8">
-                    <span class="text-[9px] uppercase tracking-wider text-zinc-500 font-mono font-semibold">Security Registry</span>
-                    <h2 class="font-space text-lg font-bold">System details</h2>
-                </div>
-                
-                <div class="mb-8">
-                    <p class="text-[9px] text-zinc-500 font-mono uppercase tracking-wider mb-3">// Active User Session</p>
-                    <div class="row-cell p-4 rounded border">
-                        <div class="flex justify-between mb-2">
-                            <span class="text-xs text-zinc-500">Identity:</span>
-                            <span class="text-xs font-mono text-zinc-300 dark:text-zinc-200 light-mode:text-zinc-800">GUEST_USER_042</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-xs text-zinc-500">Access Tier:</span>
-                            <span class="text-xs font-mono text-zinc-400">LEVEL_4_AUTH</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <p class="text-[9px] text-zinc-500 font-mono uppercase tracking-wider mb-3">// Diagnostics</p>
-                    <div class="space-y-2">
-                        <div class="row-cell p-3 rounded flex items-center justify-between group cursor-pointer border">
-                            <span class="text-xs text-zinc-400 group-hover:text-zinc-200 transition">AI builder</span>
-                            <div class="w-1.5 h-1.5 rounded-full bg-zinc-600 group-hover:bg-zinc-400 transition"></div>
-                        </div>
-                        <div class="row-cell p-3 rounded flex items-center justify-between group cursor-pointer border">
-                            <span class="text-xs text-zinc-400 group-hover:text-zinc-200 transition">Pulsar Debugger</span>
-                            <div class="w-1.5 h-1.5 rounded-full bg-zinc-600 group-hover:bg-zinc-400 transition"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pt-6 border-t border-white/[0.04] light-mode:border-black/[0.06] font-mono text-[9px] text-zinc-500 flex justify-between">
-                <span>HEALTH_INDEX: 99.98%</span>
-                <span>SYNC_LATENCY: 14MS</span>
-            </div>
+        <div class="timeline">
+          <div class="timeline-item"><span class="eyebrow">01</span><div><strong>Make the default path obvious.</strong><p>Users should know where to chat, where to manage accounts, where to ask for help, and where to review actions.</p></div></div>
+          <div class="timeline-item"><span class="eyebrow">02</span><div><strong>Separate public claims from live capabilities.</strong><p>Docs and marketing should describe implemented behavior, not wishful feature fog.</p></div></div>
+          <div class="timeline-item"><span class="eyebrow">03</span><div><strong>Prefer systems that can be audited.</strong><p>Agent runs, settings, billing, and support should leave enough context for users and admins to understand what happened.</p></div></div>
         </div>
-    </aside>
+      </div>
+    </section>
+  </main>
 
-    <main class="pt-36 pb-20 px-6 max-w-5xl mx-auto">
-        <header class="mb-24 space-y-4">
-            <h1 class="font-space text-5xl md:text-7xl font-bold tracking-tight leading-none scroll-reveal">
-                The Architects.
-            </h1>
-            <p class="max-w-xl text-zinc-400 text-xs md:text-sm leading-relaxed font-light scroll-reveal" style="transition-delay: 0.1s">
-                Orbit's foundation keeps product systems, internal rules, and deployments aligned so the platform stays reliable as it grows.
-            </p>
-        </header>
-
-        <section class="grid md:grid-cols-2 gap-12 lg:gap-20 max-w-4xl">
-            
-            <div class="scroll-reveal space-y-4" style="transition-delay: 0.2s">
-                <div class="portrait-frame aspect-[4/3] group overflow-hidden rounded bg-zinc-900 border border-white/[0.04] light-mode:border-black/[0.06]">
-                    <img src="https://pbs.twimg.com/media/Fb5usKcVUAAnXSA.jpg" 
-                         class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 hover:scale-[1.02]" alt="Engineering Lead Profile">
-                </div>
-                <div class="space-y-2">
-                    <div class="flex items-center space-x-3">
-                        <span class="data-tag">BUILD_01</span>
-                        <h3 class="font-space text-lg font-bold tracking-tight">System Infrastructure</h3>
-                    </div>
-                    <p class="text-xs text-zinc-500 leading-relaxed font-light">
-                        Builds custom platform components, improves processing speed, and keeps the product stable under real use.
-                    </p>
-                </div>
-            </div>
-
-            <div class="scroll-reveal space-y-4" style="transition-delay: 0.3s">
-                <div class="portrait-frame aspect-[4/3] group overflow-hidden rounded bg-zinc-900 border border-white/[0.04] light-mode:border-black/[0.06]">
-                    <img src="https://pbs.twimg.com/media/Fb5usKcVUAAnXSA.jpg" 
-                         class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 hover:scale-[1.02]" alt="Governance Lead Profile">
-                </div>
-                <div class="space-y-2">
-                    <div class="flex items-center space-x-3">
-                        <span class="data-tag">GOV_02</span>
-                        <h3 class="font-space text-lg font-bold tracking-tight">Strategic Orchestration</h3>
-                    </div>
-                    <p class="text-xs text-zinc-500 leading-relaxed font-light">
-                        Leads product strategy, operating standards, and compliance so Orbit can scale responsibly and securely.
-                    </p>
-                </div>
-            </div>
-
-        </section>
-
-        <div class="mt-24 border-t border-white/[0.04] light-mode:border-black/[0.06] pt-8 max-w-4xl scroll-reveal" style="transition-delay: 0.4s">
-            <p class="font-mono text-[9px] uppercase tracking-widest text-zinc-500 mb-1">// Operational Origin Principles</p>
-            <p class="text-zinc-400 text-xs font-light italic">"Zero extraneous dependencies. Built natively from the hardware layer up."</p>
-        </div>
-    </main>
-
-    <footer class="py-12 border-t border-white/[0.03] light-mode:border-t-black/[0.05] bg-black/10">
-        <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-center">
-            <div class="text-left space-y-1">
-                <div class="font-space text-xs font-bold tracking-wider text-zinc-400">ORBIT SYSTEMS B.V.</div>
-                <p class="text-[10px] text-zinc-600 font-light leading-normal">Registered in the Netherlands and operating under applicable regional rules.</p>
-            </div>
-            <div class="flex flex-wrap gap-x-6 gap-y-2 md:justify-end text-[9px] uppercase tracking-wider font-mono font-medium text-zinc-500">
-                <a href="terms.html" class="hover:text-zinc-300 transition">Terms</a>
-                <a href="/Routes/acceptabe.html" class="hover:text-zinc-300 transition">Acceptable Use</a>
-                <a href="/Routes/privacy.html" class="hover:text-zinc-300 transition">Privacy</a>
-                <a href="cookies.html" class="hover:text-zinc-300 transition">Cookies</a>
-                <a href="support.html" class="hover:text-zinc-300 transition text-zinc-400">Support &rarr;</a>
-            </div>
-        </div>
-        <div class="mt-8 text-center text-[9px] text-zinc-700 font-mono uppercase tracking-widest">&copy; 2026 Orbit Systems</div>
-    </footer>
-
-    <script>
-        function toggleTray() {
-            document.getElementById('systemTray').classList.toggle('open');
-        }
-
-        // Framework Layout Theme Switching Tool
-        function toggleTheme() {
-            const body = document.body;
-            const icon = document.getElementById('theme-icon');
-            body.classList.toggle('light-mode');
-            const isLight = body.classList.contains('light-mode');
-            
-            icon.innerHTML = isLight ? 
-                '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>' : 
-                '<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>';
-            
-            localStorage.setItem('theme', isLight ? 'light' : 'dark');
-        }
-
-        // Intersection Entry Scroll Observer Mechanics
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
-
-        document.querySelectorAll('.scroll-reveal').forEach(el => revealObserver.observe(el));
-
-        window.onload = () => {
-            if (localStorage.getItem('theme') === 'light') toggleTheme();
-        };
-    </script>
-    <script src="/site.js" defer></script>
+  <footer class="footer">
+    <div class="shell"><span>Orbit Systems B.V. Architecture and operating principles.</span><div class="footer-links"><a href="/Routes/privacy.html">Privacy</a><a href="/Routes/support.html">Support</a></div></div>
+  </footer>
 </body>
 </html>

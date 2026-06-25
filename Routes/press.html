@@ -1,403 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Orbit &mdash; Press</title>
-<meta name="description" content="Orbit's official press page. Sort of.">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-
-<style>
-:root{
-    --bg:#020202;
-    --surface:#0d0d0d;
-    --border:rgba(255,255,255,.06);
-    --text:#f4f4f5;
-    --muted:#71717a;
-}
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:'Inter',sans-serif;
-    min-height:100vh;
-    overflow-x:hidden;
-}
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:
-    radial-gradient(circle at 50% 0%, rgba(255,255,255,.04), transparent 50%);
-    pointer-events:none;
-}
-
-nav{
-    position:sticky;
-    top:0;
-    z-index:50;
-    backdrop-filter:blur(12px);
-    background:rgba(2,2,2,.75);
-    border-bottom:1px solid var(--border);
-}
-
-.nav-inner{
-    max-width:1152px;
-    margin:auto;
-    padding:18px 24px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.logo{
-    font-family:'Space Grotesk',sans-serif;
-    font-weight:700;
-    font-size:18px;
-    color:white;
-    text-decoration:none;
-}
-
-.back-link{
-    color:var(--muted);
-    text-decoration:none;
-    font-size:13px;
-}
-
-.back-link:hover{
-    color:white;
-}
-
-.hero{
-    padding:120px 24px;
-}
-
-.hero-inner{
-    max-width:800px;
-    margin:auto;
-    text-align:center;
-}
-
-.orbit-badge{
-    display:inline-block;
-    font-family:monospace;
-    font-size:10px;
-    letter-spacing:.1em;
-    text-transform:uppercase;
-    background:#18181b;
-    color:#a1a1aa;
-    padding:4px 10px;
-    border-radius:6px;
-}
-
-h1{
-    font-family:'Space Grotesk',sans-serif;
-    font-size:clamp(42px,8vw,88px);
-    line-height:1;
-    letter-spacing:-.04em;
-    margin-top:28px;
-}
-
-.hero-sub{
-    margin:28px auto 0;
-    max-width:600px;
-    color:var(--muted);
-    font-size:16px;
-    line-height:1.9;
-}
-
-.cards{
-    max-width:1100px;
-    margin:80px auto;
-    padding:0 24px;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
-}
-
-.card{
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:28px;
-}
-
-.card-title{
-    font-weight:600;
-    margin-bottom:10px;
-}
-
-.card p{
-    color:var(--muted);
-    line-height:1.8;
-    font-size:14px;
-}
-
-.chat-box{
-    max-width:760px;
-    margin:0 auto 80px;
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:18px;
-    overflow:hidden;
-}
-
-.chat-header{
-    padding:18px 24px;
-    border-bottom:1px solid var(--border);
-    font-size:12px;
-    color:var(--muted);
-}
-
-.chat-body{
-    padding:28px;
-}
-
-.msg{
-    margin-bottom:20px;
-}
-
-.msg strong{
-    display:block;
-    margin-bottom:6px;
-}
-
-.msg p{
-    color:var(--muted);
-}
-
-.quote{
-    max-width:900px;
-    margin:120px auto;
-    padding:0 24px;
-    text-align:center;
-}
-
-.quote blockquote{
-    font-family:'Space Grotesk',sans-serif;
-    font-size:clamp(28px,4vw,52px);
-    line-height:1.2;
-    letter-spacing:-.03em;
-}
-
-.quote span{
-    display:block;
-    margin-top:18px;
-    color:var(--muted);
-    font-size:14px;
-}
-
-.faq{
-    max-width:800px;
-    margin:0 auto 120px;
-    padding:0 24px;
-}
-
-.faq-item{
-    padding:24px 0;
-    border-bottom:1px solid var(--border);
-}
-
-.faq-item h3{
-    margin-bottom:10px;
-}
-
-.faq-item p{
-    color:var(--muted);
-    line-height:1.8;
-}
-
-.cta{
-    text-align:center;
-    padding-bottom:120px;
-}
-
-.btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    padding:12px 24px;
-    border-radius:10px;
-    background:white;
-    color:black;
-    text-decoration:none;
-    font-size:14px;
-    font-weight:600;
-}
-
-.btn:hover{
-    opacity:.9;
-}
-
-footer{
-    border-top:1px solid var(--border);
-    padding:40px 24px;
-    text-align:center;
-    color:#52525b;
-    font-size:12px;
-}
-
-@media(max-width:900px){
-    .cards{
-        grid-template-columns:1fr;
-    }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Orbit AI press, company facts, contact information, and media resources.">
+  <title>Orbit Press</title>
+  <link rel="icon" href="../Public/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+  <link rel="stylesheet" href="/Routes/corporate.css">
 </head>
 <body>
-
-<nav>
-    <div class="nav-inner">
-        <a href="/" class="logo">Orbit</a>
-        <a href="/" class="back-link">Back to Orbit</a>
+  <nav class="site-nav">
+    <div class="shell nav-inner">
+      <a class="brand font-space" href="/"><img src="../Public/web-app-manifest-192x192.png" alt=""><span>Orbit Press</span></a>
+      <div class="nav-links">
+        <a href="/Routes/Eco.html">Ecosystem</a>
+        <a href="/Routes/network.html">Network</a>
+        <a class="active" href="/Routes/press.html">Press</a>
+        <a href="/Routes/support.html">Support</a>
+      </div>
+      <a class="btn btn-primary" href="mailto:support@orbitdev.org?subject=Orbit%20press%20inquiry">Contact</a>
     </div>
-</nav>
+  </nav>
 
-<section class="hero">
-    <div class="hero-inner">
-
-        <span class="orbit-badge">// press</span>
-
-        <h1>We don't do press.</h1>
-
-        <p class="hero-sub">
-            Most companies have media kits, press contacts, official statements,
-            and carefully rehearsed interviews.
-            <br><br>
-            We have developers who haven't slept because production broke at 2 AM.
-        </p>
-
-    </div>
-</section>
-
-<section class="cards">
-
-    <div class="card">
-        <div class="card-title">Media Inquiries</div>
-        <p>
-            We appreciate your interest.
-            We are currently busy building Orbit.
-            And fixing Orbit.
-            And accidentally breaking Orbit.
-        </p>
-    </div>
-
-    <div class="card">
-        <div class="card-title">Interviews</div>
-        <p>
-            If you ask for an interview, there is a strong chance someone replies
-            with a Git commit instead.
-        </p>
-    </div>
-
-    <div class="card">
-        <div class="card-title">Press Statements</div>
-        <p>
-            Our official statement is usually:
-            "We shipped an update."
-        </p>
-    </div>
-
-</section>
-
-<div class="chat-box">
-
-    <div class="chat-header">
-        INTERNAL PRESS COMMUNICATION LOG
-    </div>
-
-    <div class="chat-body">
-
-        <div class="msg">
-            <strong>Journalist</strong>
-            <p>Can we schedule an interview?</p>
+  <main>
+    <section class="hero shell">
+      <div class="hero-grid">
+        <div>
+          <span class="pill"><span class="dot amber"></span> Media resources</span>
+          <h1>The short version of Orbit.</h1>
+          <p class="lead">Orbit is an AI workspace for chat, files, voice, agents, desktop actions, browser extension workflows, and developer access. This page keeps the facts easy to quote.</p>
+          <div class="button-row" style="margin-top:34px">
+            <a class="btn btn-primary" href="mailto:support@orbitdev.org?subject=Orbit%20press%20inquiry">Contact Press</a>
+            <a class="btn btn-secondary" href="/Routes/doc.html">Product Docs</a>
+          </div>
         </div>
+        <aside class="hero-visual">
+          <div class="visual-strip" style="background-image:url('../Public/c77246a32e4f54d6f3688f5192d1aa97.png')">
+            <div class="visual-caption"><span class="eyebrow">Official line</span><h3>AI work, routed through one place.</h3><p>Web, desktop, extension, and developer surfaces under one Orbit account.</p></div>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-        <div class="msg">
-            <strong>Orbit</strong>
-            <p>We're deploying.</p>
+    <section class="section">
+      <div class="shell">
+        <div class="section-head">
+          <div><span class="eyebrow">Company facts</span><h2>Useful details first.</h2></div>
+          <p>For interviews, coverage, partnerships, or clarification, send your deadline and the exact information you need. Support routes press inquiries to the right person.</p>
         </div>
-
-        <div class="msg">
-            <strong>Journalist</strong>
-            <p>What about next week?</p>
+        <div class="grid-4">
+          <article class="panel metric"><span class="eyebrow">Company</span><div class="value" style="font-size:24px">Orbit Systems B.V.</div></article>
+          <article class="panel metric"><span class="eyebrow">Product</span><div class="value" style="font-size:30px">Orbit AI</div></article>
+          <article class="panel metric"><span class="eyebrow">Category</span><div class="value" style="font-size:30px">AI Workspace</div></article>
+          <article class="panel metric"><span class="eyebrow">Platform</span><div class="value" style="font-size:30px">Web + Desktop</div></article>
         </div>
+      </div>
+    </section>
 
-        <div class="msg">
-            <strong>Orbit</strong>
-            <p>We'll probably still be deploying.</p>
+    <section class="section">
+      <div class="shell grid-2">
+        <div><span class="eyebrow">Resources</span><h2 style="margin-top:14px">Links for context.</h2></div>
+        <div class="list">
+          <a class="panel panel-hover list-row" href="/Routes/doc.html"><span><strong>Documentation</strong><br><span>Implemented features, app routes, limits, and support notes.</span></span><code>Docs</code></a>
+          <a class="panel panel-hover list-row" href="/Routes/network.html"><span><strong>Network status</strong><br><span>Public service status and platform health context.</span></span><code>Status</code></a>
+          <a class="panel panel-hover list-row" href="/Routes/privacy.html"><span><strong>Privacy policy</strong><br><span>Public legal and privacy information for Orbit users.</span></span><code>Legal</code></a>
         </div>
+      </div>
+    </section>
+  </main>
 
-        <div class="msg">
-            <strong>Journalist</strong>
-            <p>Can we at least get a quote?</p>
-        </div>
-
-        <div class="msg">
-            <strong>Orbit</strong>
-            <p>We thought it would be faster if the computer did it.</p>
-        </div>
-
-    </div>
-
-</div>
-
-<section class="quote">
-
-    <blockquote>
-        “We thought it would be faster if the computer did it.”
-    </blockquote>
-
-    <span>&mdash; Orbit, probably</span>
-
-</section>
-
-<section class="faq">
-
-    <div class="faq-item">
-        <h3>Can I write about Orbit?</h3>
-        <p>Absolutely. We can't stop you.</p>
-    </div>
-
-    <div class="faq-item">
-        <h3>Can I use your logo?</h3>
-        <p>Yes. That's why it's on the website.</p>
-    </div>
-
-    <div class="faq-item">
-        <h3>Who handles media relations?</h3>
-        <p>Currently nobody. Which is technically very efficient.</p>
-    </div>
-
-    <div class="faq-item">
-        <h3>Where is the press kit?</h3>
-        <p>
-            Somewhere between the roadmap,
-            the bug tracker,
-            and the list of things we said we'd do later.
-        </p>
-    </div>
-
-</section>
-
-<div class="cta">
-    <a href="/" class="btn">Return To Reality</a>
-</div>
-
-<footer>
-    Orbit AI &bull; Not a press company.
-</footer>
-
+  <footer class="footer">
+    <div class="shell"><span>Orbit AI press resources.</span><div class="footer-links"><a href="mailto:support@orbitdev.org">support@orbitdev.org</a><a href="/Routes/support.html">Support</a></div></div>
+  </footer>
 </body>
 </html>
-
