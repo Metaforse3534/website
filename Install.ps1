@@ -1,258 +1,162 @@
 # Orbit AI Windows Installer
-# One-liner installation: irm https://start.orbitdev.org/install.ps1 | iex
-
-# Or: (Invoke-WebRequest -Uri "https://start.orbitdev.org/install.ps1" -UseBasicParsing).Content | Invoke-Expression
+# One-liner: irm https://orbitdev.org/install.ps1 | iex
 
 param(
-    [string]$InstallPath = "C:\Program Files\Orbit AI",
-    [string]$Version = "latest"
+    [string]$InstallPath = "$env:LOCALAPPDATA\Programs\Orbit AI",
+    [string]$Version = "latest",
+    [switch]$Uninstall
 )
 
-# Color output functions
+$ErrorActionPreference = "Stop"
+$RepoOwner = "Metaforse3534"
+$RepoName = "OrbitAI"
+$InstallerAssetPattern = "^Orbit-ai-Setup-.*\.exe$"
+
 function Write-Status {
     param([string]$Message)
-    Write-Host "✓ $Message" -ForegroundColor Green
+    Write-Host "[OK] $Message" -ForegroundColor Green
 }
 
 function Write-Info {
     param([string]$Message)
-    Write-Host "→ $Message" -ForegroundColor Cyan
+    Write-Host "[..] $Message" -ForegroundColor Cyan
 }
 
-function Write-Error-Custom {
+function Write-Warn {
     param([string]$Message)
-    Write-Host "✗ $Message" -ForegroundColor Red
+    Write-Host "[!!] $Message" -ForegroundColor Yellow
 }
 
-function Write-Warning-Custom {
+function Write-Fail {
     param([string]$Message)
-    Write-Host "⚠ $Message" -ForegroundColor Yellow
+    Write-Host "[XX] $Message" -ForegroundColor Red
 }
 
-# Check admin rights
-function Test-AdminRights {
-    $currentUser = [Security.Principal.WindowsIdentity]::GetCurrent()
-    $principal = New-Object Security.Principal.WindowsPrincipal($currentUser)
-    return $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
-}
+function Get-OrbitRelease {
+    $headers = @{ "User-Agent" = "Orbit-AI-Installer" }
 
-# Get latest release from GitHub
-function Get-LatestRelease {
-    try {
-        Write-Info "Fetching latest Orbit AI release..."
-        $releases = @(Invoke-RestMethod -Uri "https://api.github.com/repos/OrbitAI/orbit-ai/releases" -UseBasicParsing)
-        
-        if ($releases.Count -eq 0) {
-            Write-Error-Custom "No releases found"
-            return $null
-        }
-        
-        # Get latest non-pre-release
-        $latest = $releases | Where-Object { -not $_.prerelease } | Select-Object -First 1
-        if (-not $latest) {
-            $latest = $releases[0]
-        }
-        
-        return $latest
+    if ($Version -eq "latest") {
+        $url = "https://api.github.com/repos/$RepoOwner/$RepoName/releases/latest"
     }
-    catch {
-        Write-Error-Custom "Failed to fetch releases: $_"
-        return $null
+    else {
+        $tag = $Version
+        if ($tag -notmatch "^v") {
+            $tag = "v$tag"
+        }
+        $url = "https://api.github.com/repos/$RepoOwner/$RepoName/releases/tags/$tag"
     }
+
+    Write-Info "Fetching Orbit AI release metadata..."
+    return Invoke-RestMethod -Uri $url -Headers $headers -UseBasicParsing
 }
 
-# Download installer
-function Download-Installer {
+function Get-InstallerAsset {
     param([object]$Release)
-    
-    Write-Info "Downloading Orbit AI v$($Release.tag_name)..."
-    
-    # Look for Windows installer in assets
-    $asset = $Release.assets | Where-Object { $_.name -match "Orbit-AI.*\.exe$" } | Select-Object -First 1
-    
+
+    $asset = $Release.assets |
+        Where-Object { $_.name -match $InstallerAssetPattern } |
+        Sort-Object name -Descending |
+        Select-Object -First 1
+
     if (-not $asset) {
-        Write-Error-Custom "No Windows installer found in release"
-        return $null
+        throw "No Orbit AI setup executable was found on release '$($Release.tag_name)'. Expected an asset like Orbit-ai-Setup-0.0.18.exe."
     }
-    
-    $downloadUrl = $asset.browser_download_url
-    $tempFile = "$env:TEMP\Orbit-AI-Installer.exe"
-    
-    try {
-        $ProgressPreference = 'SilentlyContinue'
-        Invoke-WebRequest -Uri $downloadUrl -OutFile $tempFile -UseBasicParsing
-        $ProgressPreference = 'Continue'
-        
-        if (Test-Path $tempFile) {
-            Write-Status "Downloaded: $($asset.name)"
-            return $tempFile
-        }
-    }
-    catch {
-        Write-Error-Custom "Download failed: $_"
-        return $null
-    }
+
+    return $asset
 }
 
-# Run installer
+function Download-Installer {
+    param([object]$Asset)
+
+    $safeName = $Asset.name -replace "[^A-Za-z0-9._-]", "_"
+    $target = Join-Path $env:TEMP $safeName
+
+    Write-Info "Downloading $($Asset.name)..."
+    $ProgressPreference = "SilentlyContinue"
+    Invoke-WebRequest -Uri $Asset.browser_download_url -OutFile $target -UseBasicParsing
+    $ProgressPreference = "Continue"
+
+    if (-not (Test-Path $target)) {
+        throw "Download failed: $target was not created."
+    }
+
+    Write-Status "Downloaded installer to $target"
+    return $target
+}
+
 function Install-OrbitAI {
     param([string]$InstallerPath)
-    
-    Write-Info "Installing Orbit AI..."
-    
-    try {
-        # Run NSIS installer with silent mode
-        & $InstallerPath /S /D=$InstallPath
-        
-        # Wait for installer to complete
-        Start-Sleep -Seconds 5
-        
-        if (Test-Path "$InstallPath\Orbit AI.exe") {
-            Write-Status "Installation completed successfully!"
-            return $true
-        }
-        else {
-            Write-Error-Custom "Installation verification failed"
-            return $false
-        }
+
+    Write-Info "Installing Orbit AI to $InstallPath..."
+
+    $arguments = @("/S", "/D=$InstallPath")
+    $process = Start-Process -FilePath $InstallerPath -ArgumentList $arguments -Wait -PassThru
+
+    if ($process.ExitCode -ne 0) {
+        throw "Installer exited with code $($process.ExitCode)."
     }
-    catch {
-        Write-Error-Custom "Installation failed: $_"
-        return $false
+
+    $exePath = Join-Path $InstallPath "Orbit AI.exe"
+    if (-not (Test-Path $exePath)) {
+        throw "Installation verification failed: $exePath was not found."
     }
+
+    Write-Status "Orbit AI installed successfully."
+    return $exePath
 }
 
-# Create desktop shortcut
-function Create-Shortcut {
-    Write-Info "Creating desktop shortcut..."
-    
-    try {
-        $desktopPath = [Environment]::GetFolderPath([Environment+SpecialFolder]::Desktop)
-        $shortcutPath = "$desktopPath\Orbit AI.lnk"
-        $exePath = "$InstallPath\Orbit AI.exe"
-        
-        if (Test-Path $exePath) {
-            $WshShell = New-Object -ComObject WScript.Shell
-            $shortcut = $WshShell.CreateShortcut($shortcutPath)
-            $shortcut.TargetPath = $exePath
-            $shortcut.IconLocation = $exePath
-            $shortcut.Description = "Orbit AI Desktop Assistant"
-            $shortcut.Save()
-            
-            Write-Status "Shortcut created on desktop"
-        }
-    }
-    catch {
-        Write-Warning-Custom "Failed to create shortcut: $_"
-    }
-}
-
-# Add to PATH
-function Add-ToPATH {
-    Write-Info "Adding Orbit AI to PATH..."
-    
-    try {
-        $currentPath = [Environment]::GetEnvironmentVariable("PATH", "User")
-        
-        if ($currentPath -notlike "*$InstallPath*") {
-            $newPath = "$currentPath;$InstallPath"
-            [Environment]::SetEnvironmentVariable("PATH", $newPath, "User")
-            Write-Status "Added to PATH"
-        }
-        else {
-            Write-Status "Already in PATH"
-        }
-    }
-    catch {
-        Write-Warning-Custom "Failed to add to PATH: $_"
-    }
-}
-
-# Uninstall option
 function Uninstall-OrbitAI {
-    param([string]$InstallPath)
-    
-    Write-Info "Uninstalling Orbit AI..."
-    
-    # Find uninstaller
-    $uninstaller = Get-ChildItem -Path "$InstallPath\.." -Filter "Uninstall Orbit AI.exe" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
-    
-    if ($uninstaller) {
-        & $uninstaller.FullName
+    $uninstaller = Join-Path $InstallPath "Uninstall Orbit AI.exe"
+
+    if (Test-Path $uninstaller) {
+        Write-Info "Running Orbit AI uninstaller..."
+        $process = Start-Process -FilePath $uninstaller -ArgumentList "/S" -Wait -PassThru
+        if ($process.ExitCode -ne 0) {
+            throw "Uninstaller exited with code $($process.ExitCode)."
+        }
+    }
+    elseif (Test-Path $InstallPath) {
+        Write-Warn "Uninstaller not found; removing install directory directly."
+        Remove-Item -LiteralPath $InstallPath -Recurse -Force
     }
     else {
-        Write-Info "Removing Orbit AI directory..."
-        Remove-Item -Path $InstallPath -Recurse -Force -ErrorAction SilentlyContinue
+        Write-Warn "Orbit AI is not installed at $InstallPath."
     }
-    
-    Write-Status "Uninstall completed"
+
+    Write-Status "Uninstall completed."
 }
 
-# Main installation flow
 function Main {
-    Clear-Host
-    Write-Host "╔════════════════════════════════════════╗" -ForegroundColor Cyan
-    Write-Host "║       Orbit AI Windows Installer      ║" -ForegroundColor Cyan
-    Write-Host "╚════════════════════════════════════════╝" -ForegroundColor Cyan
     Write-Host ""
-    
-    # Check admin rights
-    if (-not (Test-AdminRights)) {
-        Write-Warning-Custom "This installer requires administrator rights."
-        Write-Info "Relaunching with admin privileges..."
-        $arguments = "Start-Process powershell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -Command `"irm https://start.orbitdev.org/install.ps1 | iex`"' -Verb RunAs"
-        Start-Process powershell -ArgumentList $arguments -Verb RunAs
-        exit
+    Write-Host "Orbit AI Windows Installer" -ForegroundColor Cyan
+    Write-Host "==========================" -ForegroundColor Cyan
+
+    if ($Uninstall) {
+        Uninstall-OrbitAI
+        return
     }
-    
-    Write-Status "Running with administrator rights"
-    Write-Info "Installation path: $InstallPath"
-    Write-Host ""
-    
-    # Get latest release
-    $release = Get-LatestRelease
-    if (-not $release) {
-        Write-Error-Custom "Failed to get latest release"
-        exit 1
+
+    $release = Get-OrbitRelease
+    Write-Status "Selected release $($release.tag_name)"
+
+    $asset = Get-InstallerAsset -Release $release
+    $installerPath = Download-Installer -Asset $asset
+
+    try {
+        $exePath = Install-OrbitAI -InstallerPath $installerPath
     }
-    
-    Write-Status "Latest version: $($release.tag_name)"
-    
-    # Download installer
-    $installerPath = Download-Installer -Release $release
-    if (-not $installerPath) {
-        exit 1
+    finally {
+        Remove-Item -LiteralPath $installerPath -Force -ErrorAction SilentlyContinue
     }
-    
-    # Install
-    if (Install-OrbitAI -InstallerPath $installerPath) {
-        Create-Shortcut
-        Add-ToPATH
-        
-        # Cleanup
-        Remove-Item $installerPath -Force -ErrorAction SilentlyContinue
-        
-        Write-Host ""
-        Write-Host "╔════════════════════════════════════════╗" -ForegroundColor Green
-        Write-Host "║   Orbit AI installed successfully!    ║" -ForegroundColor Green
-        Write-Host "╚════════════════════════════════════════╝" -ForegroundColor Green
-        Write-Host ""
-        
-        Write-Info "Launching Orbit AI..."
-        Start-Sleep -Seconds 2
-        
-        & "$InstallPath\Orbit AI.exe"
-    }
-    else {
-        exit 1
-    }
+
+    Write-Info "Launching Orbit AI..."
+    Start-Process -FilePath $exePath
 }
 
-# Handle uninstall flag
-if ($args -contains "-uninstall") {
-    Uninstall-OrbitAI -InstallPath $InstallPath
-    exit 0
+try {
+    Main
 }
-
-# Run main installation
-Main
+catch {
+    Write-Fail $_.Exception.Message
+    exit 1
+}
