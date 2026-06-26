@@ -126,10 +126,46 @@
     });
   }
 
+  function addMotion() {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const selector = [
+      "main > section",
+      ".hero-grid > *",
+      ".section-head > *",
+      ".panel",
+      ".list-row",
+      ".timeline-item",
+      ".status-row",
+      ".product-card",
+      ".hero-visual"
+    ].join(",");
+    const items = [...new Set(document.querySelectorAll(selector))];
+    let index = 0;
+
+    items.forEach((item) => {
+      if (item.closest(".panel") && !item.classList.contains("panel")) return;
+      item.classList.add("orbit-motion-item");
+      item.style.setProperty("--orbit-motion-delay", `${Math.min((index % 6) * 65, 325)}ms`);
+      index += 1;
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("orbit-in-view");
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -7% 0px" });
+
+    document.querySelectorAll(".orbit-motion-item").forEach((item) => observer.observe(item));
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     if (localStorage.getItem("orbit-site-theme") === "light") document.body.classList.add("light-mode");
     repairLinks();
     addProgress();
     fixFormsAndActions();
+    addMotion();
   });
 })();
