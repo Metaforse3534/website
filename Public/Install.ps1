@@ -59,7 +59,7 @@ function Get-InstallerAsset {
         Select-Object -First 1
 
     if (-not $asset) {
-        throw "No Orbit AI setup executable was found on release '$($Release.tag_name)'. Expected an asset like Orbit-ai-Setup-0.0.18.exe."
+        throw "No Orbit AI setup executable was found on release '$($Release.tag_name)'. Expected an asset like Orbit-ai-Setup-0.0.19.exe."
     }
 
     return $asset
