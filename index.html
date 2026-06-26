@@ -815,6 +815,47 @@ body::-webkit-scrollbar {
 }
 @media (prefers-reduced-motion: reduce) { .orbit-map *, .orbit-map *::after, .orbit-map *::before { animation:none !important; } }
 
+/* Product narrative refresh */
+#story { position:relative; background:radial-gradient(ellipse 70% 90% at 20% 42%,rgba(255,255,255,.035),transparent 58%); }
+#story::before { content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(90deg,transparent 49.95%,rgba(255,255,255,.035) 50%,transparent 50.05%); opacity:.45; }
+.story-sticky { padding:34px; border:1px solid var(--border); border-radius:18px; background:linear-gradient(145deg,rgba(255,255,255,.04),rgba(255,255,255,.012)); box-shadow:0 22px 50px rgba(0,0,0,.2); }
+.story-sticky .section-title { max-width:380px; margin-bottom:0 !important; }
+.timeline { padding-left:42px; }
+.timeline::before { left:11px; background:linear-gradient(to bottom,rgba(255,255,255,.9),rgba(255,255,255,.06)); }
+.tl-item { padding:0 0 28px 14px; }.tl-item:last-child { padding-bottom:0; }
+.tl-item > :not(.tl-dot) { padding-left:0; }
+.tl-item .tl-year { display:inline-flex; padding:3px 8px; border:1px solid var(--border); border-radius:99px; color:#a1a1aa; font:10px monospace; letter-spacing:.08em; }
+.tl-item .tl-title { margin-top:12px; font-family:'Space Grotesk',sans-serif; font-size:18px; letter-spacing:-.02em; }.tl-item .tl-body { max-width:430px; color:#8a8a92; }
+.tl-dot { left:-36px; top:8px; width:13px; height:13px; border:3px solid #080808; box-shadow:0 0 0 1px rgba(255,255,255,.18); }
+
+#capabilities,#models { padding:0 24px 100px; border-bottom:1px solid var(--border); }
+#capabilities .pricing-wrap,#models .pricing-wrap,#pricing .pricing-wrap { position:relative; overflow:hidden; border-radius:22px; background:#080809; }
+#capabilities .pricing-wrap::before,#models .pricing-wrap::before,#pricing .pricing-wrap::before { content:''; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse 65% 70% at 50% 0%,rgba(255,255,255,.045),transparent 66%); }
+#capabilities .pricing-header,#models .pricing-header,#pricing .pricing-header { position:relative; max-width:650px; }
+#capabilities .pricing-grid { position:relative; grid-template-columns:repeat(3,1fr); gap:14px; }
+#capabilities .pricing-card { min-height:305px; display:flex; flex-direction:column; justify-content:space-between; transition:transform .3s ease,border-color .3s ease,background .3s ease; }
+#capabilities .pricing-card:hover { transform:translateY(-7px); border-color:rgba(255,255,255,.24); background:#121214; }
+#capabilities .pricing-tier { display:flex; align-items:center; gap:10px; color:#e4e4e7; font-size:13px; letter-spacing:0; text-transform:none; }
+#capabilities .pricing-tier::before { display:grid; place-items:center; width:29px; height:29px; border:1px solid rgba(255,255,255,.16); border-radius:50%; color:#f4f4f5; font:11px monospace; }
+#capabilities .pricing-card:nth-child(1) .pricing-tier::before { content:'01'; } #capabilities .pricing-card:nth-child(2) .pricing-tier::before { content:'02'; } #capabilities .pricing-card:nth-child(3) .pricing-tier::before { content:'03'; }
+#capabilities .pricing-desc { margin-top:20px; font-size:13px; line-height:1.75; }
+#capabilities .pricing-features { gap:9px; } #capabilities .pricing-features li { color:#a1a1aa; } #capabilities .pricing-features li::before { content:'↗'; color:#f4f4f5; margin-right:9px; }
+
+#models .pricing-grid { position:relative; grid-template-columns:repeat(3,1fr); gap:14px; }
+#models .pricing-card { min-height:280px; transition:transform .28s ease,border-color .28s ease; }
+#models .pricing-card:hover { transform:translateY(-6px); border-color:rgba(255,255,255,.24); }
+#models .pricing-card.featured { border-color:rgba(255,255,255,.25); background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.02)); }
+#models .model-logo { width:48px; height:48px; object-fit:contain; padding:8px; margin:14px 0 6px; border:1px solid var(--border); border-radius:12px; background:rgba(255,255,255,.035); transition:transform .3s ease; }
+#models .pricing-card:hover .model-logo { transform:rotate(-5deg) scale(1.08); }
+
+#pricing .pricing-grid { position:relative; gap:14px; }
+#pricing .pricing-card { transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease; }
+#pricing .pricing-card:hover { transform:translateY(-6px); border-color:rgba(255,255,255,.24); box-shadow:0 24px 50px rgba(0,0,0,.28); }
+#pricing .pricing-card:nth-child(2) { border-color:rgba(255,255,255,.28); background:linear-gradient(145deg,rgba(255,255,255,.085),rgba(255,255,255,.018)); }
+#pricing .pricing-card:nth-child(2) .pricing-tier::after { content:'MOST POPULAR'; display:inline-block; margin-left:9px; padding:3px 6px; border-radius:99px; background:#f4f4f5; color:#09090b; font:8px monospace; letter-spacing:.05em; vertical-align:2px; }
+@media(max-width:900px) { #capabilities .pricing-grid,#models .pricing-grid { grid-template-columns:1fr 1fr; } }
+@media(max-width:640px) { .story-sticky { padding:26px; }.timeline { padding-left:34px; }.tl-dot { left:-30px; } #capabilities .pricing-grid,#models .pricing-grid { grid-template-columns:1fr; } #capabilities,#models { padding-left:16px; padding-right:16px; } }
+
   </style>
 </head>
 <body>
@@ -1314,7 +1355,7 @@ body::-webkit-scrollbar {
     <div class="story-sticky reveal">
       <span class="orbit-tag">// our story</span>
       <h2 class="section-title" style="font-size:clamp(22px,2.5vw,34px);">From a shared frustration to a new kind of firm</h2>
-      <p style="margin-top:14px;font-size:13px;color:#71717a;line-height:1.7;">Lisa and Sarah kept running into the same problem &mdash; consultants who diagnosed but never built. In 2024 they decided to do it differently.</p>
+      <p style="margin-top:14px;font-size:13px;color:#71717a;line-height:1.7;">Joost and Teun kept running into the same problem &mdash; consultants who diagnosed but never built. In 2024, they decided to do it differently.</p>
     </div>
 
     <div class="timeline">
@@ -1334,7 +1375,7 @@ body::-webkit-scrollbar {
         <div class="tl-dot active"></div>
         <div class="tl-year">2024</div>
         <div class="tl-title">Orbit is founded</div>
-        <div class="tl-body">Joost And Teun their roles to build the AI Agency they always wished existed. First client within three weeks &mdash; a logistics company bleeding money on manual processes.</div>
+        <div class="tl-body">Joost and Teun left their roles to build the AI agency they always wished existed. Their first client arrived within three weeks &mdash; a logistics company losing time and money to manual processes.</div>
       </div>
      
     </div>
