@@ -14,7 +14,7 @@
     },
     {
       "source": "/terms",
-      "destination": "/routes/terms",
+      "destination": "/Routes/terms.html",
       "permanent": true
     },
     {

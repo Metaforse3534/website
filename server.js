@@ -94,7 +94,7 @@ const server = http.createServer((req, res) => {
   }
 
   if (requestUrl.pathname === '/terms') {
-    redirect(res, '/routes/terms', true);
+    redirect(res, '/Routes/terms.html', true);
     return;
   }
 
