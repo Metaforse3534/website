@@ -3,8 +3,8 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/Orbit-ai-Setup-0.0.19.exe",
-      "destination": "https://github.com/Metaforse3534/website/raw/main/Orbit-ai-Setup-0.0.19.exe",
+      "source": "/Orbit-ai-Setup-0.0.20.exe",
+      "destination": "https://github.com/Metaforse3534/website/raw/main/Orbit-ai-Setup-0.0.20.exe",
       "permanent": false
     },
     {
