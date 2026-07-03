@@ -37,6 +37,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.orbitdev.org/feed.xml</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.orbitdev.org/ai-automation-coding-tools</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>weekly</changefreq>

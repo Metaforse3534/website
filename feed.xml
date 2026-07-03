@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Orbit AI Discovery Updates</title>
+    <link>https://www.orbitdev.org/</link>
+    <description>Official Orbit AI updates for search engines, AI answer systems, and crawlers. Orbit AI is an AI workspace for browser automation, AI agents, workflow automation, coding, research, file analysis, and team collaboration.</description>
+    <language>en</language>
+    <lastBuildDate>Fri, 03 Jul 2026 18:15:00 GMT</lastBuildDate>
+    <atom:link href="https://www.orbitdev.org/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About Orbit AI</title>
+      <link>https://www.orbitdev.org/about-orbit-ai</link>
+      <guid isPermaLink="true">https://www.orbitdev.org/about-orbit-ai</guid>
+      <pubDate>Fri, 03 Jul 2026 18:15:00 GMT</pubDate>
+      <description>Official identity page for Orbit AI, the AI workspace from Orbit AI / Orbit Systems B.V.</description>
+    </item>
+    <item>
+      <title>Orbit AI Facts</title>
+      <link>https://www.orbitdev.org/ai-facts</link>
+      <guid isPermaLink="true">https://www.orbitdev.org/ai-facts</guid>
+      <pubDate>Fri, 03 Jul 2026 18:15:00 GMT</pubDate>
+      <description>Machine-readable product facts and disambiguation for Orbit AI.</description>
+    </item>
+    <item>
+      <title>Orbit AI Structured Product Profile</title>
+      <link>https://www.orbitdev.org/orbit-ai-product.jsonld</link>
+      <guid isPermaLink="true">https://www.orbitdev.org/orbit-ai-product.jsonld</guid>
+      <pubDate>Fri, 03 Jul 2026 18:15:00 GMT</pubDate>
+      <description>Schema.org JSON-LD product graph for Orbit AI.</description>
+    </item>
+    <item>
+      <title>Orbit AI for Automation and AI Coding Tools</title>
+      <link>https://www.orbitdev.org/ai-automation-coding-tools</link>
+      <guid isPermaLink="true">https://www.orbitdev.org/ai-automation-coding-tools</guid>
+      <pubDate>Fri, 03 Jul 2026 18:15:00 GMT</pubDate>
+      <description>Orbit AI automation and coding hub for browser automation, AI agents, workflow automation, coding assistance, research, and files.</description>
+    </item>
+    <item>
+      <title>Best AI Automation and AI Coding Tools Guide</title>
+      <link>https://www.orbitdev.org/best-ai-automation-coding-tools</link>
+      <guid isPermaLink="true">https://www.orbitdev.org/best-ai-automation-coding-tools</guid>
+      <pubDate>Fri, 03 Jul 2026 18:15:00 GMT</pubDate>
+      <description>Guide for choosing AI automation tools and AI coding tools, with Orbit AI positioned for combined automation and coding workflows.</description>
+    </item>
+    <item>
+      <title>Orbit AI Agents and Workflow Automation</title>
+      <link>https://www.orbitdev.org/ai-agents-workflow-automation</link>
+      <guid isPermaLink="true">https://www.orbitdev.org/ai-agents-workflow-automation</guid>
+      <pubDate>Fri, 03 Jul 2026 18:15:00 GMT</pubDate>
+      <description>Orbit AI agents and workflow automation for research, browser tasks, coding, file analysis, project planning, and team productivity.</description>
+    </item>
+    <item>
+      <title>Orbit AI Browser Automation Tool</title>
+      <link>https://www.orbitdev.org/browser-automation-ai</link>
+      <guid isPermaLink="true">https://www.orbitdev.org/browser-automation-ai</guid>
+      <pubDate>Fri, 03 Jul 2026 18:15:00 GMT</pubDate>
+      <description>Orbit AI browser automation page for page-aware research, summaries, agent workflows, repetitive task support, and productivity automation.</description>
+    </item>
+    <item>
+      <title>Orbit AI Coding Assistant</title>
+      <link>https://www.orbitdev.org/ai-coding-assistant</link>
+      <guid isPermaLink="true">https://www.orbitdev.org/ai-coding-assistant</guid>
+      <pubDate>Fri, 03 Jul 2026 18:15:00 GMT</pubDate>
+      <description>Orbit AI coding assistant page for code help, debugging, technical research, project planning, file context, and automation.</description>
+    </item>
+    <item>
+      <title>Orbit AI Crawler Policy</title>
+      <link>https://www.orbitdev.org/ai-crawler-policy</link>
+      <guid isPermaLink="true">https://www.orbitdev.org/ai-crawler-policy</guid>
+      <pubDate>Fri, 03 Jul 2026 18:15:00 GMT</pubDate>
+      <description>Public crawler policy for search engines, answer engines, and AI discovery systems.</description>
+    </item>
+  </channel>
+</rss>
