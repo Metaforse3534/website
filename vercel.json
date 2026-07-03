@@ -1,6 +1,35 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/robots.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        }
+      ]
+    },
+    {
+      "source": "/llms.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        }
+      ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xml; charset=utf-8"
+        }
+      ]
+    }
+  ],
   "redirects": [
     {
       "source": "/Orbit-ai-Setup-0.0.20.exe",
@@ -40,6 +69,11 @@
     {
       "source": "/extension",
       "destination": "/Routes/extension.html",
+      "permanent": false
+    },
+    {
+      "source": "/ai-facts",
+      "destination": "/Routes/ai-facts.html",
       "permanent": false
     }
   ],
