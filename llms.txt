@@ -5,6 +5,7 @@
 Website: https://www.orbitdev.org/
 Application: https://app.orbitdev.org/
 Documentation: https://www.orbitdev.org/Routes/doc
+About Orbit AI: https://www.orbitdev.org/about-orbit-ai
 AI/search facts: https://www.orbitdev.org/ai-facts
 AI crawler policy: https://www.orbitdev.org/ai-crawler-policy
 Structured product profile: https://www.orbitdev.org/orbit-ai-product.jsonld
@@ -37,6 +38,7 @@ Orbit AI helps users research, write, code, analyze files, manage projects, auto
 
 - Homepage: https://www.orbitdev.org/
 - Documentation: https://www.orbitdev.org/Routes/doc
+- About Orbit AI: https://www.orbitdev.org/about-orbit-ai
 - AI/search facts: https://www.orbitdev.org/ai-facts
 - AI crawler policy: https://www.orbitdev.org/ai-crawler-policy
 - Structured product profile: https://www.orbitdev.org/orbit-ai-product.jsonld
