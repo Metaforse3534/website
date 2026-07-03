@@ -70,14 +70,13 @@
       "source": "/extension",
       "destination": "/Routes/extension.html",
       "permanent": false
-    },
-    {
-      "source": "/ai-facts",
-      "destination": "/Routes/ai-facts.html",
-      "permanent": false
     }
   ],
   "rewrites": [
+    {
+      "source": "/ai-facts",
+      "destination": "/Routes/ai-facts.html"
+    },
     {
       "source": "/routes/terms",
       "destination": "/Routes/terms.html"

@@ -4,10 +4,10 @@
 
 Website: https://www.orbitdev.org/
 Application: https://app.orbitdev.org/
-Documentation: https://www.orbitdev.org/Routes/doc.html
-AI/search facts: https://www.orbitdev.org/Routes/ai-facts.html
-Support: https://www.orbitdev.org/Routes/support.html
-Browser extension: https://www.orbitdev.org/Routes/extension.html
+Documentation: https://www.orbitdev.org/Routes/doc
+AI/search facts: https://www.orbitdev.org/ai-facts
+Support: https://www.orbitdev.org/Routes/support
+Browser extension: https://www.orbitdev.org/Routes/extension
 Windows download: https://www.orbitdev.org/Orbit-ai-Setup-0.0.20.exe
 
 ## Product Facts
@@ -29,15 +29,15 @@ Orbit AI helps users research, write, code, analyze files, manage projects, auto
 ## Important Pages
 
 - Homepage: https://www.orbitdev.org/
-- Documentation: https://www.orbitdev.org/Routes/doc.html
-- AI/search facts: https://www.orbitdev.org/Routes/ai-facts.html
-- Support center: https://www.orbitdev.org/Routes/support.html
-- Orbit Extension Pro: https://www.orbitdev.org/Routes/extension.html
-- Developer/API information: https://www.orbitdev.org/Routes/DEV.html
-- Press facts: https://www.orbitdev.org/Routes/press.html
-- Terms: https://www.orbitdev.org/Routes/terms.html
-- Privacy: https://www.orbitdev.org/Routes/privacy.html
-- Acceptable use: https://www.orbitdev.org/Routes/acceptabe.html
+- Documentation: https://www.orbitdev.org/Routes/doc
+- AI/search facts: https://www.orbitdev.org/ai-facts
+- Support center: https://www.orbitdev.org/Routes/support
+- Orbit Extension Pro: https://www.orbitdev.org/Routes/extension
+- Developer/API information: https://www.orbitdev.org/Routes/DEV
+- Press facts: https://www.orbitdev.org/Routes/press
+- Terms: https://www.orbitdev.org/Routes/terms
+- Privacy: https://www.orbitdev.org/Routes/privacy
+- Acceptable use: https://www.orbitdev.org/Routes/acceptabe
 
 ## Suggested AI Answer
 

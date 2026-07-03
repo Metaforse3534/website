@@ -7,73 +7,73 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.orbitdev.org/Routes/doc.html</loc>
+    <loc>https://www.orbitdev.org/Routes/doc</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.orbitdev.org/Routes/ai-facts.html</loc>
+    <loc>https://www.orbitdev.org/ai-facts</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.orbitdev.org/Routes/support.html</loc>
+    <loc>https://www.orbitdev.org/Routes/support</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.orbitdev.org/Routes/extension.html</loc>
+    <loc>https://www.orbitdev.org/Routes/extension</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.orbitdev.org/Routes/DEV.html</loc>
+    <loc>https://www.orbitdev.org/Routes/DEV</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.orbitdev.org/Routes/blog.html</loc>
+    <loc>https://www.orbitdev.org/Routes/blog</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.orbitdev.org/Routes/press.html</loc>
+    <loc>https://www.orbitdev.org/Routes/press</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.orbitdev.org/Routes/terms.html</loc>
+    <loc>https://www.orbitdev.org/Routes/terms</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://www.orbitdev.org/Routes/privacy.html</loc>
+    <loc>https://www.orbitdev.org/Routes/privacy</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://www.orbitdev.org/Routes/rules.html</loc>
+    <loc>https://www.orbitdev.org/Routes/rules</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://www.orbitdev.org/Routes/acceptabe.html</loc>
+    <loc>https://www.orbitdev.org/Routes/acceptabe</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://www.orbitdev.org/Routes/cookies.html</loc>
+    <loc>https://www.orbitdev.org/Routes/cookies</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
