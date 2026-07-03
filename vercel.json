@@ -74,10 +74,6 @@
   ],
   "rewrites": [
     {
-      "source": "/ai-facts",
-      "destination": "/Routes/ai-facts.html"
-    },
-    {
       "source": "/routes/terms",
       "destination": "/Routes/terms.html"
     }
