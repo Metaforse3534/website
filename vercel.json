@@ -28,6 +28,15 @@
           "value": "application/xml; charset=utf-8"
         }
       ]
+    },
+    {
+      "source": "/orbit-ai-product.jsonld",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/ld+json; charset=utf-8"
+        }
+      ]
     }
   ],
   "redirects": [

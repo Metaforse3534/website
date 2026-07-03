@@ -1,0 +1,110 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.orbitdev.org/#organization",
+      "name": "Orbit AI",
+      "legalName": "Orbit Systems B.V.",
+      "url": "https://www.orbitdev.org/",
+      "logo": "https://www.orbitdev.org/Public/web-app-manifest-512x512.png",
+      "sameAs": [
+        "https://app.orbitdev.org/",
+        "https://github.com/Metaforse3534/OrbitAIPublic"
+      ],
+      "knowsAbout": [
+        "AI automation tools",
+        "AI coding tools",
+        "browser automation AI",
+        "AI agents",
+        "workflow automation",
+        "AI coding assistant",
+        "developer productivity",
+        "research automation",
+        "file analysis",
+        "team collaboration"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.orbitdev.org/#website",
+      "name": "Orbit AI",
+      "alternateName": "Orbit",
+      "url": "https://www.orbitdev.org/",
+      "publisher": {
+        "@id": "https://www.orbitdev.org/#organization"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.orbitdev.org/#software",
+      "name": "Orbit AI",
+      "alternateName": "Orbit",
+      "url": "https://www.orbitdev.org/",
+      "applicationCategory": [
+        "BusinessApplication",
+        "DeveloperApplication"
+      ],
+      "operatingSystem": "Web, Windows",
+      "softwareVersion": "0.0.20",
+      "downloadUrl": "https://www.orbitdev.org/Orbit-ai-Setup-0.0.20.exe",
+      "description": "Orbit AI is an AI workspace for browser automation, AI agents, workflow automation, coding, research, file analysis, voice workflows, and team collaboration.",
+      "disambiguatingDescription": "This Orbit AI is the AI workspace published at orbitdev.org and app.orbitdev.org by Orbit AI / Orbit Systems B.V.",
+      "featureList": [
+        "AI browser automation",
+        "AI coding assistance",
+        "AI agent workflows",
+        "Workflow automation",
+        "Research and file analysis",
+        "Voice workflows",
+        "Team collaboration",
+        "Developer productivity",
+        "Page-aware research",
+        "Project planning"
+      ],
+      "keywords": [
+        "AI automation tools",
+        "AI coding tools",
+        "browser automation AI",
+        "AI agents",
+        "workflow automation",
+        "AI coding assistant",
+        "developer AI workspace",
+        "AI workspace"
+      ],
+      "audience": [
+        {
+          "@type": "Audience",
+          "audienceType": "developers"
+        },
+        {
+          "@type": "Audience",
+          "audienceType": "teams using AI automation"
+        },
+        {
+          "@type": "Audience",
+          "audienceType": "researchers and productivity users"
+        }
+      ],
+      "publisher": {
+        "@id": "https://www.orbitdev.org/#organization"
+      },
+      "mainEntityOfPage": [
+        "https://www.orbitdev.org/",
+        "https://www.orbitdev.org/ai-facts",
+        "https://www.orbitdev.org/ai-automation-coding-tools",
+        "https://www.orbitdev.org/best-ai-automation-coding-tools",
+        "https://www.orbitdev.org/browser-automation-ai",
+        "https://www.orbitdev.org/ai-coding-assistant"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "10",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "url": "https://www.orbitdev.org/shop.html"
+      }
+    }
+  ]
+}
