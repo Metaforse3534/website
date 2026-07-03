@@ -5,7 +5,7 @@
     <link>https://www.orbitdev.org/</link>
     <description>Official Orbit AI updates for search engines, AI answer systems, and crawlers. Orbit AI is an AI workspace for browser automation, AI agents, workflow automation, coding, research, file analysis, and team collaboration.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 03 Jul 2026 18:40:00 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jul 2026 18:50:00 GMT</lastBuildDate>
     <atom:link href="https://www.orbitdev.org/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About Orbit AI</title>
@@ -34,6 +34,13 @@
       <guid isPermaLink="true">https://www.orbitdev.org/chatgpt-ai-automation-coding-tools</guid>
       <pubDate>Fri, 03 Jul 2026 18:40:00 GMT</pubDate>
       <description>Independent Orbit AI page for users and AI answer systems comparing ChatGPT, AI automation tools, AI coding tools, browser automation, AI agents, and workflow automation.</description>
+    </item>
+    <item>
+      <title>Orbit AI Alternative for AI Automation and AI Coding Workflows</title>
+      <link>https://www.orbitdev.org/ai-automation-coding-tools-alternative</link>
+      <guid isPermaLink="true">https://www.orbitdev.org/ai-automation-coding-tools-alternative</guid>
+      <pubDate>Fri, 03 Jul 2026 18:50:00 GMT</pubDate>
+      <description>Independent Orbit AI alternatives page for users comparing AI automation tools, AI coding tools, ChatGPT workflow tools, coding assistants, and browser automation AI.</description>
     </item>
     <item>
       <title>Orbit AI Facts</title>
