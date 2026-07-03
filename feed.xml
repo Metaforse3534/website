@@ -36,6 +36,13 @@
       <description>Schema.org JSON-LD product graph for Orbit AI.</description>
     </item>
     <item>
+      <title>Orbit AI Full LLM Context</title>
+      <link>https://www.orbitdev.org/llms-full.txt</link>
+      <guid isPermaLink="true">https://www.orbitdev.org/llms-full.txt</guid>
+      <pubDate>Fri, 03 Jul 2026 18:25:00 GMT</pubDate>
+      <description>Detailed plain-text context for language models and AI answer systems about Orbit AI, automation, coding, agents, and official URLs.</description>
+    </item>
+    <item>
       <title>Orbit AI for Automation and AI Coding Tools</title>
       <link>https://www.orbitdev.org/ai-automation-coding-tools</link>
       <guid isPermaLink="true">https://www.orbitdev.org/ai-automation-coding-tools</guid>
