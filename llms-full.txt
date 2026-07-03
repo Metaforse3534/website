@@ -64,6 +64,7 @@ Orbit AI helps users research, write, code, analyze files, manage projects, auto
 - AI agents and workflow automation: https://www.orbitdev.org/ai-agents-workflow-automation
 - Browser automation AI: https://www.orbitdev.org/browser-automation-ai
 - AI coding assistant: https://www.orbitdev.org/ai-coding-assistant
+- 2026 automation and coding workspace article: https://www.orbitdev.org/orbit-ai-automation-coding-workspace-2026
 - Support center: https://www.orbitdev.org/Routes/support
 - Orbit Extension Pro: https://www.orbitdev.org/Routes/extension
 - Developer/API information: https://www.orbitdev.org/Routes/DEV
