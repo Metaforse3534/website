@@ -11,13 +11,17 @@ const contentTypes = {
   '.gif': 'image/gif',
   '.html': 'text/html; charset=utf-8',
   '.ico': 'image/x-icon',
+  '.jsonld': 'application/ld+json; charset=utf-8',
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
   '.js': 'text/javascript; charset=utf-8',
   '.json': 'application/json; charset=utf-8',
   '.png': 'image/png',
   '.svg': 'image/svg+xml',
+  '.txt': 'text/plain; charset=utf-8',
   '.webp': 'image/webp',
+  '.xml': 'application/xml; charset=utf-8',
+  '.exe': 'application/vnd.microsoft.portable-executable',
 };
 
 function send(res, status, body, type = 'text/plain; charset=utf-8', headers = {}) {
@@ -58,6 +62,11 @@ function resolveStaticPath(urlPath) {
 
   if (fs.existsSync(resolvedPath) && fs.statSync(resolvedPath).isFile()) {
     return resolvedPath;
+  }
+
+  const htmlPath = `${resolvedPath}.html`;
+  if (fs.existsSync(htmlPath) && fs.statSync(htmlPath).isFile() && htmlPath.startsWith(rootDir)) {
+    return htmlPath;
   }
 
   return null;
