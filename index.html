@@ -2536,7 +2536,7 @@ html::before { content:''; position:fixed; z-index:200; top:0; left:0; width:var
         </div>
         <div class="member-body">
           <div class="member-name">Joost Boerefijn</div>
-          <div class="member-role">founder & CTO</div>
+          <div class="member-role">founder & CTO&CEO</div>
           <div class="member-bio">  Joost founded Orbit with the vision of building an AI workspace that
       goes beyond chat. Focused on AI, automation, and developer tools, he
       leads Orbit's product, engineering, and long-term vision to create an
@@ -2556,7 +2556,7 @@ html::before { content:''; position:fixed; z-index:200; top:0; left:0; width:var
         </div>
         <div class="member-body">
           <div class="member-name">Teun De Vogel</div>
-          <div class="member-role">Co-founder & CEO</div>
+          <div class="member-role">Co-founder & COO & management</div>
           <div class="member-bio">  Teun helps shape Orbit's direction by turning ideas into practical
       products. He focuses on strategy, product development, and building
       technology that makes AI more useful for everyone..
@@ -2944,8 +2944,8 @@ html::before { content:''; position:fixed; z-index:200; top:0; left:0; width:var
   <h4>Cookie settings</h4>
   <p>Orbit uses cookies to keep the site secure and improve your experience. Review our <a href="/Routes/cookies.html">Cookie Policy</a>.</p>
   <div class="cookie-btns">
-    <button class="cookie-accept" onclick="setCookieConsent('granted')">Accept</button>
-    <button class="cookie-decline" onclick="setCookieConsent('declined')">Decline</button>
+    <button class="cookie-accept" onclick="document.getElementById('cookie-banner').style.display='none'">Accept</button>
+    <button class="cookie-decline" onclick="document.getElementById('cookie-banner').style.display='none'">Decline</button>
   </div>
 </div>
 
@@ -2993,11 +2993,6 @@ html::before { content:''; position:fixed; z-index:200; top:0; left:0; width:var
       document.getElementById('cookie-banner').style.display = 'block';
     }
   }, 1500);
-
-  function setCookieConsent(value) {
-    localStorage.setItem('orbit_consent', value);
-    document.getElementById('cookie-banner').style.display = 'none';
-  }
 
   // Reading progress
   const updateScrollProgress = () => {
