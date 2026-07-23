@@ -3,452 +3,779 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Real product documentation for Orbit AI version 0.0.20.">
+  <meta name="description" content="Full product documentation for Orbit AI v0.0.20.">
   <title>Orbit AI Documentation</title>
   <link rel="icon" href="../Public/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/site.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
   <style>
-    :root { --bg:#070708; --panel:#0d0d10; --line:rgba(255,255,255,.09); --muted:#9696a1; --text:#f4f4f5; --accent:#93a2ff; }
-    * { box-sizing:border-box; }
-    body { margin:0; color:var(--text); background:var(--bg); font-family:Inter,sans-serif; line-height:1.65; }
-    a { color:inherit; }
-    .layout { display:grid; grid-template-columns:250px minmax(0,780px); gap:56px; max-width:1120px; margin:auto; padding:42px 24px 120px; }
-    .sidebar { position:sticky; top:24px; align-self:start; max-height:calc(100vh - 48px); overflow:auto; }
-    .brand { display:flex; gap:10px; align-items:center; margin-bottom:28px; text-decoration:none; font-weight:700; }
-    .brand img { width:28px; height:28px; border-radius:8px; }
-    .nav-title, .eyebrow { color:#64646f; font:500 10px/1.4 "JetBrains Mono",monospace; letter-spacing:.15em; text-transform:uppercase; }
-    .sidebar nav { display:grid; gap:3px; margin-top:10px; }
-    .sidebar nav a { padding:8px 10px; border-radius:8px; color:#9696a1; font-size:12px; text-decoration:none; }
-    .sidebar nav a:hover { color:white; background:rgba(255,255,255,.05); }
-    .hero { padding:36px 0 48px; border-bottom:1px solid var(--line); }
-    .hero h1 { max-width:680px; margin:12px 0 16px; font-size:clamp(42px,7vw,72px); line-height:1; letter-spacing:-.06em; }
-    .hero p { max-width:670px; margin:0; color:var(--muted); font-size:16px; }
-    .meta { display:flex; flex-wrap:wrap; gap:8px; margin-top:24px; }
-    .pill { padding:6px 9px; border:1px solid var(--line); border-radius:999px; color:#b9bac4; background:rgba(255,255,255,.025); font:500 10px "JetBrains Mono",monospace; }
-    section { padding:46px 0; border-bottom:1px solid var(--line); scroll-margin-top:30px; }
-    h2 { margin:8px 0 12px; font-size:28px; letter-spacing:-.04em; }
-    h3 { margin:28px 0 8px; font-size:16px; }
-    p, li { color:var(--muted); font-size:14px; }
-    strong { color:#e8e8ed; }
-    ul, ol { padding-left:20px; }
-    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:22px; }
-    .card { padding:18px; border:1px solid var(--line); border-radius:14px; background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.012)); }
-    .card h3 { margin:0 0 6px; }
-    .card p { margin:0; font-size:12px; }
-    .steps { display:grid; gap:10px; margin-top:20px; counter-reset:step; }
-    .step { display:grid; grid-template-columns:32px 1fr; gap:12px; padding:16px; border:1px solid var(--line); border-radius:12px; }
-    .step::before { counter-increment:step; content:counter(step); display:grid; place-items:center; width:28px; height:28px; border-radius:8px; color:#101116; background:#e8e9ef; font:700 11px "JetBrains Mono"; }
-    .step p { margin:2px 0 0; }
-    code { padding:2px 5px; border:1px solid var(--line); border-radius:5px; color:#cbd2ff; background:#101117; font-family:"JetBrains Mono",monospace; font-size:.9em; }
-    table { width:100%; margin-top:18px; border-collapse:collapse; font-size:12px; }
-    th,td { padding:12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
-    th { color:#70717d; font:500 10px "JetBrains Mono"; text-transform:uppercase; letter-spacing:.1em; }
-    td { color:#b6b7c0; }
-    .notice { margin-top:20px; padding:16px; border:1px solid rgba(147,162,255,.25); border-radius:12px; color:#bfc6ef; background:rgba(100,120,255,.07); font-size:13px; }
-    .actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
-    .button { padding:10px 14px; border:1px solid var(--line); border-radius:9px; color:#d9dae1; background:rgba(255,255,255,.04); text-decoration:none; font-size:12px; font-weight:600; }
-    .button.primary { color:#090a0e; background:#f2f3f7; }
-    @media(max-width:850px){ .layout{display:block;padding-top:24px}.sidebar{position:relative;max-height:none;margin-bottom:30px}.sidebar nav{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr} }
+    :root {
+      --bg: #000000;
+      --surface: #0a0a0a;
+      --surface-border: #1f1f1f;
+      --card-bg: #050505;
+      --card-hover: #0f0f0f;
+      --text-main: #ffffff;
+      --text-muted: #888888;
+      --text-dim: #555555;
+      --accent: #ffffff;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --header-height: 56px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      background-color: var(--bg);
+      color: var(--text-muted);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+
+    body { min-height: 100vh; }
+
+    /* Top Header */
+    .top-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--header-height);
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--surface-border);
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+    }
+
+    .top-nav {
+      display: flex;
+      gap: 24px;
+      margin-left: 236px;
+    }
+
+    .top-nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 13px;
+      transition: color 0.15s;
+    }
+
+    .top-nav a:hover, .top-nav a.active {
+      color: var(--text-main);
+    }
+
+    /* 3-Column Container */
+    .doc-container {
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr) 200px;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 28px 24px;
+      gap: 48px;
+    }
+
+    /* Left Sidebar */
+    .left-sidebar {
+      position: sticky;
+      top: calc(var(--header-height) + 24px);
+      height: calc(100vh - var(--header-height) - 48px);
+      overflow-y: auto;
+    }
+
+    .left-sidebar::-webkit-scrollbar { width: 3px; }
+    .left-sidebar::-webkit-scrollbar-thumb { background: var(--surface-border); }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .brand-logo {
+      width: 26px;
+      height: 26px;
+      background: #ffffff;
+      border-radius: 6px;
+      display: grid;
+      place-items: center;
+      color: #000;
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .search-box {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      color: var(--text-dim);
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+
+    .search-box kbd {
+      background: var(--surface-border);
+      color: var(--text-muted);
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+    }
+
+    .nav-group {
+      margin-bottom: 24px;
+    }
+
+    .nav-group-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-main);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .nav-group-links {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .nav-group-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      padding: 5px 0 5px 12px;
+      border-left: 1px solid var(--surface-border);
+      transition: all 0.15s ease;
+    }
+
+    .nav-group-links a:hover {
+      color: var(--text-main);
+      border-left-color: var(--text-muted);
+    }
+
+    .nav-group-links a.active {
+      color: var(--text-main);
+      font-weight: 500;
+      border-left-color: var(--text-main);
+    }
+
+    /* Main Content */
+    .main-content {
+      min-width: 0;
+      padding-bottom: 80px;
+    }
+
+    .page-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .page-eyebrow {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .page-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+    }
+
+    .btn-copy-page {
+      background: transparent;
+      border: 1px solid var(--surface-border);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .btn-copy-page:hover {
+      background: var(--surface);
+      color: var(--text-main);
+      border-color: var(--text-dim);
+    }
+
+    .page-description {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 36px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      border: 1px solid var(--surface-border);
+      border-radius: 99px;
+      background: var(--surface);
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 48px;
+    }
+
+    .btn {
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      border: 1px solid var(--surface-border);
+      background: var(--surface);
+      color: var(--text-main);
+    }
+
+    .btn:hover {
+      background: var(--card-hover);
+      border-color: var(--text-dim);
+    }
+
+    .btn.btn-primary {
+      background: var(--text-main);
+      color: var(--bg);
+      border-color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .btn.btn-primary:hover {
+      background: #e5e5e5;
+    }
+
+    section {
+      margin-bottom: 52px;
+      scroll-margin-top: calc(var(--header-height) + 24px);
+    }
+
+    section h2 {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    section h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin: 24px 0 10px;
+    }
+
+    section p {
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      font-size: 13.5px;
+    }
+
+    section strong { color: var(--text-main); }
+
+    /* Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--surface-border);
+      border-radius: 8px;
+      padding: 16px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.15s ease;
+      display: block;
+    }
+
+    .card:hover {
+      background: var(--card-hover);
+      border-color: var(--text-dim);
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .card-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Lists & Steps */
+    ol.steps-list {
+      padding-left: 0;
+      list-style: none;
+      counter-reset: step-counter;
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    ol.steps-list li {
+      counter-increment: step-counter;
+      background: var(--card-bg);
+      border: 1px solid var(--surface-border);
+      border-radius: 8px;
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 12px;
+    }
+
+    ol.steps-list li::before {
+      content: counter(step-counter);
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      color: var(--text-main);
+      display: grid;
+      place-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-top: 8px;
+    }
+
+    li {
+      margin-bottom: 6px;
+      font-size: 13.5px;
+      color: var(--text-muted);
+    }
+
+    /* Notice Callout */
+    .notice {
+      margin-top: 18px;
+      padding: 14px 16px;
+      border: 1px solid var(--surface-border);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--text-muted);
+      font-size: 12.5px;
+      line-height: 1.5;
+    }
+
+    .notice strong {
+      color: var(--text-main);
+    }
+
+    /* Code Tags */
+    code {
+      font-family: var(--font-mono);
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      color: var(--text-main);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    .code-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 12px 0;
+    }
+
+    /* Tables */
+    .table-wrapper {
+      width: 100%;
+      border: 1px solid var(--surface-border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 16px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--surface-border);
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    th {
+      background: var(--surface);
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    td { color: var(--text-muted); }
+
+    /* Right TOC Sidebar */
+    .right-sidebar {
+      position: sticky;
+      top: calc(var(--header-height) + 24px);
+      height: calc(100vh - var(--header-height) - 48px);
+      overflow-y: auto;
+    }
+
+    .toc-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .toc-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .toc-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 12px;
+      transition: color 0.15s;
+    }
+
+    .toc-links a:hover {
+      color: var(--text-main);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .doc-container { grid-template-columns: 200px 1fr; }
+      .right-sidebar { display: none; }
+      .top-nav { margin-left: 0; }
+    }
+
+    @media (max-width: 768px) {
+      .doc-container { grid-template-columns: 1fr; }
+      .left-sidebar { display: none; }
+    }
   </style>
-
-<style id="orbit-black-style-override">
-
-/* ============================================================
-   ORBIT BLACK STYLE OVERRIDE
-   Matches the original black Orbit interface: compact, dark,
-   subtle borders, neutral text, minimal glow.
-   ============================================================ */
-:root {
-  --bg: #020202 !important;
-  --surface: #0d0d0d !important;
-  --surface-2: #141414 !important;
-  --panel: rgba(13,13,13,0.72) !important;
-  --panel-solid: #0d0d0d !important;
-  --glass: rgba(13,13,13,0.72) !important;
-  --border: rgba(255,255,255,0.06) !important;
-  --border-hover: rgba(255,255,255,0.12) !important;
-  --line: rgba(255,255,255,0.08) !important;
-  --text: #f4f4f5 !important;
-  --text-main: #f4f4f5 !important;
-  --text-muted: #71717a !important;
-  --muted: #71717a !important;
-  --text-dim: #3f3f46 !important;
-  --accent: #f4f4f5 !important;
-  --accent-glow: rgba(255,255,255,0.025) !important;
-  --primary: #f4f4f5 !important;
-  --primary-hover: #e4e4e7 !important;
-}
-
-html, body {
-  background:
-    radial-gradient(700px circle at 50% -20%, rgba(255,255,255,0.035), transparent 60%),
-    #020202 !important;
-  color: #71717a !important;
-  font-family: 'Inter', sans-serif !important;
-  -webkit-font-smoothing: antialiased;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background:
-    linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
-  background-size: 54px 54px;
-  opacity: .22;
-  mask-image: radial-gradient(circle at 50% 18%, black, transparent 72%);
-  -webkit-mask-image: radial-gradient(circle at 50% 18%, black, transparent 72%);
-}
-
-body > * { position: relative; z-index: 1; }
-
-h1, h2, h3, h4, .font-space, .logo-font {
-  font-family: 'Space Grotesk', sans-serif !important;
-  color: #f4f4f5 !important;
-  letter-spacing: -0.025em;
-}
-
-p, li, span, label {
-  color: inherit;
-}
-
-a { text-decoration: none; }
-
-/* Navigation / headers */
-nav, header {
-  background: rgba(2,2,2,0.76) !important;
-  border-color: rgba(255,255,255,0.06) !important;
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
-}
-
-.nav, .nav-inner, header > div {
-  max-width: 1152px !important;
-}
-
-.nav-links a, .sidebar nav a, .sidebar-link, header a {
-  color: #71717a !important;
-  transition: color .16s ease, background .16s ease, border-color .16s ease;
-}
-
-.nav-links a:hover, .sidebar nav a:hover, .sidebar-link:hover, header a:hover {
-  color: #e4e4e7 !important;
-}
-
-.nav-logo, .brand, .logo, header .font-bold {
-  color: #f4f4f5 !important;
-}
-
-/* Buttons */
-.btn-primary, .btn--primary, .apply-btn, .form-submit, .nav-cta,
-a[href*="auth"], a[href*="billing"].btn-primary, button[type="submit"] {
-  background: #f4f4f5 !important;
-  color: #09090b !important;
-  border: 1px solid #f4f4f5 !important;
-  border-radius: 8px !important;
-  box-shadow: none !important;
-  clip-path: none !important;
-  transition: background .16s ease, transform .16s ease, border-color .16s ease !important;
-}
-
-.btn-primary:hover, .btn--primary:hover, .apply-btn:hover, .form-submit:hover, .nav-cta:hover,
-button[type="submit"]:hover {
-  background: #e4e4e7 !important;
-  transform: translateY(-1px) !important;
-  filter: none !important;
-}
-
-.btn-ghost, .btn--ghost, .btn-outline, .btn-secondary, header a.rounded-lg.border {
-  background: rgba(255,255,255,0.03) !important;
-  color: #a1a1aa !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  border-radius: 8px !important;
-  transition: border-color .16s ease, color .16s ease, background .16s ease, transform .16s ease !important;
-}
-
-.btn-ghost:hover, .btn--ghost:hover, .btn-outline:hover, .btn-secondary:hover, header a.rounded-lg.border:hover {
-  color: #e4e4e7 !important;
-  border-color: rgba(255,255,255,0.14) !important;
-  background: rgba(255,255,255,0.045) !important;
-}
-
-/* Panels / cards */
-.app-panel, .glass-panel, .panel, .bento-card, .card, .notice, .rule, .right-box,
-.job-card, .model-card, .cap-card, .pricing-card, .member-card, .terminal,
-.uptime-card, .app-card, .spend-card, .contact-inner, .team-wrap, .slith-panel,
-.system-tray, .logo-cell, .status-card, .feature-card {
-  background:
-    radial-gradient(ellipse 80% 45% at 50% 0%, rgba(255,255,255,0.026), transparent 65%),
-    #0d0d0d !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  color: #71717a !important;
-  box-shadow: none !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-}
-
-.app-panel:hover, .glass-panel:hover, .panel:hover, .bento-card:hover, .card:hover,
-.rule:hover, .right-box:hover, .job-card:hover, .model-card:hover, .cap-card:hover,
-.pricing-card:hover, .member-card:hover, .logo-cell:hover, .feature-card:hover {
-  border-color: rgba(255,255,255,0.12) !important;
-  background:
-    radial-gradient(ellipse 80% 45% at 50% 0%, rgba(255,255,255,0.04), transparent 65%),
-    #101010 !important;
-  transform: translateY(-1px);
-}
-
-.pricing-wrap, .section-wrap, .team-wrap, .contact-inner {
-  background:
-    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(255,255,255,0.03), transparent 60%),
-    #080808 !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  border-radius: 20px !important;
-}
-
-/* Sections */
-section, .section, header, main > div {
-  border-color: rgba(255,255,255,0.06) !important;
-}
-
-.orbit-section, #pricing, #approach, #team, #story, #contact, #logos {
-  border-color: rgba(255,255,255,0.06) !important;
-  background: transparent !important;
-}
-
-.section-eyebrow, .eyebrow, .nav-title, .orbit-badge, .data-tag, .tag,
-.model-card__badge, .pricing-tier, .logos-label, .hero-badge {
-  color: #a1a1aa !important;
-  background: #18181b !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  border-radius: 6px !important;
-  font-family: 'JetBrains Mono', monospace !important;
-  font-size: 10px !important;
-  font-weight: 700 !important;
-  letter-spacing: .10em !important;
-  text-transform: uppercase !important;
-  padding: 3px 9px !important;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.section-eyebrow, .eyebrow, .nav-title, .logos-label {
-  background: transparent !important;
-  border: 0 !important;
-  padding: 0 !important;
-  color: #52525b !important;
-}
-
-.section-title, .pricing-header h2, .hero h1, h1 {
-  color: #f4f4f5 !important;
-}
-
-.pricing-header p, .hero-sub, .tl-body, .member-bio, .model-card__body,
-.cap-card__body, .pricing-desc, .card p, .notice p, main p, p, li {
-  color: #71717a !important;
-}
-
-/* Pricing exact black tab feel */
-.pricing-grid {
-  gap: 20px !important;
-}
-
-.pricing-card {
-  border-radius: 14px !important;
-  overflow: hidden !important;
-  padding: 0 !important;
-}
-
-.pricing-card-top {
-  padding: 28px 28px 24px !important;
-  border-bottom: 1px solid rgba(255,255,255,0.06) !important;
-}
-
-.pricing-card-bottom {
-  padding: 24px 28px 28px !important;
-}
-
-.pricing-amount {
-  color: #f4f4f5 !important;
-  font-size: 36px !important;
-  font-weight: 700 !important;
-  letter-spacing: -0.03em !important;
-}
-
-.pricing-features {
-  list-style: none !important;
-  padding-left: 0 !important;
-}
-
-.pricing-features li {
-  color: #71717a !important;
-  font-size: 13px !important;
-}
-
-.check { color: #f4f4f5 !important; }
-
-/* Forms / inputs */
-input, textarea, select, .ticket-input {
-  background: #0d0d0d !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  color: #f4f4f5 !important;
-  border-radius: 8px !important;
-  outline: none !important;
-}
-
-input:focus, textarea:focus, select:focus, .ticket-input:focus {
-  border-color: rgba(255,255,255,0.18) !important;
-  box-shadow: none !important;
-}
-
-input::placeholder, textarea::placeholder {
-  color: #3f3f46 !important;
-}
-
-/* Status colors kept subtle */
-.status-pill {
-  background: rgba(16,185,129,0.09) !important;
-  color: #10b981 !important;
-  border: 1px solid rgba(16,185,129,0.18) !important;
-}
-
-.noise {
-  opacity: .012 !important;
-}
-
-.glow-mesh, #hero-glow {
-  background: radial-gradient(800px circle at 50% 0%, rgba(255,255,255,0.035), transparent 60%) !important;
-}
-
-/* Tables/code/docs */
-pre, code, .font-mono {
-  font-family: 'JetBrains Mono', monospace !important;
-}
-
-pre {
-  background: #0d0d0d !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
-  border-radius: 12px !important;
-  color: #d4d4d8 !important;
-}
-
-table {
-  border-color: rgba(255,255,255,0.06) !important;
-}
-
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: #020202; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.10); border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
-
-@media (max-width: 768px) {
-  .pricing-wrap, .team-wrap, .contact-inner {
-    padding: 32px 22px !important;
-  }
-}
-
-</style>
-
 </head>
 <body>
-  <div class="layout">
-    <aside class="sidebar">
-      <a class="brand" href="/"><img src="../Public/web-app-manifest-192x192.png" alt="">Orbit AI</a>
-      <div class="nav-title">Documentation Â· v0.0.20</div>
-      <nav>
-        <a href="#overview">Overview</a>
-        <a href="#start">Getting started</a>
-        <a href="#chat">Chat and files</a>
-        <a href="#models">Models and access</a>
-        <a href="#agents">Agents and workflows</a>
-        <a href="#voice">Voice</a>
-        <a href="#desktop">Desktop app</a>
-        <a href="#extension">Browser extension</a>
-        <a href="#account">Account and billing</a>
-        <a href="#routes">App routes</a>
-        <a href="/Routes/rules.html">Orbit Rules</a>
-      </nav>
+
+  <!-- Top Header Navigation -->
+  <header class="top-header">
+    <nav class="top-nav">
+      <a href="#" class="active">Guide</a>
+      <a href="/Routes/rules.html">Orbit Rules</a>
+      <a href="https://app.orbitdev.org/extension">Extension Hub</a>
+    </nav>
+  </header>
+
+  <div class="doc-container">
+    
+    <!-- Left Navigation Sidebar -->
+    <aside class="left-sidebar">
+      <div class="brand-section">
+        <a href="/" class="brand-link">
+          <div class="brand-logo">O</div>
+          Orbit AI
+        </a>
+      </div>
+
+      <div class="search-box">
+        <span>Search...</span>
+        <kbd>Ctrl K</kbd>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-title">Get Started</div>
+        <div class="nav-group-links">
+          <a href="#overview" class="active">Overview</a>
+          <a href="#start">Getting Started</a>
+        </div>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-title">Capabilities</div>
+        <div class="nav-group-links">
+          <a href="#chat">Chat & Files</a>
+          <a href="#models">Models & Access</a>
+          <a href="#agents">Agents & Workflows</a>
+          <a href="#voice">Voice Engine</a>
+          <a href="#desktop">Desktop App</a>
+          <a href="#extension">Browser Extension</a>
+        </div>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-title">Account & Reference</div>
+        <div class="nav-group-links">
+          <a href="#account">Account & Billing</a>
+          <a href="#routes">App Routes</a>
+        </div>
+      </div>
     </aside>
 
-    <main>
-      <header class="hero">
-        <div class="eyebrow">Real product documentation</div>
-        <h1>How Orbit actually works.</h1>
-        <p>This guide documents the features implemented in Orbit AI version 0.0.20. It describes the web app, Windows desktop app, browser extension, Pro Pulsar, and current public developer API surfaces without promising features that are not present in the app.</p>
-        <div class="meta"><span class="pill">Version 0.0.20</span><span class="pill">Web + Windows desktop</span><span class="pill">Authentication required</span></div>
-        <div class="actions"><a class="button primary" href="https://app.orbitdev.org/">Open Orbit</a><a class="button" href="https://github.com/Metaforse3534/website/raw/main/Orbit-ai-Setup-0.0.20.exe">Download Windows installer</a><a class="button" href="/Routes/rules.html">Read Orbit Rules</a></div>
-      </header>
+    <!-- Main Content -->
+    <main class="main-content">
+      
+      <div class="page-header">
+        <div>
+          <div class="page-eyebrow">Real Product Documentation</div>
+          <h1 class="page-title">How Orbit actually works.</h1>
+        </div>
+        <button class="btn-copy-page">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy page
+        </button>
+      </div>
 
+      <p class="page-description">
+        This guide documents the features implemented in Orbit AI version 0.0.20. It describes the web app, Windows desktop app, browser extension, Pro Pulsar, and current public developer API surfaces without promising features that are not present in the app.
+      </p>
+
+      <div class="pill-list">
+        <span class="pill">Version 0.0.20</span>
+        <span class="pill">Web + Windows Desktop</span>
+        <span class="pill">Authentication Required</span>
+      </div>
+
+      <div class="action-row">
+        <a class="btn btn-primary" href="https://app.orbitdev.org/">Open Orbit</a>
+        <a class="btn" href="https://github.com/Metaforse3534/website/raw/main/Orbit-ai-Setup-0.0.20.exe">Download Windows Installer</a>
+        <a class="btn" href="/Routes/rules.html">Read Orbit Rules</a>
+      </div>
+
+      <!-- Overview -->
       <section id="overview">
-        <div class="eyebrow">Overview</div><h2>What Orbit AI is</h2>
+        <h2>What Orbit AI is</h2>
         <p>Orbit is an authenticated AI workspace for chat, file analysis, voice interaction, artifact creation, agent teamwork, automations, and selected desktop actions. The same React application runs on the web and is packaged as a Windows desktop application. Mobile projects are also configured through Capacitor.</p>
-        <div class="grid">
-          <div class="card"><h3>Workspace chat</h3><p>Ask questions, request coding help, analyze supported text files, generate images, and create documents.</p></div>
-          <div class="card"><h3>Agent team</h3><p>Orbit creates Lead, Builder, Researcher, and Reviewer starter agents and records their runs.</p></div>
-          <div class="card"><h3>Voice</h3><p>Speak with Orbit, hear responses, and use approved voice actions with confirm or instant action modes.</p></div>
-          <div class="card"><h3>Desktop tools</h3><p>The Windows app can open approved sites, apps, and folders, write files, generate artifacts, and run Pro Pulsar when access permits.</p></div>
+
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-title">Workspace chat</div>
+            <div class="card-desc">Ask questions, request coding help, analyze supported text files, generate images, and create documents.</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Agent team</div>
+            <div class="card-desc">Orbit creates Lead, Builder, Researcher, and Reviewer starter agents and records their runs.</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Voice</div>
+            <div class="card-desc">Speak with Orbit, hear responses, and use approved voice actions with confirm or instant action modes.</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Desktop tools</div>
+            <div class="card-desc">The Windows app can open approved sites, apps, and folders, write files, generate artifacts, and run Pro Pulsar when access permits.</div>
+          </div>
         </div>
-        <div class="notice">Orbit output may be incorrect or incomplete. Review generated answers, code, files, and actions before relying on them.</div>
+
+        <div class="notice">
+          <strong>Notice:</strong> Orbit output may be incorrect or incomplete. Review generated answers, code, files, and actions before relying on them.
+        </div>
       </section>
 
+      <!-- Getting started -->
       <section id="start">
-        <div class="eyebrow">Getting started</div><h2>Start using Orbit</h2>
-        <div class="steps">
-          <div class="step"><div><strong>Create or sign in to an account.</strong><p>Open <a href="https://app.orbitdev.org/">app.orbitdev.org</a>. Account creation uses email, password, display name, and acceptance of the Terms and Privacy Policy.</p></div></div>
-          <div class="step"><div><strong>Verify email and secure the account.</strong><p>Orbit supports password reset and optional six-digit TOTP two-factor authentication from Settings.</p></div></div>
-          <div class="step"><div><strong>Open the workspace.</strong><p>The main workspace is protected. Signed-out users are redirected to the authentication page.</p></div></div>
-          <div class="step"><div><strong>Choose a task.</strong><p>Chat normally, attach a file, start a voice call, create an artifact, or launch a team build.</p></div></div>
-        </div>
+        <h2>Start using Orbit</h2>
+        <ol class="steps-list">
+          <li>
+            <div>
+              <strong>Create or sign in to an account.</strong>
+              <p>Open <a href="https://app.orbitdev.org/" style="color:var(--text-main);">app.orbitdev.org</a>. Account creation uses email, password, display name, and acceptance of the Terms and Privacy Policy.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>Verify email and secure the account.</strong>
+              <p>Orbit supports password reset and optional six-digit TOTP two-factor authentication from Settings.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>Open the workspace.</strong>
+              <p>The main workspace is protected. Signed-out users are redirected to the authentication page.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>Choose a task.</strong>
+              <p>Chat normally, attach a file, start a voice call, create an artifact, or launch a team build.</p>
+            </div>
+          </li>
+        </ol>
       </section>
 
+      <!-- Chat and files -->
       <section id="chat">
-        <div class="eyebrow">Workspace</div><h2>Chat, files, images, and artifacts</h2>
+        <h2>Chat, files, images, and artifacts</h2>
+        
         <h3>Chat history</h3>
         <p>Orbit stores up to the latest 40 messages per user and mode in browser storage or desktop storage. Large inline generated images are excluded from stored history to avoid breaking the interface.</p>
+
         <h3>Supported text attachments</h3>
         <p>You can attach up to <strong>3 files per message</strong>. Each file must be under <strong>250 KB</strong>. Supported text-readable extensions include:</p>
-        <p><code>txt</code> <code>md</code> <code>csv</code> <code>json</code> <code>js</code> <code>jsx</code> <code>ts</code> <code>tsx</code> <code>html</code> <code>css</code> <code>py</code> <code>java</code> <code>c</code> <code>cpp</code> <code>rs</code> <code>go</code> <code>xml</code> <code>yml</code> <code>yaml</code></p>
+        
+        <div class="code-tags">
+          <code>txt</code> <code>md</code> <code>csv</code> <code>json</code> <code>js</code> <code>jsx</code> <code>ts</code> <code>tsx</code> <code>html</code> <code>css</code> <code>py</code> <code>java</code> <code>c</code> <code>cpp</code> <code>rs</code> <code>go</code> <code>xml</code> <code>yml</code> <code>yaml</code>
+        </div>
+
         <h3>Create commands</h3>
-        <table><thead><tr><th>Command</th><th>Result</th><th>Availability</th></tr></thead><tbody>
-          <tr><td><code>/image ...</code></td><td>Generates an image through Orbit's image function.</td><td>Web and desktop, when the backend is connected.</td></tr>
-          <tr><td><code>/pdf ...</code></td><td>Creates a PDF artifact.</td><td>Desktop bridge required.</td></tr>
-          <tr><td><code>/powerpoint ...</code></td><td>Creates a PowerPoint presentation.</td><td>Desktop bridge required.</td></tr>
-          <tr><td><code>/excel ...</code></td><td>Creates an Excel workbook.</td><td>Desktop bridge required.</td></tr>
-          <tr><td><code>/word ...</code></td><td>Creates a Word document.</td><td>Desktop bridge required.</td></tr>
-          <tr><td><code>/csv ...</code></td><td>Creates a CSV file.</td><td>Desktop bridge required.</td></tr>
-        </tbody></table>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Command</th>
+                <th>Result</th>
+                <th>Availability</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>/image ...</code></td>
+                <td>Generates an image through Orbit's image function.</td>
+                <td>Web and desktop, when backend connected.</td>
+              </tr>
+              <tr>
+                <td><code>/pdf ...</code></td>
+                <td>Creates a PDF artifact.</td>
+                <td>Desktop bridge required.</td>
+              </tr>
+              <tr>
+                <td><code>/powerpoint ...</code></td>
+                <td>Creates a PowerPoint presentation.</td>
+                <td>Desktop bridge required.</td>
+              </tr>
+              <tr>
+                <td><code>/excel ...</code></td>
+                <td>Creates an Excel workbook.</td>
+                <td>Desktop bridge required.</td>
+              </tr>
+              <tr>
+                <td><code>/word ...</code></td>
+                <td>Creates a Word document.</td>
+                <td>Desktop bridge required.</td>
+              </tr>
+              <tr>
+                <td><code>/csv ...</code></td>
+                <td>Creates a CSV file.</td>
+                <td>Desktop bridge required.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
 
+      <!-- Models -->
       <section id="models">
-        <div class="eyebrow">Access</div><h2>Models and modes</h2>
+        <h2>Models and modes</h2>
         <p>The workspace exposes <strong>Normal</strong>, <strong>Orbit</strong>, <strong>Pulsar</strong>, and <strong>Pro</strong> modes. Access depends on the user's plan and model entitlements. Locked modes explain that Gemini and GPT remain free while premium modes require a model access code or Premium plan.</p>
         <p>Settings includes model preferences for automatic selection and available model-specific options. Model access packs implemented by Orbit include Auto, Orbit, Claude, Pulsar, ProPulsar, Coding models, and All Pro models.</p>
-        <div class="notice">Model availability is controlled by the live app and may change. The website does not guarantee a specific third-party model or version.</div>
+
+        <div class="notice">
+          Model availability is controlled by the live app and may change. The website does not guarantee a specific third-party model or version.
+        </div>
       </section>
 
+      <!-- Agents -->
       <section id="agents">
-        <div class="eyebrow">Agent workspace</div><h2>Agents, runs, and automations</h2>
+        <h2>Agents, runs, and automations</h2>
         <p>On first use, Orbit can create four starter agents:</p>
-        <div class="grid">
-          <div class="card"><h3>Lead</h3><p>Breaks goals into steps, coordinates the team, and produces the final result.</p></div>
-          <div class="card"><h3>Builder</h3><p>Produces code, structures, copy, configurations, and concrete deliverables.</p></div>
-          <div class="card"><h3>Researcher</h3><p>Finds information when needed and returns concise findings and sources.</p></div>
-          <div class="card"><h3>Reviewer</h3><p>Checks work for gaps, risks, security issues, and weak assumptions.</p></div>
+
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-title">Lead</div>
+            <div class="card-desc">Breaks goals into steps, coordinates the team, and produces the final result.</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Builder</div>
+            <div class="card-desc">Produces code, structures, copy, configurations, and concrete deliverables.</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Researcher</div>
+            <div class="card-desc">Finds information when needed and returns concise findings and sources.</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Reviewer</div>
+            <div class="card-desc">Checks work for gaps, risks, security issues, and weak assumptions.</div>
+          </div>
         </div>
+
         <h3>Deployments / Runs</h3>
         <p>The Runs page displays up to 20 recent agent runs, live status updates, run steps, final results, errors, and source links recorded by agents.</p>
+
         <h3>Automations</h3>
         <p>Automations are user-built workflows made from trigger, AI agent, condition, delay, and save-result steps. Workflows use cloud persistence when the required table exists and fall back to local browser storage otherwise. Current triggers are manual. Agent steps time out after two minutes.</p>
       </section>
 
+      <!-- Voice -->
       <section id="voice">
-        <div class="eyebrow">Voice</div><h2>Voice calls and commands</h2>
+        <h2>Voice calls and commands</h2>
         <p>Orbit can listen for speech, send recognized speech as a chat message, and read responses aloud. Web voice uses browser speech capabilities; the desktop app can provide native voice support.</p>
+
         <ul>
           <li>Voice speed is adjustable from <strong>0.5x to 2.0x</strong> and saved to the profile.</li>
           <li><strong>Confirm</strong> mode asks before approved voice actions. <strong>Instant</strong> mode runs them without the extra question.</li>
@@ -457,53 +784,182 @@ table {
         </ul>
       </section>
 
+      <!-- Desktop -->
       <section id="desktop">
-        <div class="eyebrow">Windows app</div><h2>Desktop-only capabilities</h2>
+        <h2>Desktop-only capabilities</h2>
         <p>The desktop build uses an Electron bridge. When available, Orbit can execute supported actions that a normal website cannot perform:</p>
+
         <ul>
-          <li>Open approved websites and URLs.</li><li>Search YouTube.</li><li>Open apps and folders.</li><li>Write a file and reveal it.</li><li>Create PDF, PowerPoint, Excel, Word, and CSV artifacts.</li><li>Use native listening and speech.</li><li>Open Pro Pulsar for entitled users.</li>
+          <li>Open approved websites and URLs.</li>
+          <li>Search YouTube.</li>
+          <li>Open apps and folders.</li>
+          <li>Write a file and reveal it.</li>
+          <li>Create PDF, PowerPoint, Excel, Word, and CSV artifacts.</li>
+          <li>Use native listening and speech.</li>
+          <li>Open Pro Pulsar for entitled users.</li>
         </ul>
-        <p>Users remain responsible for reviewing desktop actions and generated files. See the <a href="/Routes/rules.html">Orbit Rules</a>.</p>
+        
+        <p>Users remain responsible for reviewing desktop actions and generated files. See the <a href="/Routes/rules.html" style="color:var(--text-main);">Orbit Rules</a>.</p>
       </section>
 
+      <!-- Extension -->
       <section id="extension">
-        <div class="eyebrow">Browser companion</div><h2>Orbit Extension Pro</h2>
+        <h2>Orbit Extension Pro</h2>
         <p>Extension Pro connects the signed-in Orbit workspace to the browser. It can scan readable page context, answer questions about the current page, attach selected text to chat, and draft form suggestions for review before anything is used.</p>
-        <div class="actions"><a class="button primary" href="https://app.orbitdev.org/extension">Open Extension Hub</a><a class="button" href="/Routes/extension.html">View public overview</a></div>
-        <ol><li>Open <a href="https://app.orbitdev.org/extension">app.orbitdev.org/extension</a> while signed in.</li><li>Subscribe, redeem eligible Premium access, or manage the existing extension subscription.</li><li>Download the private release link generated for your account.</li><li>Open <code>chrome://extensions</code>, enable Developer mode, and load the unzipped folder.</li><li>Press Connect in the extension popup while Orbit is signed in.</li></ol>
-        <p>Form drafting is review-first. Orbit should not submit sensitive, financial, legal, medical, employment, school, or consequential forms without direct user review and approval.</p>
+
+        <div class="action-row">
+          <a class="btn btn-primary" href="https://app.orbitdev.org/extension">Open Extension Hub</a>
+          <a class="btn" href="/Routes/extension.html">View public overview</a>
+        </div>
+
+        <ol class="steps-list">
+          <li>
+            <div>
+              <strong>Open Extension Hub</strong>
+              <p>Navigate to <a href="https://app.orbitdev.org/extension" style="color:var(--text-main);">app.orbitdev.org/extension</a> while signed in.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>Subscribe or Redeem Access</strong>
+              <p>Subscribe, redeem eligible Premium access, or manage the existing extension subscription.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>Download Release Link</strong>
+              <p>Download the private release link generated for your account.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>Load Unpacked Extension</strong>
+              <p>Open <code>chrome://extensions</code>, enable Developer mode, and load the unzipped folder.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>Connect Account</strong>
+              <p>Press Connect in the extension popup while Orbit is signed in.</p>
+            </div>
+          </li>
+        </ol>
+
+        <p style="margin-top: 16px;">Form drafting is review-first. Orbit should not submit sensitive, financial, legal, medical, employment, school, or consequential forms without direct user review and approval.</p>
       </section>
 
+      <!-- Account -->
       <section id="account">
-        <div class="eyebrow">Account</div><h2>Settings, credits, billing, and support</h2>
+        <h2>Settings, credits, billing, and support</h2>
         <ul>
           <li><strong>Settings:</strong> update profile information and avatar, select an available model, set voice speed, redeem model-access codes, change/reset password, configure TOTP 2FA, or permanently delete the account by typing <code>DELETE</code>.</li>
-          <li><strong>Credits:</strong> the app displays the current plan and available credits. Current shop packs are Starter: 25 credits for &euro;4.99, Power: 100 credits for &euro;14.99, and Elite: 500 credits for &euro;49.99. Credits are described in-app as non-expiring.</li>
+          <li><strong>Credits:</strong> the app displays the current plan and available credits. Current shop packs are Starter: 25 credits for €4.99, Power: 100 credits for €14.99, and Elite: 500 credits for €49.99. Credits are described in-app as non-expiring.</li>
           <li><strong>Billing:</strong> shows current plan, credits, extension subscription, premium-code redemptions, and recorded Stripe payment history. Billing management opens the Stripe customer portal when available.</li>
           <li><strong>Support:</strong> signed-in users can create support tickets with a subject up to 200 characters and description up to 5,000 characters. Admins can reply and change ticket status.</li>
           <li><strong>Podcast:</strong> converts pasted notes or recent history into an educational Dutch dialogue and reads it using browser speech synthesis.</li>
         </ul>
       </section>
 
+      <!-- Routes -->
       <section id="routes">
-        <div class="eyebrow">Reference</div><h2>Implemented app routes</h2>
-        <table><thead><tr><th>Route</th><th>Purpose</th><th>Access</th></tr></thead><tbody>
-          <tr><td><code>/auth</code></td><td>Sign in, create account, password recovery, MFA verification.</td><td>Public</td></tr>
-          <tr><td><code>/</code></td><td>Main Orbit chat workspace.</td><td>Signed in</td></tr>
-          <tr><td><code>/automations</code></td><td>Agents and workflow builder.</td><td>Signed in</td></tr>
-          <tr><td><code>/deployments</code></td><td>Recent agent runs and steps.</td><td>Signed in</td></tr>
-          <tr><td><code>/history</code></td><td>Saved question and answer history.</td><td>Signed in</td></tr>
-          <tr><td><code>/settings</code></td><td>Profile, security, model, and voice settings.</td><td>Signed in</td></tr>
-          <tr><td><code>/shop</code> Â· <code>/billing</code></td><td>Credit packs and account billing.</td><td>Signed in</td></tr>
-          <tr><td><code>/podcast</code> Â· <code>/extension</code> Â· <code>/Support</code></td><td>Podcast tool, Extension Pro, and support tickets.</td><td>Signed in</td></tr>
-          <tr><td><code>/portal</code></td><td>Desktop portal.</td><td>Desktop app only</td></tr>
-          <tr><td><code>/admin</code></td><td>Administration tools.</td><td>Admin only</td></tr>
-          <tr><td><code>/privacy</code> Â· <code>/terms</code></td><td>Public legal pages.</td><td>Public</td></tr>
-        </tbody></table>
-        <div class="notice"><strong>Developer API access is managed inside Orbit.</strong> Use the Developer Dashboard for current keys, limits, and endpoint details instead of relying on older copied examples.</div>
+        <h2>Implemented app routes</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Route</th>
+                <th>Purpose</th>
+                <th>Access</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>/auth</code></td>
+                <td>Sign in, create account, password recovery, MFA verification.</td>
+                <td>Public</td>
+              </tr>
+              <tr>
+                <td><code>/</code></td>
+                <td>Main Orbit chat workspace.</td>
+                <td>Signed in</td>
+              </tr>
+              <tr>
+                <td><code>/automations</code></td>
+                <td>Agents and workflow builder.</td>
+                <td>Signed in</td>
+              </tr>
+              <tr>
+                <td><code>/deployments</code></td>
+                <td>Recent agent runs and steps.</td>
+                <td>Signed in</td>
+              </tr>
+              <tr>
+                <td><code>/history</code></td>
+                <td>Saved question and answer history.</td>
+                <td>Signed in</td>
+              </tr>
+              <tr>
+                <td><code>/settings</code></td>
+                <td>Profile, security, model, and voice settings.</td>
+                <td>Signed in</td>
+              </tr>
+              <tr>
+                <td><code>/shop</code> · <code>/billing</code></td>
+                <td>Credit packs and account billing.</td>
+                <td>Signed in</td>
+              </tr>
+              <tr>
+                <td><code>/podcast</code> · <code>/extension</code> · <code>/Support</code></td>
+                <td>Podcast tool, Extension Pro, and support tickets.</td>
+                <td>Signed in</td>
+              </tr>
+              <tr>
+                <td><code>/portal</code></td>
+                <td>Desktop portal.</td>
+                <td>Desktop app only</td>
+              </tr>
+              <tr>
+                <td><code>/admin</code></td>
+                <td>Administration tools.</td>
+                <td>Admin only</td>
+              </tr>
+              <tr>
+                <td><code>/privacy</code> · <code>/terms</code></td>
+                <td>Public legal pages.</td>
+                <td>Public</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="notice">
+          <strong>Developer API access is managed inside Orbit.</strong> Use the Developer Dashboard for current keys, limits, and endpoint details instead of relying on older copied examples.
+        </div>
       </section>
+
     </main>
+
+    <!-- Right "On this page" TOC Sidebar -->
+    <aside class="right-sidebar">
+      <div class="toc-title">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="21" y1="10" x2="7" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="7" y2="18"></line></svg>
+        On this page
+      </div>
+      <div class="toc-links">
+        <a href="#overview">What Orbit AI is</a>
+        <a href="#start">Start using Orbit</a>
+        <a href="#chat">Chat & Files</a>
+        <a href="#models">Models and modes</a>
+        <a href="#agents">Agents & Automations</a>
+        <a href="#voice">Voice Engine</a>
+        <a href="#desktop">Desktop capabilities</a>
+        <a href="#extension">Extension Pro</a>
+        <a href="#account">Account & Billing</a>
+        <a href="#routes">App Routes</a>
+      </div>
+    </aside>
+
   </div>
-  <script src="/site.js" defer></script>
+
 </body>
 </html>
