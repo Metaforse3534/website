@@ -1,0 +1,12 @@
+{
+  "title": "Orbit AI Security",
+  "url": "https://www.orbitdev.org/Routes/security.html",
+  "summary": "Security covers account security, data security (encryption in transit; appropriate controls at rest), infrastructure practices, and AI system integrity. Responsible disclosure is encouraged.",
+  "certifications": [],
+  "certificationsNote": "No certifications are claimed in this file. Do not invent compliance badges.",
+  "relatedPolicies": [
+    "https://www.orbitdev.org/Routes/privacy.html",
+    "https://www.orbitdev.org/Routes/dpa.html",
+    "https://www.orbitdev.org/Routes/ai-usage.html"
+  ]
+}

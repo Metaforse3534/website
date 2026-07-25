@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Orbit AI</title>
+  <meta name="description" content="Contact Orbit AI for product questions, support, press, and partnership inquiries." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.orbitdev.org/Routes/contact.html" />
+  <meta property="og:title" content="Contact — Orbit AI" />
+  <meta property="og:description" content="Get in touch with Orbit AI / Orbit Systems B.V." />
+  <meta property="og:url" content="https://www.orbitdev.org/Routes/contact.html" />
+  <meta property="og:image" content="https://www.orbitdev.org/Public/web-app-manifest-512x512.png" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Contact — Orbit AI" />
+  <meta name="twitter:description" content="Support and contact options for Orbit AI." />
+  <meta name="twitter:image" content="https://www.orbitdev.org/Public/web-app-manifest-512x512.png" />
+  <meta name="theme-color" content="#050508" />
+  <link rel="icon" type="image/svg+xml" href="/Public/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/orbit.css" />
+</head>
+<body>
+  <div data-include="/components/navbar.html"></div>
+  <main id="main">
+    <header class="page-hero">
+      <div class="container">
+        <span class="eyebrow">Contact</span>
+        <h1>Contact Orbit AI</h1>
+        <p>Questions about the product, security, or company information — we will give you straight answers.</p>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="container split">
+        <div class="panel" style="padding:1.75rem">
+          <form class="form-grid" id="contact-form" novalidate>
+            <div class="form-row">
+              <label for="name">Name</label>
+              <input id="name" name="name" required autocomplete="name" />
+            </div>
+            <div class="form-row">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" required autocomplete="email" />
+            </div>
+            <div class="form-row">
+              <label for="topic">Topic</label>
+              <select id="topic" name="topic">
+                <option>Product</option>
+                <option>Support</option>
+                <option>Security</option>
+                <option>Press</option>
+                <option>Partnership</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required placeholder="How can we help?"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Send message</button>
+            <p id="contact-note" style="font-size:0.85rem;color:var(--text-dim)"></p>
+          </form>
+        </div>
+        <div class="prose">
+          <h2>Other channels</h2>
+          <ul>
+            <li><a href="/Routes/support.html">Support center</a></li>
+            <li><a href="/Routes/security.html">Security &amp; responsible disclosure</a></li>
+            <li><a href="/Routes/press.html">Press facts</a></li>
+            <li><a href="https://discord.gg/8VcqeZK2" rel="noopener noreferrer">Discord community</a></li>
+            <li><a href="https://github.com/Metaforse3534/OrbitAIPublic" rel="noopener noreferrer">GitHub</a></li>
+          </ul>
+          <p class="status-note">This contact form is front-end ready. Message delivery wiring is in development — for now, prefer Support or Discord for time-sensitive issues.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div data-include="/components/footer.html"></div>
+  <div data-include="/components/cookie-banner.html"></div>
+  <script src="/assets/js/include.js" defer></script>
+  <script src="/assets/js/main.js" defer></script>
+  <script>
+    document.getElementById("contact-form")?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const note = document.getElementById("contact-note");
+      if (note) note.textContent = "Thanks — form submission backend is coming soon. Please use Support or Discord for urgent requests.";
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "faq": [
+    {
+      "question": "What is Orbit AI?",
+      "answer": "Orbit AI is an AI workspace for chat, browser automation, AI agents, workflow automation, coding, research, file analysis, voice workflows, and team collaboration, published by Orbit Systems B.V. at orbitdev.org and app.orbitdev.org."
+    },
+    {
+      "question": "What is Pulsar?",
+      "answer": "Pulsar is Orbit AI’s LLM research initiative. Separately, Pro Pulsar is a premium Orbit workspace plan. Pulsar V1 is a robotics vision project labeled Coming soon."
+    },
+    {
+      "question": "Is Pulsar V1 available to buy?",
+      "answer": "No. Pulsar V1 is a concept and research vision, not a finished product."
+    },
+    {
+      "question": "Are there published Pulsar LLM benchmarks?",
+      "answer": "No. Orbit does not publish invented benchmark results for Pulsar LLM."
+    },
+    {
+      "question": "What is the current Orbit version?",
+      "answer": "The current public Windows/workspace version documented on the site is 0.0.20."
+    }
+  ]
+}

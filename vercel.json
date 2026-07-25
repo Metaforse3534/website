@@ -156,6 +156,71 @@
       "source": "/extension",
       "destination": "/Routes/extension.html",
       "permanent": false
+    },
+    {
+      "source": "/about",
+      "destination": "/Routes/about.html",
+      "permanent": false
+    },
+    {
+      "source": "/contact",
+      "destination": "/Routes/contact.html",
+      "permanent": false
+    },
+    {
+      "source": "/careers",
+      "destination": "/Routes/careers.html",
+      "permanent": false
+    },
+    {
+      "source": "/blog",
+      "destination": "/Routes/blog.html",
+      "permanent": false
+    },
+    {
+      "source": "/reviews",
+      "destination": "/Routes/reviews.html",
+      "permanent": false
+    },
+    {
+      "source": "/research",
+      "destination": "/Routes/research.html",
+      "permanent": false
+    },
+    {
+      "source": "/developers",
+      "destination": "/Routes/developers.html",
+      "permanent": false
+    },
+    {
+      "source": "/orbit-ai",
+      "destination": "/Routes/orbit-ai.html",
+      "permanent": false
+    },
+    {
+      "source": "/pulsar",
+      "destination": "/Routes/pro-pulsar.html",
+      "permanent": false
+    },
+    {
+      "source": "/pro-pulsar",
+      "destination": "/Routes/pro-pulsar.html",
+      "permanent": false
+    },
+    {
+      "source": "/pulsar-v1",
+      "destination": "/Routes/pulsar-v1.html",
+      "permanent": false
+    },
+    {
+      "source": "/agents",
+      "destination": "/Routes/agents.html",
+      "permanent": false
+    },
+    {
+      "source": "/business",
+      "destination": "/Routes/business.html",
+      "permanent": false
     }
   ],
   "rewrites": [

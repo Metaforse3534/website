@@ -1,0 +1,24 @@
+{
+  "name": "Pulsar V1",
+  "tagline": "Scout · Assist · Adapt",
+  "status": "In development",
+  "type": "Robotics concept",
+  "url": "https://www.orbitdev.org/Routes/pulsar-v1.html",
+  "conceptImage": "https://www.orbitdev.org/public/products/pulsar-v1-concept.png",
+  "summary": "Agile reconnaissance and support unit concept built for dynamic environments. Designed for speed, precision, and integration with human teams.",
+  "disclaimer": "Concept visualization and design targets only. Not a finished product. Specs are not verified measurements of built hardware.",
+  "designTargets": {
+    "height": "1.45 m",
+    "weight": "48 kg",
+    "speed": "35 km/h",
+    "powerCore": "Pulsar Cell",
+    "aiSystem": "Pulsar OS",
+    "primaryRole": "Scout / Support",
+    "manufacturer": "Orbit AI"
+  },
+  "spellingNote": "Marketing spelling is Pulsar (not Puslar).",
+  "related": {
+    "proPulsar": "https://www.orbitdev.org/Routes/pro-pulsar.html",
+    "research": "https://www.orbitdev.org/Routes/research.html"
+  }
+}

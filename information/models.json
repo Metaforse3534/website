@@ -1,0 +1,10 @@
+{
+  "note": "Orbit workspace can route across multiple model providers and Orbit modes. This file does not invent model benchmarks.",
+  "workspaceModes": ["Normal", "Orbit", "Pulsar", "Pro"],
+  "modelAccessPacksDocumented": ["Auto", "Orbit", "Claude", "Pulsar", "ProPulsar", "Coding models", "All Pro models"],
+  "pulsarLlmInitiative": {
+    "status": "Research",
+    "url": "https://www.orbitdev.org/Routes/pulsar.html",
+    "benchmarksPublished": false
+  }
+}

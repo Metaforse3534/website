@@ -1,0 +1,22 @@
+{
+  "name": "Pro Pulsar",
+  "type": "LLM and AI infrastructure initiative",
+  "tagline": "Built from the model up.",
+  "description": "Pro Pulsar is Orbit AI’s language model and AI infrastructure initiative covering model architecture, training, inference, GPU infrastructure, developer APIs, and future capabilities.",
+  "url": "https://www.orbitdev.org/Routes/pro-pulsar.html",
+  "disclaimer": "No unsupported performance claims or invented benchmarks. Status labels: Research, Prototype, Planned.",
+  "areas": [
+    { "name": "Model architecture", "status": "Research" },
+    { "name": "Training", "status": "Prototype" },
+    { "name": "Inference", "status": "Research" },
+    { "name": "GPU infrastructure", "status": "Prototype" },
+    { "name": "Developer APIs", "status": "Planned" },
+    { "name": "Future capabilities", "status": "Planned" }
+  ],
+  "workspaceNote": "In the Orbit workspace, Pro Pulsar may also refer to a premium plan or model-routing mode. That is related product branding, not a published foundation-model release.",
+  "related": {
+    "pulsarV1": "https://www.orbitdev.org/Routes/pulsar-v1.html",
+    "research": "https://www.orbitdev.org/Routes/research.html",
+    "shop": "https://www.orbitdev.org/shop.html"
+  }
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reviews — Orbit AI</title>
+  <meta name="description" content="Orbit AI reviews and community feedback. No fake testimonials — verified reviews only when available." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.orbitdev.org/Routes/reviews.html" />
+  <meta property="og:title" content="Reviews — Orbit AI" />
+  <meta property="og:description" content="Verified user, developer, and community reviews. Coming soon." />
+  <meta property="og:url" content="https://www.orbitdev.org/Routes/reviews.html" />
+  <meta property="og:image" content="https://www.orbitdev.org/Public/web-app-manifest-512x512.png" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Reviews — Orbit AI" />
+  <meta name="twitter:description" content="Reviews are coming soon. No fabricated testimonials." />
+  <meta name="twitter:image" content="https://www.orbitdev.org/Public/web-app-manifest-512x512.png" />
+  <meta name="theme-color" content="#050508" />
+  <link rel="icon" type="image/svg+xml" href="/Public/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/orbit.css" />
+</head>
+<body>
+  <div data-include="/components/navbar.html"></div>
+  <main id="main">
+    <header class="page-hero">
+      <div class="container">
+        <span class="eyebrow">Reviews</span>
+        <h1>Community feedback</h1>
+        <p>Verified user reviews, developer feedback, and product reviews — never fabricated testimonials.</p>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="container">
+        <div id="reviews-list" class="card-grid" style="margin-bottom:2.5rem"></div>
+        <div class="panel review-empty" id="reviews-empty">
+          <h2 style="font-size:1.5rem;margin-bottom:.75rem">Reviews are coming soon.</h2>
+          <p>When verified reviews exist, they will appear here with a Verified badge only after verification.</p>
+        </div>
+
+        <div class="panel" style="padding:1.75rem;margin-top:2.5rem">
+          <h2 style="font-size:1.35rem;margin-bottom:1rem">Submit a review</h2>
+          <p style="margin-bottom:1.25rem;font-size:0.9rem">Submissions are stored for future moderation. Verification is not automatic.</p>
+          <form class="form-grid" id="review-form" novalidate>
+            <div class="form-row">
+              <label for="r-name">Name</label>
+              <input id="r-name" name="name" required autocomplete="name" />
+            </div>
+            <div class="form-row">
+              <label for="r-role">Role</label>
+              <input id="r-role" name="role" autocomplete="organization-title" />
+            </div>
+            <div class="form-row">
+              <label for="r-company">Company</label>
+              <input id="r-company" name="company" autocomplete="organization" />
+            </div>
+            <div class="form-row">
+              <label for="r-rating">Rating</label>
+              <select id="r-rating" name="rating" required>
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="r-body">Review</label>
+              <textarea id="r-body" name="review" required placeholder="Your experience with Orbit AI"></textarea>
+            </div>
+            <div class="form-row">
+              <label for="r-status">Verification status</label>
+              <input id="r-status" name="verification" value="Unverified — pending review" readonly />
+            </div>
+            <button class="btn btn-primary" type="submit">Submit review</button>
+            <p id="review-note" style="font-size:0.85rem;color:var(--text-dim)"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div data-include="/components/footer.html"></div>
+  <div data-include="/components/cookie-banner.html"></div>
+  <script src="/assets/js/include.js" defer></script>
+  <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/reviews.js" defer></script>
+</body>
+</html>

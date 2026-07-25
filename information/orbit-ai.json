@@ -1,0 +1,19 @@
+{
+  "name": "Orbit AI",
+  "type": "SoftwareApplication",
+  "version": "0.0.20",
+  "publisher": "Orbit AI / Orbit Systems B.V.",
+  "website": "https://www.orbitdev.org/",
+  "application": "https://app.orbitdev.org/",
+  "downloadUrl": "https://www.orbitdev.org/Orbit-ai-Setup-0.0.20.exe",
+  "description": "Orbit AI is an AI workspace for chat, browser automation, AI agents, workflow automation, coding, research, file analysis, voice workflows, and team collaboration.",
+  "operatingSystem": ["Web", "Windows"],
+  "pricing": {
+    "startingPrice": "10",
+    "currency": "EUR",
+    "billing": "monthly",
+    "url": "https://www.orbitdev.org/shop.html"
+  },
+  "documentation": "https://www.orbitdev.org/Routes/doc.html",
+  "productPage": "https://www.orbitdev.org/Routes/orbit-ai.html"
+}

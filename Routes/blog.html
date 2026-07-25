@@ -1,109 +1,55 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Orbit AI blog, platform updates, and upcoming releases.">
-  <title>Orbit AI &mdash; Blog & Updates</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="../Public/favicon.ico">
-  <link rel="stylesheet" href="/site.css">
-  <style>
-    :root { --bg:#020202; --panel:#0d0d0d; --border:rgba(255,255,255,.06); --text:#f4f4f5; --muted:#71717a; }
-    body { margin:0; background:radial-gradient(700px circle at 50% -20%, rgba(255,255,255,.04), transparent 60%), var(--bg); color:var(--muted); font-family:Inter, sans-serif; }
-    body::before { content:""; position:fixed; inset:0; pointer-events:none; background:linear-gradient(rgba(255,255,255,.012) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.012) 1px, transparent 1px); background-size:54px 54px; opacity:.22; mask-image:radial-gradient(circle at 50% 18%, black, transparent 72%); }
-    body > * { position:relative; z-index:1; }
-    h1,h2,h3,.font-space { font-family:"Space Grotesk", sans-serif; color:var(--text); letter-spacing:-.025em; }
-    .panel { background:radial-gradient(ellipse 80% 45% at 50% 0%, rgba(255,255,255,.026), transparent 65%), var(--panel); border:1px solid var(--border); border-radius:14px; }
-    .tag { display:inline-flex; border:1px solid var(--border); background:#18181b; color:#a1a1aa; border-radius:6px; padding:3px 9px; font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
-    .reveal { opacity:0; transform:translateY(12px); transition:.55s ease; }
-    .reveal.active { opacity:1; transform:translateY(0); }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Orbit AI</title>
+  <meta name="description" content="Orbit AI blog: AI research, engineering, Pulsar, robotics, company updates, security, and announcements." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.orbitdev.org/Routes/blog.html" />
+  <meta property="og:title" content="Blog — Orbit AI" />
+  <meta property="og:description" content="Research posts, engineering notes, and company updates from Orbit AI." />
+  <meta property="og:url" content="https://www.orbitdev.org/Routes/blog.html" />
+  <meta property="og:image" content="https://www.orbitdev.org/Public/web-app-manifest-512x512.png" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Blog — Orbit AI" />
+  <meta name="twitter:description" content="Articles on trust, Pulsar, architecture, and the future of AI and robotics." />
+  <meta name="twitter:image" content="https://www.orbitdev.org/Public/web-app-manifest-512x512.png" />
+  <meta name="theme-color" content="#050508" />
+  <link rel="icon" type="image/svg+xml" href="/Public/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/orbit.css" />
 </head>
 <body>
-  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06] bg-black/60 backdrop-blur-md">
-    <div class="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
-      <a href="/" class="font-space text-sm font-bold text-zinc-200">ORBIT <span class="text-zinc-500 font-sans text-xs tracking-widest">BLOG</span></a>
-      <div class="flex items-center gap-5 text-xs">
-        <a href="/Routes/schools.html" class="text-zinc-500 hover:text-zinc-200">Schools</a>
-        <a href="/Routes/doc.html" class="text-zinc-500 hover:text-zinc-200">Docs</a>
-        <a href="/Routes/support.html" class="text-zinc-500 hover:text-zinc-200">Support</a>
+  <div data-include="/components/navbar.html"></div>
+  <main id="main">
+    <header class="page-hero">
+      <div class="container">
+        <span class="eyebrow">Blog</span>
+        <h1>Orbit AI writing</h1>
+        <p>Research posts, engineering notes, product announcements, and company updates. Placeholder essays are labeled as editorial content — not fabricated news events.</p>
       </div>
-    </div>
-  </nav>
+    </header>
 
-  <header class="max-w-4xl mx-auto px-6 pt-32 pb-12 border-b border-white/[0.06]">
-    <div class="tag mb-4">Updates</div>
-    <h1 class="text-4xl md:text-5xl font-bold mb-4">Orbit blog and release notes.</h1>
-    <p class="text-sm leading-7 max-w-2xl">Product notes, upcoming launches, and practical updates for people building with Orbit.</p>
-  </header>
-
-  <main class="max-w-4xl mx-auto px-6 py-14 space-y-8">
-    <article class="panel p-6 md:p-8 reveal">
-      <div class="flex flex-wrap items-center gap-3 mb-4">
-        <span class="tag">Latest</span>
-        <time class="text-xs text-zinc-600">July 2026</time>
+    <section class="section">
+      <div class="container">
+        <div class="blog-toolbar">
+          <label class="sr-only" for="blog-search">Search articles</label>
+          <input id="blog-search" type="search" placeholder="Search articles…" />
+          <label class="sr-only" for="blog-category">Category</label>
+          <select id="blog-category" aria-label="Filter by category"></select>
+        </div>
+        <div class="blog-grid" id="blog-grid"></div>
       </div>
-      <h2 class="text-2xl font-bold mb-3">Orbit AI workspace for automation and coding</h2>
-      <p class="text-sm leading-7 mb-5">Orbit AI is now positioned as an AI workspace for browser automation, AI agents, workflow automation, coding assistance, research, file analysis, voice workflows, and team collaboration.</p>
-      <div class="grid sm:grid-cols-3 gap-3 text-xs">
-        <div class="panel p-4">AI automation and coding workspace</div>
-        <div class="panel p-4">Browser-aware agent workflows</div>
-        <div class="panel p-4">Canonical AI answer sources</div>
-      </div>
-      <a href="/orbit-ai-automation-coding-workspace-2026" class="inline-flex mt-6 text-xs font-semibold text-zinc-200 hover:text-white">Read the update &rarr;</a>
-    </article>
-
-    <article class="panel p-6 md:p-8 reveal">
-      <div class="flex flex-wrap items-center gap-3 mb-4">
-        <span class="tag">Release</span>
-        <time class="text-xs text-zinc-600">June 2026</time>
-      </div>
-      <h2 class="text-2xl font-bold mb-3">Orbit 0.0.20 installer and light mode refresh</h2>
-      <p class="text-sm leading-7 mb-5">Orbit 0.0.20 is now the active Windows installer. This release keeps the light mode refresh, repairs light-mode contrast on the workspace home screen, and refreshes download links.</p>
-      <div class="grid sm:grid-cols-3 gap-3 text-xs">
-        <div class="panel p-4">Windows installer updated to 0.0.20</div>
-        <div class="panel p-4">Light mode added to Orbit workspace</div>
-        <div class="panel p-4">Download now targets the real GitHub LFS binary</div>
-      </div>
-    </article>
-
-    <article class="panel p-6 md:p-8 reveal">
-      <div class="flex flex-wrap items-center gap-3 mb-4">
-        <span class="tag">Upcoming</span>
-        <time class="text-xs text-zinc-600">Planned</time>
-      </div>
-      <h2 class="text-2xl font-bold mb-3">Orbit School Program</h2>
-      <p class="text-sm leading-7 mb-5">We are preparing a school-only program for verified institutions. Schools will be able to request education discounts, create classroom workspaces, and onboard students through teacher-led access.</p>
-      <div class="grid sm:grid-cols-3 gap-3 text-xs">
-        <div class="panel p-4">School email access requests</div>
-        <div class="panel p-4">Discounted AI seats for education</div>
-        <div class="panel p-4">Classrooms for cohorts and projects</div>
-      </div>
-      <a href="/Routes/schools.html" class="inline-flex mt-6 text-xs font-semibold text-zinc-200 hover:text-white">View school program &rarr;</a>
-    </article>
-
-    <article class="panel p-6 md:p-8 reveal">
-      <div class="flex flex-wrap items-center gap-3 mb-4">
-        <span class="tag">Initial</span>
-        <time class="text-xs text-zinc-600">Foundation</time>
-      </div>
-      <h2 class="text-2xl font-bold mb-3">Initial platform foundation</h2>
-      <p class="text-sm leading-7">The first Orbit release introduced the public website, Windows desktop app, browser extension foundation, Supabase-backed workflows, documentation, and support routes.</p>
-    </article>
+    </section>
   </main>
-
-  <footer class="border-t border-white/[0.06] py-10 text-center text-[10px] text-zinc-600 uppercase tracking-widest">
-    &copy; 2026 Orbit Systems B.V. Blog
-  </footer>
-
-  <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add("active"); });
-    }, { threshold: 0.05 });
-    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-  </script>
-  <script src="/site.js" defer></script>
+  <div data-include="/components/footer.html"></div>
+  <div data-include="/components/cookie-banner.html"></div>
+  <script src="/assets/js/include.js" defer></script>
+  <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/blog.js" defer></script>
 </body>
 </html>

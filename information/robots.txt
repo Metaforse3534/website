@@ -1,0 +1,7 @@
+# Prefer root robots.txt at https://www.orbitdev.org/robots.txt
+# This file documents crawler policy for the /information directory.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://www.orbitdev.org/sitemap.xml

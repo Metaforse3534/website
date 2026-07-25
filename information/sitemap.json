@@ -1,0 +1,20 @@
+{
+  "baseUrl": "https://www.orbitdev.org",
+  "pages": [
+    { "path": "/", "priority": 1.0, "changefreq": "weekly" },
+    { "path": "/Routes/orbit-ai.html", "priority": 0.9, "changefreq": "weekly" },
+    { "path": "/Routes/pulsar.html", "priority": 0.9, "changefreq": "weekly" },
+    { "path": "/Routes/pulsar-v1.html", "priority": 0.9, "changefreq": "weekly" },
+    { "path": "/Routes/research.html", "priority": 0.8, "changefreq": "weekly" },
+    { "path": "/Routes/about.html", "priority": 0.8, "changefreq": "monthly" },
+    { "path": "/Routes/blog.html", "priority": 0.8, "changefreq": "weekly" },
+    { "path": "/Routes/developers.html", "priority": 0.7, "changefreq": "monthly" },
+    { "path": "/Routes/security.html", "priority": 0.7, "changefreq": "monthly" },
+    { "path": "/Routes/contact.html", "priority": 0.6, "changefreq": "monthly" },
+    { "path": "/Routes/careers.html", "priority": 0.5, "changefreq": "monthly" },
+    { "path": "/Routes/reviews.html", "priority": 0.5, "changefreq": "monthly" },
+    { "path": "/Routes/privacy.html", "priority": 0.5, "changefreq": "yearly" },
+    { "path": "/Routes/terms.html", "priority": 0.5, "changefreq": "yearly" },
+    { "path": "/information/company.json", "priority": 0.4, "changefreq": "monthly" }
+  ]
+}

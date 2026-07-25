@@ -1,0 +1,30 @@
+{
+  "title": "Orbit AI Research",
+  "url": "https://www.orbitdev.org/Routes/research.html",
+  "initiatives": [
+    {
+      "id": "pro-pulsar",
+      "name": "Pro Pulsar",
+      "status": "Research",
+      "url": "https://www.orbitdev.org/Routes/pro-pulsar.html"
+    },
+    {
+      "id": "pulsar-v1",
+      "name": "Pulsar V1",
+      "status": "Coming soon",
+      "url": "https://www.orbitdev.org/Routes/pulsar-v1.html"
+    },
+    {
+      "id": "trusted-ai",
+      "name": "Trusted AI systems",
+      "status": "Active",
+      "url": "https://www.orbitdev.org/public/blog/how-we-think-about-trust-in-ai.html"
+    },
+    {
+      "id": "workspace-architecture",
+      "name": "Workspace architecture",
+      "status": "Active",
+      "url": "https://www.orbitdev.org/public/blog/inside-orbit-ais-ai-architecture.html"
+    }
+  ]
+}

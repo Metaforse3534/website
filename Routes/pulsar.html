@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pulsar — Orbit AI Language Model Research</title>
+  <meta name="description" content="Pulsar is Orbit AI’s LLM research initiative covering foundation models, training, inference, and planned developer APIs. Research and prototype status labeled clearly." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.orbitdev.org/Routes/pulsar.html" />
+  <meta property="og:title" content="Pulsar — Orbit AI Language Model Research" />
+  <meta property="og:description" content="Orbit AI’s language model technology initiative. No invented benchmarks." />
+  <meta property="og:url" content="https://www.orbitdev.org/Routes/pulsar.html" />
+  <meta property="og:image" content="https://www.orbitdev.org/Public/web-app-manifest-512x512.png" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Pulsar — Orbit AI Language Model Research" />
+  <meta name="twitter:description" content="Foundation models, training infrastructure, inference, and planned APIs." />
+  <meta name="twitter:image" content="https://www.orbitdev.org/Public/web-app-manifest-512x512.png" />
+  <meta name="theme-color" content="#050508" />
+  <link rel="icon" type="image/svg+xml" href="/Public/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/orbit.css" />
+</head>
+<body>
+  <div data-include="/components/navbar.html"></div>
+  <main id="main">
+    <header class="page-hero">
+      <div class="container">
+        <span class="eyebrow">Research</span>
+        <h1>Pulsar</h1>
+        <p>Our language model technology. Pulsar is Orbit AI’s LLM research and development initiative.</p>
+        <div class="btn-row" style="margin-top:1.5rem">
+          <a class="btn btn-primary" href="/Routes/research.html">View Research</a>
+          <a class="btn btn-secondary" href="/Routes/pulsar-v1.html">Pulsar V1</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="container">
+        <div class="split">
+          <div>
+            <h2 style="font-size:1.75rem;margin-bottom:1rem">Model architecture (conceptual)</h2>
+            <p style="margin-bottom:1rem">The diagram below is an abstract representation of research areas — not a published model card or production architecture claim.</p>
+            <div class="panel" style="padding:1.5rem">
+              <svg viewBox="0 0 520 320" role="img" aria-label="Abstract Pulsar model architecture diagram">
+                <rect width="520" height="320" rx="16" fill="#0a0b12"/>
+                <rect x="40" y="40" width="140" height="56" rx="12" fill="rgba(154,167,255,0.12)" stroke="rgba(154,167,255,0.4)"/>
+                <text x="110" y="74" text-anchor="middle" fill="#f7f7fb" font-size="13" font-family="Space Grotesk,sans-serif">Tokenization</text>
+                <rect x="190" y="40" width="140" height="56" rx="12" fill="rgba(154,167,255,0.12)" stroke="rgba(154,167,255,0.4)"/>
+                <text x="260" y="74" text-anchor="middle" fill="#f7f7fb" font-size="13" font-family="Space Grotesk,sans-serif">Transformer</text>
+                <rect x="340" y="40" width="140" height="56" rx="12" fill="rgba(154,167,255,0.12)" stroke="rgba(154,167,255,0.4)"/>
+                <text x="410" y="74" text-anchor="middle" fill="#f7f7fb" font-size="13" font-family="Space Grotesk,sans-serif">Inference</text>
+                <path d="M110 96v40h150v40" fill="none" stroke="rgba(125,211,252,0.5)" stroke-width="1.5"/>
+                <path d="M260 96v40M410 96v40H260" fill="none" stroke="rgba(125,211,252,0.5)" stroke-width="1.5"/>
+                <rect x="160" y="176" width="200" height="56" rx="12" fill="rgba(125,211,252,0.1)" stroke="rgba(125,211,252,0.4)"/>
+                <text x="260" y="210" text-anchor="middle" fill="#f7f7fb" font-size="13" font-family="Space Grotesk,sans-serif">Training &amp; Fine-tuning</text>
+                <rect x="120" y="250" width="280" height="40" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)"/>
+                <text x="260" y="275" text-anchor="middle" fill="#9ca0b3" font-size="12" font-family="Inter,sans-serif">Distributed training · GPU acceleration · Model serving</text>
+              </svg>
+            </div>
+          </div>
+          <div class="card-grid" style="grid-template-columns:1fr">
+            <article class="panel feature-card"><h3>Foundation Models</h3><span class="badge badge-research">Research</span><p>Exploring core language model capabilities for Orbit systems.</p></article>
+            <article class="panel feature-card"><h3>Training Infrastructure</h3><span class="badge badge-prototype">Prototype</span><p>Experimentation systems for training runs and evaluation harnesses.</p></article>
+            <article class="panel feature-card"><h3>Inference</h3><span class="badge badge-research">Research</span><p>Runtime efficiency, serving patterns, and reliability research.</p></article>
+            <article class="panel feature-card"><h3>Developer APIs</h3><span class="badge badge-planned">Planned</span><p>External API access is planned; not a public production API today.</p></article>
+            <article class="panel feature-card"><h3>AI Agents</h3><span class="badge badge-research">Research</span><p>Agent orchestration connected to model and workspace capabilities.</p></article>
+            <article class="panel feature-card"><h3>Future Multimodal Systems</h3><span class="badge badge-planned">Planned</span><p>Longer-term multimodal research direction.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="section-head">
+          <h2>Technical focus areas</h2>
+          <p>Each topic below is labeled by current honesty status. No evaluation scores are claimed.</p>
+        </div>
+        <div class="tech-list">
+          <article class="panel tech-item"><div><h3>Model architecture</h3><p>Research into transformer-style architectures and system design for Orbit workloads.</p></div><span class="badge badge-research">Research</span></article>
+          <article class="panel tech-item"><div><h3>Training</h3><p>Methods and infrastructure for training experiments.</p></div><span class="badge badge-prototype">Prototype</span></article>
+          <article class="panel tech-item"><div><h3>Tokenization</h3><p>Text representation pipelines for model input.</p></div><span class="badge badge-research">Research</span></article>
+          <article class="panel tech-item"><div><h3>Inference</h3><p>Latency, throughput, and reliability considerations for serving.</p></div><span class="badge badge-research">Research</span></article>
+          <article class="panel tech-item"><div><h3>GPU acceleration</h3><p>Hardware-aware training and inference experimentation.</p></div><span class="badge badge-prototype">Prototype</span></article>
+          <article class="panel tech-item"><div><h3>Distributed training</h3><p>Multi-node training patterns under exploration.</p></div><span class="badge badge-planned">Planned</span></article>
+          <article class="panel tech-item"><div><h3>Fine-tuning</h3><p>Adaptation techniques for domain and product needs.</p></div><span class="badge badge-research">Research</span></article>
+          <article class="panel tech-item"><div><h3>Model serving</h3><p>Deployment and serving design for future releases.</p></div><span class="badge badge-planned">Planned</span></article>
+        </div>
+        <p class="status-note">Note: In the Orbit workspace, “Pulsar” / “Pro Pulsar” also refers to premium model routing modes. That product feature is separate from this LLM research initiative.</p>
+      </div>
+    </section>
+  </main>
+  <div data-include="/components/footer.html"></div>
+  <div data-include="/components/cookie-banner.html"></div>
+  <script src="/assets/js/include.js" defer></script>
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>

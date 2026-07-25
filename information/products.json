@@ -1,0 +1,34 @@
+{
+  "products": [
+    {
+      "id": "orbit-ai",
+      "name": "Orbit AI",
+      "shortName": "Orbit",
+      "status": "Current",
+      "version": "0.0.20",
+      "category": "AI workspace",
+      "url": "https://www.orbitdev.org/Routes/orbit-ai.html",
+      "appUrl": "https://app.orbitdev.org/",
+      "platforms": ["Web", "Windows"],
+      "description": "Intelligent workspace for chat, research, coding, files, browser automation, agents, workflows, and collaboration.",
+      "capabilities": [
+        { "name": "AI conversations", "status": "Current" },
+        { "name": "Research", "status": "Current" },
+        { "name": "Coding assistance", "status": "Current" },
+        { "name": "File understanding", "status": "Current" },
+        { "name": "Browser automation", "status": "Current" },
+        { "name": "AI agents", "status": "Current" },
+        { "name": "Workflow automation", "status": "Current" },
+        { "name": "Developer tools", "status": "Current" }
+      ]
+    },
+    {
+      "id": "pro-pulsar",
+      "name": "Pro Pulsar",
+      "status": "Current",
+      "category": "Premium workspace plan",
+      "description": "Premium Orbit access for priority model use and advanced agent workflows. Distinct from Pulsar LLM research and Pulsar V1 robotics.",
+      "url": "https://www.orbitdev.org/shop.html"
+    }
+  ]
+}

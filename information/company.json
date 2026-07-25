@@ -1,0 +1,43 @@
+{
+  "name": "Orbit AI",
+  "legalName": "Orbit Systems B.V.",
+  "tagline": "Intelligence, Built for What's Next.",
+  "description": "Orbit AI builds intelligent systems, AI assistants, developer tools, and Pro Pulsar language model technology. Orbit Systems B.V. develops the Orbit workspace and pursues longer-term Pulsar V1 robotics research.",
+  "shortDescription": "Orbit AI is an AI workspace and research company building trusted intelligence for software, agents, and robotics.",
+  "website": "https://www.orbitdev.org/",
+  "application": "https://app.orbitdev.org/",
+  "jurisdiction": "Netherlands",
+  "founders": [],
+  "foundersNote": "Founder names are not published in this file. Do not invent them.",
+  "contact": {
+    "support": "https://www.orbitdev.org/Routes/support.html",
+    "security": "https://www.orbitdev.org/Routes/security.html",
+    "press": "https://www.orbitdev.org/Routes/press.html",
+    "contactPage": "https://www.orbitdev.org/Routes/contact.html"
+  },
+  "social": {
+    "github": "https://github.com/Metaforse3534/OrbitAIPublic",
+    "discord": "https://discord.gg/8VcqeZK2"
+  },
+  "products": [
+    "Orbit AI workspace",
+    "Orbit Agents",
+    "Pro Pulsar (model initiative / related workspace plan)"
+  ],
+  "projects": [
+    {
+      "name": "Pro Pulsar",
+      "type": "LLM and infrastructure",
+      "status": "Research / Prototype / Planned (by area)"
+    },
+    {
+      "name": "Pulsar V1",
+      "type": "Robotics vision",
+      "status": "Coming soon \u2014 in development"
+    }
+  ],
+  "officialWebsite": "https://www.orbitdev.org/",
+  "press": "https://www.orbitdev.org/Routes/press.html",
+  "research": "https://www.orbitdev.org/Routes/research.html",
+  "lastUpdated": "2026-07-25"
+}

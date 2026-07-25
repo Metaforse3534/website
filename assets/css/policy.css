@@ -1,0 +1,219 @@
+/* Policy / legal document layout — used with orbit.css */
+.policy-wrap {
+  width: min(100% - 2.5rem, 1180px);
+  margin: 0 auto;
+  padding: 2.5rem 0 4.5rem;
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 3rem;
+}
+
+.policy-side {
+  position: sticky;
+  top: calc(var(--nav-h) + 1rem);
+  align-self: start;
+  max-height: calc(100vh - var(--nav-h) - 2rem);
+  overflow-y: auto;
+}
+
+.policy-side-title {
+  margin: 0 0 0.75rem;
+  color: var(--text-3);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.policy-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  border-left: 1px solid var(--line);
+}
+
+.policy-nav a {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-left: 2px solid transparent;
+  margin-left: -1px;
+  color: var(--text-3);
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+.policy-nav a:hover {
+  color: var(--text);
+  background: var(--surface);
+}
+
+.policy-nav a[aria-current="page"],
+.policy-nav a.active {
+  color: var(--text);
+  border-left-color: var(--signal);
+  background: var(--surface);
+}
+
+.policy-main {
+  max-width: 720px;
+  min-width: 0;
+}
+
+.policy-main > .eyebrow {
+  margin-bottom: 0.85rem;
+}
+
+.policy-main > h1 {
+  font-size: clamp(1.85rem, 4vw, 2.75rem);
+  margin: 0 0 0.85rem;
+  max-width: 18ch;
+}
+
+.policy-summary {
+  margin: 0;
+  max-width: 42rem;
+  color: var(--text-2);
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+
+.policy-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 1.25rem;
+}
+
+.policy-meta span {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.4rem 0.55rem;
+  background: var(--surface);
+  color: var(--text-3);
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+}
+
+.policy-notice {
+  margin-top: 1.35rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--signal);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text-2);
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+
+.policy-content {
+  margin-top: 2rem;
+}
+
+.policy-section {
+  padding: 1.35rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.policy-section h2 {
+  display: flex;
+  gap: 0.65rem;
+  align-items: baseline;
+  margin: 0 0 0.55rem;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+}
+
+.policy-section h2 .num {
+  color: var(--text-3);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.policy-section p,
+.policy-section li {
+  margin: 0;
+  color: var(--text-2);
+  font-size: 0.925rem;
+  line-height: 1.8;
+}
+
+.policy-section ul,
+.policy-section ol {
+  margin: 0.5rem 0 0;
+  padding-left: 1.2rem;
+}
+
+.policy-section li + li {
+  margin-top: 0.35rem;
+}
+
+.policy-section a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.policy-section a:hover {
+  color: var(--signal);
+}
+
+.policy-doc-footer {
+  margin-top: 2rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.85rem;
+  color: var(--text-3);
+  font-size: 0.8rem;
+}
+
+.policy-doc-footer a {
+  color: var(--text);
+}
+
+@media (max-width: 900px) {
+  .policy-wrap {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding-top: 1.5rem;
+  }
+
+  .policy-side {
+    position: static;
+    max-height: none;
+  }
+
+  .policy-nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-left: none;
+    gap: 0.15rem;
+  }
+
+  .policy-nav a {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin-left: 0;
+  }
+
+  .policy-nav a[aria-current="page"],
+  .policy-nav a.active {
+    border-color: var(--line-strong);
+  }
+}
+
+@media (max-width: 520px) {
+  .policy-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .policy-wrap {
+    width: min(100% - 1.5rem, 1180px);
+  }
+}
