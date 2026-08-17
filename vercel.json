@@ -1,13 +1,44 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    },
+    {
+      "source": "/(assets|Public|images)/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
     {
       "source": "/robots.txt",
       "headers": [
         {
           "key": "Content-Type",
           "value": "text/plain; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
         }
       ]
     },
@@ -17,6 +48,10 @@
         {
           "key": "Content-Type",
           "value": "text/plain; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
         }
       ]
     },
@@ -26,6 +61,10 @@
         {
           "key": "Content-Type",
           "value": "text/plain; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
         }
       ]
     },
@@ -35,6 +74,23 @@
         {
           "key": "Content-Type",
           "value": "application/xml; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
+      "source": "/feed.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/rss+xml; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
         }
       ]
     },
@@ -57,11 +113,11 @@
       ]
     },
     {
-      "source": "/feed.xml",
+      "source": "/information/(.*)",
       "headers": [
         {
           "key": "Content-Type",
-          "value": "application/rss+xml; charset=utf-8"
+          "value": "application/json; charset=utf-8"
         }
       ]
     }
@@ -70,11 +126,6 @@
     {
       "source": "/Orbit-ai-Setup-0.0.20.exe",
       "destination": "https://github.com/Metaforse3534/website/raw/main/Orbit-ai-Setup-0.0.20.exe",
-      "permanent": false
-    },
-    {
-      "source": "/schools",
-      "destination": "/Routes/schools.html",
       "permanent": false
     },
     {
@@ -133,21 +184,6 @@
       "permanent": true
     },
     {
-      "source": "/Routes/acceptable-use.html",
-      "destination": "/Routes/acceptabe.html",
-      "permanent": true
-    },
-    {
-      "source": "/Routes/partnership.html",
-      "destination": "/Routes/prathership.html",
-      "permanent": true
-    },
-    {
-      "source": "/Routes/Privacy.html",
-      "destination": "/Routes/privacy.html",
-      "permanent": true
-    },
-    {
       "source": "/support",
       "destination": "/Routes/support.html",
       "permanent": false
@@ -169,7 +205,12 @@
     },
     {
       "source": "/careers",
-      "destination": "/Routes/careers.html",
+      "destination": "/Routes/Career.html",
+      "permanent": false
+    },
+    {
+      "source": "/career",
+      "destination": "/Routes/Career.html",
       "permanent": false
     },
     {
@@ -190,6 +231,16 @@
     {
       "source": "/developers",
       "destination": "/Routes/developers.html",
+      "permanent": false
+    },
+    {
+      "source": "/dev",
+      "destination": "/Routes/DEV.html",
+      "permanent": false
+    },
+    {
+      "source": "/DEV",
+      "destination": "/Routes/DEV.html",
       "permanent": false
     },
     {
@@ -221,12 +272,146 @@
       "source": "/business",
       "destination": "/Routes/business.html",
       "permanent": false
+    },
+    {
+      "source": "/acceptable",
+      "destination": "/Routes/acceptable.html",
+      "permanent": true
+    },
+    {
+      "source": "/acceptable-use",
+      "destination": "/Routes/acceptable.html",
+      "permanent": true
+    },
+    {
+      "source": "/acceptabe",
+      "destination": "/Routes/acceptable.html",
+      "permanent": true
+    },
+    {
+      "source": "/partnership",
+      "destination": "/Routes/partnership.html",
+      "permanent": true
+    },
+    {
+      "source": "/partnerships",
+      "destination": "/Routes/partnership.html",
+      "permanent": true
+    },
+    {
+      "source": "/prathership",
+      "destination": "/Routes/partnership.html",
+      "permanent": true
+    },
+    {
+      "source": "/network",
+      "destination": "/Routes/network.html",
+      "permanent": false
+    },
+    {
+      "source": "/eco",
+      "destination": "/Routes/Eco.html",
+      "permanent": false
+    },
+    {
+      "source": "/ecosystem",
+      "destination": "/Routes/Eco.html",
+      "permanent": false
+    },
+    {
+      "source": "/architects",
+      "destination": "/Routes/architects.html",
+      "permanent": false
+    },
+    {
+      "source": "/core",
+      "destination": "/Routes/core.html",
+      "permanent": false
+    },
+    {
+      "source": "/doc",
+      "destination": "/Routes/doc.html",
+      "permanent": false
+    },
+    {
+      "source": "/docs",
+      "destination": "/Routes/doc.html",
+      "permanent": false
+    },
+    {
+      "source": "/documentation",
+      "destination": "/Routes/doc.html",
+      "permanent": false
+    },
+    {
+      "source": "/rules",
+      "destination": "/Routes/rules.html",
+      "permanent": false
+    },
+    {
+      "source": "/stage",
+      "destination": "/Routes/stage.html",
+      "permanent": false
+    },
+    {
+      "source": "/academy",
+      "destination": "/Routes/stage.html",
+      "permanent": false
+    },
+    {
+      "source": "/schools",
+      "destination": "/Routes/schools.html",
+      "permanent": false
+    },
+    {
+      "source": "/company",
+      "destination": "/Routes/company.html",
+      "permanent": false
+    },
+    {
+      "source": "/Routes/Privacy.html",
+      "destination": "/Routes/privacy.html",
+      "permanent": true
+    },
+    {
+      "source": "/Routes/acceptable-use.html",
+      "destination": "/Routes/acceptable.html",
+      "permanent": true
+    },
+    {
+      "source": "/Routes/acceptabe.html",
+      "destination": "/Routes/acceptable.html",
+      "permanent": true
+    },
+    {
+      "source": "/Routes/prathership.html",
+      "destination": "/Routes/partnership.html",
+      "permanent": true
+    },
+    {
+      "source": "/Routes/career.html",
+      "destination": "/Routes/Career.html",
+      "permanent": true
+    },
+    {
+      "source": "/Routes/eco.html",
+      "destination": "/Routes/Eco.html",
+      "permanent": true
+    },
+    {
+      "source": "/Routes/dev.html",
+      "destination": "/Routes/DEV.html",
+      "permanent": true
     }
   ],
   "rewrites": [
     {
-      "source": "/routes/terms",
-      "destination": "/Routes/terms.html"
+      "source": "/create-payment-intent",
+      "destination": "/api/create-payment-intent"
+    },
+    {
+      "source": "/routes/:path*",
+      "destination": "/Routes/:path*"
     }
   ]
 }
