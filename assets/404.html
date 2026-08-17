@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Trajectory Not Found | Orbit</title>
+  <meta name="theme-color" content="#050609" />
+  <link rel="icon" type="image/svg+xml" href="/Public/favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/assets/css/orbit.css" />
+  <link rel="stylesheet" href="/assets/css/cinematic.css" />
+</head>
+<body class="bg-[#050609] text-[#F5F7FA] min-h-screen flex flex-col justify-between">
+
+  <div data-include="/components/navbar.html"></div>
+
+  <main class="flex-1 flex items-center justify-center text-center p-6">
+    <div class="max-w-md space-y-4">
+      <div class="text-6xl font-extrabold font-mono text-[#6EA8FF]">404</div>
+      <h1 class="text-2xl font-bold text-[#F5F7FA]">Trajectory Out of Bounds</h1>
+      <p class="text-xs text-[#9299A6] leading-relaxed">
+        The requested vector could not be resolved in the Orbit workspace lattice.
+      </p>
+      <div class="pt-4">
+        <a href="/" class="btn-launch">Return to Orbit Home →</a>
+      </div>
+    </div>
+  </main>
+
+  <div data-include="/components/footer.html"></div>
+  <script src="/assets/js/include.js"></script>
+</body>
+</html>

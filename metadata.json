@@ -1,0 +1,8 @@
+{
+  "name": "Orbit AI",
+  "description": "Orbit is an AI platform that brings intelligence, automation and execution into one workspace.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
