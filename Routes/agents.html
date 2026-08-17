@@ -3,66 +3,90 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Orbit Agents — Multi-step AI Workflows</title>
-  <meta name="description" content="Orbit Agents connect intelligence to tools and actions with human oversight. Multi-step workflows in the Orbit AI workspace." />
-  <meta name="robots" content="index, follow" />
+  <title>Orbit Agents — Autonomous Multi-Agent Swarms</title>
+  <meta name="description" content="Coordinate autonomous AI agents along synchronized trajectories. Research, browse, analyze, code, and automate." />
+  <meta name="theme-color" content="#050609" />
   <link rel="canonical" href="https://www.orbitdev.org/Routes/agents.html" />
-  <meta property="og:title" content="Orbit Agents" />
-  <meta property="og:description" content="Multi-step agent workflows in Orbit AI — tools, actions, and human review." />
-  <meta property="og:url" content="https://www.orbitdev.org/Routes/agents.html" />
-  <meta property="og:image" content="https://www.orbitdev.org/Public/web-app-manifest-512x512.png" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Orbit Agents" />
-  <meta name="twitter:description" content="Agent workflows with human oversight." />
-  <meta name="twitter:image" content="https://www.orbitdev.org/Public/web-app-manifest-512x512.png" />
-  <meta name="theme-color" content="#09090b" />
   <link rel="icon" type="image/svg+xml" href="/Public/favicon.svg" />
+
+  <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/assets/css/orbit.css" />
+  <link rel="stylesheet" href="/assets/css/cinematic.css" />
 </head>
-<body>
+<body class="bg-[#050609] text-[#F5F7FA]">
+
   <div data-include="/components/navbar.html"></div>
-  <main id="main">
-    <header class="page-hero">
-      <div class="container">
-        <span class="eyebrow">Products</span>
-        <h1>Orbit Agents</h1>
-        <p>Multi-step workflows that connect Orbit intelligence to tools and actions — with people in control of consequential steps.</p>
-        <div class="btn-row" style="margin-top:1.25rem">
-          <a class="btn btn-primary" href="https://app.orbitdev.org/" data-app-path="/">Try in Orbit</a>
-          <a class="btn btn-secondary" href="/Routes/doc.html">Documentation</a>
+
+  <main id="main" class="min-h-screen">
+    <header class="page-hero text-center py-16 px-4">
+      <div class="container max-w-4xl mx-auto">
+        <span class="eyebrow">Orbit Multi-Agent Architecture</span>
+        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-4">
+          Don't just ask.<br />
+          <span class="text-[#6EA8FF]">Let agents execute.</span>
+        </h1>
+        <p class="text-lg text-[#9299A6] max-w-2xl mx-auto mb-8">
+          Spawn autonomous subagent swarms that decompose goals, parallelize tool calls, and converge on verified results.
+        </p>
+        <div class="flex justify-center gap-3">
+          <a class="btn-launch-hero text-sm py-2.5 px-6" href="/Routes/orbit-ai.html">
+            Deploy Agent Swarm →
+          </a>
+          <a class="btn-secondary-hero text-sm py-2.5 px-6" href="/Routes/doc.html">
+            Agent SDK Docs
+          </a>
         </div>
       </div>
     </header>
-    <section class="section">
-      <div class="container">
-        <div class="pipeline" role="list" style="margin-bottom:2rem">
-          <span class="pipeline-step" role="listitem">User</span>
-          <span class="pipeline-arrow" aria-hidden="true">→</span>
-          <span class="pipeline-step" role="listitem">Orbit Intelligence</span>
-          <span class="pipeline-arrow" aria-hidden="true">→</span>
-          <span class="pipeline-step" role="listitem">Models</span>
-          <span class="pipeline-arrow" aria-hidden="true">→</span>
-          <span class="pipeline-step" role="listitem">Tools</span>
-          <span class="pipeline-arrow" aria-hidden="true">→</span>
-          <span class="pipeline-step" role="listitem">Agents</span>
-          <span class="pipeline-arrow" aria-hidden="true">→</span>
-          <span class="pipeline-step" role="listitem">Actions</span>
+
+    <section class="py-16 px-4 max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="orbit-card">
+          <span class="text-xs font-mono text-[#6EA8FF]">01 / RESEARCH</span>
+          <h3 class="text-lg font-semibold text-[#F5F7FA] mt-2 mb-2">Deep Ingestion Agent</h3>
+          <p class="text-xs text-[#9299A6] leading-relaxed">Recursively crawls academic journals, API documentation, and repository trees with contextual semantic relevance filters.</p>
         </div>
-        <div class="card-grid">
-          <article class="panel feature-card"><h3>Structured steps</h3><span class="badge badge-ok">Current</span><p>Break work into inspectable steps before execution.</p></article>
-          <article class="panel feature-card"><h3>Tool use</h3><span class="badge badge-ok">Current</span><p>Connect reasoning to browser, files, and coding contexts.</p></article>
-          <article class="panel feature-card"><h3>Human oversight</h3><span class="badge badge-ok">Current</span><p>Review consequential actions instead of silent automation.</p></article>
+
+        <div class="orbit-card">
+          <span class="text-xs font-mono text-[#6EA8FF]">02 / BROWSER</span>
+          <h3 class="text-lg font-semibold text-[#F5F7FA] mt-2 mb-2">Headless Web Agent</h3>
+          <p class="text-xs text-[#9299A6] leading-relaxed">Interacts with dynamic SPAs, extracts complex tabular data, fills forms, and validates UI state changes.</p>
+        </div>
+
+        <div class="orbit-card">
+          <span class="text-xs font-mono text-[#6EA8FF]">03 / CODE</span>
+          <h3 class="text-lg font-semibold text-[#F5F7FA] mt-2 mb-2">Type-Safe Synthesis Agent</h3>
+          <p class="text-xs text-[#9299A6] leading-relaxed">Generates TypeScript, Python, and Rust code with strict compiler verification and zero hallucinated imports.</p>
+        </div>
+
+        <div class="orbit-card">
+          <span class="text-xs font-mono text-[#6EA8FF]">04 / ANALYSIS</span>
+          <h3 class="text-lg font-semibold text-[#F5F7FA] mt-2 mb-2">Statistical Reasoning Agent</h3>
+          <p class="text-xs text-[#9299A6] leading-relaxed">Calculates financial projections, validates dataset integrity, and builds comparative decision matrices.</p>
+        </div>
+
+        <div class="orbit-card">
+          <span class="text-xs font-mono text-[#6EA8FF]">05 / AUTOMATION</span>
+          <h3 class="text-lg font-semibold text-[#F5F7FA] mt-2 mb-2">Workflow Dispatch Agent</h3>
+          <p class="text-xs text-[#9299A6] leading-relaxed">Triggers GitHub Actions, synchronizes cloud databases, and fires encrypted webhook callbacks.</p>
+        </div>
+
+        <div class="orbit-card">
+          <span class="text-xs font-mono text-[#6EA8FF]">06 / ORCHESTRATION</span>
+          <h3 class="text-lg font-semibold text-[#F5F7FA] mt-2 mb-2">Consensus Arbiter</h3>
+          <p class="text-xs text-[#9299A6] leading-relaxed">Validates cross-agent outputs, eliminates contradictory statements, and delivers a unified deliverable.</p>
         </div>
       </div>
     </section>
   </main>
+
   <div data-include="/components/footer.html"></div>
-  <div data-include="/components/cookie-banner.html"></div>
-  <script src="/assets/js/include.js" defer></script>
-  <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/include.js"></script>
 </body>
 </html>

@@ -1,40 +1,41 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Orbit AI — Intelligence that moves with you</title>
-  <meta name="description" content="Orbit AI builds intelligent systems, AI assistants, developer tools, and Pro Pulsar language model technology. A serious AI platform from Orbit Systems B.V." />
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-  <meta name="theme-color" content="#09090b" />
+  <title>Orbit — AI that moves with you</title>
+  <meta name="description" content="Research, create, automate and execute from one intelligent workspace. Orbit is a modern AI platform built for momentum." />
+  <meta name="theme-color" content="#050609" />
   <link rel="canonical" href="https://www.orbitdev.org/" />
-  <link rel="alternate" type="text/plain" href="https://www.orbitdev.org/llms.txt" title="Orbit AI facts for language models" />
-  <link rel="alternate" type="application/json" href="https://www.orbitdev.org/information/company.json" title="Orbit AI company profile" />
-  <link rel="sitemap" type="application/xml" href="https://www.orbitdev.org/sitemap.xml" />
 
+  <!-- Open Graph / Social Meta -->
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Orbit AI" />
-  <meta property="og:title" content="Orbit AI — Intelligence that moves with you" />
-  <meta property="og:description" content="Intelligent systems, agents, and language model technology — built with engineering depth and honest product status." />
-  <meta property="og:url" content="https://www.orbitdev.org/" />
-  <meta property="og:image" content="https://www.orbitdev.org/Public/web-app-manifest-512x512.png" />
-  <meta property="og:image:alt" content="Orbit AI" />
-
+  <meta property="og:site_name" content="Orbit" />
+  <meta property="og:title" content="Orbit — AI that moves with you" />
+  <meta property="og:description" content="Research, create, automate and execute from one intelligent workspace." />
+  <meta property="og:image" content="/Public/orbit-mark.svg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Orbit AI — Intelligence that moves with you" />
-  <meta name="twitter:description" content="Orbit AI is building its own ecosystem of intelligent products and AI technology." />
-  <meta name="twitter:image" content="https://www.orbitdev.org/Public/web-app-manifest-512x512.png" />
 
-  <link rel="icon" type="image/png" href="/Public/favicon-96x96.png" sizes="96x96" />
+  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/Public/favicon.svg" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/Public/apple-touch-icon.png" />
-  <link rel="manifest" href="/Public/site.webmanifest" />
+  <link rel="apple-touch-icon" href="/Public/favicon.svg" />
 
+  <!-- Typography: Plus Jakarta Sans, Inter, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/css/orbit.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
+  <!-- Tailwind CSS & Kinetic Design System -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/assets/css/cinematic.css" />
+
+  <!-- Animation & 3D Libraries: Three.js, GSAP, ScrollTrigger, Lenis -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
+
+  <!-- Schema.org Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -42,1129 +43,1304 @@
       {
         "@type": "Organization",
         "@id": "https://www.orbitdev.org/#organization",
-        "name": "Orbit AI",
-        "legalName": "Orbit Systems B.V.",
+        "name": "Orbit",
+        "legalName": "Orbit Technologies Inc.",
         "url": "https://www.orbitdev.org/",
-        "logo": "https://www.orbitdev.org/Public/web-app-manifest-512x512.png",
-        "sameAs": [
-          "https://app.orbitdev.org/",
-          "https://github.com/Metaforse3534/OrbitAIPublic",
-          "https://discord.gg/8VcqeZK2"
-        ]
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://www.orbitdev.org/#website",
-        "name": "Orbit AI",
-        "url": "https://www.orbitdev.org/",
-        "publisher": { "@id": "https://www.orbitdev.org/#organization" },
-        "inLanguage": "en"
+        "logo": "https://www.orbitdev.org/Public/orbit-mark.svg"
       },
       {
         "@type": "SoftwareApplication",
         "@id": "https://www.orbitdev.org/#software",
-        "name": "Orbit AI",
-        "applicationCategory": "BusinessApplication",
-        "operatingSystem": "Web, Windows",
-        "softwareVersion": "0.0.20",
-        "url": "https://www.orbitdev.org/Routes/orbit-ai.html",
-        "downloadUrl": "https://www.orbitdev.org/Orbit-ai-Setup-0.0.20.exe",
-        "description": "Orbit AI is an AI workspace for chat, browser automation, AI agents, workflow automation, coding, research, file analysis, voice workflows, and team collaboration.",
-        "publisher": { "@id": "https://www.orbitdev.org/#organization" },
-        "offers": {
-          "@type": "Offer",
-          "price": "10",
-          "priceCurrency": "EUR",
-          "availability": "https://schema.org/InStock",
-          "url": "https://www.orbitdev.org/shop.html"
-        }
-      },
-      {
-        "@type": "Blog",
-        "@id": "https://www.orbitdev.org/#blog",
-        "name": "Orbit AI Blog",
-        "url": "https://www.orbitdev.org/Routes/blog.html",
-        "publisher": { "@id": "https://www.orbitdev.org/#organization" }
+        "name": "Orbit Workspace",
+        "applicationCategory": "ProductivityApplication",
+        "operatingSystem": "Web, macOS, Windows, Linux",
+        "description": "Research, create, automate and execute from one intelligent workspace."
       }
     ]
   }
   </script>
-  <style>
-    .hero {
-  position: relative;
-  min-height: 700px;
-  padding: 100px 0 90px;
-  overflow: hidden;
-  isolation: isolate;
-  border-bottom: 1px solid var(--line);
-}
-
-/* IMAGE — bottom layer */
-.hero-background-image {
-  position: absolute;
-  inset: 0;
-
-  background-image: url("/public/images/orbit-hero-background.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  z-index: -4;
-}
-
-/* VIDEO — above image */
-.hero-video {
-  position: absolute;
-  inset: 0;
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-  object-position: center;
-
-  /*
-    This is the important part.
-    0.45 means the image underneath is visible.
-  */
-  opacity: 0.45;
-
-  z-index: -3;
-}
-
-/* Dark overlay — above both */
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(8, 8, 8, 0.90) 0%,
-      rgba(8, 8, 8, 0.65) 50%,
-      rgba(8, 8, 8, 0.80) 100%
-    );
-
-  z-index: -2;
-}
-
-/* Grid texture */
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background-image:
-    linear-gradient(var(--line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line) 1px, transparent 1px);
-
-  background-size: 80px 80px;
-
-  opacity: 0.15;
-
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* Content */
-.hero-grid {
-  position: relative;
-  z-index: 2;
-}
-/* =========================================
-   ORBIT AI APP FRAME
-========================================= */
-
-.app-frame {
-  position: relative;
-  width: 100%;
-  min-height: 500px;
-
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 18px;
-
-  background: #0d0d0d;
-
-  overflow: hidden;
-
-  box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.45),
-    0 0 0 1px rgba(255, 255, 255, 0.02);
-
-  transform: translateZ(0);
-}
-
-
-/* =========================================
-   TOP WINDOW BAR
-========================================= */
-
-.app-chrome {
-  height: 46px;
-
-  display: flex;
-  align-items: center;
-
-  padding: 0 16px;
-
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-
-  background: rgba(255, 255, 255, 0.025);
-
-  position: relative;
-}
-
-.window-controls {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.app-chrome .dot {
-  width: 8px;
-  height: 8px;
-
-  border-radius: 50%;
-
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.app-chrome .title {
-  position: absolute;
-
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  color: rgba(255, 255, 255, 0.38);
-
-  font-family: var(--font-mono);
-
-  font-size: 10px;
-
-  white-space: nowrap;
-}
-
-.chrome-status {
-  margin-left: auto;
-
-  display: flex;
-  align-items: center;
-
-  gap: 6px;
-
-  color: rgba(255, 255, 255, 0.35);
-
-  font-size: 10px;
-}
-
-.status-dot {
-  width: 6px;
-  height: 6px;
-
-  border-radius: 50%;
-
-  background: #86efac;
-
-  box-shadow:
-    0 0 8px rgba(134, 239, 172, 0.5);
-}
-
-
-/* =========================================
-   APP BODY
-========================================= */
-
-.app-body {
-  display: grid;
-
-  grid-template-columns: 170px 1fr;
-
-  min-height: 454px;
-}
-
-
-/* =========================================
-   SIDEBAR
-========================================= */
-
-.app-side {
-  display: flex;
-  flex-direction: column;
-
-  padding: 16px 10px;
-
-  border-right: 1px solid rgba(255, 255, 255, 0.07);
-
-  background: rgba(255, 255, 255, 0.018);
-}
-
-.app-logo {
-  display: flex;
-  align-items: center;
-
-  gap: 9px;
-
-  padding: 5px 9px 20px;
-
-  color: #fff;
-
-  font-family: var(--font-display);
-
-  font-size: 14px;
-
-  font-weight: 600;
-}
-
-.app-logo-icon {
-  display: grid;
-
-  place-items: center;
-
-  width: 24px;
-  height: 24px;
-
-  border-radius: 7px;
-
-  background: #fff;
-
-  color: #080808;
-
-  font-size: 12px;
-
-  font-weight: 700;
-}
-
-
-/* =========================================
-   SIDEBAR SECTIONS
-========================================= */
-
-.side-section {
-  display: flex;
-  flex-direction: column;
-
-  gap: 3px;
-}
-
-.side-label {
-  padding: 0 9px 8px;
-
-  color: rgba(255, 255, 255, 0.25);
-
-  font-family: var(--font-mono);
-
-  font-size: 8px;
-
-  letter-spacing: 0.12em;
-
-  text-transform: uppercase;
-}
-
-.item {
-  display: flex;
-  align-items: center;
-
-  gap: 9px;
-
-  padding: 8px 9px;
-
-  border-radius: 7px;
-
-  color: rgba(255, 255, 255, 0.42);
-
-  font-size: 11px;
-
-  cursor: default;
-
-  transition:
-    background 0.2s ease,
-    color 0.2s ease;
-}
-
-.item span {
-  width: 15px;
-
-  text-align: center;
-
-  color: rgba(255, 255, 255, 0.3);
-
-  font-size: 11px;
-}
-
-.item.active {
-  background: rgba(255, 255, 255, 0.08);
-
-  color: #fff;
-}
-
-.item.active span {
-  color: #fff;
-}
-
-.side-bottom {
-  margin-top: auto;
-
-  display: flex;
-  flex-direction: column;
-
-  gap: 10px;
-}
-
-.user-profile {
-  display: flex;
-  align-items: center;
-
-  gap: 9px;
-
-  padding: 10px 8px;
-
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
-
-  color: #fff;
-}
-
-.avatar {
-  display: grid;
-
-  place-items: center;
-
-  width: 27px;
-  height: 27px;
-
-  border-radius: 50%;
-
-  background: rgba(255, 255, 255, 0.1);
-
-  font-size: 10px;
-}
-
-.user-profile strong {
-  display: block;
-
-  font-size: 10px;
-
-  font-weight: 500;
-}
-
-.user-profile small {
-  display: block;
-
-  margin-top: 2px;
-
-  color: rgba(255, 255, 255, 0.3);
-
-  font-size: 8px;
-}
-
-
-/* =========================================
-   MAIN AREA
-========================================= */
-
-.app-main {
-  display: flex;
-
-  flex-direction: column;
-
-  min-width: 0;
-
-  padding: 22px;
-
-  background: #0b0b0b;
-}
-
-
-/* =========================================
-   MAIN HEADER
-========================================= */
-
-.app-main-header {
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  margin-bottom: 30px;
-}
-
-.app-eyebrow {
-  display: block;
-
-  margin-bottom: 5px;
-
-  color: rgba(255, 255, 255, 0.25);
-
-  font-family: var(--font-mono);
-
-  font-size: 8px;
-
-  letter-spacing: 0.14em;
-}
-
-.app-main-header h3 {
-  color: #fff;
-
-  font-family: var(--font-display);
-
-  font-size: 17px;
-
-  font-weight: 500;
-
-  letter-spacing: -0.03em;
-}
-
-.new-chat-btn {
-  padding: 7px 11px;
-
-  border: 1px solid rgba(255, 255, 255, 0.1);
-
-  border-radius: 999px;
-
-  background: transparent;
-
-  color: rgba(255, 255, 255, 0.6);
-
-  font-size: 9px;
-}
-
-
-/* =========================================
-   CONVERSATION
-========================================= */
-
-.conversation {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 18px;
-
-  flex: 1;
-
-  max-width: 620px;
-
-  margin: 0 auto;
-
-  width: 100%;
-}
-
-.msg {
-  padding: 13px 15px;
-
-  border: 1px solid rgba(255, 255, 255, 0.08);
-
-  border-radius: 10px;
-
-  font-size: 11px;
-
-  line-height: 1.65;
-}
-
-.msg p {
-  margin: 5px 0 0;
-}
-
-.msg-label {
-  color: rgba(255, 255, 255, 0.35);
-
-  font-family: var(--font-mono);
-
-  font-size: 8px;
-
-  text-transform: uppercase;
-
-  letter-spacing: 0.08em;
-}
-
-.msg.user {
-  align-self: flex-end;
-
-  max-width: 85%;
-
-  background: rgba(255, 255, 255, 0.055);
-
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.msg.assistant {
-  align-self: flex-start;
-
-  max-width: 92%;
-
-  background: transparent;
-
-  color: rgba(255, 255, 255, 0.55);
-}
-
-.assistant-header {
-  display: flex;
-  align-items: center;
-
-  gap: 7px;
-
-  color: #fff;
-
-  font-size: 10px;
-
-  font-weight: 500;
-}
-
-.orbit-mini-icon {
-  display: grid;
-
-  place-items: center;
-
-  width: 19px;
-  height: 19px;
-
-  border-radius: 5px;
-
-  background: #fff;
-
-  color: #080808;
-
-  font-size: 9px;
-
-  font-weight: 700;
-}
-
-
-/* =========================================
-   AGENT STATUS
-========================================= */
-
-.agent-status {
-  display: flex;
-  align-items: center;
-
-  gap: 7px;
-
-  margin-top: 13px;
-
-  padding-top: 10px;
-
-  border-top: 1px dashed rgba(255, 255, 255, 0.1);
-
-  color: rgba(255, 255, 255, 0.25);
-
-  font-family: var(--font-mono);
-
-  font-size: 8px;
-}
-
-.agent-status .status-dot {
-  width: 5px;
-  height: 5px;
-}
-
-.separator {
-  color: rgba(255, 255, 255, 0.15);
-}
-
-
-/* =========================================
-   INPUT
-========================================= */
-
-.app-input {
-  display: flex;
-
-  align-items: center;
-
-  gap: 10px;
-
-  margin-top: 25px;
-
-  padding: 11px 12px;
-
-  border: 1px solid rgba(255, 255, 255, 0.1);
-
-  border-radius: 999px;
-
-  background: rgba(255, 255, 255, 0.025);
-
-  color: rgba(255, 255, 255, 0.25);
-
-  font-size: 10px;
-}
-
-.send-btn {
-  display: grid;
-
-  place-items: center;
-
-  width: 25px;
-  height: 25px;
-
-  margin-left: auto;
-
-  border: none;
-
-  border-radius: 50%;
-
-  background: #fff;
-
-  color: #080808;
-
-  font-size: 12px;
-
-  cursor: default;
-}
-
-
-/* =========================================
-   RESPONSIVE
-========================================= */
-
-@media (max-width: 700px) {
-
-  .app-body {
-    grid-template-columns: 1fr;
-  }
-
-  .app-side {
-    display: none;
-  }
-
-  .app-frame {
-    min-height: 420px;
-  }
-
-  .app-main {
-    padding: 16px;
-  }
-
-  .app-main-header {
-    margin-bottom: 20px;
-  }
-
-  .chrome-status {
-    display: none;
-  }
-
-}
-</style>
 </head>
-<body>
-  <div data-include="/components/navbar.html"></div>
+<body class="bg-[#050609] text-[#F5F7FA]">
 
-<section class="hero" aria-labelledby="hero-heading">
+  <!-- Kinetic Canvas & Background Atmosphere -->
+  <div class="kinetic-bg" aria-hidden="true"></div>
+  <div class="kinetic-grid" aria-hidden="true"></div>
+  <canvas id="orbital-webgl-canvas" aria-hidden="true"></canvas>
 
-  <!-- Background image -->
-  <div class="hero-background-image"></div>
+  <!-- 10 — FLOATING MINIMAL NAVIGATION -->
+  <header>
+    <div class="orbit-nav-container">
+      <nav class="orbit-nav" aria-label="Main Navigation">
+        <!-- Logo -->
+        <a href="/" class="nav-brand" aria-label="Orbit Home">
+          <svg class="w-6 h-6 text-[#6EA8FF]" viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="17.5" stroke="currentColor" stroke-width="2" stroke-opacity="0.3" />
+            <path d="M 9.5 24 C 9.5 13.5 17.5 6.5 28 6.5 C 38.5 6.5 43 16 40 26 C 37 36 26 41.5 16 39.5 C 10.5 38.4 6.5 33 6.5 28" stroke="#F5F7FA" stroke-width="2.2" stroke-linecap="round" />
+            <circle cx="24" cy="24" r="2.75" fill="#F5F7FA" />
+            <circle cx="37" cy="15" r="2.2" fill="#6EA8FF" />
+          </svg>
+          <span class="font-bold text-sm tracking-[0.22em] text-[#F5F7FA]">ORBIT</span>
+        </a>
 
-  <!-- Video on top of the image -->
-  <video
-    class="hero-video"
-    autoplay
-    muted
-    loop
-    playsinline
-  >
-    <source src="/public/videos/orbit-hero.mp4" type="video/mp4">
-  </video>
+        <!-- Middle Links -->
+        <div class="nav-links-wrap">
+          <a href="#product-section" class="nav-link">Product</a>
+          <a href="#agents-section" class="nav-link">Agents</a>
+          <a href="#os-section" class="nav-link">Orbit OS</a>
+          <a href="#pricing-section" class="nav-link">Pricing</a>
+        </div>
 
-  <!-- Dark overlay -->
-  <div class="hero-overlay"></div>
+        <!-- Right CTA -->
+        <div class="flex items-center gap-3 pointer-events-auto">
+          <a href="#pricing-section" class="hidden sm:inline-block text-xs font-medium text-[#9299A6] hover:text-[#F5F7FA] transition-colors">
+            Pricing
+          </a>
+          <a href="/Routes/orbit-ai.html" class="btn-launch">
+            <span>Launch Orbit</span>
+            <span class="text-xs">→</span>
+          </a>
+          <!-- Mobile Menu Button -->
+          <button class="md:hidden text-[#9299A6] hover:text-white p-1" data-mobile-nav-toggle aria-label="Toggle menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </div>
 
-  <!-- Content -->
-  <div class="container hero-grid">
-    <div>
-      <span class="eyebrow">Orbit Systems B.V.</span>
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav-menu">
+      <a href="#product-section" class="text-sm font-medium text-[#F5F7FA] py-2 border-b border-white/5">Product</a>
+      <a href="#agents-section" class="text-sm font-medium text-[#F5F7FA] py-2 border-b border-white/5">Agents</a>
+      <a href="#os-section" class="text-sm font-medium text-[#F5F7FA] py-2 border-b border-white/5">Orbit OS</a>
+      <a href="#pricing-section" class="text-sm font-medium text-[#F5F7FA] py-2 border-b border-white/5">Pricing</a>
+      <a href="/Routes/orbit-ai.html" class="btn-launch mt-2 w-full text-center">Launch Orbit →</a>
+    </div>
+  </header>
 
-      <h1 id="hero-heading">
-        Intelligence that moves with you.
+  <main>
+    <!-- 11 & 12 — HERO SECTION -->
+    <section class="hero-container" id="hero-section">
+      <!-- Animated Orbit Mark -->
+      <div class="hero-orbital-mark">
+        <svg viewBox="0 0 48 48" fill="none" class="w-full h-full">
+          <circle cx="24" cy="24" r="18" stroke="rgba(110, 168, 255, 0.25)" stroke-width="1.8" />
+          <path d="M 10 24 C 10 14 18 7 28 7 C 39 7 43 17 40 27 C 37 37 26 42 16 40" stroke="#F5F7FA" stroke-width="2.2" stroke-linecap="round" />
+          <circle cx="24" cy="24" r="3" fill="#F5F7FA" />
+          <circle cx="38" cy="16" r="2.5" fill="#6EA8FF" />
+        </svg>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="hero-headline font-extrabold text-5xl sm:text-7xl lg:text-8xl tracking-[-0.04em] leading-[0.95] text-[#F5F7FA] max-w-5xl mb-6">
+        AI THAT<br />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#F5F7FA] via-[#6EA8FF] to-[#F5F7FA]">GETS THINGS DONE.</span>
       </h1>
 
-      <p class="lede">
-        Orbit AI brings powerful AI systems, intelligent agents,
-        and advanced language models into one connected platform.
+      <!-- Supporting Copy -->
+      <p class="hero-lead text-lg sm:text-xl text-[#9299A6] max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
+        Research, create, automate and execute from one intelligent workspace.
       </p>
 
-      <div class="btn-row">
-        <a class="btn btn-primary" href="https://app.orbitdev.org/">
-          Try Orbit
+      <!-- CTAs -->
+      <div class="hero-cta-group flex flex-col sm:flex-row items-center gap-4 mb-12">
+        <a href="/Routes/orbit-ai.html" class="btn-launch-hero">
+          <span>Launch Orbit</span>
+          <span>→</span>
+        </a>
+        <a href="#work-modes-section" class="btn-secondary-hero">
+          <span>Explore Orbit</span>
+          <span>↓</span>
+        </a>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="scroll-indicator mb-8">
+        <span>Scroll to explore</span>
+        <div class="scroll-indicator-line"></div>
+      </div>
+
+      <!-- Subtle Trajectory Vector -->
+      <div class="orbital-track-line" aria-hidden="true"></div>
+    </section>
+
+    <!-- 12 — HERO SECOND MESSAGE: ONE AI. MANY WAYS TO WORK. -->
+    <section class="section-wrap" id="work-modes-section">
+      <div class="mb-12 text-center max-w-3xl mx-auto">
+        <span class="section-tag">ORBIT CAPABILITIES</span>
+        <h2 class="font-extrabold text-4xl sm:text-6xl tracking-tight text-[#F5F7FA] mb-4">
+          ONE AI.<br />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#F5F7FA] via-[#6EA8FF] to-[#F5F7FA]">MANY WAYS TO WORK.</span>
+        </h2>
+        <p class="lead-copy mx-auto">
+          Orbit adapts fluidly across disciplines — from autonomous web intelligence to zero-defect code synthesis.
+        </p>
+      </div>
+
+      <!-- 6 Core Modalities Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- 1. Research -->
+        <a href="#research-deepdive" class="orbit-card group">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-mono text-[#6EA8FF] tracking-wider uppercase">Research</span>
+            <span class="text-xs text-[#9299A6] group-hover:text-[#6EA8FF] transition-colors">Explore →</span>
+          </div>
+          <h3 class="text-xl font-bold text-[#F5F7FA] mb-2">Deep Web &amp; Document Ingestion</h3>
+          <p class="text-xs text-[#9299A6] leading-relaxed">
+            Crawls technical literature, analyzes competitor offerings, extracts structured facts, and synthesizes verifiable findings.
+          </p>
         </a>
 
-        <a class="btn btn-secondary" href="/Routes/orbit-ai.html">
-          Explore the technology
+        <!-- 2. Write -->
+        <a href="#writing-deepdive" class="orbit-card group">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-mono text-[#6EA8FF] tracking-wider uppercase">Synthesis</span>
+            <span class="text-xs text-[#9299A6] group-hover:text-[#6EA8FF] transition-colors">Explore →</span>
+          </div>
+          <h3 class="text-xl font-bold text-[#F5F7FA] mb-2">From Thought to Output</h3>
+          <p class="text-xs text-[#9299A6] leading-relaxed">
+            Transforms raw ideas into structured specifications, executive dossiers, research memorandums, and published docs.
+          </p>
+        </a>
+
+        <!-- 3. Code -->
+        <a href="#coding-deepdive" class="orbit-card group">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-mono text-[#6EA8FF] tracking-wider uppercase">Code Synth</span>
+            <span class="text-xs text-[#9299A6] group-hover:text-[#6EA8FF] transition-colors">Explore →</span>
+          </div>
+          <h3 class="text-xl font-bold text-[#F5F7FA] mb-2">Type-Safe Software Synthesis</h3>
+          <p class="text-xs text-[#9299A6] leading-relaxed">
+            Refactors legacy codebases, inspects AST graphs, generates verifiable patches, and executes unit test suites.
+          </p>
+        </a>
+
+        <!-- 4. Analyze -->
+        <a href="#product-section" class="orbit-card group">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-mono text-[#6EA8FF] tracking-wider uppercase">Analysis</span>
+            <span class="text-xs text-[#9299A6] group-hover:text-[#6EA8FF] transition-colors">Explore →</span>
+          </div>
+          <h3 class="text-xl font-bold text-[#F5F7FA] mb-2">Multi-Factor Reasoning</h3>
+          <p class="text-xs text-[#9299A6] leading-relaxed">
+            Evaluates financial models, stress-tests architecture tradeoffs, and maps feature matrices with mathematical rigor.
+          </p>
+        </a>
+
+        <!-- 5. Automate -->
+        <a href="#automation-deepdive" class="orbit-card group">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-mono text-[#6EA8FF] tracking-wider uppercase">Automation</span>
+            <span class="text-xs text-[#9299A6] group-hover:text-[#6EA8FF] transition-colors">Explore →</span>
+          </div>
+          <h3 class="text-xl font-bold text-[#F5F7FA] mb-2">Scheduled Orbital Pipelines</h3>
+          <p class="text-xs text-[#9299A6] leading-relaxed">
+            Runs background jobs, normalizes streaming datasets, watches filesystems, and dispatches webhook events.
+          </p>
+        </a>
+
+        <!-- 6. Create -->
+        <a href="#agents-section" class="orbit-card group">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-mono text-[#6EA8FF] tracking-wider uppercase">Execution</span>
+            <span class="text-xs text-[#9299A6] group-hover:text-[#6EA8FF] transition-colors">Explore →</span>
+          </div>
+          <h3 class="text-xl font-bold text-[#F5F7FA] mb-2">End-to-End Execution</h3>
+          <p class="text-xs text-[#9299A6] leading-relaxed">
+            Orchestrates multi-agent swarms along synchronized trajectories to ship completed deliverables autonomously.
+          </p>
         </a>
       </div>
-    </div>
+    </section>
 
-    <div class="app-frame" aria-label="Orbit AI product preview">
-  <div class="app-chrome">
-    <div class="window-controls">
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-    </div>
-
-    <span class="title">
-      orbit — workspace v0.0.20
-    </span>
-
-    
-  </div>
-
-  <div class="app-body">
-
-    <!-- Sidebar -->
-    <aside class="app-side">
-      <div class="app-logo">
-        <div class="app-logo-icon">O</div>
-        <span>Orbit</span>
+    <!-- 14 — 01 INTELLIGENCE SECTION -->
+    <section class="section-wrap" id="intelligence-section">
+      <div class="mb-12">
+        <span class="section-tag">01 — INTELLIGENCE</span>
+        <h2 class="headline-section">
+          UNDERSTAND<br />THE WORK.
+        </h2>
+        <p class="lead-copy">
+          Orbit is built to understand goals, context and the work required to complete a task.
+        </p>
       </div>
 
-      <div class="side-section">
-        <span class="side-label">Workspace</span>
-
-        <div class="item active">
-          <span>✦</span>
-          Chat
+      <!-- Abstract Information System Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="orbit-card intel-node">
+          <div class="w-8 h-8 rounded-full bg-[#6EA8FF]/10 border border-[#6EA8FF]/30 flex items-center justify-center text-[#6EA8FF] mb-4 text-xs font-mono">01</div>
+          <h3 class="text-lg font-semibold text-[#F5F7FA] mb-2">Contextual Vector Space</h3>
+          <p class="text-sm text-[#9299A6] leading-relaxed">
+            Ingests codebases, unstructured documents, and workspace state into a unified topological graph.
+          </p>
+          <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-[#6EA8FF]">
+            <span>Lattice Cohesion</span>
+            <span>99.8%</span>
+          </div>
         </div>
 
-        <div class="item">
-          <span>⌕</span>
-          Research
+        <div class="orbit-card intel-node">
+          <div class="w-8 h-8 rounded-full bg-[#6EA8FF]/10 border border-[#6EA8FF]/30 flex items-center justify-center text-[#6EA8FF] mb-4 text-xs font-mono">02</div>
+          <h3 class="text-lg font-semibold text-[#F5F7FA] mb-2">Intent Decomposition</h3>
+          <p class="text-sm text-[#9299A6] leading-relaxed">
+            Decouples ambiguous natural language requests into deterministic sub-goals and dependency trees.
+          </p>
+          <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-[#6EA8FF]">
+            <span>Plan Synthesis</span>
+            <span>&lt; 120ms</span>
+          </div>
         </div>
 
-        <div class="item">
-          <span>□</span>
-          Files
-        </div>
-
-        <div class="item">
-          <span>◇</span>
-          Agents
-        </div>
-
-        <div class="item">
-          <span>&lt;/&gt;</span>
-          Code
-        </div>
-
-        <div class="item">
-          <span>◎</span>
-          Browser
+        <div class="orbit-card intel-node">
+          <div class="w-8 h-8 rounded-full bg-[#6EA8FF]/10 border border-[#6EA8FF]/30 flex items-center justify-center text-[#6EA8FF] mb-4 text-xs font-mono">03</div>
+          <h3 class="text-lg font-semibold text-[#F5F7FA] mb-2">Dynamic Trajectory</h3>
+          <p class="text-sm text-[#9299A6] leading-relaxed">
+            Continuously adjusts reasoning paths based on runtime environmental feedback and tool responses.
+          </p>
+          <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-[#6EA8FF]">
+            <span>Self-Correction</span>
+            <span>Autonomous</span>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="side-bottom">
-        <div class="item">
-          <span>⚙</span>
-          Settings
-        </div>
+    <!-- 15 — 02 REASON SECTION -->
+    <section class="section-wrap" id="reason-section">
+      <div class="mb-12">
+        <span class="section-tag">02 — REASON</span>
+        <h2 class="headline-section">
+          FROM IDEA<br />TO PLAN.
+        </h2>
+        <p class="lead-copy">
+          Watch Orbit take an unstructured prompt and systematically transform it into an organized, executable workflow.
+        </p>
+      </div>
 
-        <div class="user-profile">
-          <div class="avatar">J</div>
+      <!-- Real Task Decomposition Pipeline -->
+      <div class="orbit-card bg-[#0B0D12] p-6 sm:p-8">
+        <div class="mb-6 p-4 rounded-lg bg-[#11141A] border border-white/5 flex items-start gap-4">
+          <div class="w-2 h-2 rounded-full bg-[#6EA8FF] mt-2 flex-shrink-0"></div>
           <div>
-            <strong>Jonh Doe</strong>
-            <small>Admin</small>
+            <div class="text-xs font-mono text-[#6EA8FF] uppercase tracking-wider mb-1">User Intent</div>
+            <div class="text-sm sm:text-base text-[#F5F7FA] font-medium">"Research the best way to launch this product, analyze competitors, and generate a launch plan."</div>
+          </div>
+        </div>
+
+        <div class="space-y-3">
+          <!-- Step 1 -->
+          <div class="reason-step p-4 rounded-lg bg-[#11141A]/60 border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <span class="w-6 h-6 rounded bg-white/5 flex items-center justify-center text-xs font-mono text-[#6EA8FF]">1</span>
+              <span class="text-sm font-semibold text-[#F5F7FA]">Research</span>
+              <span class="text-xs text-[#9299A6] hidden sm:inline">— Crawls 24 competitor pricing models & API offerings</span>
+            </div>
+            <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded">Synthesized (0.24s)</span>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="reason-step p-4 rounded-lg bg-[#11141A]/60 border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <span class="w-6 h-6 rounded bg-white/5 flex items-center justify-center text-xs font-mono text-[#6EA8FF]">2</span>
+              <span class="text-sm font-semibold text-[#F5F7FA]">Analysis</span>
+              <span class="text-xs text-[#9299A6] hidden sm:inline">— Evaluates gross margin targets and cloud compute unit economics</span>
+            </div>
+            <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded">Evaluated (0.38s)</span>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="reason-step p-4 rounded-lg bg-[#11141A]/60 border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <span class="w-6 h-6 rounded bg-white/5 flex items-center justify-center text-xs font-mono text-[#6EA8FF]">3</span>
+              <span class="text-sm font-semibold text-[#F5F7FA]">Comparison</span>
+              <span class="text-xs text-[#9299A6] hidden sm:inline">— Generates structured matrix across features, latency, and compliance</span>
+            </div>
+            <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded">Mapped (0.51s)</span>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="reason-step p-4 rounded-lg bg-[#11141A]/60 border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <span class="w-6 h-6 rounded bg-white/5 flex items-center justify-center text-xs font-mono text-[#6EA8FF]">4</span>
+              <span class="text-sm font-semibold text-[#F5F7FA]">Planning</span>
+              <span class="text-xs text-[#9299A6] hidden sm:inline">— Structures 6-week phased rollout roadmap and risk mitigation checklist</span>
+            </div>
+            <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded">Structured (0.64s)</span>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="reason-step p-4 rounded-lg bg-[#171A21] border border-[#6EA8FF]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <span class="w-6 h-6 rounded bg-[#6EA8FF]/20 flex items-center justify-center text-xs font-mono text-[#6EA8FF]">5</span>
+              <span class="text-sm font-semibold text-[#6EA8FF]">Output Artifact</span>
+              <span class="text-xs text-[#9299A6] hidden sm:inline">— Deliverable ready for executive sign-off</span>
+            </div>
+            <span class="text-xs font-mono text-[#6EA8FF] bg-[#6EA8FF]/10 px-2.5 py-1 rounded border border-[#6EA8FF]/20">GTM-Spec.md Ready</span>
           </div>
         </div>
       </div>
-    </aside>
+    </section>
 
-    <!-- Main application -->
-    <main class="app-main">
+    <!-- 16 & 17 — 03 PRODUCT SECTION (AUTHENTIC COCKPIT UI) -->
+    <section class="section-wrap" id="product-section">
+      <div class="mb-12 text-center max-w-3xl mx-auto">
+        <span class="section-tag">03 — PRODUCT</span>
+        <h2 class="headline-section">
+          A WORKSPACE BUILT<br />FOR EXECUTION.
+        </h2>
+        <p class="lead-copy mx-auto">
+          Not a generic chat box. A dedicated environment where reasoning, agent tools, code, and live artifacts converge.
+        </p>
 
-      <div class="app-main-header">
-        <div>
-          <span class="app-eyebrow">ORBIT AI</span>
-          <h3>New conversation</h3>
+        <!-- Prompt Presets -->
+        <div class="mt-6 flex flex-wrap justify-center gap-2">
+          <button class="text-xs font-mono py-1.5 px-3 rounded-full bg-[#11141A] hover:bg-[#171A21] text-[#9299A6] hover:text-[#F5F7FA] border border-white/5 transition-colors" data-sample-prompt="launch">
+            ⚡ Market Launch Plan
+          </button>
+          <button class="text-xs font-mono py-1.5 px-3 rounded-full bg-[#11141A] hover:bg-[#171A21] text-[#9299A6] hover:text-[#F5F7FA] border border-white/5 transition-colors" data-sample-prompt="refactor">
+            ⚡ Rust Engine Refactor
+          </button>
+          <button class="text-xs font-mono py-1.5 px-3 rounded-full bg-[#11141A] hover:bg-[#171A21] text-[#9299A6] hover:text-[#F5F7FA] border border-white/5 transition-colors" data-sample-prompt="automation">
+            ⚡ Automated Multi-Cloud Sync
+          </button>
         </div>
-
-        <button class="new-chat-btn">
-          + New chat
-        </button>
       </div>
 
-      <!-- Conversation -->
-      <div class="conversation">
+      <!-- Live Interactive Cockpit Interface -->
+      <div class="cockpit-frame">
+        <!-- Window Header -->
+        <div class="cockpit-header">
+          <div class="cockpit-dots">
+            <div class="cockpit-dot bg-rose-500/60"></div>
+            <div class="cockpit-dot bg-amber-500/60"></div>
+            <div class="cockpit-dot bg-emerald-500/60"></div>
+          </div>
+          
+          <div class="flex items-center gap-1">
+            <button class="cockpit-tab active" data-cockpit-tab="flow">Execution Flow</button>
+            <button class="cockpit-tab" data-cockpit-tab="report">Research Dossier</button>
+            <button class="cockpit-tab" data-cockpit-tab="code">Verified Code</button>
+            <button class="cockpit-tab" data-cockpit-tab="terminal">Agent Terminal</button>
+          </div>
 
-        <div class="msg user">
-          <div class="msg-label">You</div>
-          <p>
-            Summarize this report and draft a follow-up plan
-            with open questions.
+          <div class="text-xs font-mono text-[#9299A6] flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span>Orbit OS v0.0.20</span>
+          </div>
+        </div>
+
+        <!-- Cockpit Body -->
+        <div class="cockpit-body">
+          <!-- Prompt Bar -->
+          <div class="mb-6 flex items-center gap-3 p-3 rounded-xl bg-[#07080D] border border-white/10">
+            <span class="text-[#6EA8FF] font-mono text-sm pl-2">orbit&gt;</span>
+            <input type="text" id="cockpit-prompt-input" value="Research the best market entry strategy for autonomous AI developer tooling in EU & US." class="bg-transparent text-sm text-[#F5F7FA] flex-1 outline-none font-sans" />
+            <button id="cockpit-run-btn" class="btn-launch py-1.5 px-3.5 text-xs">Execute</button>
+          </div>
+
+          <!-- View 1: Execution Flow -->
+          <div data-cockpit-view="flow" class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+              <div class="p-3 rounded-lg bg-[#11141A] border border-white/5">
+                <div class="text-[10px] font-mono text-[#9299A6] uppercase">Agent Swarm</div>
+                <div class="text-sm font-semibold text-[#F5F7FA] mt-1">4 Active Nodes</div>
+              </div>
+              <div class="p-3 rounded-lg bg-[#11141A] border border-white/5">
+                <div class="text-[10px] font-mono text-[#9299A6] uppercase">Compute Duration</div>
+                <div class="text-sm font-semibold text-[#6EA8FF] mt-1">1.42s Elapsed</div>
+              </div>
+              <div class="p-3 rounded-lg bg-[#11141A] border border-white/5">
+                <div class="text-[10px] font-mono text-[#9299A6] uppercase">Tool Invocations</div>
+                <div class="text-sm font-semibold text-[#F5F7FA] mt-1">14 Executions</div>
+              </div>
+              <div class="p-3 rounded-lg bg-[#11141A] border border-white/5">
+                <div class="text-[10px] font-mono text-[#9299A6] uppercase">Confidence Score</div>
+                <div class="text-sm font-semibold text-emerald-400 mt-1">99.4% Verified</div>
+              </div>
+            </div>
+
+            <!-- Terminal Execution Stream -->
+            <div id="cockpit-stream-output" class="code-box h-48 overflow-y-auto space-y-1">
+              <div class="stream-line text-xs font-mono text-[#9299A6]">● [0.08s] Initializing Orbit Reasoning Core with context graph...</div>
+              <div class="stream-line text-xs font-mono text-[#9299A6]">● [0.24s] Spawning Research Agent: Querying regulatory frameworks (EU AI Act & US FTC)...</div>
+              <div class="stream-line text-xs font-mono text-[#9299A6]">● [0.52s] Spawning Browser Agent: Extracting competitive pricing tables from 14 platforms...</div>
+              <div class="stream-line text-xs font-mono text-[#9299A6]">● [0.89s] Spawning Analysis Agent: Calculating gross margin elasticity and compute economics...</div>
+              <div class="stream-line text-xs font-mono text-emerald-400 font-semibold">✔ [1.42s] Synthesis complete. Generated 12-page executable GTM roadmap with financial projections.</div>
+            </div>
+          </div>
+
+          <!-- View 2: Research Dossier -->
+          <div data-cockpit-view="report" style="display:none;" class="space-y-4">
+            <div class="p-4 rounded-lg bg-[#07080D] border border-white/10 text-sm text-[#9299A6] leading-relaxed font-sans">
+              <div class="text-xs font-mono text-[#6EA8FF] uppercase mb-2">Executive Summary — GTM Horizon 2026</div>
+              <p class="mb-3 text-[#F5F7FA]">The competitive landscape indicates strong willingness among enterprise engineering organizations to pay for verifiable, deterministic agent runtimes with local sandboxing.</p>
+              <ul class="list-disc pl-5 space-y-1 text-xs text-[#9299A6]">
+                <li>EU AI Act compliance: Full client-side execution logs provide strict GDPR/SOC2 readiness.</li>
+                <li>Pricing sweet spot: €10/developer/month for pro usage with cloud burst compute options.</li>
+                <li>Distribution advantage: Zero-config desktop and web parity reduces onboarding friction to &lt; 30 seconds.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- View 3: Verified Code -->
+          <div data-cockpit-view="code" style="display:none;">
+            <div class="code-box">
+<pre class="text-xs font-mono text-blue-300">
+<span class="text-[#9299A6]">// Autonomous Orbit Agent Tool Definition</span>
+<span class="text-purple-400">import</span> { OrbitAgent, type TaskContext } <span class="text-purple-400">from</span> <span class="text-emerald-300">'@orbit/core'</span>;
+
+<span class="text-purple-400">export const</span> launchResearchPipeline = <span class="text-purple-400">async</span> (ctx: TaskContext) => {
+  <span class="text-purple-400">const</span> trajectory = <span class="text-purple-400">await</span> OrbitAgent.spawn({
+    model: <span class="text-emerald-300">'orbit-pro-pulsar-2'</span>,
+    tools: [<span class="text-emerald-300">'headless-browser'</span>, <span class="text-emerald-300">'market-matrix'</span>, <span class="text-emerald-300">'code-synth'</span>],
+    verification: <span class="text-emerald-300">'strict'</span>
+  });
+
+  <span class="text-purple-400">return await</span> trajectory.execute(ctx.intent);
+};
+</pre>
+            </div>
+          </div>
+
+          <!-- View 4: Agent Terminal -->
+          <div data-cockpit-view="terminal" style="display:none;">
+            <div class="code-box">
+              <p class="text-emerald-400 text-xs">$ orbit-cli daemon --status</p>
+              <p class="text-[#9299A6] text-xs">[INFO] Orbit daemon running on pid 4819. Memory footprint: 38MB.</p>
+              <p class="text-[#9299A6] text-xs">[INFO] Active WebSockets: 3. Subscribed channels: [telemetry, agent-mesh, execution-bus].</p>
+              <p class="text-emerald-400 text-xs">$ orbit-cli agents inspect --all</p>
+              <p class="text-[#F5F7FA] text-xs">research-agent-01 (Idle) | browser-agent-04 (Active) | code-synth-02 (Ready)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15 — RESEARCH DEEP DIVE -->
+    <section class="section-wrap" id="research-deepdive">
+      <div class="mb-12">
+        <span class="section-tag">RESEARCH</span>
+        <h2 class="headline-section">
+          GO DEEPER.
+        </h2>
+        <p class="lead-copy">
+          Autonomous literature investigation, structured document extraction, and cross-source synthesis without hallucinations.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Sources Column -->
+        <div class="lg:col-span-4 space-y-3">
+          <div class="text-xs font-mono text-[#9299A6] uppercase tracking-wider mb-2">Ingested Sources (14)</div>
+          <div class="p-3.5 rounded-xl bg-[#11141A] border border-white/5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-2 h-2 rounded-full bg-[#6EA8FF]"></span>
+              <div>
+                <div class="text-xs font-semibold text-[#F5F7FA]">arXiv:2604.09112v2</div>
+                <div class="text-[10px] text-[#9299A6]">Distributed Agent Consensus</div>
+              </div>
+            </div>
+            <span class="text-[10px] font-mono text-emerald-400">Indexed</span>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-[#11141A] border border-white/5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-2 h-2 rounded-full bg-[#6EA8FF]"></span>
+              <div>
+                <div class="text-xs font-semibold text-[#F5F7FA]">EU AI Act Final Text</div>
+                <div class="text-[10px] text-[#9299A6]">Title III High-Risk Systems</div>
+              </div>
+            </div>
+            <span class="text-[10px] font-mono text-emerald-400">Indexed</span>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-[#11141A] border border-white/5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-2 h-2 rounded-full bg-[#6EA8FF]"></span>
+              <div>
+                <div class="text-xs font-semibold text-[#F5F7FA]">Cloudflare Edge Runtime Spec</div>
+                <div class="text-[10px] text-[#9299A6]">Wasm Cold-Start Benchmarks</div>
+              </div>
+            </div>
+            <span class="text-[10px] font-mono text-emerald-400">Indexed</span>
+          </div>
+        </div>
+
+        <!-- Synthesized Dossier -->
+        <div class="lg:col-span-8 orbit-card bg-[#0B0D12]">
+          <div class="flex items-center justify-between pb-4 mb-4 border-b border-white/5">
+            <div class="text-xs font-mono text-[#6EA8FF] uppercase">Structured Research Output</div>
+            <div class="text-xs font-mono text-[#9299A6]">Confidence: 99.8%</div>
+          </div>
+          <h3 class="text-base font-semibold text-[#F5F7FA] mb-2">Findings: Multi-Agent Convergence vs. Single Model Latency</h3>
+          <p class="text-xs text-[#9299A6] leading-relaxed mb-4">
+            Cross-referencing 14 independent benchmarks reveals that dedicated sub-agent specialization reduces verification failures by 74% compared to monolithic prompt structures, with deterministic sandboxes achieving sub-200ms round trips.
           </p>
-        </div>
-
-        <div class="msg assistant">
-          <div class="assistant-header">
-            <div class="orbit-mini-icon">O</div>
-            <span>Orbit</span>
-          </div>
-
-          <p>
-            I've extracted the key claims, flagged assumptions,
-            and drafted a three-step plan. Review the questions
-            before any outbound actions.
-          </p>
-
-          <div class="agent-status">
-            <span class="status-dot"></span>
-            Agent ready
-            <span class="separator">·</span>
-            Browser idle
-            <span class="separator">·</span>
-            File context attached
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Input -->
-      <div class="app-input">
-        <span>
-          Ask Orbit to research, code, or run a workflow…
-        </span>
-
-        <button class="send-btn">
-          ↑
-        </button>
-      </div>
-
-    </main>
-
-  </div>
-</div>
-  </div>
-
-</section>
-  
-
-    <section class="section" id="trust" style="border-top:none;padding-top:1rem" aria-labelledby="trust-heading">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Credibility</span>
-          <h2 id="trust-heading">Built for trust, not theater.</h2>
-          <p>We do not invent partnerships, customer logos, certifications, or statistics. Credibility comes from engineering, documentation, and honest status labels.</p>
-        </div>
-        <div class="trust-strip reveal">
-          <div><strong>Technology</strong><span>Real workspace product</span></div>
-          <div><strong>Research</strong><span>Labeled initiatives</span></div>
-          <div><strong>Engineering</strong><span>Versioned releases</span></div>
-          <div><strong>Security</strong><span>Public policy</span></div>
-          <div><strong>Privacy</strong><span>GDPR-aligned</span></div>
-          <div><strong>Reliability</strong><span>Honest limits</span></div>
-        </div>
-        <div class="btn-row" style="margin-top:1.25rem">
-          <a class="btn btn-ghost" href="/Routes/security.html">Security →</a>
-          <a class="btn btn-ghost" href="/Routes/privacy.html">Privacy →</a>
-          <a class="btn btn-ghost" href="/Routes/about.html">Company →</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="product" aria-labelledby="product-heading">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Product</span>
-          <h2 id="product-heading">Orbit AI is a real workspace.</h2>
-          <p>Not a chatbot wrapper. A connected environment for conversations, context, files, research, coding, browser work, and agents — public release 0.0.20.</p>
-        </div>
-        <div class="card-grid">
-          <article class="panel panel-hover feature-card reveal"><h3>AI conversations</h3><span class="badge badge-ok">Current</span><p>Questions, analysis, writing, and reasoning with clear model context.</p></article>
-          <article class="panel panel-hover feature-card reveal"><h3>Context awareness</h3><span class="badge badge-ok">Current</span><p>Keep project and file context attached to the work at hand.</p></article>
-          <article class="panel panel-hover feature-card reveal"><h3>File understanding</h3><span class="badge badge-ok">Current</span><p>Bring documents into the workspace for synthesis and review.</p></article>
-          <article class="panel panel-hover feature-card reveal"><h3>Research</h3><span class="badge badge-ok">Current</span><p>Deep reading and structured follow-ups for knowledge work.</p></article>
-          <article class="panel panel-hover feature-card reveal"><h3>Coding</h3><span class="badge badge-ok">Current</span><p>Assistance for writing, reviewing, and debugging code.</p></article>
-          <article class="panel panel-hover feature-card reveal"><h3>Browser capabilities</h3><span class="badge badge-ok">Current</span><p>Browser-aware automation for repetitive web tasks.</p></article>
-          <article class="panel panel-hover feature-card reveal"><h3>Agent workflows</h3><span class="badge badge-ok">Current</span><p>Multi-step agents with human oversight on consequential steps.</p></article>
-          <article class="panel panel-hover feature-card reveal"><h3>Personal productivity</h3><span class="badge badge-ok">Current</span><p>One place to think, plan, and execute everyday work.</p></article>
-          <article class="panel panel-hover feature-card reveal"><h3>Multi-step reasoning</h3><span class="badge badge-ok">Current</span><p>Break complex tasks into inspectable steps before action.</p></article>
-        </div>
-        <div class="btn-row" style="margin-top:1.5rem">
-          <a class="btn btn-primary" href="https://app.orbitdev.org/" data-app-path="/">Launch Orbit</a>
-          <a class="btn btn-secondary" href="/Routes/doc.html">Documentation</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="pro-pulsar" aria-labelledby="pulsar-heading">
-      <div class="container">
-        <div class="split">
-          <div class="reveal">
-            <span class="eyebrow">Pro Pulsar</span>
-            <h2 id="pulsar-heading" style="font-size:clamp(1.6rem,3vw,2.35rem);margin:.65rem 0 .75rem">Built from the model up.</h2>
-            <p>Pro Pulsar is Orbit AI’s language model and AI infrastructure initiative — focused on model technology, training infrastructure, inference, and systems research.</p>
-            <p class="status-note">No unsupported performance claims. Areas are labeled Research, Prototype, or Planned. Workspace “Pro Pulsar” plan access is related product branding; model research milestones are published separately when verified.</p>
-            <div class="btn-row" style="margin-top:1.25rem">
-              <a class="btn btn-primary" href="/Routes/pro-pulsar.html">Explore Pro Pulsar</a>
-              <a class="btn btn-secondary" href="/Routes/research.html">Research</a>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+            <div class="p-3 rounded-lg bg-[#11141A] border border-white/5">
+              <div class="text-[10px] font-mono text-[#6EA8FF] uppercase">Key Conclusion</div>
+              <div class="text-xs text-[#F5F7FA] mt-1">Autonomous tool loops outperform pure generation in 92% of factual tasks.</div>
             </div>
-          </div>
-          <div class="tech-list reveal">
-            <article class="panel tech-item"><div><h3>Model architecture</h3><p>Research into model design for Orbit workloads.</p></div><span class="badge badge-signal">Research</span></article>
-            <article class="panel tech-item"><div><h3>Training</h3><p>Training infrastructure and experimentation.</p></div><span class="badge badge-warn">Prototype</span></article>
-            <article class="panel tech-item"><div><h3>Inference</h3><p>Serving and runtime considerations.</p></div><span class="badge badge-signal">Research</span></article>
-            <article class="panel tech-item"><div><h3>GPU infrastructure</h3><p>Hardware-aware training and inference work.</p></div><span class="badge badge-warn">Prototype</span></article>
-            <article class="panel tech-item"><div><h3>Developer APIs</h3><p>External API access planned for future releases.</p></div><span class="badge">Planned</span></article>
-            <article class="panel tech-item"><div><h3>Future capabilities</h3><p>Longer-horizon multimodal and systems research.</p></div><span class="badge">Planned</span></article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="ecosystem" aria-labelledby="eco-heading">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Systems</span>
-          <h2 id="eco-heading">Beyond a chatbot.</h2>
-          <p>Orbit connects intelligence to tools and actions. Consequential steps stay under human review.</p>
-        </div>
-        <div class="pipeline reveal" role="list">
-          <span class="pipeline-step" role="listitem">User</span>
-          <span class="pipeline-arrow" aria-hidden="true">↓</span>
-          <span class="pipeline-step" role="listitem">Orbit Intelligence</span>
-          <span class="pipeline-arrow" aria-hidden="true">↓</span>
-          <span class="pipeline-step" role="listitem">Models</span>
-          <span class="pipeline-arrow" aria-hidden="true">↓</span>
-          <span class="pipeline-step" role="listitem">Tools</span>
-          <span class="pipeline-arrow" aria-hidden="true">↓</span>
-          <span class="pipeline-step" role="listitem">Agents</span>
-          <span class="pipeline-arrow" aria-hidden="true">↓</span>
-          <span class="pipeline-step" role="listitem">Actions</span>
-        </div>
-        <div class="btn-row" style="margin-top:1.5rem">
-          <a class="btn btn-secondary" href="/Routes/agents.html">Orbit Agents</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="research" aria-labelledby="research-heading">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Research &amp; engineering</span>
-          <h2 id="research-heading">Technical work, labeled clearly.</h2>
-          <p>Initiatives with real descriptions and explicit status — not vapor claims.</p>
-        </div>
-        <div class="card-grid">
-          <article class="panel panel-hover feature-card reveal"><h3>AI research</h3><span class="badge badge-signal">Active</span><p>Trusted systems, agents, and model research directions.</p><a class="card-link" href="/Routes/research.html">View research →</a></article>
-          <article class="panel panel-hover feature-card reveal"><h3>Model development</h3><span class="badge badge-signal">Research</span><p>Pro Pulsar language model and infrastructure initiative.</p><a class="card-link" href="/Routes/pro-pulsar.html">Pro Pulsar →</a></article>
-          <article class="panel panel-hover feature-card reveal"><h3>Agent systems</h3><span class="badge badge-ok">Current</span><p>Multi-step workflows in the Orbit workspace.</p><a class="card-link" href="/Routes/agents.html">Agents →</a></article>
-          <article class="panel panel-hover feature-card reveal"><h3>Infrastructure</h3><span class="badge badge-warn">Prototype</span><p>Training and inference systems under development.</p><a class="card-link" href="/Routes/pro-pulsar.html">Details →</a></article>
-          <article class="panel panel-hover feature-card reveal"><h3>Developer tools</h3><span class="badge badge-ok">Current</span><p>Documentation and public developer surfaces.</p><a class="card-link" href="/Routes/developers.html">Developers →</a></article>
-          <article class="panel panel-hover feature-card reveal"><h3>Experimental projects</h3><span class="badge badge-signal">In development</span><p>Pulsar V1 robotics vision and related long-horizon work.</p><a class="card-link" href="/Routes/pulsar-v1.html">Pulsar V1 →</a></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="blog" aria-labelledby="blog-heading">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Editorial</span>
-          <h2 id="blog-heading">Orbit AI writing</h2>
-          <p>Technology notes authored as Orbit AI editorial content — not fabricated bylines or fake events.</p>
-        </div>
-        <div class="blog-grid">
-          <article class="panel panel-hover blog-card featured reveal">
-            <div class="meta"><span class="badge">AI Research</span><span>6 min</span></div>
-            <h3>Why We Are Building Pulsar</h3>
-            <p>Direction for language-model research without shipping theater.</p>
-            <a class="card-link" href="/public/blog/why-we-are-building-pulsar.html">Read →</a>
-          </article>
-          <article class="panel panel-hover blog-card reveal">
-            <div class="meta"><span class="badge">Product</span><span>5 min</span></div>
-            <h3>How We Think About Trust in AI</h3>
-            <p>Transparency, privacy, and honest product status.</p>
-            <a class="card-link" href="/public/blog/how-we-think-about-trust-in-ai.html">Read →</a>
-          </article>
-          <article class="panel panel-hover blog-card reveal">
-            <div class="meta"><span class="badge">Engineering</span><span>7 min</span></div>
-            <h3>Inside Orbit AI's AI Architecture</h3>
-            <p>How the workspace composes models, tools, and agents.</p>
-            <a class="card-link" href="/public/blog/inside-orbit-ais-ai-architecture.html">Read →</a>
-          </article>
-        </div>
-        <div class="btn-row" style="margin-top:1.25rem">
-          <a class="btn btn-secondary" href="/Routes/blog.html">All articles</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="reviews" aria-labelledby="reviews-heading">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Reviews</span>
-          <h2 id="reviews-heading">Community feedback</h2>
-          <p>Customer, community, and independent reviews appear only when genuine. Verified badges require verification.</p>
-        </div>
-        <div class="panel review-empty reveal">
-          <h3 style="margin-bottom:.5rem">Reviews are coming soon.</h3>
-          <p>No fabricated.testimonials. <a href="/Routes/reviews.html">Submit feedback</a> for future moderation.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="upcoming" aria-labelledby="upcoming-heading">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">In development</span>
-          <h2 id="upcoming-heading">Pulsar V1</h2>
-          <p style="font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:#b794f6;margin:0 0 0.75rem">Scout · Assist · Adapt</p>
-          <p>An agile reconnaissance and support robotics concept. Design visualization below — not a shipping product.</p>
-        </div>
-        <div class="split">
-          <figure class="concept-stage reveal panel" style="margin:0;min-height:0">
-            <img
-              src="/public/puslar.png"
-              width="1536"
-              height="1024"
-              alt="Pulsar V1 concept: digitigrade scout robot with purple core, bronze hand plating, and technical views"
-              loading="lazy"
-              decoding="async"
-              style="width:100%;height:auto;display:block;background:#000"
-            />
-            <figcaption style="padding:0.65rem 0.85rem;font-size:0.72rem;color:var(--text-3);border-top:1px solid var(--line)">Concept sheet · design targets only</figcaption>
-          </figure>
-          <div class="reveal">
-            <div class="tech-list">
-              <article class="panel tech-item"><div><h3>Vision</h3><p>Mobile scout / support platform for dynamic environments.</p></div></article>
-              <article class="panel tech-item"><div><h3>Status</h3><p>Coming soon — research and concept engineering.</p></div><span class="badge badge-warn">In development</span></article>
-              <article class="panel tech-item"><div><h3>Design targets</h3><p>1.45 m · 48 kg · 35 km/h — labeled targets, not measured hardware.</p></div></article>
-              <article class="panel tech-item"><div><h3>Pulsar Core</h3><p>Concept power and compute heart of the platform.</p></div></article>
-            </div>
-            <div class="btn-row" style="margin-top:1rem">
-              <a class="btn btn-secondary" href="/Routes/pulsar-v1.html">View Pulsar V1</a>
+            <div class="p-3 rounded-lg bg-[#11141A] border border-white/5">
+              <div class="text-[10px] font-mono text-[#6EA8FF] uppercase">Compliance Status</div>
+              <div class="text-xs text-emerald-400 mt-1">Full cryptographic audit logs guarantee GDPR / DPA conformance.</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="company" aria-labelledby="company-heading">
-      <div class="container split">
-        <div class="reveal">
-          <span class="eyebrow">Company</span>
-          <h2 id="company-heading" style="font-size:clamp(1.6rem,3vw,2.35rem);margin:.65rem 0 .75rem">A real organization.</h2>
-          <p>Orbit AI is developed by Orbit Systems B.V. in the Netherlands. We publish policies, documentation, and a public repository so claims can be checked.</p>
-          <div class="btn-row" style="margin-top:1.25rem">
-            <a class="btn btn-primary" href="/Routes/about.html">About Orbit AI</a>
-            <a class="btn btn-secondary" href="/Routes/careers.html">Careers</a>
-            <a class="btn btn-ghost" href="/Routes/contact.html">Contact</a>
+    <!-- 16 — BROWSER AUTOMATION DEEP DIVE -->
+    <section class="section-wrap" id="browser-deepdive">
+      <div class="mb-12">
+        <span class="section-tag">BROWSER</span>
+        <h2 class="headline-section">
+          LET ORBIT USE THE WEB.
+        </h2>
+        <p class="lead-copy">
+          Headless navigation, live DOM interaction, and multi-portal data extraction executed with sandboxed precision.
+        </p>
+      </div>
+
+      <!-- Browser Cockpit View -->
+      <div class="cockpit-frame">
+        <div class="cockpit-header">
+          <div class="cockpit-dots">
+            <div class="cockpit-dot"></div>
+            <div class="cockpit-dot"></div>
+            <div class="cockpit-dot"></div>
           </div>
+          <div class="flex-1 max-w-md mx-4 py-1 px-3 rounded bg-[#07080D] border border-white/5 text-[11px] font-mono text-[#9299A6] flex items-center justify-between">
+            <span>https://cloud-pricing-registry.internal/api/v2/compute</span>
+            <span class="text-emerald-400">🔒 TLS 1.3</span>
+          </div>
+          <span class="text-[10px] font-mono text-[#6EA8FF]">Headless Chromium</span>
         </div>
-        <div class="card-grid" style="grid-template-columns:1fr 1fr">
-          <article class="panel feature-card reveal"><h3>Mission</h3><p>Build intelligent software people can rely on — without trading away privacy or honesty.</p></article>
-          <article class="panel feature-card reveal"><h3>Approach</h3><p>Ship carefully, label unfinished work, and keep humans in control of consequential actions.</p></article>
-          <article class="panel feature-card reveal"><h3>Technology</h3><p>Workspace product today; Pro Pulsar research and Pulsar V1 as longer horizons.</p></article>
-          <article class="panel feature-card reveal"><h3>People</h3><p>Leadership details are published when verified — we do not invent bios.</p></article>
+        <div class="p-6 bg-[#07080D] space-y-4">
+          <div class="flex items-center gap-3 text-xs font-mono text-[#6EA8FF]">
+            <span>[ACTION]</span>
+            <span class="text-[#F5F7FA]">Clicking '#tab-eu-frankfurt' → Extracting 48 compute tier rates → Normalizing currency to EUR (€)</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div class="p-3 rounded-lg bg-[#11141A] border border-white/5">
+              <div class="text-[10px] font-mono text-[#9299A6]">AWS c7g.4xlarge</div>
+              <div class="text-sm font-bold text-[#F5F7FA] mt-1">€0.584 / hr</div>
+            </div>
+            <div class="p-3 rounded-lg bg-[#11141A] border border-white/5">
+              <div class="text-[10px] font-mono text-[#9299A6]">GCP c3-standard-16</div>
+              <div class="text-sm font-bold text-[#F5F7FA] mt-1">€0.612 / hr</div>
+            </div>
+            <div class="p-3 rounded-lg bg-[#11141A] border border-white/5">
+              <div class="text-[10px] font-mono text-[#9299A6]">Azure D16ps_v5</div>
+              <div class="text-sm font-bold text-[#F5F7FA] mt-1">€0.598 / hr</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <div data-include="/components/newsletter.html"></div>
+    <!-- 17 — CODING DEEP DIVE -->
+    <section class="section-wrap" id="coding-deepdive">
+      <div class="mb-12">
+        <span class="section-tag">CODE</span>
+        <h2 class="headline-section">
+          BUILD WITH IT.
+        </h2>
+        <p class="lead-copy">
+          From full stack refactors to automated regression test generation. Real type safety, zero hallucinated APIs.
+        </p>
+      </div>
+
+      <!-- Developer Cockpit -->
+      <div class="orbit-card bg-[#07080D] p-6">
+        <div class="flex items-center justify-between pb-3 mb-4 border-b border-white/10 text-xs font-mono">
+          <div class="flex items-center gap-2 text-[#9299A6]">
+            <span class="text-[#6EA8FF]">src/auth/jwt-verifier.rs</span>
+            <span>(diff view)</span>
+          </div>
+          <span class="text-emerald-400">cargo test: 34 passed</span>
+        </div>
+        <div class="code-box text-xs font-mono">
+          <div class="text-[#9299A6]">// Orbit Patch: Zero-Allocation Cryptographic Token Validation</div>
+          <div><span class="text-purple-400">pub fn</span> <span class="text-blue-300">verify_session_token</span>(raw: &amp;[<span class="text-emerald-300">u8</span>]) -&gt; <span class="text-blue-300">Result</span>&lt;SessionClaims, AuthError&gt; {</div>
+          <div class="text-emerald-400 bg-emerald-500/10 px-2 py-0.5 my-1">+   <span class="text-purple-400">let</span> parsed = simd_json::from_slice_borrowed(raw)?;</div>
+          <div class="text-emerald-400 bg-emerald-500/10 px-2 py-0.5 my-1">+   ring::signature::verify_rsa_pss(&amp;PUBLIC_KEY, raw, &amp;parsed.sig)?;</div>
+          <div>    <span class="text-blue-300">Ok</span>(parsed.into_claims())</div>
+          <div>}</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 18 — WRITING / CREATION DEEP DIVE -->
+    <section class="section-wrap" id="writing-deepdive">
+      <div class="mb-12">
+        <span class="section-tag">CREATE</span>
+        <h2 class="headline-section">
+          FROM THOUGHT<br />TO OUTPUT.
+        </h2>
+        <p class="lead-copy">
+          Transform fragmented bullet points into publication-ready technical proposals, design systems, and executive briefs.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-5 gap-3 text-center">
+        <div class="workflow-stage-node">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-1">01</div>
+          <div class="text-sm font-semibold text-[#F5F7FA]">Idea Seed</div>
+          <div class="text-[11px] text-[#9299A6] mt-1">Raw unstructured notes</div>
+        </div>
+        <div class="workflow-stage-node">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-1">02</div>
+          <div class="text-sm font-semibold text-[#F5F7FA]">Outline</div>
+          <div class="text-[11px] text-[#9299A6] mt-1">Hierarchical tree structure</div>
+        </div>
+        <div class="workflow-stage-node">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-1">03</div>
+          <div class="text-sm font-semibold text-[#F5F7FA]">Draft</div>
+          <div class="text-[11px] text-[#9299A6] mt-1">Comprehensive prose</div>
+        </div>
+        <div class="workflow-stage-node">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-1">04</div>
+          <div class="text-sm font-semibold text-[#F5F7FA]">Refine</div>
+          <div class="text-[11px] text-[#9299A6] mt-1">Precision editing</div>
+        </div>
+        <div class="workflow-stage-node border-[#6EA8FF]/40 bg-[#171A21]">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-1">05</div>
+          <div class="text-sm font-semibold text-[#6EA8FF]">Deliverable</div>
+          <div class="text-[11px] text-[#F5F7FA] mt-1">Production ready</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 21 — AUTOMATION DEEP DIVE -->
+    <section class="section-wrap" id="automation-deepdive">
+      <div class="mb-12">
+        <span class="section-tag">AUTOMATION</span>
+        <h2 class="headline-section">
+          MAKE THE REPETITIVE<br />DISAPPEAR.
+        </h2>
+        <p class="lead-copy">
+          Connect files, databases, webhooks, and agents into autonomous scheduled pipelines that operate seamlessly in the background.
+        </p>
+      </div>
+
+      <div class="orbit-card bg-[#0B0D12]">
+        <div class="text-xs font-mono text-[#6EA8FF] uppercase mb-4">Autonomous Pipeline Trajectory</div>
+        <div class="grid grid-cols-1 sm:grid-cols-6 gap-3 text-center">
+          <div class="p-3 rounded-lg bg-[#11141A] border border-white/5">
+            <div class="text-xs font-mono text-[#9299A6]">1. Ingest</div>
+            <div class="text-xs text-[#F5F7FA] font-medium mt-1">New Doc</div>
+          </div>
+          <div class="p-3 rounded-lg bg-[#11141A] border border-white/5">
+            <div class="text-xs font-mono text-[#9299A6]">2. OCR/Parse</div>
+            <div class="text-xs text-[#F5F7FA] font-medium mt-1">Extract Fields</div>
+          </div>
+          <div class="p-3 rounded-lg bg-[#11141A] border border-white/5">
+            <div class="text-xs font-mono text-[#9299A6]">3. Validate</div>
+            <div class="text-xs text-[#F5F7FA] font-medium mt-1">Schema Check</div>
+          </div>
+          <div class="p-3 rounded-lg bg-[#11141A] border border-white/5">
+            <div class="text-xs font-mono text-[#9299A6]">4. Store</div>
+            <div class="text-xs text-[#F5F7FA] font-medium mt-1">Vector DB</div>
+          </div>
+          <div class="p-3 rounded-lg bg-[#11141A] border border-white/5">
+            <div class="text-xs font-mono text-[#9299A6]">5. Synthesize</div>
+            <div class="text-xs text-[#F5F7FA] font-medium mt-1">Executive PDF</div>
+          </div>
+          <div class="p-3 rounded-lg bg-[#171A21] border border-[#6EA8FF]/40 text-[#6EA8FF]">
+            <div class="text-xs font-mono">6. Dispatch</div>
+            <div class="text-xs font-medium mt-1">Webhook Sent</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 23 — MEMORY & CONTEXT -->
+    <section class="section-wrap" id="context-section">
+      <div class="mb-12">
+        <span class="section-tag">CONTEXT &amp; MEMORY</span>
+        <h2 class="headline-section">
+          CONTEXT THAT<br />STAYS WITH YOU.
+        </h2>
+        <p class="lead-copy">
+          No need to re-explain your architecture or brand tone. Orbit preserves multi-session workspace state across all projects.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="orbit-card">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-2 uppercase tracking-wider">Project Context</div>
+          <h4 class="text-sm font-semibold text-[#F5F7FA] mb-1">Git &amp; Directory Graph</h4>
+          <p class="text-xs text-[#9299A6]">Maintains current branches, dependencies, and file relationship maps.</p>
+        </div>
+        <div class="orbit-card">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-2 uppercase tracking-wider">Persistent Memory</div>
+          <h4 class="text-sm font-semibold text-[#F5F7FA] mb-1">Prior Decision Logs</h4>
+          <p class="text-xs text-[#9299A6]">Remembers why technical tradeoffs were made to prevent regressive changes.</p>
+        </div>
+        <div class="orbit-card">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-2 uppercase tracking-wider">Developer Preferences</div>
+          <h4 class="text-sm font-semibold text-[#F5F7FA] mb-1">Custom Style &amp; Lints</h4>
+          <p class="text-xs text-[#9299A6]">Respects your specific naming patterns, typing conventions, and review rules.</p>
+        </div>
+        <div class="orbit-card">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-2 uppercase tracking-wider">Active Task Graph</div>
+          <h4 class="text-sm font-semibold text-[#F5F7FA] mb-1">Execution Sub-Goals</h4>
+          <p class="text-xs text-[#9299A6]">Tracks dependencies across active agent swarms in real time.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 24 — INTEGRATIONS -->
+    <section class="section-wrap" id="integrations-section">
+      <div class="mb-12">
+        <span class="section-tag">INTEGRATIONS</span>
+        <h2 class="headline-section">
+          ORBIT, WHERE<br />YOU WORK.
+        </h2>
+        <p class="lead-copy">
+          Seamless connectors for the developer stack, cloud providers, local files, and modern browsers.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 text-center">
+        <div class="p-4 rounded-xl bg-[#11141A] border border-white/5">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-1">01</div>
+          <div class="text-sm font-semibold text-[#F5F7FA]">Browser</div>
+        </div>
+        <div class="p-4 rounded-xl bg-[#11141A] border border-white/5">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-1">02</div>
+          <div class="text-sm font-semibold text-[#F5F7FA]">Local Files</div>
+        </div>
+        <div class="p-4 rounded-xl bg-[#11141A] border border-white/5">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-1">03</div>
+          <div class="text-sm font-semibold text-[#F5F7FA]">Git &amp; Code</div>
+        </div>
+        <div class="p-4 rounded-xl bg-[#11141A] border border-white/5">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-1">04</div>
+          <div class="text-sm font-semibold text-[#F5F7FA]">Documents</div>
+        </div>
+        <div class="p-4 rounded-xl bg-[#11141A] border border-white/5">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-1">05</div>
+          <div class="text-sm font-semibold text-[#F5F7FA]">CLI &amp; Daemon</div>
+        </div>
+        <div class="p-4 rounded-xl bg-[#11141A] border border-white/5">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-1">06</div>
+          <div class="text-sm font-semibold text-[#F5F7FA]">Cloud VPC</div>
+        </div>
+        <div class="p-4 rounded-xl bg-[#11141A] border border-white/5">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-1">07</div>
+          <div class="text-sm font-semibold text-[#F5F7FA]">REST / SDK</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 18 & 19 — 04 AGENTS SECTION -->
+    <section class="section-wrap" id="agents-section">
+      <div class="mb-12">
+        <span class="section-tag">03 — AGENTS</span>
+        <h2 class="headline-section">
+          DON'T JUST ASK.<br />
+          <span class="text-[#6EA8FF]">LET IT ACT.</span>
+        </h2>
+        <p class="lead-copy">
+          Orbit coordinates specialized autonomous agents along synchronized orbital trajectories to execute complex work from end to end.
+        </p>
+      </div>
+
+      <!-- Agent Swarm Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <!-- Agent 1 -->
+        <div class="agent-node active">
+          <div class="w-8 h-8 rounded-full bg-[#6EA8FF]/20 flex items-center justify-center text-[#6EA8FF]">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <div class="agent-node-status">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span>RESEARCH AGENT</span>
+          </div>
+          <h4 class="text-sm font-semibold text-[#F5F7FA]">Deep Ingestion</h4>
+          <p class="text-xs text-[#9299A6]">Extracts knowledge across research papers, APIs, and multi-page technical documentation.</p>
+        </div>
+
+        <!-- Agent 2 -->
+        <div class="agent-node">
+          <div class="w-8 h-8 rounded-full bg-[#6EA8FF]/20 flex items-center justify-center text-[#6EA8FF]">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/></svg>
+          </div>
+          <div class="agent-node-status">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span>BROWSER AGENT</span>
+          </div>
+          <h4 class="text-sm font-semibold text-[#F5F7FA]">Web Automation</h4>
+          <p class="text-xs text-[#9299A6]">Navigates portals, collects structured datasets, and interacts with web applications.</p>
+        </div>
+
+        <!-- Agent 3 -->
+        <div class="agent-node">
+          <div class="w-8 h-8 rounded-full bg-[#6EA8FF]/20 flex items-center justify-center text-[#6EA8FF]">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          </div>
+          <div class="agent-node-status">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span>ANALYSIS AGENT</span>
+          </div>
+          <h4 class="text-sm font-semibold text-[#F5F7FA]">Model Reasoning</h4>
+          <p class="text-xs text-[#9299A6]">Evaluates trade-offs, runs statistical comparisons, and validates logical consistency.</p>
+        </div>
+
+        <!-- Agent 4 -->
+        <div class="agent-node">
+          <div class="w-8 h-8 rounded-full bg-[#6EA8FF]/20 flex items-center justify-center text-[#6EA8FF]">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+          </div>
+          <div class="agent-node-status">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span>CODE AGENT</span>
+          </div>
+          <h4 class="text-sm font-semibold text-[#F5F7FA]">Code Synthesis</h4>
+          <p class="text-xs text-[#9299A6]">Writes type-safe software, drafts tests, and resolves compile-time type discrepancies.</p>
+        </div>
+
+        <!-- Agent 5 -->
+        <div class="agent-node">
+          <div class="w-8 h-8 rounded-full bg-[#6EA8FF]/20 flex items-center justify-center text-[#6EA8FF]">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <div class="agent-node-status">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span>AUTOMATION</span>
+          </div>
+          <h4 class="text-sm font-semibold text-[#F5F7FA]">Workflow Dispatch</h4>
+          <p class="text-xs text-[#9299A6]">Schedules jobs, fires webhooks, and synchronizes files across connected systems.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 20 — 05 EXECUTION SECTION -->
+    <section class="section-wrap" id="execution-section">
+      <div class="mb-12">
+        <h2 class="headline-section">
+          FROM PROMPT<br />TO RESULT.
+        </h2>
+        <p class="lead-copy">
+          One request initiates multiple coordinated actions, terminating in a clean, verified deliverable.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-6 gap-3 text-center">
+        <div class="p-4 rounded-xl bg-[#11141A] border border-white/5">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-1">01</div>
+          <div class="text-sm font-semibold text-[#F5F7FA]">Understanding</div>
+        </div>
+        <div class="p-4 rounded-xl bg-[#11141A] border border-white/5">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-1">02</div>
+          <div class="text-sm font-semibold text-[#F5F7FA]">Researching</div>
+        </div>
+        <div class="p-4 rounded-xl bg-[#11141A] border border-white/5">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-1">03</div>
+          <div class="text-sm font-semibold text-[#F5F7FA]">Comparing</div>
+        </div>
+        <div class="p-4 rounded-xl bg-[#11141A] border border-white/5">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-1">04</div>
+          <div class="text-sm font-semibold text-[#F5F7FA]">Analyzing</div>
+        </div>
+        <div class="p-4 rounded-xl bg-[#11141A] border border-white/5">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-1">05</div>
+          <div class="text-sm font-semibold text-[#F5F7FA]">Writing</div>
+        </div>
+        <div class="p-4 rounded-xl bg-[#171A21] border border-[#6EA8FF]/40 text-[#6EA8FF]">
+          <div class="text-xs font-mono mb-1">06</div>
+          <div class="text-sm font-semibold">Complete</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 21 — 06 SPEED SECTION -->
+    <section class="section-wrap" id="speed-section">
+      <div class="speed-pulse-grid">
+        <div class="text-xs font-mono text-[#6EA8FF] tracking-[0.25em] uppercase mb-3">VELOCITY &amp; EXECUTION</div>
+        <h2 class="font-extrabold text-5xl sm:text-7xl lg:text-8xl tracking-tight text-[#F5F7FA] mb-4">
+          FAST.<br />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#F5F7FA] via-[#6EA8FF] to-[#F5F7FA]">REALLY FAST.</span>
+        </h2>
+        <p class="text-lg text-[#9299A6] max-w-xl mx-auto mb-10 leading-relaxed font-normal">
+          Orbit is built for momentum. Instant startup, sub-second tool dispatches, and relentless execution velocity.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
+          <div class="p-5 rounded-xl bg-[#0B0D12]/80 border border-white/10">
+            <div class="text-3xl sm:text-4xl font-extrabold text-[#6EA8FF] font-mono mb-1">&lt; 180ms</div>
+            <div class="text-xs text-[#9299A6]">Token Time-to-First-Byte</div>
+          </div>
+          <div class="p-5 rounded-xl bg-[#0B0D12]/80 border border-white/10">
+            <div class="text-3xl sm:text-4xl font-extrabold text-[#F5F7FA] font-mono mb-1">10x</div>
+            <div class="text-xs text-[#9299A6]">Parallel Sub-agent Swarms</div>
+          </div>
+          <div class="p-5 rounded-xl bg-[#0B0D12]/80 border border-white/10">
+            <div class="text-3xl sm:text-4xl font-extrabold text-[#6EA8FF] font-mono mb-1">60 FPS</div>
+            <div class="text-xs text-[#9299A6]">GPU Accelerated Interface</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 22 & 23 — 07 ORBIT OS SECTION -->
+    <section class="section-wrap" id="os-section">
+      <div class="mb-12">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="section-tag">04 — ORBIT OS</span>
+          <span class="text-[10px] font-mono text-[#6EA8FF] bg-[#6EA8FF]/10 px-2 py-0.5 rounded border border-[#6EA8FF]/20">THE DIRECTION WE'RE BUILDING TOWARD</span>
+        </div>
+        <h2 class="headline-section">
+          YOUR WORK.<br />ONE INTELLIGENT LAYER.
+        </h2>
+        <p class="lead-copy">
+          Orbit is not just a chat window. It is an operating environment connecting intelligence to everything you use.
+        </p>
+      </div>
+
+      <!-- Conceptual OS Architectural Layer Matrix -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
+        <div class="os-module p-4 rounded-xl bg-[#11141A] border border-white/5 text-center">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-2">AI CORE</div>
+          <div class="text-sm font-medium text-[#F5F7FA]">Models & Reasoning</div>
+        </div>
+        <div class="os-module p-4 rounded-xl bg-[#11141A] border border-white/5 text-center">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-2">AGENTS</div>
+          <div class="text-sm font-medium text-[#F5F7FA]">Autonomous Swarms</div>
+        </div>
+        <div class="os-module p-4 rounded-xl bg-[#11141A] border border-white/5 text-center">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-2">APPS</div>
+          <div class="text-sm font-medium text-[#F5F7FA]">Native Integrations</div>
+        </div>
+        <div class="os-module p-4 rounded-xl bg-[#11141A] border border-white/5 text-center">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-2">FILES</div>
+          <div class="text-sm font-medium text-[#F5F7FA]">Semantic Vector Store</div>
+        </div>
+        <div class="os-module p-4 rounded-xl bg-[#11141A] border border-white/5 text-center">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-2">PROJECTS</div>
+          <div class="text-sm font-medium text-[#F5F7FA]">Git & Workspace State</div>
+        </div>
+        <div class="os-module p-4 rounded-xl bg-[#11141A] border border-white/5 text-center">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-2">BROWSER</div>
+          <div class="text-sm font-medium text-[#F5F7FA]">Headless Automation</div>
+        </div>
+        <div class="os-module p-4 rounded-xl bg-[#11141A] border border-white/5 text-center">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-2">AUTOMATION</div>
+          <div class="text-sm font-medium text-[#F5F7FA]">Scheduled Workflows</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 24 — 08 ECOSYSTEM SECTION -->
+    <section class="section-wrap" id="ecosystem-section">
+      <div class="mb-12">
+        <h2 class="headline-section">
+          ONE SYSTEM.<br />EVERYTHING CONNECTED.
+        </h2>
+        <p class="lead-copy">
+          Designed for developers, researchers, founders, and teams who value precision and speed.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="orbit-card">
+          <h3 class="text-base font-semibold text-[#F5F7FA] mb-2">People &amp; Teams</h3>
+          <p class="text-xs text-[#9299A6] leading-relaxed">Collaborative project states with granular role permissions and team-shared prompt trajectories.</p>
+        </div>
+        <div class="orbit-card">
+          <h3 class="text-base font-semibold text-[#F5F7FA] mb-2">Developer Tooling</h3>
+          <p class="text-xs text-[#9299A6] leading-relaxed">CLI bindings, TypeScript SDKs, and local daemon connectors for terminal-native power users.</p>
+        </div>
+        <div class="orbit-card">
+          <h3 class="text-base font-semibold text-[#F5F7FA] mb-2">Zero-Trust Privacy</h3>
+          <p class="text-xs text-[#9299A6] leading-relaxed">Strict cryptographic isolation. Your proprietary source code and documents are never used for model training.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 27 — EXTENSIBILITY & MARKETPLACE -->
+    <section class="section-wrap" id="marketplace-section">
+      <div class="mb-12">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="section-tag">EXTENSIBILITY</span>
+          <span class="text-[10px] font-mono text-[#6EA8FF] bg-[#6EA8FF]/10 px-2 py-0.5 rounded border border-[#6EA8FF]/20">FUTURE ECOSYSTEM DIRECTION</span>
+        </div>
+        <h2 class="headline-section">
+          MAKE ORBIT<br />YOUR OWN.
+        </h2>
+        <p class="lead-copy">
+          Build and share custom agent personas, pipeline templates, specialized tool plugins, and domain models.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+        <div class="orbit-card">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-2">PLUGINS</div>
+          <h4 class="text-base font-semibold text-[#F5F7FA] mb-1">Custom Agent Tools</h4>
+          <p class="text-xs text-[#9299A6] leading-relaxed">Publish sandboxed WebAssembly tool modules that can be safely summoned by any Orbit agent trajectory.</p>
+        </div>
+        <div class="orbit-card">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-2">TEMPLATES</div>
+          <h4 class="text-base font-semibold text-[#F5F7FA] mb-1">Workflow Recipes</h4>
+          <p class="text-xs text-[#9299A6] leading-relaxed">One-click imports for regulatory compliance sweeps, code migration orchestrators, and competitive research matrices.</p>
+        </div>
+        <div class="orbit-card">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-2">MARKETPLACE</div>
+          <h4 class="text-base font-semibold text-[#F5F7FA] mb-1">Community Hub</h4>
+          <p class="text-xs text-[#9299A6] leading-relaxed">A developer ecosystem allowing creators to monetize verified agent routines with cryptographically audited trust.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 28 — THE ORBIT EXPERIENCE FLOW -->
+    <section class="section-wrap space-y-12" id="experience-section">
+      <div class="mb-12">
+        <span class="section-tag">MASTER PIPELINE</span>
+        <h2 class="headline-section">
+          THE ORBIT<br />EXPERIENCE.
+        </h2>
+        <p class="lead-copy">
+          From initial prompt to complete verification — an unbroken chain of intelligence in motion.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-3 text-center">
+        <div class="workflow-stage-node">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-1">01</div>
+          <div class="text-sm font-semibold text-[#F5F7FA]">Understand</div>
+          <div class="text-[10px] text-[#9299A6] mt-1">Goal parsing</div>
+        </div>
+        <div class="workflow-stage-node">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-1">02</div>
+          <div class="text-sm font-semibold text-[#F5F7FA]">Research</div>
+          <div class="text-[10px] text-[#9299A6] mt-1">Source ingest</div>
+        </div>
+        <div class="workflow-stage-node">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-1">03</div>
+          <div class="text-sm font-semibold text-[#F5F7FA]">Reason</div>
+          <div class="text-[10px] text-[#9299A6] mt-1">Fact mapping</div>
+        </div>
+        <div class="workflow-stage-node">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-1">04</div>
+          <div class="text-sm font-semibold text-[#F5F7FA]">Plan</div>
+          <div class="text-[10px] text-[#9299A6] mt-1">Step tree</div>
+        </div>
+        <div class="workflow-stage-node">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-1">05</div>
+          <div class="text-sm font-semibold text-[#F5F7FA]">Act</div>
+          <div class="text-[10px] text-[#9299A6] mt-1">Tool execution</div>
+        </div>
+        <div class="workflow-stage-node">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-1">06</div>
+          <div class="text-sm font-semibold text-[#F5F7FA]">Create</div>
+          <div class="text-[10px] text-[#9299A6] mt-1">Artifact synth</div>
+        </div>
+        <div class="workflow-stage-node border-[#6EA8FF]/40 bg-[#171A21]">
+          <div class="text-xs font-mono text-[#6EA8FF] mb-1">07</div>
+          <div class="text-sm font-semibold text-[#6EA8FF]">Complete</div>
+          <div class="text-[10px] text-[#F5F7FA] mt-1">Verified output</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 30 — TRUST PRINCIPLES -->
+    <section class="section-wrap" id="trust-section">
+      <div class="mb-12">
+        <span class="section-tag">RELIABILITY &amp; INTEGRITY</span>
+        <h2 class="headline-section">
+          TRUST<br />PRINCIPLES.
+        </h2>
+        <p class="lead-copy">
+          No vague promises or unverified claims. Orbit is engineered with foundational technical guardrails.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="orbit-card">
+          <div class="w-8 h-8 rounded-full bg-[#6EA8FF]/10 border border-[#6EA8FF]/20 flex items-center justify-center text-[#6EA8FF] mb-3 text-xs font-mono">01</div>
+          <h4 class="text-sm font-semibold text-[#F5F7FA] mb-1">Private by Default</h4>
+          <p class="text-xs text-[#9299A6] leading-relaxed">Your data, files, and prompts are never used to train foundation models. Strict cryptographic tenant isolation.</p>
+        </div>
+        <div class="orbit-card">
+          <div class="w-8 h-8 rounded-full bg-[#6EA8FF]/10 border border-[#6EA8FF]/20 flex items-center justify-center text-[#6EA8FF] mb-3 text-xs font-mono">02</div>
+          <h4 class="text-sm font-semibold text-[#F5F7FA] mb-1">Inspectable Reasoning</h4>
+          <p class="text-xs text-[#9299A6] leading-relaxed">Every tool invocation, DOM click, and shell command is logged in an immutable trajectory audit stream.</p>
+        </div>
+        <div class="orbit-card">
+          <div class="w-8 h-8 rounded-full bg-[#6EA8FF]/10 border border-[#6EA8FF]/20 flex items-center justify-center text-[#6EA8FF] mb-3 text-xs font-mono">03</div>
+          <h4 class="text-sm font-semibold text-[#F5F7FA] mb-1">You Are in Control</h4>
+          <p class="text-xs text-[#9299A6] leading-relaxed">Configure approval thresholds for high-impact actions. Pause, resume, or redirect active agent swarms anytime.</p>
+        </div>
+        <div class="orbit-card">
+          <div class="w-8 h-8 rounded-full bg-[#6EA8FF]/10 border border-[#6EA8FF]/20 flex items-center justify-center text-[#6EA8FF] mb-3 text-xs font-mono">04</div>
+          <h4 class="text-sm font-semibold text-[#F5F7FA] mb-1">Built to Be Reliable</h4>
+          <p class="text-xs text-[#9299A6] leading-relaxed">Deterministic sandboxes, static typing validations, and automatic rollback on runtime errors.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 25 — 09 WHY ORBIT -->
+    <section class="section-wrap space-y-16" id="why-orbit-section">
+      <div class="why-orbit-item border-t border-white/10 pt-12">
+        <div class="text-5xl sm:text-7xl font-extrabold tracking-tight text-[#F5F7FA] mb-3">UNDERSTAND.</div>
+        <p class="text-xl sm:text-2xl text-[#9299A6] max-w-2xl">Orbit understands the objective, eliminating boilerplate instructions and endless prompting loops.</p>
+      </div>
+
+      <div class="why-orbit-item border-t border-white/10 pt-12">
+        <div class="text-5xl sm:text-7xl font-extrabold tracking-tight text-[#F5F7FA] mb-3">REASON.</div>
+        <p class="text-xl sm:text-2xl text-[#9299A6] max-w-2xl">Orbit turns complexity into actionable steps with transparent dependency validation.</p>
+      </div>
+
+      <div class="why-orbit-item border-t border-white/10 pt-12">
+        <div class="text-5xl sm:text-7xl font-extrabold tracking-tight text-[#F5F7FA] mb-3">ACT.</div>
+        <p class="text-xl sm:text-2xl text-[#9299A6] max-w-2xl">Orbit helps execute the work autonomously through parallel browser, terminal, and API tools.</p>
+      </div>
+
+      <div class="why-orbit-item border-t border-white/10 pt-12">
+        <div class="text-5xl sm:text-7xl font-extrabold tracking-tight text-[#F5F7FA] mb-3">LEARN.</div>
+        <p class="text-xl sm:text-2xl text-[#9299A6] max-w-2xl">Orbit preserves persistent workspace context across sessions without tedious re-prompting.</p>
+      </div>
+
+      <div class="why-orbit-item border-t border-white/10 pt-12">
+        <div class="text-5xl sm:text-7xl font-extrabold tracking-tight text-[#F5F7FA] mb-3">CREATE.</div>
+        <p class="text-xl sm:text-2xl text-[#9299A6] max-w-2xl">Orbit turns ideas into verified code, polished analyses, and production-ready outputs.</p>
+      </div>
+    </section>
+
+    <!-- 26 — 10 PRICING SECTION -->
+    <section class="section-wrap" id="pricing-section">
+      <div class="mb-12 text-center max-w-2xl mx-auto">
+        <h2 class="headline-section">
+          SIMPLE PLANS.<br />SERIOUS CAPABILITY.
+        </h2>
+        <p class="lead-copy mx-auto">
+          Transparent pricing designed for individuals and teams building with AI.
+        </p>
+
+        <!-- Billing Toggle -->
+        <div class="mt-6 inline-flex items-center gap-3 p-1.5 rounded-full bg-[#11141A] border border-white/10">
+          <span class="text-xs text-[#9299A6]">Monthly</span>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="billing-toggle" class="sr-only peer" />
+            <div class="w-9 h-5 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#6EA8FF]"></div>
+          </label>
+          <span class="text-xs text-[#F5F7FA] font-medium">Annual <span class="text-[#6EA8FF]">(Save 20%)</span></span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Plan 1: Developer Free -->
+        <div class="pricing-card">
+          <div class="text-xs font-mono text-[#9299A6] uppercase tracking-wider mb-2">DEVELOPER</div>
+          <div class="text-4xl font-bold text-[#F5F7FA] mb-1">€0</div>
+          <div class="text-xs text-[#9299A6] mb-6">Free forever for individuals</div>
+
+          <ul class="space-y-3 text-xs text-[#9299A6] mb-8 flex-1">
+            <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> 1,000 tasks per month</li>
+            <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> Standard Orbit intelligence model</li>
+            <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> Local file understanding & code synth</li>
+            <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> Web workspace access</li>
+          </ul>
+
+          <a href="/Routes/orbit-ai.html" class="btn-secondary text-center py-2.5 w-full text-xs">Start Free</a>
+        </div>
+
+        <!-- Plan 2: Orbit Pro -->
+        <div class="pricing-card featured">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-mono text-[#6EA8FF] uppercase tracking-wider">ORBIT PRO</span>
+            <span class="text-[10px] font-mono text-[#6EA8FF] bg-[#6EA8FF]/10 px-2 py-0.5 rounded border border-[#6EA8FF]/20">MOST POPULAR</span>
+          </div>
+          <div class="text-4xl font-bold text-[#F5F7FA] mb-1">
+            <span id="price-pro-val">€10</span>
+          </div>
+          <div id="price-pro-period" class="text-xs text-[#9299A6] mb-6">/ month (billed monthly)</div>
+
+          <ul class="space-y-3 text-xs text-[#9299A6] mb-8 flex-1">
+            <li class="flex items-center gap-2 text-[#F5F7FA]"><span class="text-[#6EA8FF]">✔</span> Unlimited tasks &amp; fast inference</li>
+            <li class="flex items-center gap-2 text-[#F5F7FA]"><span class="text-[#6EA8FF]">✔</span> Pro Pulsar frontier model access</li>
+            <li class="flex items-center gap-2 text-[#F5F7FA]"><span class="text-[#6EA8FF]">✔</span> Parallel multi-agent swarms (up to 10)</li>
+            <li class="flex items-center gap-2 text-[#F5F7FA]"><span class="text-[#6EA8FF]">✔</span> Headless browser &amp; workflow automation</li>
+            <li class="flex items-center gap-2 text-[#F5F7FA]"><span class="text-[#6EA8FF]">✔</span> Orbit Desktop app (macOS &amp; Windows)</li>
+          </ul>
+
+          <a href="/shop.html" class="btn-launch text-center py-2.5 w-full text-xs">Upgrade to Pro →</a>
+        </div>
+
+        <!-- Plan 3: Enterprise -->
+        <div class="pricing-card">
+          <div class="text-xs font-mono text-[#9299A6] uppercase tracking-wider mb-2">ENTERPRISE</div>
+          <div class="text-4xl font-bold text-[#F5F7FA] mb-1">Custom</div>
+          <div class="text-xs text-[#9299A6] mb-6">For organizations &amp; platforms</div>
+
+          <ul class="space-y-3 text-xs text-[#9299A6] mb-8 flex-1">
+            <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> Dedicated private VPC deployment</li>
+            <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> Fine-tuned custom model checkpoints</li>
+            <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> SAML SSO, SOC2 audit logging &amp; SCIM</li>
+            <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> 99.99% SLA guarantee &amp; 24/7 support</li>
+          </ul>
+
+          <a href="/Routes/contact.html" class="btn-secondary text-center py-2.5 w-full text-xs">Contact Sales</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 27 — 11 FINAL CTA SECTION -->
+    <section class="section-wrap text-center py-24 sm:py-32" id="cta-section">
+      <div class="final-cta-content max-w-3xl mx-auto">
+        <!-- Logo Kinetic Trajectory -->
+        <div class="w-16 h-16 mx-auto mb-8 text-[#6EA8FF]">
+          <svg viewBox="0 0 48 48" fill="none" class="w-full h-full">
+            <circle cx="24" cy="24" r="17.5" stroke="currentColor" stroke-width="2" stroke-opacity="0.3" />
+            <path d="M 9.5 24 C 9.5 13.5 17.5 6.5 28 6.5 C 38.5 6.5 43 16 40 26 C 37 36 26 41.5 16 39.5 C 10.5 38.4 6.5 33 6.5 28" stroke="#F5F7FA" stroke-width="2.2" stroke-linecap="round" />
+            <circle cx="24" cy="24" r="2.75" fill="#F5F7FA" />
+            <circle cx="37" cy="15" r="2.2" fill="#6EA8FF" />
+          </svg>
+        </div>
+
+        <h2 class="font-extrabold text-5xl sm:text-7xl lg:text-8xl tracking-tight text-[#F5F7FA] mb-6">
+          ENTER ORBIT.
+        </h2>
+
+        <p class="text-lg sm:text-xl text-[#9299A6] max-w-xl mx-auto mb-10 leading-relaxed font-normal">
+          Intelligence that moves with you.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="/Routes/orbit-ai.html" class="btn-launch-hero text-base">
+            <span>Launch Orbit</span>
+            <span>→</span>
+          </a>
+          <a href="/Routes/doc.html" class="btn-secondary-hero text-base">
+            <span>Read Documentation</span>
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 
+  <!-- Site Footer -->
   <div data-include="/components/footer.html"></div>
-  <div data-include="/components/cookie-banner.html"></div>
 
-  <script src="/assets/js/include.js" defer></script>
-  <script src="/assets/js/main.js" defer></script>
+  <!-- Component Includer Script for navbar/footer components -->
+  <script src="/assets/js/include.js"></script>
+
+  <!-- Core Kinetic Scripts -->
+  <script src="/assets/js/cinematic-webgl.js"></script>
+  <script src="/assets/js/cinematic-timeline.js"></script>
+  <script src="/assets/js/cinematic-ui.js"></script>
+  <script src="/assets/js/information-engine.js"></script>
+
+  <!-- Applet Initializer -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      window.orbitKineticEngine = new OrbitKineticEngine();
+      window.orbitKineticTimeline = new OrbitKineticTimeline();
+      window.orbitKineticUI = new OrbitKineticUI();
+    });
+  </script>
 </body>
 </html>

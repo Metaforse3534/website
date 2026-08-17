@@ -1,213 +1,307 @@
-﻿<!DOCTYPE html>
-<html lang="en" class="scroll-smooth select-none">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Orbit Shop &mdash; Initialize Your Uplink</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing &amp; Plans — Orbit AI</title>
+  <meta name="description" content="Transparent, predictable pricing for Orbit AI. Free Developer, Orbit Pro (€10/mo), Orbit Team, and Enterprise plans." />
+  <meta name="theme-color" content="#050609" />
+  <link rel="canonical" href="https://www.orbitdev.org/shop.html" />
+  <link rel="icon" type="image/svg+xml" href="/Public/favicon.svg" />
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-    <style>
-        :root {
-            --bg: #050505;
-            --panel: rgba(13,13,13,0.7);
-            --panel-solid: #0d0d0d;
-            --text-main: #ffffff;
-            --text-muted: #52525b;
-            --border: rgba(255,255,255,0.05);
-            --accent: #ffffff;
-            --accent-glow: rgba(255,255,255,0.015);
-            --input-bg: #09090b;
-        }
-
-        .light-mode {
-            --bg: #fafafa;
-            --panel: rgba(244,244,245,0.7);
-            --panel-solid: #f4f4f5;
-            --text-main: #09090b;
-            --text-muted: #71717a;
-            --border: rgba(0,0,0,0.06);
-            --accent: #09090b;
-            --accent-glow: rgba(0,0,0,0.015);
-            --input-bg: #ffffff;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--text-muted);
-            overflow-x: hidden;
-            transition: 0.3s;
-        }
-
-        h1, h2, h3, .font-space {
-            font-family: 'Space Grotesk', sans-serif;
-            color: var(--text-main);
-        }
-
-        .font-mono {
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .app-panel {
-            background: var(--panel);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border);
-        }
-
-        .ticket-input {
-            background: var(--input-bg);
-            border: 1px solid var(--border);
-            color: var(--text-main);
-        }
-
-        .ticket-input:focus {
-            outline: none;
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .stripe-element-container {
-            padding: 14px 16px;
-            border-radius: 8px;
-            background: var(--input-bg);
-            border: 1px solid var(--border);
-        }
-
-        .glow-button {
-            background: var(--accent);
-            color: var(--bg);
-            transition: 0.25s;
-        }
-
-        .glow-button:hover {
-            opacity: .9;
-            transform: translateY(-1px);
-        }
-
-        .glow-button:disabled {
-            opacity: .4;
-            cursor: not-allowed;
-        }
-
-        #hero-glow {
-            position: fixed;
-            inset: 0;
-            background: radial-gradient(800px circle at var(--x, 50%) var(--y, -200px), var(--accent-glow), transparent 60%);
-            pointer-events: none;
-        }
-    </style>
-    <link rel="stylesheet" href="/site.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/assets/css/orbit.css" />
+  <link rel="stylesheet" href="/assets/css/cinematic.css" />
 </head>
+<body class="bg-[#050609] text-[#F5F7FA]">
 
-<body class="min-h-screen flex items-center justify-center p-6 relative">
+  <div data-include="/components/navbar.html"></div>
 
-<div id="hero-glow"></div>
-
-<div class="absolute top-6 right-6 z-50">
-    <button id="theme-toggle" class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 hover:text-white transition">
-        Toggle Theme
-    </button>
-</div>
-
-<div class="max-w-4xl w-full grid md:grid-cols-2 gap-12 items-center relative z-10">
-
-    <div class="space-y-6">
-        <a href="index.html" class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 hover:text-white transition flex items-center gap-2">
-            &larr; Back to Orbit
-        </a>
-
-        <div>
-            <h1 class="text-5xl font-bold leading-none uppercase tracking-tight">
-                Pro Pulsar <br>
-                <span class="italic font-light opacity-90">Subscription</span>
-            </h1>
+  <main id="main" class="min-h-screen py-16 px-4">
+    <div class="container max-w-6xl mx-auto">
+      
+      <!-- Hero Title -->
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#6EA8FF]/10 border border-[#6EA8FF]/20 text-xs font-mono text-[#6EA8FF] uppercase tracking-wider mb-4">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#6EA8FF] animate-pulse"></span>
+          Predictable &amp; Transparent
         </div>
-
-        <div class="space-y-4 text-sm text-zinc-400">
-            <div class="flex items-start gap-3">
-                <div class="text-zinc-500 border border-zinc-800 rounded-full w-5 h-5 flex items-center justify-center text-xs">âœ“</div>
-                <p>Run unlimited AI requests for everyday work and larger projects.</p>
-            </div>
-
-            <div class="flex items-start gap-3">
-                <div class="text-zinc-500 border border-zinc-800 rounded-full w-5 h-5 flex items-center justify-center text-xs">âœ“</div>
-                <p>Get priority access when Orbit is busy.</p>
-            </div>
-        </div>
-
-        <div class="border border-zinc-900 bg-zinc-950/40 p-4 rounded-xl flex items-center gap-4">
-            <div class="bg-white text-black p-3 rounded-xl flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
-                </svg>
-            </div>
-            <div>
-                <div class="font-mono text-[10px] text-zinc-400 tracking-wider font-bold">// Monthly bonus</div>
-                <p class="text-xs text-zinc-500 mt-0.5">Includes 500 extra processing tokens added to your account each billing cycle.</p>
-            </div>
-        </div>
-
-        <div class="pt-4">
-            <div class="text-4xl font-bold text-white font-space">
-                &euro;29.00 <span class="text-xs tracking-widest uppercase text-zinc-600 font-mono ml-2">/ month</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="app-panel p-8 rounded-2xl shadow-2xl max-w-md w-full ml-auto">
-        <h2 class="text-sm font-mono tracking-widest uppercase mb-6 text-white border-b border-zinc-900 pb-3">
-            Secure checkout
-        </h2>
-
-        <form id="payment-form" class="space-y-5">
-            <div>
-                <label class="block font-mono text-[10px] text-zinc-500 uppercase tracking-wider mb-2">
-                    Email address
-                </label>
-                <input type="email" id="email" required placeholder="you@company.com" class="ticket-input font-mono w-full rounded-lg px-4 py-3.5 text-sm">
-            </div>
-
-            <div>
-                <label class="block font-mono text-[10px] text-zinc-500 uppercase tracking-wider mb-2">
-                    Payment method
-                </label>
-                <div class="stripe-element-container">
-                    <span class="text-xs text-zinc-500">Debit and credit card checkout continues securely inside Orbit Billing.</span>
-                </div>
-            </div>
-
-            <button id="submit" class="glow-button w-full py-4 rounded-xl uppercase tracking-widest font-mono text-xs font-bold mt-2">
-                Continue to billing
-            </button>
-        </form>
-
-        <p class="font-mono text-[9px] text-zinc-600 text-center mt-6 uppercase tracking-wider leading-relaxed">
-            Payments are handled securely through Stripe. You can manage or change your plan in Orbit billing.
+        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-4 text-[#F5F7FA]">
+          Simple Plans.<br />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#F5F7FA] via-[#6EA8FF] to-[#F5F7FA]">Serious Capability.</span>
+        </h1>
+        <p class="text-base sm:text-lg text-[#9299A6] max-w-xl mx-auto">
+          Scale effortlessly from single-task local execution to autonomous team swarms and private enterprise clusters.
         </p>
+
+        <!-- Billing Toggle -->
+        <div class="mt-8 inline-flex items-center gap-3 p-1.5 rounded-full bg-[#11141A] border border-white/10">
+          <button id="toggle-monthly" class="px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-white text-[#050609]">
+            Monthly
+          </button>
+          <button id="toggle-annual" class="px-4 py-1.5 rounded-full text-xs font-semibold text-[#9299A6] hover:text-[#F5F7FA] transition-all flex items-center gap-1.5">
+            Annual
+            <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">Save 20%</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Pricing Grid: 4 Tiers -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+        
+        <!-- 1. Developer Free -->
+        <div class="pricing-card flex flex-col justify-between">
+          <div>
+            <div class="text-xs font-mono text-[#9299A6] uppercase tracking-wider mb-2">DEVELOPER</div>
+            <div class="text-4xl font-bold text-[#F5F7FA] mb-1">€0</div>
+            <div class="text-xs text-[#9299A6] mb-6">Free forever for individuals</div>
+
+            <ul class="space-y-3 text-xs text-[#9299A6] mb-8">
+              <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> 1,000 tasks per month</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Standard Orbit model access</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Single-agent task runner</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Local file &amp; AST analysis</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Web workspace interface</li>
+            </ul>
+          </div>
+
+          <a href="/Routes/orbit-ai.html" class="btn-secondary text-center py-2.5 w-full text-xs font-semibold">Start Free</a>
+        </div>
+
+        <!-- 2. Orbit Pro (Featured) -->
+        <div class="pricing-card featured flex flex-col justify-between relative border-[#6EA8FF]/40 bg-[#0E121A]">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-mono text-[#6EA8FF] uppercase tracking-wider font-bold">ORBIT PRO</span>
+              <span class="text-[10px] font-mono text-[#6EA8FF] bg-[#6EA8FF]/15 px-2 py-0.5 rounded border border-[#6EA8FF]/30 font-semibold">MOST POPULAR</span>
+            </div>
+            <div class="text-4xl font-bold text-[#F5F7FA] mb-1">
+              <span id="price-pro">€10</span>
+            </div>
+            <div id="period-pro" class="text-xs text-[#9299A6] mb-6">/ month (billed monthly)</div>
+
+            <ul class="space-y-3 text-xs text-[#9299A6] mb-8">
+              <li class="flex items-center gap-2 text-[#F5F7FA]"><span class="text-[#6EA8FF] font-bold">✓</span> Unlimited tasks &amp; fast inference</li>
+              <li class="flex items-center gap-2 text-[#F5F7FA]"><span class="text-[#6EA8FF] font-bold">✓</span> Pro Pulsar frontier intelligence</li>
+              <li class="flex items-center gap-2 text-[#F5F7FA]"><span class="text-[#6EA8FF] font-bold">✓</span> Parallel swarms (up to 10 agents)</li>
+              <li class="flex items-center gap-2 text-[#F5F7FA]"><span class="text-[#6EA8FF] font-bold">✓</span> Full headless browser automation</li>
+              <li class="flex items-center gap-2 text-[#F5F7FA]"><span class="text-[#6EA8FF] font-bold">✓</span> Orbit Desktop (macOS &amp; Windows)</li>
+              <li class="flex items-center gap-2 text-[#F5F7FA]"><span class="text-[#6EA8FF] font-bold">✓</span> Priority inference queues</li>
+            </ul>
+          </div>
+
+          <a href="https://app.orbitdev.org/" target="_blank" rel="noopener noreferrer" class="btn-launch text-center py-2.5 w-full text-xs font-semibold">Upgrade to Pro →</a>
+        </div>
+
+        <!-- 3. Orbit Team -->
+        <div class="pricing-card flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-mono text-[#9299A6] uppercase tracking-wider font-semibold">ORBIT TEAM</span>
+              <span class="text-[10px] font-mono text-zinc-400 bg-white/5 px-2 py-0.5 rounded border border-white/10">COLLABORATION</span>
+            </div>
+            <div class="text-4xl font-bold text-[#F5F7FA] mb-1">
+              <span id="price-team">€25</span>
+            </div>
+            <div id="period-team" class="text-xs text-[#9299A6] mb-6">/ user / mo (billed monthly)</div>
+
+            <ul class="space-y-3 text-xs text-[#9299A6] mb-8">
+              <li class="flex items-center gap-2 text-[#F5F7FA]"><span class="text-emerald-400 font-bold">✓</span> Everything in Orbit Pro</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Shared team context &amp; memory</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Centralized admin &amp; billing console</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Multi-user project permissions</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> 50 parallel agent workflows</li>
+            </ul>
+          </div>
+
+          <a href="https://app.orbitdev.org/" target="_blank" rel="noopener noreferrer" class="btn-secondary text-center py-2.5 w-full text-xs font-semibold">Create Team Space</a>
+        </div>
+
+        <!-- 4. Enterprise -->
+        <div class="pricing-card flex flex-col justify-between">
+          <div>
+            <div class="text-xs font-mono text-[#9299A6] uppercase tracking-wider mb-2 font-semibold">ENTERPRISE</div>
+            <div class="text-4xl font-bold text-[#F5F7FA] mb-1">Custom</div>
+            <div class="text-xs text-[#9299A6] mb-6">For large organizations &amp; platforms</div>
+
+            <ul class="space-y-3 text-xs text-[#9299A6] mb-8">
+              <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Dedicated private VPC deployment</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Custom fine-tuned checkpoints</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> SAML SSO, SCIM &amp; SOC2 logs</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> 99.99% uptime SLA guarantee</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Dedicated solutions architect</li>
+            </ul>
+          </div>
+
+          <a href="/Routes/contact.html" class="btn-secondary text-center py-2.5 w-full text-xs font-semibold">Contact Sales</a>
+        </div>
+      </div>
+
+      <!-- Feature Comparison Matrix -->
+      <div class="mb-24">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="text-xs font-mono text-[#6EA8FF] uppercase tracking-wider">Detailed Breakdown</span>
+          <h2 class="text-3xl font-bold text-[#F5F7FA] mt-1 mb-3">Compare Plan Features</h2>
+          <p class="text-xs text-[#9299A6]">Everything you need to know about quotas, capabilities, and governance.</p>
+        </div>
+
+        <div class="overflow-x-auto rounded-2xl border border-white/10 bg-[#0B0D12]">
+          <table class="w-full text-left text-xs">
+            <thead>
+              <tr class="border-b border-white/10 bg-white/[0.02]">
+                <th class="py-4 px-6 text-sm font-bold text-[#F5F7FA]">Capability</th>
+                <th class="py-4 px-4 font-mono font-semibold text-zinc-400 text-center">Developer</th>
+                <th class="py-4 px-4 font-mono font-semibold text-[#6EA8FF] text-center bg-[#6EA8FF]/5">Orbit Pro</th>
+                <th class="py-4 px-4 font-mono font-semibold text-zinc-400 text-center">Team</th>
+                <th class="py-4 px-4 font-mono font-semibold text-zinc-400 text-center">Enterprise</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5 text-[#9299A6]">
+              <!-- Section: Intelligence & Models -->
+              <tr class="bg-white/[0.01]">
+                <td colspan="5" class="py-3 px-6 text-[11px] font-mono text-[#6EA8FF] uppercase tracking-wider font-semibold">Core Intelligence &amp; Models</td>
+              </tr>
+              <tr>
+                <td class="py-3.5 px-6 text-[#F5F7FA] font-medium">Standard Orbit Engine</td>
+                <td class="py-3.5 px-4 text-center text-emerald-400 font-bold">✓</td>
+                <td class="py-3.5 px-4 text-center text-emerald-400 font-bold bg-[#6EA8FF]/5">✓</td>
+                <td class="py-3.5 px-4 text-center text-emerald-400 font-bold">✓</td>
+                <td class="py-3.5 px-4 text-center text-emerald-400 font-bold">✓</td>
+              </tr>
+              <tr>
+                <td class="py-3.5 px-6 text-[#F5F7FA] font-medium">Pro Pulsar Frontier Model</td>
+                <td class="py-3.5 px-4 text-center text-zinc-600">—</td>
+                <td class="py-3.5 px-4 text-center text-emerald-400 font-bold bg-[#6EA8FF]/5">✓</td>
+                <td class="py-3.5 px-4 text-center text-emerald-400 font-bold">✓</td>
+                <td class="py-3.5 px-4 text-center text-emerald-400 font-bold">✓</td>
+              </tr>
+              <tr>
+                <td class="py-3.5 px-6 text-[#F5F7FA] font-medium">Monthly Task Quota</td>
+                <td class="py-3.5 px-4 text-center font-mono text-zinc-300">1,000</td>
+                <td class="py-3.5 px-4 text-center font-mono text-[#6EA8FF] font-semibold bg-[#6EA8FF]/5">Unlimited</td>
+                <td class="py-3.5 px-4 text-center font-mono text-zinc-300">Unlimited</td>
+                <td class="py-3.5 px-4 text-center font-mono text-zinc-300">Dedicated pool</td>
+              </tr>
+
+              <!-- Section: Agent Swarms & Execution -->
+              <tr class="bg-white/[0.01]">
+                <td colspan="5" class="py-3 px-6 text-[11px] font-mono text-[#6EA8FF] uppercase tracking-wider font-semibold">Agent Swarms &amp; Automation</td>
+              </tr>
+              <tr>
+                <td class="py-3.5 px-6 text-[#F5F7FA] font-medium">Parallel Agent Swarms</td>
+                <td class="py-3.5 px-4 text-center font-mono text-zinc-300">1</td>
+                <td class="py-3.5 px-4 text-center font-mono text-[#6EA8FF] font-semibold bg-[#6EA8FF]/5">Up to 10</td>
+                <td class="py-3.5 px-4 text-center font-mono text-zinc-300">Up to 50</td>
+                <td class="py-3.5 px-4 text-center font-mono text-zinc-300">Unlimited mesh</td>
+              </tr>
+              <tr>
+                <td class="py-3.5 px-6 text-[#F5F7FA] font-medium">Headless Browser Automation</td>
+                <td class="py-3.5 px-4 text-center text-zinc-600">Basic</td>
+                <td class="py-3.5 px-4 text-center text-emerald-400 font-bold bg-[#6EA8FF]/5">Full Cloud Cluster</td>
+                <td class="py-3.5 px-4 text-center text-emerald-400 font-bold">Full Cloud Cluster</td>
+                <td class="py-3.5 px-4 text-center text-emerald-400 font-bold">Custom Proxies</td>
+              </tr>
+              <tr>
+                <td class="py-3.5 px-6 text-[#F5F7FA] font-medium">Orbit Desktop App (macOS &amp; Win)</td>
+                <td class="py-3.5 px-4 text-center text-zinc-600">—</td>
+                <td class="py-3.5 px-4 text-center text-emerald-400 font-bold bg-[#6EA8FF]/5">✓</td>
+                <td class="py-3.5 px-4 text-center text-emerald-400 font-bold">✓</td>
+                <td class="py-3.5 px-4 text-center text-emerald-400 font-bold">✓</td>
+              </tr>
+
+              <!-- Section: Security & Privacy -->
+              <tr class="bg-white/[0.01]">
+                <td colspan="5" class="py-3 px-6 text-[11px] font-mono text-[#6EA8FF] uppercase tracking-wider font-semibold">Security &amp; Governance</td>
+              </tr>
+              <tr>
+                <td class="py-3.5 px-6 text-[#F5F7FA] font-medium">Zero Data Training Guarantee</td>
+                <td class="py-3.5 px-4 text-center text-emerald-400 font-bold">✓</td>
+                <td class="py-3.5 px-4 text-center text-emerald-400 font-bold bg-[#6EA8FF]/5">✓</td>
+                <td class="py-3.5 px-4 text-center text-emerald-400 font-bold">✓</td>
+                <td class="py-3.5 px-4 text-center text-emerald-400 font-bold">✓</td>
+              </tr>
+              <tr>
+                <td class="py-3.5 px-6 text-[#F5F7FA] font-medium">SAML SSO &amp; SCIM Provisioning</td>
+                <td class="py-3.5 px-4 text-center text-zinc-600">—</td>
+                <td class="py-3.5 px-4 text-center text-zinc-600 bg-[#6EA8FF]/5">—</td>
+                <td class="py-3.5 px-4 text-center text-zinc-600">Optional</td>
+                <td class="py-3.5 px-4 text-center text-emerald-400 font-bold">✓</td>
+              </tr>
+              <tr>
+                <td class="py-3.5 px-6 text-[#F5F7FA] font-medium">Dedicated Private VPC Option</td>
+                <td class="py-3.5 px-4 text-center text-zinc-600">—</td>
+                <td class="py-3.5 px-4 text-center text-zinc-600 bg-[#6EA8FF]/5">—</td>
+                <td class="py-3.5 px-4 text-center text-zinc-600">—</td>
+                <td class="py-3.5 px-4 text-center text-emerald-400 font-bold">✓</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Verified FAQ Section -->
+      <div class="max-w-3xl mx-auto space-y-6">
+        <div class="border-b border-white/10 pb-4 text-center">
+          <span class="text-xs font-mono text-[#6EA8FF] uppercase tracking-wider">Answers &amp; Clarity</span>
+          <h3 class="text-2xl sm:text-3xl font-bold text-[#F5F7FA] mt-1">Frequently Asked Questions</h3>
+        </div>
+        
+        <div class="space-y-4" data-info-list="faq-items">
+          <!-- Hydrated dynamically from FAQ store -->
+        </div>
+      </div>
+
     </div>
-</div>
+  </main>
 
-<script>
-    // Theme Switcher & Interaction logic
-    const toggleBtn = document.getElementById('theme-toggle');
-    toggleBtn.addEventListener('click', () => {
-        document.body.classList.toggle('light-mode');
-    });
+  <div data-include="/components/footer.html"></div>
+  <script src="/assets/js/include.js"></script>
+  <script src="/assets/js/information-engine.js"></script>
 
-    window.addEventListener('mousemove', (e) => {
-        const glow = document.getElementById('hero-glow');
-        glow.style.setProperty('--x', e.clientX + 'px');
-        glow.style.setProperty('--y', e.clientY + 'px');
-    });
+  <!-- Billing Toggle Logic -->
+  <script>
+    const btnMonthly = document.getElementById('toggle-monthly');
+    const btnAnnual = document.getElementById('toggle-annual');
+    const pricePro = document.getElementById('price-pro');
+    const periodPro = document.getElementById('period-pro');
+    const priceTeam = document.getElementById('price-team');
+    const periodTeam = document.getElementById('period-team');
 
-    const form = document.getElementById("payment-form");
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        window.location.href = "https://app.orbitdev.org/billing";
-    });
-</script>
+    let isAnnual = false;
 
-    <script src="/site.js" defer></script>
+    function updateBilling(annual) {
+      isAnnual = annual;
+      if (isAnnual) {
+        btnAnnual.classList.add('bg-white', 'text-[#050609]');
+        btnAnnual.classList.remove('text-[#9299A6]');
+        btnMonthly.classList.remove('bg-white', 'text-[#050609]');
+        btnMonthly.classList.add('text-[#9299A6]');
+
+        if (pricePro) pricePro.textContent = '€8';
+        if (periodPro) periodPro.textContent = '/ month (billed annually at €96/yr)';
+        if (priceTeam) priceTeam.textContent = '€20';
+        if (periodTeam) periodTeam.textContent = '/ user / mo (billed annually at €240/yr)';
+      } else {
+        btnMonthly.classList.add('bg-white', 'text-[#050609]');
+        btnMonthly.classList.remove('text-[#9299A6]');
+        btnAnnual.classList.remove('bg-white', 'text-[#050609]');
+        btnAnnual.classList.add('text-[#9299A6]');
+
+        if (pricePro) pricePro.textContent = '€10';
+        if (periodPro) periodPro.textContent = '/ month (billed monthly)';
+        if (priceTeam) priceTeam.textContent = '€25';
+        if (periodTeam) periodTeam.textContent = '/ user / mo (billed monthly)';
+      }
+    }
+
+    if (btnMonthly && btnAnnual) {
+      btnMonthly.addEventListener('click', () => updateBilling(false));
+      btnAnnual.addEventListener('click', () => updateBilling(true));
+    }
+  </script>
 </body>
 </html>

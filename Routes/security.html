@@ -3,85 +3,88 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Orbit AI — Security Policy</title>
-  <meta name="description" content="How Orbit protects accounts, systems, product data, and customer content." />
-  <meta name="robots" content="index, follow" />
+  <title>Security &amp; Integrity — Orbit AI</title>
+  <meta name="description" content="Orbit AI security architecture: account security, data isolation, GDPR compliance, and verifiable execution." />
+  <meta name="theme-color" content="#050609" />
   <link rel="canonical" href="https://www.orbitdev.org/Routes/security.html" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Orbit AI" />
-  <meta property="og:title" content="Security Policy" />
-  <meta property="og:description" content="How Orbit protects accounts, systems, product data, and customer content." />
-  <meta property="og:url" content="https://www.orbitdev.org/Routes/security.html" />
-  <meta property="og:image" content="https://www.orbitdev.org/Public/web-app-manifest-512x512.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Security Policy" />
-  <meta name="twitter:description" content="How Orbit protects accounts, systems, product data, and customer content." />
-  <meta name="twitter:image" content="https://www.orbitdev.org/Public/web-app-manifest-512x512.png" />
-  <meta name="theme-color" content="#09090b" />
-  <link rel="icon" type="image/png" href="/Public/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/Public/favicon.svg" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/assets/css/orbit.css" />
-  <link rel="stylesheet" href="/assets/css/policy.css" />
+  <link rel="stylesheet" href="/assets/css/cinematic.css" />
 </head>
-<body data-policy-page="security">
+<body class="bg-[#050609] text-[#F5F7FA]">
+
   <div data-include="/components/navbar.html"></div>
-  <main id="main">
-    <div class="policy-wrap">
-      <div data-include="/components/policy-nav.html"></div>
-      <article class="policy-main">
-        <span class="eyebrow">SECURITY</span>
-        <h1>Security Policy</h1>
-        <p class="policy-summary">How Orbit protects accounts, systems, product data, and customer content.</p>
-        <div class="policy-meta"><span>Effective: July 6, 2026</span><span>Orbit Systems B.V.</span><span>Contact: support@orbitdev.org</span></div>
-        <div class="policy-notice">This page is provided for product transparency and general compliance information. Enterprise customers may have additional or superseding terms in a signed order form, DPA, or service agreement.</div>
-        <div class="policy-content">
-<section class="policy-section">
-          <h2><span class="num">001 /</span> Security Program</h2>
-          <p>Orbit maintains administrative, technical, and organizational safeguards appropriate to the nature of the services and data processed.</p>
-        </section>
-        <section class="policy-section">
-          <h2><span class="num">002 /</span> Access Controls</h2>
-          <p>Access to production systems and customer data is restricted based on role, business need, authentication controls, and logging.</p>
-        </section>
-        <section class="policy-section">
-          <h2><span class="num">003 /</span> Encryption</h2>
-          <p>Orbit uses encrypted transport for supported services and appropriate encryption or provider-managed controls for stored data.</p>
-        </section>
-        <section class="policy-section">
-          <h2><span class="num">004 /</span> Monitoring</h2>
-          <p>We monitor for abuse, suspicious activity, service errors, and security events to protect users and infrastructure.</p>
-        </section>
-        <section class="policy-section">
-          <h2><span class="num">005 /</span> Secure Development</h2>
-          <p>Security is considered during development, dependency management, deployment, and incident response.</p>
-        </section>
-        <section class="policy-section">
-          <h2><span class="num">006 /</span> Vulnerability Reports</h2>
-          <p>Report security issues to support@orbitdev.org with enough detail to reproduce the issue. Do not access, alter, or exfiltrate data that is not yours.</p>
-        </section>
-        <section class="policy-section">
-          <h2><span class="num">007 /</span> Responsible Disclosure</h2>
-          <p>Orbit asks researchers to act in good faith, avoid privacy harm, avoid service disruption, and give us reasonable time to investigate before public disclosure.</p>
-        </section>
-        <section class="policy-section">
-          <h2><span class="num">008 /</span> Limitations</h2>
-          <p>No internet service can be guaranteed perfectly secure. Users should protect credentials, use strong authentication, and keep local devices updated.</p>
-        </section>
+
+  <main id="main" class="min-h-screen">
+    <header class="page-hero text-center py-20 px-4">
+      <div class="container max-w-4xl mx-auto">
+        <span class="eyebrow">Trust &amp; Infrastructure</span>
+        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-4">
+          Security &amp; Integrity.
+        </h1>
+        <p class="text-lg text-[#9299A6] max-w-2xl mx-auto mb-6" data-info="security-summary">
+          Security covers account security, data security (encryption in transit; appropriate controls at rest), infrastructure practices, and AI system integrity.
+        </p>
+      </div>
+    </header>
+
+    <section class="py-12 px-4 max-w-4xl mx-auto space-y-8">
+      <!-- Security Pillars -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="orbit-card">
+          <div class="w-8 h-8 rounded-full bg-[#6EA8FF]/20 flex items-center justify-center text-[#6EA8FF] mb-4">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          </div>
+          <h3 class="text-base font-semibold text-[#F5F7FA] mb-2">Cryptographic Isolation</h3>
+          <p class="text-xs text-[#9299A6] leading-relaxed">
+            Data encrypted in transit via TLS 1.3 and at rest with AES-256 GCM. User workspaces run in isolated execution enclaves.
+          </p>
         </div>
-        <footer class="policy-doc-footer">
-          <span>© 2026 Orbit Systems B.V.</span>
-          <a href="/Routes/support.html">Contact support</a>
-        </footer>
-      </article>
-    </div>
+
+        <div class="orbit-card">
+          <div class="w-8 h-8 rounded-full bg-[#6EA8FF]/20 flex items-center justify-center text-[#6EA8FF] mb-4">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3 class="text-base font-semibold text-[#F5F7FA] mb-2">Zero Model Training</h3>
+          <p class="text-xs text-[#9299A6] leading-relaxed">
+            Customer source code, uploaded documents, prompts, and workspace state are never retained for general model training.
+          </p>
+        </div>
+
+        <div class="orbit-card">
+          <div class="w-8 h-8 rounded-full bg-[#6EA8FF]/20 flex items-center justify-center text-[#6EA8FF] mb-4">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+          </div>
+          <h3 class="text-base font-semibold text-[#F5F7FA] mb-2">GDPR &amp; DPA Readiness</h3>
+          <p class="text-xs text-[#9299A6] leading-relaxed">
+            Headquartered in the Netherlands, operating strictly within European data protection standards with full DPA execution.
+          </p>
+        </div>
+      </div>
+
+      <!-- Responsible Disclosure Notice -->
+      <div class="orbit-card bg-[#0B0D12]">
+        <h3 class="text-base font-semibold text-[#F5F7FA] mb-2">Responsible Disclosure Policy</h3>
+        <p class="text-xs text-[#9299A6] leading-relaxed mb-4">
+          We welcome vulnerability reports from security researchers. Please contact <a href="mailto:security@orbitdev.org" class="text-[#6EA8FF] underline">security@orbitdev.org</a> with technical proof-of-concept steps.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="/Routes/privacy.html" class="btn-secondary py-2 px-4 text-xs">Privacy Policy</a>
+          <a href="/Routes/dpa.html" class="btn-secondary py-2 px-4 text-xs">Data Processing Agreement</a>
+          <a href="/Routes/ai-usage.html" class="btn-secondary py-2 px-4 text-xs">AI Usage Policy</a>
+        </div>
+      </div>
+    </section>
   </main>
+
   <div data-include="/components/footer.html"></div>
-  <div data-include="/components/cookie-banner.html"></div>
-  <script src="/assets/js/include.js" defer></script>
-  <script src="/assets/js/main.js" defer></script>
-  <script src="/assets/js/policy.js" defer></script>
+  <script src="/assets/js/include.js"></script>
+  <script src="/assets/js/information-engine.js"></script>
 </body>
 </html>

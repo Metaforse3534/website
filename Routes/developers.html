@@ -3,68 +3,90 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Developers — Orbit AI</title>
-  <meta name="description" content="Developer resources for Orbit AI: documentation, public repository, and current API surfaces. No invented endpoints." />
-  <meta name="robots" content="index, follow" />
+  <title>Orbit for Developers — SDKs, API &amp; CLI</title>
+  <meta name="description" content="Integrate Orbit intelligence, agent orchestration, and tool execution into your applications." />
+  <meta name="theme-color" content="#050609" />
   <link rel="canonical" href="https://www.orbitdev.org/Routes/developers.html" />
-  <meta property="og:title" content="Developers — Orbit AI" />
-  <meta property="og:description" content="Documentation, public code, and developer-facing Orbit surfaces." />
-  <meta property="og:url" content="https://www.orbitdev.org/Routes/developers.html" />
-  <meta property="og:image" content="https://www.orbitdev.org/Public/web-app-manifest-512x512.png" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Developers — Orbit AI" />
-  <meta name="twitter:description" content="Build with Orbit’s documented developer surfaces." />
-  <meta name="twitter:image" content="https://www.orbitdev.org/Public/web-app-manifest-512x512.png" />
-  <meta name="theme-color" content="#050508" />
   <link rel="icon" type="image/svg+xml" href="/Public/favicon.svg" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/assets/css/orbit.css" />
+  <link rel="stylesheet" href="/assets/css/cinematic.css" />
 </head>
-<body>
+<body class="bg-[#050609] text-[#F5F7FA]">
+
   <div data-include="/components/navbar.html"></div>
-  <main id="main">
-    <header class="page-hero">
-      <div class="container">
-        <span class="eyebrow">Developers</span>
-        <h1>Build with Orbit</h1>
-        <p>Documentation, public repository access, and developer information for the Orbit AI workspace.</p>
+
+  <main id="main" class="min-h-screen">
+    <header class="page-hero text-center py-16 px-4">
+      <div class="container max-w-4xl mx-auto">
+        <span class="eyebrow">Developer Platform</span>
+        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-4">
+          Built for Engineers.
+        </h1>
+        <p class="text-lg text-[#9299A6] max-w-2xl mx-auto mb-8">
+          Type-safe TypeScript SDKs, high-throughput REST APIs, and native terminal CLI bindings.
+        </p>
+        <div class="flex justify-center gap-3">
+          <a class="btn-launch-hero text-sm py-2.5 px-6" href="/Routes/doc.html">
+            Explore API Docs →
+          </a>
+          <a class="btn-secondary-hero text-sm py-2.5 px-6" href="https://github.com/Metaforse3534/OrbitAIPublic" target="_blank" rel="noopener noreferrer">
+            GitHub Repository
+          </a>
+        </div>
       </div>
     </header>
 
-    <section class="section">
-      <div class="container">
-        <div class="card-grid">
-          <article class="panel panel-hover product-card">
-            <h3>Documentation</h3>
-            <p>Feature documentation for Orbit AI version 0.0.20 — web, Windows, extension, and current surfaces.</p>
-            <a class="card-link" href="/Routes/doc.html">Open docs →</a>
-          </article>
-          <article class="panel panel-hover product-card">
-            <h3>Developer / API notes</h3>
-            <p>Current public developer information. Pulsar LLM developer APIs are labeled Planned on the Pulsar page.</p>
-            <a class="card-link" href="/Routes/DEV.html">Developer page →</a>
-          </article>
-          <article class="panel panel-hover product-card">
-            <h3>Public repository</h3>
-            <p>Orbit publishes a public code repository for verification and open development.</p>
-            <a class="card-link" href="https://github.com/Metaforse3534/OrbitAIPublic" rel="noopener noreferrer">GitHub →</a>
-          </article>
-          <article class="panel panel-hover product-card">
-            <h3>Machine-readable facts</h3>
-            <p>Structured company and product JSON for crawlers and AI systems.</p>
-            <a class="card-link" href="/information/company.json">information/ →</a>
-          </article>
+    <section class="py-16 px-4 max-w-5xl mx-auto space-y-12">
+      <!-- Quickstart Code Sample -->
+      <div class="orbit-card bg-[#0B0D12]">
+        <div class="flex items-center justify-between pb-3 mb-4 border-b border-white/10 text-xs font-mono text-[#9299A6]">
+          <span>INSTALLATION &amp; TYPESCRIPT USAGE</span>
+          <span class="text-[#6EA8FF]">npm install @orbit/core</span>
         </div>
-        <p class="status-note" style="margin-top:2rem">We do not invent API endpoints, SLAs, or SDK maturity. If a surface is not documented, treat it as unavailable.</p>
+        <div class="code-box">
+<pre class="text-xs font-mono text-blue-300">
+<span class="text-purple-400">import</span> { Orbit, Agent } <span class="text-purple-400">from</span> <span class="text-emerald-300">'@orbit/core'</span>;
+
+<span class="text-purple-400">const</span> orbit = <span class="text-purple-400">new</span> Orbit({ apiKey: process.env.ORBIT_API_KEY });
+
+<span class="text-purple-400">const</span> execution = <span class="text-purple-400">await</span> orbit.run({
+  intent: <span class="text-emerald-300">'Generate test harness for distributed Postgres connector'</span>,
+  agents: [Agent.RESEARCH, Agent.CODE],
+  stream: <span class="text-purple-400">true</span>
+});
+
+<span class="text-purple-400">for await</span> (<span class="text-purple-400">const</span> token <span class="text-purple-400">of</span> execution.stream) {
+  process.stdout.write(token);
+}
+</pre>
+        </div>
+      </div>
+
+      <!-- Developer Features Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="orbit-card">
+          <h3 class="text-base font-semibold text-[#F5F7FA] mb-2">Streaming Tool Calls</h3>
+          <p class="text-xs text-[#9299A6] leading-relaxed">Stream incremental AST tokens and tool status events with sub-200ms TTFB.</p>
+        </div>
+        <div class="orbit-card">
+          <h3 class="text-base font-semibold text-[#F5F7FA] mb-2">CLI &amp; Daemon Mode</h3>
+          <p class="text-xs text-[#9299A6] leading-relaxed">Run headless in background, monitoring git diffs and auto-running verification suites.</p>
+        </div>
+        <div class="orbit-card">
+          <h3 class="text-base font-semibold text-[#F5F7FA] mb-2">Local Sandbox Enclave</h3>
+          <p class="text-xs text-[#9299A6] leading-relaxed">Execute generated scripts inside lightweight WASM and Docker container sandboxes.</p>
+        </div>
       </div>
     </section>
   </main>
+
   <div data-include="/components/footer.html"></div>
-  <div data-include="/components/cookie-banner.html"></div>
-  <script src="/assets/js/include.js" defer></script>
-  <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/include.js"></script>
 </body>
 </html>

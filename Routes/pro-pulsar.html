@@ -3,67 +3,83 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pro Pulsar — Orbit AI Language Model &amp; Infrastructure</title>
-  <meta name="description" content="Pro Pulsar is Orbit AI’s language model and AI infrastructure initiative. Built from the model up — research, prototype, and planned areas labeled clearly." />
-  <meta name="robots" content="index, follow" />
+  <title>Pro Pulsar — Orbit Frontier Intelligence &amp; Model Architecture</title>
+  <meta name="description" content="Pro Pulsar is Orbit AI's language model and AI infrastructure initiative covering model architecture, training, inference, and GPU infrastructure." />
+  <meta name="theme-color" content="#050609" />
   <link rel="canonical" href="https://www.orbitdev.org/Routes/pro-pulsar.html" />
-  <meta property="og:title" content="Pro Pulsar — Built from the model up" />
-  <meta property="og:description" content="Orbit AI’s language model and infrastructure initiative. No unsupported performance claims." />
-  <meta property="og:url" content="https://www.orbitdev.org/Routes/pro-pulsar.html" />
-  <meta property="og:image" content="https://www.orbitdev.org/Public/web-app-manifest-512x512.png" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Pro Pulsar — Orbit AI" />
-  <meta name="twitter:description" content="Model architecture, training, inference, and planned developer APIs." />
-  <meta name="twitter:image" content="https://www.orbitdev.org/Public/web-app-manifest-512x512.png" />
-  <meta name="theme-color" content="#09090b" />
   <link rel="icon" type="image/svg+xml" href="/Public/favicon.svg" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/assets/css/orbit.css" />
+  <link rel="stylesheet" href="/assets/css/cinematic.css" />
 </head>
-<body>
+<body class="bg-[#050609] text-[#F5F7FA]">
+
   <div data-include="/components/navbar.html"></div>
-  <main id="main">
-    <header class="page-hero">
-      <div class="container">
-        <span class="eyebrow">Pro Pulsar</span>
-        <h1>Built from the model up.</h1>
-        <p>Pro Pulsar is Orbit AI’s large language model and AI infrastructure initiative — model technology, training, inference, and systems research under one identity.</p>
+
+  <main id="main" class="min-h-screen">
+    <header class="page-hero text-center py-20 px-4">
+      <div class="container max-w-4xl mx-auto">
+        <span class="eyebrow">Frontier Initiative</span>
+        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-4">
+          Pro Pulsar.
+        </h1>
+        <p class="text-base sm:text-lg font-mono text-[#6EA8FF] uppercase tracking-widest mb-4">
+          Built from the model up.
+        </p>
+        <p class="text-lg text-[#9299A6] max-w-2xl mx-auto mb-8">
+          Pro Pulsar is Orbit AI’s language model and AI infrastructure initiative covering model architecture, training, inference, GPU infrastructure, and developer APIs.
+        </p>
+        <div class="flex justify-center gap-3">
+          <a class="btn-launch-hero text-sm py-2.5 px-6" href="/shop.html">
+            <span>Get Pro Pulsar Workspace Access</span>
+            <span>→</span>
+          </a>
+          <a class="btn-secondary-hero text-sm py-2.5 px-6" href="/Routes/doc.html">
+            <span>Documentation</span>
+          </a>
+        </div>
       </div>
     </header>
-    <section class="section">
-      <div class="container">
-        <div class="split">
+
+    <section class="py-12 px-4 max-w-5xl mx-auto space-y-12">
+      <!-- Research Initiative Areas (Hydrated dynamically from /information/pulsar.json) -->
+      <div>
+        <div class="flex items-center justify-between mb-6">
           <div>
-            <h2 style="font-size:1.4rem;margin-bottom:1rem">Technical focus</h2>
-            <div class="tech-list">
-              <article class="panel tech-item"><div><h3>Model architecture</h3><p>Research into architectures suited to Orbit workloads.</p></div><span class="badge badge-signal">Research</span></article>
-              <article class="panel tech-item"><div><h3>Training</h3><p>Training infrastructure and experimentation harnesses.</p></div><span class="badge badge-warn">Prototype</span></article>
-              <article class="panel tech-item"><div><h3>Inference</h3><p>Runtime efficiency and serving design.</p></div><span class="badge badge-signal">Research</span></article>
-              <article class="panel tech-item"><div><h3>GPU infrastructure</h3><p>Hardware-aware training and inference work.</p></div><span class="badge badge-warn">Prototype</span></article>
-              <article class="panel tech-item"><div><h3>Developer APIs</h3><p>External API access is planned — not a public production API today.</p></div><span class="badge">Planned</span></article>
-              <article class="panel tech-item"><div><h3>Research &amp; future capabilities</h3><p>Longer-horizon multimodal and systems research.</p></div><span class="badge">Planned</span></article>
-            </div>
+            <span class="text-xs font-mono text-[#6EA8FF] uppercase">Initiative Scope</span>
+            <h2 class="text-2xl font-bold text-[#F5F7FA] mt-1">Research &amp; Infrastructure Roadmap</h2>
           </div>
-          <div class="prose">
-            <h2>Identity inside Orbit</h2>
-            <p>Pro Pulsar is part of the Orbit AI ecosystem. In the workspace, Pro Pulsar may also appear as a premium plan or model-routing mode. That product surface is related branding — it is not the same as publishing a finished foundation model with benchmarks.</p>
-            <p class="status-note">We do not invent evaluation scores, parameter counts, or training-data claims. When verified milestones exist, they will be documented here.</p>
-            <div class="btn-row" style="margin-top:1.25rem">
-              <a class="btn btn-secondary" href="/Routes/research.html">Research</a>
-              <a class="btn btn-ghost" href="/Routes/pulsar.html">Legacy Pulsar page</a>
-              <a class="btn btn-ghost" href="/shop.html">Workspace plans</a>
-            </div>
-          </div>
+          <span class="text-xs font-mono text-[#9299A6] hidden sm:inline">Source: /information/pulsar.json</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" data-info-list="pulsar-areas">
+          <!-- Dynamically hydrated -->
+        </div>
+      </div>
+
+      <!-- Verified Standards Notice -->
+      <div class="orbit-card bg-[#0B0D12]">
+        <h3 class="text-base font-semibold text-[#F5F7FA] mb-2 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-[#6EA8FF]"></span>
+          Scientific Integrity &amp; Benchmark Standards
+        </h3>
+        <p class="text-xs text-[#9299A6] leading-relaxed mb-4">
+          Orbit AI operates under strict transparency guidelines: no unsupported performance claims or invented benchmarks. All components are labeled accurately as Research, Prototype, or Planned.
+        </p>
+        <div class="p-3 rounded-lg bg-[#11141A] border border-white/5 text-xs text-[#9299A6] font-mono">
+          Note: In the Orbit workspace, Pro Pulsar also refers to a premium routing plan giving priority access to high-capacity compute tiers.
         </div>
       </div>
     </section>
   </main>
+
   <div data-include="/components/footer.html"></div>
-  <div data-include="/components/cookie-banner.html"></div>
-  <script src="/assets/js/include.js" defer></script>
-  <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/include.js"></script>
+  <script src="/assets/js/information-engine.js"></script>
 </body>
 </html>

@@ -1,78 +1,102 @@
-<a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header">
-  <div class="container nav-inner">
-    <a class="brand" href="/" aria-label="Orbit AI home">
-      <img src="/Public/favicon.svg" alt="" width="22" height="22" />
-      Orbit AI
+<a class="skip-link sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#F5F7FA] focus:text-[#050609] focus:rounded-full" href="#main">Skip to content</a>
+
+<header class="orbit-global-header" style="position:sticky;top:0;left:0;right:0;z-index:90;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:rgba(5,6,9,0.85);border-bottom:1px solid rgba(255,255,255,0.08);font-family:'Plus Jakarta Sans','Inter',-apple-system,BlinkMacSystemFont,sans-serif;">
+  <div style="max-width:1200px;margin:0 auto;padding:0 1.5rem;height:64px;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;">
+    
+    <!-- Brand Logo -->
+    <a href="/" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:#F5F7FA;" aria-label="Orbit Home">
+      <svg viewBox="0 0 48 48" fill="none" style="width:22px;height:22px;color:#6EA8FF;flex-shrink:0;">
+        <circle cx="24" cy="24" r="17.5" stroke="currentColor" stroke-width="2" stroke-opacity="0.3" />
+        <path d="M 9.5 24 C 9.5 13.5 17.5 6.5 28 6.5 C 38.5 6.5 43 16 40 26 C 37 36 26 41.5 16 39.5 C 10.5 38.4 6.5 33 6.5 28" stroke="#F5F7FA" stroke-width="2.2" stroke-linecap="round" />
+        <circle cx="24" cy="24" r="2.75" fill="#F5F7FA" />
+        <circle cx="37" cy="15" r="2.2" fill="#6EA8FF" />
+      </svg>
+      <span style="font-weight:700;letter-spacing:0.2em;font-size:0.875rem;color:#F5F7FA;">ORBIT</span>
     </a>
 
-    <nav class="nav-links" aria-label="Primary">
-      <details class="nav-drop">
-        <summary>Products</summary>
-        <div class="nav-drop-menu wide">
-          <a href="/Routes/orbit-ai.html">Orbit AI<small>Intelligent workspace</small></a>
-          <a href="/Routes/agents.html">Orbit Agents<small>Multi-step workflows</small></a>
-          <a href="/Routes/developers.html">Orbit for Developers<small>Docs &amp; tooling</small></a>
-          <a href="/Routes/business.html">Orbit for Business<small>Teams &amp; organizations</small></a>
-          <a href="/Routes/pro-pulsar.html">Pro Pulsar<small>Model &amp; infrastructure</small></a>
-        </div>
-      </details>
-      <details class="nav-drop">
-        <summary>Research</summary>
-        <div class="nav-drop-menu">
-          <a href="/Routes/research.html">AI Research</a>
-          <a href="/Routes/pro-pulsar.html">Pro Pulsar</a>
-          <a href="/Routes/blog.html">Engineering</a>
-          <a href="/Routes/security.html">Safety</a>
-        </div>
-      </details>
-      <details class="nav-drop">
-        <summary>Company</summary>
-        <div class="nav-drop-menu">
-          <a href="/Routes/about.html">About</a>
-          <a href="/Routes/about.html#leadership">Leadership</a>
-          <a href="/Routes/careers.html">Careers</a>
-          <a href="/Routes/contact.html">Contact</a>
-        </div>
-      </details>
-      <details class="nav-drop">
-        <summary>Resources</summary>
-        <div class="nav-drop-menu">
-          <a href="/Routes/blog.html">Blog</a>
-          <a href="/Routes/reviews.html">Reviews</a>
-          <a href="/Routes/doc.html">Documentation</a>
-          <a href="/Routes/blog.html">Changelog</a>
-        </div>
-      </details>
+    <!-- Center Navigation Links -->
+    <nav class="orbit-header-links" style="display:flex;align-items:center;gap:2rem;" aria-label="Main Navigation">
+      <a href="/#product-section" class="orbit-header-link" style="color:#9299A6;font-size:13px;font-weight:500;text-decoration:none;transition:color 0.2s;">Product</a>
+      <a href="/Routes/agents.html" class="orbit-header-link" style="color:#9299A6;font-size:13px;font-weight:500;text-decoration:none;transition:color 0.2s;">Agents</a>
+      <a href="/#os-section" class="orbit-header-link" style="color:#9299A6;font-size:13px;font-weight:500;text-decoration:none;transition:color 0.2s;">Orbit OS</a>
+      <a href="/shop.html" class="orbit-header-link" style="color:#9299A6;font-size:13px;font-weight:500;text-decoration:none;transition:color 0.2s;">Pricing</a>
+      <a href="/Routes/research.html" class="orbit-header-link" style="color:#9299A6;font-size:13px;font-weight:500;text-decoration:none;transition:color 0.2s;">Research</a>
+      <a href="/Routes/doc.html" class="orbit-header-link" style="color:#9299A6;font-size:13px;font-weight:500;text-decoration:none;transition:color 0.2s;">Docs</a>
     </nav>
 
-    <div class="nav-cta">
-      <a class="btn btn-secondary" href="/Routes/orbit-ai.html">Explore</a>
-      <a class="btn btn-primary" href="https://app.orbitdev.org/" data-app-path="/">Launch Orbit</a>
-      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
-        <span></span><span></span><span></span>
+    <!-- Right Side Actions & Mobile Trigger -->
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="/shop.html" class="orbit-header-pricing-cta" style="color:#9299A6;font-size:13px;font-weight:500;text-decoration:none;transition:color 0.2s;">Pricing</a>
+      <a href="/Routes/orbit-ai.html" style="background:#F5F7FA;color:#050609;padding:8px 18px;border-radius:9999px;font-size:12px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all 0.2s;white-space:nowrap;">
+        <span>Launch Orbit</span>
+        <span style="font-size:11px;">→</span>
+      </a>
+
+      <!-- Mobile Hamburger Menu Button -->
+      <button type="button" id="orbit-nav-hamburger" aria-expanded="false" aria-label="Toggle navigation menu" style="display:none;background:transparent;border:1px solid rgba(255,255,255,0.1);padding:7px;border-radius:8px;color:#9299A6;cursor:pointer;align-items:center;justify-content:center;">
+        <svg style="width:20px;height:20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
       </button>
+    </div>
+
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="orbit-mobile-drawer" style="display:none;border-top:1px solid rgba(255,255,255,0.08);background:#0B0D12;padding:1.25rem 1.5rem;">
+    <div style="display:flex;flex-direction:column;gap:12px;font-size:14px;">
+      <a href="/#product-section" style="color:#F5F7FA;text-decoration:none;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);">Product</a>
+      <a href="/Routes/agents.html" style="color:#F5F7FA;text-decoration:none;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);">Agents</a>
+      <a href="/#os-section" style="color:#F5F7FA;text-decoration:none;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);">Orbit OS</a>
+      <a href="/shop.html" style="color:#F5F7FA;text-decoration:none;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);">Pricing</a>
+      <a href="/Routes/research.html" style="color:#F5F7FA;text-decoration:none;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);">Research</a>
+      <a href="/Routes/doc.html" style="color:#F5F7FA;text-decoration:none;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);">Documentation</a>
+      <div style="padding-top:8px;">
+        <a href="/Routes/orbit-ai.html" style="display:block;text-align:center;background:#F5F7FA;color:#050609;padding:10px 20px;border-radius:9999px;font-size:13px;font-weight:600;text-decoration:none;">
+          Launch Orbit →
+        </a>
+      </div>
     </div>
   </div>
 </header>
 
-<div class="mobile-nav" id="mobile-nav" data-mobile-nav>
-  <p class="group-label">Products</p>
-  <a href="/Routes/orbit-ai.html">Orbit AI</a>
-  <a href="/Routes/agents.html">Orbit Agents</a>
-  <a href="/Routes/developers.html">Orbit for Developers</a>
-  <a href="/Routes/business.html">Orbit for Business</a>
-  <a href="/Routes/pro-pulsar.html">Pro Pulsar</a>
-  <p class="group-label">Research</p>
-  <a href="/Routes/research.html">AI Research</a>
-  <a href="/Routes/security.html">Safety</a>
-  <p class="group-label">Company</p>
-  <a href="/Routes/about.html">About</a>
-  <a href="/Routes/careers.html">Careers</a>
-  <a href="/Routes/contact.html">Contact</a>
-  <p class="group-label">Resources</p>
-  <a href="/Routes/blog.html">Blog</a>
-  <a href="/Routes/reviews.html">Reviews</a>
-  <a href="/Routes/doc.html">Documentation</a>
-  <a href="https://app.orbitdev.org/">Launch Orbit</a>
-</div>
+<style>
+  @media (max-width: 768px) {
+    .orbit-header-links {
+      display: none !important;
+    }
+    .orbit-header-pricing-cta {
+      display: none !important;
+    }
+    #orbit-nav-hamburger {
+      display: inline-flex !important;
+    }
+  }
+  .orbit-header-link:hover {
+    color: #F5F7FA !important;
+  }
+  .orbit-header-pricing-cta:hover {
+    color: #F5F7FA !important;
+  }
+</style>
+
+<script>
+  (() => {
+    const btn = document.getElementById('orbit-nav-hamburger');
+    const drawer = document.getElementById('orbit-mobile-drawer');
+    if (!btn || !drawer) return;
+
+    btn.addEventListener('click', () => {
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', !isExpanded);
+      drawer.style.display = isExpanded ? 'none' : 'block';
+    });
+
+    drawer.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        btn.setAttribute('aria-expanded', 'false');
+        drawer.style.display = 'none';
+      });
+    });
+  })();
+</script>

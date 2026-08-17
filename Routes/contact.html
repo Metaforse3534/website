@@ -5,90 +5,116 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact — Orbit AI</title>
   <meta name="description" content="Contact Orbit AI for product questions, support, press, and partnership inquiries." />
-  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#050609" />
   <link rel="canonical" href="https://www.orbitdev.org/Routes/contact.html" />
-  <meta property="og:title" content="Contact — Orbit AI" />
-  <meta property="og:description" content="Get in touch with Orbit AI / Orbit Systems B.V." />
-  <meta property="og:url" content="https://www.orbitdev.org/Routes/contact.html" />
-  <meta property="og:image" content="https://www.orbitdev.org/Public/web-app-manifest-512x512.png" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Contact — Orbit AI" />
-  <meta name="twitter:description" content="Support and contact options for Orbit AI." />
-  <meta name="twitter:image" content="https://www.orbitdev.org/Public/web-app-manifest-512x512.png" />
-  <meta name="theme-color" content="#050508" />
   <link rel="icon" type="image/svg+xml" href="/Public/favicon.svg" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/assets/css/orbit.css" />
+  <link rel="stylesheet" href="/assets/css/cinematic.css" />
 </head>
-<body>
+<body class="bg-[#050609] text-[#F5F7FA]">
+
   <div data-include="/components/navbar.html"></div>
-  <main id="main">
-    <header class="page-hero">
-      <div class="container">
-        <span class="eyebrow">Contact</span>
-        <h1>Contact Orbit AI</h1>
-        <p>Questions about the product, security, or company information — we will give you straight answers.</p>
+
+  <main id="main" class="min-h-screen">
+    <header class="page-hero text-center py-20 px-4">
+      <div class="container max-w-4xl mx-auto">
+        <span class="eyebrow">Get in Touch</span>
+        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-4">
+          Contact Orbit AI.
+        </h1>
+        <p class="text-lg text-[#9299A6] max-w-2xl mx-auto mb-6">
+          Questions about the product, security, enterprise licensing, or company information — we will give you straight answers.
+        </p>
       </div>
     </header>
 
-    <section class="section">
-      <div class="container split">
-        <div class="panel" style="padding:1.75rem">
-          <form class="form-grid" id="contact-form" novalidate>
-            <div class="form-row">
-              <label for="name">Name</label>
-              <input id="name" name="name" required autocomplete="name" />
+    <section class="py-12 px-4 max-w-4xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Contact Form -->
+        <div class="orbit-card bg-[#0B0D12]">
+          <h2 class="text-lg font-bold text-[#F5F7FA] mb-4">Send a Message</h2>
+          <form class="space-y-4" id="contact-form" onsubmit="event.preventDefault(); document.getElementById('contact-status').classList.remove('hidden'); this.reset();">
+            <div>
+              <label for="name" class="block text-xs font-mono text-[#9299A6] uppercase mb-1">Full Name</label>
+              <input id="name" name="name" required class="w-full px-3 py-2 rounded-lg bg-[#11141A] border border-white/10 text-sm text-[#F5F7FA] focus:border-[#6EA8FF] outline-none" />
             </div>
-            <div class="form-row">
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" required autocomplete="email" />
+
+            <div>
+              <label for="email" class="block text-xs font-mono text-[#9299A6] uppercase mb-1">Email Address</label>
+              <input id="email" name="email" type="email" required class="w-full px-3 py-2 rounded-lg bg-[#11141A] border border-white/10 text-sm text-[#F5F7FA] focus:border-[#6EA8FF] outline-none" />
             </div>
-            <div class="form-row">
-              <label for="topic">Topic</label>
-              <select id="topic" name="topic">
-                <option>Product</option>
-                <option>Support</option>
-                <option>Security</option>
-                <option>Press</option>
+
+            <div>
+              <label for="topic" class="block text-xs font-mono text-[#9299A6] uppercase mb-1">Topic</label>
+              <select id="topic" name="topic" class="w-full px-3 py-2 rounded-lg bg-[#11141A] border border-white/10 text-sm text-[#F5F7FA] focus:border-[#6EA8FF] outline-none">
+                <option>Product &amp; Workspace</option>
+                <option>Enterprise &amp; Teams</option>
+                <option>Security &amp; Vulnerability</option>
+                <option>Press &amp; Media</option>
                 <option>Partnership</option>
                 <option>Other</option>
               </select>
             </div>
-            <div class="form-row">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" required placeholder="How can we help?"></textarea>
+
+            <div>
+              <label for="message" class="block text-xs font-mono text-[#9299A6] uppercase mb-1">Message</label>
+              <textarea id="message" name="message" rows="4" required class="w-full px-3 py-2 rounded-lg bg-[#11141A] border border-white/10 text-sm text-[#F5F7FA] focus:border-[#6EA8FF] outline-none"></textarea>
             </div>
-            <button class="btn btn-primary" type="submit">Send message</button>
-            <p id="contact-note" style="font-size:0.85rem;color:var(--text-dim)"></p>
+
+            <button type="submit" class="btn-launch w-full py-2.5 text-xs text-center">Send Inquiry →</button>
+
+            <div id="contact-status" class="hidden p-3 rounded bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-400 font-mono text-center">
+              Message received. Our team will respond shortly.
+            </div>
           </form>
         </div>
-        <div class="prose">
-          <h2>Other channels</h2>
-          <ul>
-            <li><a href="/Routes/support.html">Support center</a></li>
-            <li><a href="/Routes/security.html">Security &amp; responsible disclosure</a></li>
-            <li><a href="/Routes/press.html">Press facts</a></li>
-            <li><a href="https://discord.gg/8VcqeZK2" rel="noopener noreferrer">Discord community</a></li>
-            <li><a href="https://github.com/Metaforse3534/OrbitAIPublic" rel="noopener noreferrer">GitHub</a></li>
-          </ul>
-          <p class="status-note">This contact form is front-end ready. Message delivery wiring is in development — for now, prefer Support or Discord for time-sensitive issues.</p>
+
+        <!-- Direct Channels & Directory -->
+        <div class="space-y-4">
+          <div class="orbit-card">
+            <span class="text-xs font-mono text-[#6EA8FF] uppercase">Direct Email Channels</span>
+            <div class="mt-3 space-y-3 text-xs">
+              <div class="p-3 rounded-lg bg-[#11141A] border border-white/5 flex items-center justify-between">
+                <span class="text-[#9299A6]">General Support:</span>
+                <a href="mailto:support@orbitdev.org" class="font-mono text-[#F5F7FA] hover:text-[#6EA8FF]">support@orbitdev.org</a>
+              </div>
+              <div class="p-3 rounded-lg bg-[#11141A] border border-white/5 flex items-center justify-between">
+                <span class="text-[#9299A6]">Security Disclosure:</span>
+                <a href="mailto:security@orbitdev.org" class="font-mono text-[#F5F7FA] hover:text-[#6EA8FF]">security@orbitdev.org</a>
+              </div>
+              <div class="p-3 rounded-lg bg-[#11141A] border border-white/5 flex items-center justify-between">
+                <span class="text-[#9299A6]">Press Inquiries:</span>
+                <a href="mailto:press@orbitdev.org" class="font-mono text-[#F5F7FA] hover:text-[#6EA8FF]">press@orbitdev.org</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="orbit-card">
+            <span class="text-xs font-mono text-[#6EA8FF] uppercase">Community &amp; Code</span>
+            <div class="mt-3 space-y-3 text-xs">
+              <a href="https://github.com/Metaforse3534/OrbitAIPublic" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-[#11141A] border border-white/5 flex items-center justify-between hover:border-[#6EA8FF]/40 transition-colors block">
+                <span class="text-[#F5F7FA] font-medium">GitHub Repository</span>
+                <span class="text-[#6EA8FF] font-mono">↗</span>
+              </a>
+              <a href="https://discord.gg/8VcqeZK2" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg bg-[#11141A] border border-white/5 flex items-center justify-between hover:border-[#6EA8FF]/40 transition-colors block">
+                <span class="text-[#F5F7FA] font-medium">Discord Community</span>
+                <span class="text-[#6EA8FF] font-mono">↗</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   </main>
+
   <div data-include="/components/footer.html"></div>
-  <div data-include="/components/cookie-banner.html"></div>
-  <script src="/assets/js/include.js" defer></script>
-  <script src="/assets/js/main.js" defer></script>
-  <script>
-    document.getElementById("contact-form")?.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const note = document.getElementById("contact-note");
-      if (note) note.textContent = "Thanks — form submission backend is coming soon. Please use Support or Discord for urgent requests.";
-    });
-  </script>
+  <script src="/assets/js/include.js"></script>
+  <script src="/assets/js/information-engine.js"></script>
 </body>
 </html>

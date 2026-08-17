@@ -3,75 +3,121 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Orbit AI — Intelligent Workspace</title>
-  <meta name="description" content="Orbit AI is an AI workspace for chat, research, coding, file understanding, browser automation, agents, and workflow automation. Version 0.0.20." />
-  <meta name="robots" content="index, follow" />
+  <title>Orbit AI — The Intelligent Workspace</title>
+  <meta name="description" content="An intelligent workspace built for momentum. Research, create, code, automate, and execute with Orbit AI." />
+  <meta name="theme-color" content="#050609" />
   <link rel="canonical" href="https://www.orbitdev.org/Routes/orbit-ai.html" />
-  <meta property="og:title" content="Orbit AI — Intelligent Workspace" />
-  <meta property="og:description" content="An intelligent workspace to think, create, research, build, and automate." />
-  <meta property="og:url" content="https://www.orbitdev.org/Routes/orbit-ai.html" />
-  <meta property="og:image" content="https://www.orbitdev.org/Public/web-app-manifest-512x512.png" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Orbit AI — Intelligent Workspace" />
-  <meta name="twitter:description" content="AI workspace from Orbit Systems B.V. — chat, agents, automation, coding, and research." />
-  <meta name="twitter:image" content="https://www.orbitdev.org/Public/web-app-manifest-512x512.png" />
-  <meta name="theme-color" content="#050508" />
   <link rel="icon" type="image/svg+xml" href="/Public/favicon.svg" />
+
+  <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/assets/css/orbit.css" />
+  <link rel="stylesheet" href="/assets/css/cinematic.css" />
 </head>
-<body>
+<body class="bg-[#050609] text-[#F5F7FA]">
+
+  <!-- Include Global Navigation -->
   <div data-include="/components/navbar.html"></div>
-  <main id="main">
-    <header class="page-hero">
-      <div class="container">
-        <span class="eyebrow">Product</span>
-        <h1>Orbit AI</h1>
-        <p>An intelligent workspace designed to help people think, create, research, build, and automate — available on the web and Windows.</p>
-        <div class="btn-row" style="margin-top:1.5rem">
-          <a class="btn btn-primary" href="https://app.orbitdev.org/" data-app-path="/">Open Orbit</a>
-          <a class="btn btn-secondary" href="/Routes/doc.html">Documentation</a>
-          <a class="btn btn-ghost" href="/shop.html">Pricing</a>
+
+  <main id="main" class="min-h-screen">
+    <!-- Page Hero -->
+    <header class="page-hero text-center py-20 px-4">
+      <div class="container max-w-4xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#11141A] border border-white/10 text-xs font-mono text-[#6EA8FF] mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          <span>ORBIT AI <span data-info="orbit-version">v0.0.20</span> • OFFICIAL WORKSPACE</span>
+        </div>
+        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-4">
+          The Workspace for<br />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#F5F7FA] via-[#6EA8FF] to-[#F5F7FA]">Autonomous Execution.</span>
+        </h1>
+        <p class="text-lg text-[#9299A6] max-w-2xl mx-auto mb-8" data-info="orbit-desc">
+          Intelligent workspace for chat, research, coding, files, browser automation, agents, workflows, and collaboration.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-3">
+          <a class="btn-launch-hero text-sm py-2.5 px-6" href="https://app.orbitdev.org/" target="_blank" rel="noopener noreferrer">
+            <span>Launch Web App</span>
+            <span>→</span>
+          </a>
+          <a class="btn-secondary-hero text-sm py-2.5 px-6" href="https://www.orbitdev.org/Orbit-ai-Setup-0.0.20.exe" download>
+            <span>Download for Windows</span>
+          </a>
+          <a class="btn-secondary-hero text-sm py-2.5 px-6" href="/shop.html">
+            <span>Pricing</span>
+          </a>
+          <a class="btn-secondary-hero text-sm py-2.5 px-6" href="/Routes/doc.html">
+            <span>Documentation</span>
+          </a>
         </div>
       </div>
     </header>
 
-    <section class="section">
-      <div class="container prose">
-        <h2>What Orbit AI is</h2>
-        <p>Orbit AI is the intelligent workspace from Orbit Systems B.V. It brings together AI chat, browser automation, coding assistance, research, file analysis, voice workflows, and collaboration in one environment.</p>
-        <p>Current public version: <strong style="color:var(--text)">0.0.20</strong>. Orbit is in active development. Features are documented as they ship; limitations are acknowledged.</p>
+    <!-- Workspace Capabilities Grid (Dynamically Hydrated from /information/products.json) -->
+    <section class="py-12 px-4 max-w-6xl mx-auto">
+      <div class="mb-8 flex items-center justify-between">
+        <div>
+          <span class="text-xs font-mono text-[#6EA8FF] uppercase tracking-wider">Product Scope</span>
+          <h2 class="text-2xl font-bold text-[#F5F7FA] mt-1">Active Platform Capabilities</h2>
+        </div>
+        <span class="text-xs font-mono text-[#9299A6] hidden sm:inline">Source: /information/products.json</span>
+      </div>
 
-        <h2>Capabilities available today</h2>
-        <ul>
-          <li>AI conversations for analysis, writing, reasoning, and research</li>
-          <li>Coding assistance for writing, reviewing, and debugging</li>
-          <li>File understanding and document synthesis</li>
-          <li>Browser automation for repetitive web tasks</li>
-          <li>AI agent workflows with human oversight</li>
-          <li>Workflow automation across knowledge work</li>
-          <li>Developer-oriented tooling and documentation</li>
-        </ul>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" data-info-list="orbit-capabilities">
+        <!-- Hydrated dynamically -->
+      </div>
+    </section>
 
-        <h2>Pro Pulsar</h2>
-        <p><strong style="color:var(--text)">Pro Pulsar</strong> is Orbit’s premium workspace plan for priority model access and advanced agent workflows. It is distinct from <a href="/Routes/pulsar.html">Pulsar LLM research</a> and <a href="/Routes/pulsar-v1.html">Pulsar V1 robotics</a>.</p>
+    <!-- Workspace Modes & Routing Packs (From /information/models.json) -->
+    <section class="py-12 px-4 max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="orbit-card">
+          <span class="text-xs font-mono text-[#6EA8FF] uppercase">Workspace Execution Modes</span>
+          <h3 class="text-lg font-semibold text-[#F5F7FA] mt-1 mb-3">Model Routing Profiles</h3>
+          <p class="text-xs text-[#9299A6] mb-6">Orbit workspace intelligently switches routing logic depending on the required latency, context depth, and tool access requirements.</p>
+          <div class="flex flex-wrap gap-2" data-info-list="workspace-modes">
+            <!-- Hydrated dynamically -->
+          </div>
+        </div>
 
-        <h2>Privacy and trust</h2>
-        <p>Orbit does not collect user data for advertising. The company operates under European privacy law, including GDPR, and publishes privacy, security, and usage policies.</p>
-        <div class="btn-row" style="margin-top:1.5rem">
-          <a class="btn btn-secondary" href="/Routes/privacy.html">Privacy</a>
-          <a class="btn btn-secondary" href="/Routes/security.html">Security</a>
-          <a class="btn btn-secondary" href="/Routes/developers.html">Developers</a>
+        <div class="orbit-card">
+          <span class="text-xs font-mono text-[#6EA8FF] uppercase">Documented Model Packs</span>
+          <h3 class="text-lg font-semibold text-[#F5F7FA] mt-1 mb-3">Available Intelligence Sets</h3>
+          <p class="text-xs text-[#9299A6] mb-4">Multi-provider access layers verified and accessible within the workspace sandbox.</p>
+          <div class="grid grid-cols-2 gap-2" data-info-list="model-packs">
+            <!-- Hydrated dynamically -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Interactive Runtime Inspector -->
+    <section class="py-12 px-4 max-w-6xl mx-auto">
+      <div class="orbit-card bg-[#0B0D12]">
+        <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-4 text-xs font-mono text-[#9299A6]">
+          <span>Interactive Execution Example</span>
+          <span class="text-[#6EA8FF]">CLI Terminal</span>
+        </div>
+        <div class="code-box text-xs font-mono space-y-1">
+          <p class="text-emerald-400">❯ orbit run "Audit smart contract security vulnerabilities and generate remediation patch"</p>
+          <p class="text-[#9299A6]">[0.04s] Reading AST nodes in /contracts/Vault.sol...</p>
+          <p class="text-[#9299A6]">[0.19s] Research Agent detected potential reentrancy vector at line 142.</p>
+          <p class="text-[#9299A6]">[0.38s] Synthesizing non-reentrant mutex guard modifier...</p>
+          <p class="text-emerald-400 font-semibold">[0.62s] Patch verified with fuzz testing (10,000 iterations, 0 exploits).</p>
         </div>
       </div>
     </section>
   </main>
+
   <div data-include="/components/footer.html"></div>
-  <div data-include="/components/cookie-banner.html"></div>
-  <script src="/assets/js/include.js" defer></script>
-  <script src="/assets/js/main.js" defer></script>
+
+  <!-- Scripts -->
+  <script src="/assets/js/include.js"></script>
+  <script src="/assets/js/information-engine.js"></script>
 </body>
 </html>

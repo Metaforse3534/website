@@ -3,53 +3,76 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Orbit for Business — Orbit AI</title>
+  <title>Orbit for Business — AI Workspace for Teams</title>
   <meta name="description" content="Orbit for Business: AI workspace for teams and organizations. DPA available. Honest early-stage readiness." />
-  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#050609" />
   <link rel="canonical" href="https://www.orbitdev.org/Routes/business.html" />
-  <meta property="og:title" content="Orbit for Business" />
-  <meta property="og:description" content="Orbit AI for teams — privacy, DPA, and clear product status." />
-  <meta property="og:url" content="https://www.orbitdev.org/Routes/business.html" />
-  <meta property="og:image" content="https://www.orbitdev.org/Public/web-app-manifest-512x512.png" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Orbit for Business" />
-  <meta name="twitter:description" content="Teams and organizations evaluating Orbit AI." />
-  <meta name="twitter:image" content="https://www.orbitdev.org/Public/web-app-manifest-512x512.png" />
-  <meta name="theme-color" content="#09090b" />
   <link rel="icon" type="image/svg+xml" href="/Public/favicon.svg" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/assets/css/orbit.css" />
+  <link rel="stylesheet" href="/assets/css/cinematic.css" />
 </head>
-<body>
+<body class="bg-[#050609] text-[#F5F7FA]">
+
   <div data-include="/components/navbar.html"></div>
-  <main id="main">
-    <header class="page-hero">
-      <div class="container">
-        <span class="eyebrow">Products</span>
-        <h1>Orbit for Business</h1>
-        <p>AI-assisted productivity, automation, research, and collaboration for teams — with documented privacy practices and a Data Processing Agreement for business customers.</p>
+
+  <main id="main" class="min-h-screen">
+    <header class="page-hero text-center py-20 px-4">
+      <div class="container max-w-4xl mx-auto">
+        <span class="eyebrow">Enterprise &amp; Teams</span>
+        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-4">
+          Orbit for Business.
+        </h1>
+        <p class="text-lg text-[#9299A6] max-w-2xl mx-auto mb-8">
+          AI-assisted productivity, automation, research, and collaboration for teams — with documented privacy practices and a Data Processing Agreement for business customers.
+        </p>
+        <div class="flex justify-center gap-3">
+          <a class="btn-launch-hero text-sm py-2.5 px-6" href="/Routes/contact.html">
+            <span>Contact Business Team</span>
+            <span>→</span>
+          </a>
+          <a class="btn-secondary-hero text-sm py-2.5 px-6" href="/Routes/dpa.html">
+            <span>Review DPA</span>
+          </a>
+        </div>
       </div>
     </header>
-    <section class="section">
-      <div class="container prose">
-        <h2>What we offer</h2>
-        <p>Orbit provides a managed workspace for individuals and teams. We operate under GDPR and applicable Dutch and European law. A <a href="/Routes/dpa.html">DPA</a> is available for business customers.</p>
-        <h2>Honest readiness</h2>
-        <p>Orbit is an early-stage company. We do not claim enterprise certifications we cannot substantiate. Review documentation, then contact us with specific compliance or integration requirements.</p>
-        <div class="btn-row" style="margin-top:1.25rem">
-          <a class="btn btn-primary" href="/Routes/contact.html">Contact</a>
-          <a class="btn btn-secondary" href="/Routes/dpa.html">DPA</a>
-          <a class="btn btn-ghost" href="/shop.html">Pricing</a>
+
+    <section class="py-12 px-4 max-w-4xl mx-auto space-y-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="orbit-card">
+          <h2 class="text-lg font-bold text-[#F5F7FA] mb-2">What We Offer</h2>
+          <p class="text-xs text-[#9299A6] leading-relaxed mb-4">
+            Orbit provides a managed workspace for individuals and teams. We operate under GDPR and applicable Dutch and European law. A Data Processing Agreement (<a href="/Routes/dpa.html" class="text-[#6EA8FF] underline">DPA</a>) is available for all business customers.
+          </p>
+          <ul class="text-xs text-[#9299A6] space-y-2">
+            <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> Granular team workspace isolation</li>
+            <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> Zero data retention for model training</li>
+            <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> Centralized billing &amp; seat management</li>
+          </ul>
+        </div>
+
+        <div class="orbit-card">
+          <h2 class="text-lg font-bold text-[#F5F7FA] mb-2">Honest Readiness</h2>
+          <p class="text-xs text-[#9299A6] leading-relaxed mb-4">
+            Orbit is an ambitious early-stage technology company. We do not claim enterprise certifications we cannot substantiate. Review documentation, then contact us with specific compliance or integration requirements.
+          </p>
+          <div class="p-3 rounded-lg bg-[#11141A] border border-white/5 text-xs font-mono text-[#9299A6]">
+            Legal Entity: <span data-info="company-legal">Orbit Systems B.V.</span><br />
+            Jurisdiction: <span data-info="company-jurisdiction">Netherlands</span>
+          </div>
         </div>
       </div>
     </section>
   </main>
+
   <div data-include="/components/footer.html"></div>
-  <div data-include="/components/cookie-banner.html"></div>
-  <script src="/assets/js/include.js" defer></script>
-  <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/include.js"></script>
+  <script src="/assets/js/information-engine.js"></script>
 </body>
 </html>
