@@ -29,18 +29,18 @@ class OrbitKineticTimeline {
         infinite: false,
       });
 
-      const raf = (time) => {
-        this.lenis.raf(time);
-        requestAnimationFrame(raf);
-      };
-      requestAnimationFrame(raf);
-
       if (typeof ScrollTrigger !== 'undefined') {
         this.lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add((time) => {
           this.lenis.raf(time * 1000);
         });
         gsap.ticker.lagSmoothing(0);
+      } else {
+        const raf = (time) => {
+          this.lenis.raf(time);
+          requestAnimationFrame(raf);
+        };
+        requestAnimationFrame(raf);
       }
     }
   }
@@ -66,57 +66,77 @@ class OrbitKineticTimeline {
 
     gsap.registerPlugin(ScrollTrigger);
 
+    const refreshTriggers = () => ScrollTrigger.refresh();
+    window.addEventListener('load', refreshTriggers, { once: true });
+    document.documentElement.addEventListener('orbit:includes-ready', refreshTriggers, { once: true });
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(refreshTriggers).catch(() => {});
+    }
+
     // Hero Entry Animation
-    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 1.2 } });
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 0.72 } });
     
     heroTl
-      .from('.hero-orbital-mark', { opacity: 0, scale: 0.5, duration: 1.4, ease: 'back.out(1.7)' })
-      .from('.hero-badge', { opacity: 0, y: 15, duration: 0.8 }, '-=0.8')
-      .from('.hero-headline', { opacity: 0, y: 35, duration: 1.1 }, '-=0.6')
-      .from('.hero-lead', { opacity: 0, y: 20, duration: 0.9 }, '-=0.7')
-      .from('.hero-cta-group', { opacity: 0, y: 20, duration: 0.8 }, '-=0.6')
-      .from('.orbital-hero-stats', { opacity: 0, y: 25, duration: 0.9 }, '-=0.5');
+      .from('.hero-orbital-mark', { opacity: 0, scale: 0.72, duration: 0.72, ease: 'power3.out' })
+      .from('.hero-badge', { opacity: 0, y: 10, duration: 0.42 }, '-=0.42')
+      .from('.hero-headline', { opacity: 0, y: 22, duration: 0.62 }, '-=0.32')
+      .from('.hero-lead', { opacity: 0, y: 12, duration: 0.48 }, '-=0.36')
+      .from('.hero-cta-group', { opacity: 0, y: 12, duration: 0.44 }, '-=0.3')
+      .from('.orbital-hero-stats', { opacity: 0, y: 14, duration: 0.48 }, '-=0.28');
 
     // Section 01: Intelligence Network Assembly
     gsap.from('.intel-node', {
       scrollTrigger: {
         trigger: '#intelligence-section',
-        start: 'top 75%',
-        toggleActions: 'play none none reverse'
+        start: 'top 88%',
+        toggleActions: 'play none none none'
       },
       opacity: 0,
       scale: 0.85,
       y: 30,
       stagger: 0.15,
-      duration: 0.9,
+      duration: 0.62,
       ease: 'power3.out'
+    });
+
+    gsap.from('.model-provider', {
+      scrollTrigger: {
+        trigger: '#models-section',
+        start: 'top 90%',
+        toggleActions: 'play none none none'
+      },
+      opacity: 0,
+      y: 18,
+      stagger: 0.08,
+      duration: 0.48,
+      ease: 'power2.out'
     });
 
     // Section 02: Reason Task Pipeline
     gsap.from('.reason-step', {
       scrollTrigger: {
         trigger: '#reason-section',
-        start: 'top 70%',
-        toggleActions: 'play none none reverse'
+        start: 'top 88%',
+        toggleActions: 'play none none none'
       },
       opacity: 0,
       x: -30,
       stagger: 0.18,
-      duration: 0.8,
+      duration: 0.58,
       ease: 'power2.out'
     });
 
     // Section 03: Product Workspace Reveal
-    gsap.from('.cockpit-frame', {
+    gsap.from('.product-app', {
       scrollTrigger: {
         trigger: '#product-section',
-        start: 'top 70%',
-        toggleActions: 'play none none reverse'
+        start: 'top 88%',
+        toggleActions: 'play none none none'
       },
       opacity: 0,
-      y: 50,
-      scale: 0.96,
-      duration: 1.2,
+      y: 24,
+      scale: 0.985,
+      duration: 0.68,
       ease: 'power3.out'
     });
 
@@ -124,13 +144,13 @@ class OrbitKineticTimeline {
     gsap.from('.agent-node', {
       scrollTrigger: {
         trigger: '#agents-section',
-        start: 'top 70%',
-        toggleActions: 'play none none reverse'
+        start: 'top 88%',
+        toggleActions: 'play none none none'
       },
       opacity: 0,
       y: 40,
       stagger: 0.12,
-      duration: 0.8,
+      duration: 0.58,
       ease: 'back.out(1.4)'
     });
 
@@ -165,14 +185,14 @@ class OrbitKineticTimeline {
     gsap.from('.os-module', {
       scrollTrigger: {
         trigger: '#os-section',
-        start: 'top 70%',
-        toggleActions: 'play none none reverse'
+        start: 'top 88%',
+        toggleActions: 'play none none none'
       },
       opacity: 0,
       scale: 0.9,
       y: 35,
       stagger: 0.1,
-      duration: 0.9,
+      duration: 0.62,
       ease: 'power3.out'
     });
 
@@ -181,12 +201,12 @@ class OrbitKineticTimeline {
       gsap.from(item, {
         scrollTrigger: {
           trigger: item,
-          start: 'top 80%',
-          toggleActions: 'play none none reverse'
+          start: 'top 90%',
+          toggleActions: 'play none none none'
         },
         opacity: 0,
         y: 40,
-        duration: 1.0,
+        duration: 0.62,
         ease: 'power3.out'
       });
     });
@@ -195,13 +215,13 @@ class OrbitKineticTimeline {
     gsap.from('.pricing-card', {
       scrollTrigger: {
         trigger: '#pricing-section',
-        start: 'top 75%',
-        toggleActions: 'play none none reverse'
+        start: 'top 90%',
+        toggleActions: 'play none none none'
       },
       opacity: 0,
       y: 45,
       stagger: 0.15,
-      duration: 0.9,
+      duration: 0.58,
       ease: 'power2.out'
     });
 
@@ -209,12 +229,12 @@ class OrbitKineticTimeline {
     gsap.from('.final-cta-content', {
       scrollTrigger: {
         trigger: '#cta-section',
-        start: 'top 75%',
-        toggleActions: 'play none none reverse'
+        start: 'top 90%',
+        toggleActions: 'play none none none'
       },
       opacity: 0,
       scale: 0.92,
-      duration: 1.3,
+      duration: 0.72,
       ease: 'power3.out'
     });
   }

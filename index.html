@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Orbit — AI that moves with you</title>
   <meta name="description" content="Research, create, automate and execute from one intelligent workspace. Orbit is a modern AI platform built for momentum." />
-  <meta name="theme-color" content="#050609" />
+  <meta name="theme-color" content="#020203" />
   <link rel="canonical" href="https://www.orbitdev.org/" />
 
   <!-- Open Graph / Social Meta -->
@@ -26,14 +26,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- Tailwind CSS & Kinetic Design System -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/assets/css/tailwind.generated.css">
   <link rel="stylesheet" href="/assets/css/cinematic.css" />
+  <link rel="stylesheet" href="/assets/css/animation-guard.css" />
 
   <!-- Animation & 3D Libraries: Three.js, GSAP, ScrollTrigger, Lenis -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" onerror="document.documentElement.classList.add('orbit-animation-fallback')"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" onerror="document.documentElement.classList.add('orbit-animation-fallback')"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" onerror="document.documentElement.classList.add('orbit-animation-fallback')"></script>
+  <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js" onerror="document.documentElement.classList.add('orbit-animation-fallback')"></script>
 
   <!-- Schema.org Structured Data -->
   <script type="application/ld+json">
@@ -60,7 +61,7 @@
   }
   </script>
 </head>
-<body class="bg-[#050609] text-[#F5F7FA]">
+<body class="bg-[#020203] text-[#F5F7FA]">
 
   <!-- Kinetic Canvas & Background Atmosphere -->
   <div class="kinetic-bg" aria-hidden="true"></div>
@@ -135,7 +136,7 @@
       <!-- Main Headline -->
       <h1 class="hero-headline font-extrabold text-5xl sm:text-7xl lg:text-8xl tracking-[-0.04em] leading-[0.95] text-[#F5F7FA] max-w-5xl mb-6">
         AI THAT<br />
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#F5F7FA] via-[#6EA8FF] to-[#F5F7FA]">GETS THINGS DONE.</span>
+        <span class="hero-accent">GETS THINGS DONE.</span>
       </h1>
 
       <!-- Supporting Copy -->
@@ -251,6 +252,50 @@
             Orchestrates multi-agent swarms along synchronized trajectories to ship completed deliverables autonomously.
           </p>
         </a>
+      </div>
+    </section>
+
+    <!-- Supported model routing -->
+    <section class="section-wrap" id="models-section" aria-labelledby="models-heading">
+      <div class="model-roster">
+        <div class="relative flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between mb-7">
+          <div>
+            <span class="section-tag">MODEL ROUTING</span>
+            <h2 id="models-heading" class="text-2xl sm:text-3xl font-bold tracking-tight text-[#F7F7F8] mt-3">
+              Choose the right intelligence for the work.
+            </h2>
+          </div>
+          <p class="text-xs sm:text-sm text-[#9299A6] max-w-md leading-relaxed sm:text-right">
+            Orbit brings its native models and supported providers into one focused workspace.
+          </p>
+        </div>
+
+        <div class="model-grid" aria-label="Models and providers available in Orbit">
+          <div class="model-provider">
+            <span class="model-provider-icon"><img src="/public/puslar.png" width="48" height="48" alt="" decoding="async" /></span>
+            <span><span class="model-provider-name block">Pulsar</span><span class="model-provider-type block">Orbit model</span></span>
+          </div>
+          <div class="model-provider">
+            <span class="model-provider-icon"><img src="/public/lumi.png" width="48" height="48" alt="" decoding="async" /></span>
+            <span><span class="model-provider-name block">Lumi</span><span class="model-provider-type block">Orbit model</span></span>
+          </div>
+          <div class="model-provider">
+            <span class="model-provider-icon model-provider-icon--dark"><img src="/public/ORTEX.png" width="48" height="48" alt="" decoding="async" /></span>
+            <span><span class="model-provider-name block">ORTEX</span><span class="model-provider-type block">Orbit model</span></span>
+          </div>
+          <div class="model-provider">
+            <span class="model-provider-icon"><img src="/public/open-ai-logo.png" width="48" height="48" alt="" decoding="async" /></span>
+            <span><span class="model-provider-name block">OpenAI</span><span class="model-provider-type block">Provider</span></span>
+          </div>
+          <div class="model-provider">
+            <span class="model-provider-icon model-provider-icon--dark"><img src="/public/Claude.png" width="48" height="48" alt="" decoding="async" /></span>
+            <span><span class="model-provider-name block">Claude</span><span class="model-provider-type block">Provider</span></span>
+          </div>
+          <div class="model-provider">
+            <span class="model-provider-icon model-provider-icon--dark"><img src="/public/Google_Gemini_icon_2025.png" width="48" height="48" alt="" decoding="async" /></span>
+            <span><span class="model-provider-name block">Gemini</span><span class="model-provider-type block">Provider</span></span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -382,7 +427,7 @@
       </div>
     </section>
 
-    <!-- 16 & 17 — 03 PRODUCT SECTION (AUTHENTIC COCKPIT UI) -->
+    <!-- 16 & 17 — 03 PRODUCT SECTION -->
     <section class="section-wrap" id="product-section">
       <div class="mb-12 text-center max-w-3xl mx-auto">
         <span class="section-tag">03 — PRODUCT</span>
@@ -390,128 +435,65 @@
           A WORKSPACE BUILT<br />FOR EXECUTION.
         </h2>
         <p class="lead-copy mx-auto">
-          Not a generic chat box. A dedicated environment where reasoning, agent tools, code, and live artifacts converge.
+          Conversations, files, model routing and tools stay together in one calm workspace.
         </p>
-
-        <!-- Prompt Presets -->
-        <div class="mt-6 flex flex-wrap justify-center gap-2">
-          <button class="text-xs font-mono py-1.5 px-3 rounded-full bg-[#11141A] hover:bg-[#171A21] text-[#9299A6] hover:text-[#F5F7FA] border border-white/5 transition-colors" data-sample-prompt="launch">
-            ⚡ Market Launch Plan
-          </button>
-          <button class="text-xs font-mono py-1.5 px-3 rounded-full bg-[#11141A] hover:bg-[#171A21] text-[#9299A6] hover:text-[#F5F7FA] border border-white/5 transition-colors" data-sample-prompt="refactor">
-            ⚡ Rust Engine Refactor
-          </button>
-          <button class="text-xs font-mono py-1.5 px-3 rounded-full bg-[#11141A] hover:bg-[#171A21] text-[#9299A6] hover:text-[#F5F7FA] border border-white/5 transition-colors" data-sample-prompt="automation">
-            ⚡ Automated Multi-Cloud Sync
-          </button>
-        </div>
       </div>
 
-      <!-- Live Interactive Cockpit Interface -->
-      <div class="cockpit-frame">
-        <!-- Window Header -->
-        <div class="cockpit-header">
-          <div class="cockpit-dots">
-            <div class="cockpit-dot bg-rose-500/60"></div>
-            <div class="cockpit-dot bg-amber-500/60"></div>
-            <div class="cockpit-dot bg-emerald-500/60"></div>
+      <div class="product-app" aria-label="Preview of the Orbit workspace">
+        <aside class="app-sidebar" aria-label="Orbit workspace navigation">
+          <div class="app-brand">
+            <img src="/public/orbit-mark.svg" width="24" height="24" alt="" />
+            <span><strong>Orbit</strong><small>Workspace</small></span>
+            <span class="app-collapse" aria-hidden="true">‹</span>
           </div>
-          
-          <div class="flex items-center gap-1">
-            <button class="cockpit-tab active" data-cockpit-tab="flow">Execution Flow</button>
-            <button class="cockpit-tab" data-cockpit-tab="report">Research Dossier</button>
-            <button class="cockpit-tab" data-cockpit-tab="code">Verified Code</button>
-            <button class="cockpit-tab" data-cockpit-tab="terminal">Agent Terminal</button>
+          <div class="app-sidebar-body">
+            <a class="app-new-agent" href="https://app.orbitdev.org/" aria-label="Start a new Orbit conversation"><span aria-hidden="true">＋</span> New conversation</a>
+            <div class="app-search"><span>Search</span><kbd>⌘ K</kbd></div>
+            <div class="app-section-label">Workspace</div>
+            <a class="app-side-link active" href="https://app.orbitdev.org/"><span aria-hidden="true">◌</span> Chat</a>
+            <a class="app-side-link" href="https://app.orbitdev.org/"><span aria-hidden="true">□</span> Files</a>
+            <a class="app-side-link" href="https://app.orbitdev.org/"><span aria-hidden="true">◇</span> Agents</a>
+            <a class="app-side-link" href="https://app.orbitdev.org/"><span aria-hidden="true">↻</span> Automations</a>
+            <div class="app-section-label">Recent</div>
+            <span class="app-side-link"><span aria-hidden="true">·</span> Product launch research</span>
+            <span class="app-side-link"><span aria-hidden="true">·</span> Website revision</span>
           </div>
+          <div class="app-sidebar-footer">
+            <div class="app-account"><span class="app-avatar" aria-hidden="true"></span><span><strong>Your workspace</strong><small>Plan and usage</small></span></div>
+          </div>
+        </aside>
 
-          <div class="text-xs font-mono text-[#9299A6] flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            <span>Orbit OS v0.0.20</span>
+        <div class="app-main">
+          <div class="app-topbar">
+            <div class="app-title"><strong>New conversation</strong><span>Orbit workspace</span></div>
+            <div class="app-user"><span class="app-status"><i></i> Ready</span><span class="app-avatar" aria-hidden="true"></span></div>
           </div>
-        </div>
-
-        <!-- Cockpit Body -->
-        <div class="cockpit-body">
-          <!-- Prompt Bar -->
-          <div class="mb-6 flex items-center gap-3 p-3 rounded-xl bg-[#07080D] border border-white/10">
-            <span class="text-[#6EA8FF] font-mono text-sm pl-2">orbit&gt;</span>
-            <input type="text" id="cockpit-prompt-input" value="Research the best market entry strategy for autonomous AI developer tooling in EU & US." class="bg-transparent text-sm text-[#F5F7FA] flex-1 outline-none font-sans" />
-            <button id="cockpit-run-btn" class="btn-launch py-1.5 px-3.5 text-xs">Execute</button>
+          <div class="app-modebar">
+            <div class="app-pills" aria-label="Available Orbit modes">
+              <span class="app-pill active">Normal</span>
+              <span class="app-pill">Orbit</span>
+              <span class="app-pill">Pulsar</span>
+              <span class="app-pill">Pro</span>
+            </div>
+            <span class="app-context-label">Model routing: Auto</span>
           </div>
-
-          <!-- View 1: Execution Flow -->
-          <div data-cockpit-view="flow" class="space-y-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
-              <div class="p-3 rounded-lg bg-[#11141A] border border-white/5">
-                <div class="text-[10px] font-mono text-[#9299A6] uppercase">Agent Swarm</div>
-                <div class="text-sm font-semibold text-[#F5F7FA] mt-1">4 Active Nodes</div>
-              </div>
-              <div class="p-3 rounded-lg bg-[#11141A] border border-white/5">
-                <div class="text-[10px] font-mono text-[#9299A6] uppercase">Compute Duration</div>
-                <div class="text-sm font-semibold text-[#6EA8FF] mt-1">1.42s Elapsed</div>
-              </div>
-              <div class="p-3 rounded-lg bg-[#11141A] border border-white/5">
-                <div class="text-[10px] font-mono text-[#9299A6] uppercase">Tool Invocations</div>
-                <div class="text-sm font-semibold text-[#F5F7FA] mt-1">14 Executions</div>
-              </div>
-              <div class="p-3 rounded-lg bg-[#11141A] border border-white/5">
-                <div class="text-[10px] font-mono text-[#9299A6] uppercase">Confidence Score</div>
-                <div class="text-sm font-semibold text-emerald-400 mt-1">99.4% Verified</div>
+          <div class="app-workspace">
+            <div class="app-empty-state">
+              <img class="app-empty-mark" src="/public/orbit-mark.svg" width="32" height="32" alt="" />
+              <h3>What would you like to accomplish?</h3>
+              <p>Ask a question, bring in a file, or give Orbit a task to work through with you.</p>
+              <div class="app-card-row">
+                <a class="app-suggestion" href="https://app.orbitdev.org/"><i aria-hidden="true">01</i><strong>Research a topic</strong><span>Gather sources and turn them into a clear brief.</span></a>
+                <a class="app-suggestion" href="https://app.orbitdev.org/"><i aria-hidden="true">02</i><strong>Build something</strong><span>Plan, write and review code in context.</span></a>
+                <a class="app-suggestion" href="https://app.orbitdev.org/"><i aria-hidden="true">03</i><strong>Work with files</strong><span>Analyze documents without losing the thread.</span></a>
               </div>
             </div>
-
-            <!-- Terminal Execution Stream -->
-            <div id="cockpit-stream-output" class="code-box h-48 overflow-y-auto space-y-1">
-              <div class="stream-line text-xs font-mono text-[#9299A6]">● [0.08s] Initializing Orbit Reasoning Core with context graph...</div>
-              <div class="stream-line text-xs font-mono text-[#9299A6]">● [0.24s] Spawning Research Agent: Querying regulatory frameworks (EU AI Act & US FTC)...</div>
-              <div class="stream-line text-xs font-mono text-[#9299A6]">● [0.52s] Spawning Browser Agent: Extracting competitive pricing tables from 14 platforms...</div>
-              <div class="stream-line text-xs font-mono text-[#9299A6]">● [0.89s] Spawning Analysis Agent: Calculating gross margin elasticity and compute economics...</div>
-              <div class="stream-line text-xs font-mono text-emerald-400 font-semibold">✔ [1.42s] Synthesis complete. Generated 12-page executable GTM roadmap with financial projections.</div>
-            </div>
           </div>
-
-          <!-- View 2: Research Dossier -->
-          <div data-cockpit-view="report" style="display:none;" class="space-y-4">
-            <div class="p-4 rounded-lg bg-[#07080D] border border-white/10 text-sm text-[#9299A6] leading-relaxed font-sans">
-              <div class="text-xs font-mono text-[#6EA8FF] uppercase mb-2">Executive Summary — GTM Horizon 2026</div>
-              <p class="mb-3 text-[#F5F7FA]">The competitive landscape indicates strong willingness among enterprise engineering organizations to pay for verifiable, deterministic agent runtimes with local sandboxing.</p>
-              <ul class="list-disc pl-5 space-y-1 text-xs text-[#9299A6]">
-                <li>EU AI Act compliance: Full client-side execution logs provide strict GDPR/SOC2 readiness.</li>
-                <li>Pricing sweet spot: €10/developer/month for pro usage with cloud burst compute options.</li>
-                <li>Distribution advantage: Zero-config desktop and web parity reduces onboarding friction to &lt; 30 seconds.</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- View 3: Verified Code -->
-          <div data-cockpit-view="code" style="display:none;">
-            <div class="code-box">
-<pre class="text-xs font-mono text-blue-300">
-<span class="text-[#9299A6]">// Autonomous Orbit Agent Tool Definition</span>
-<span class="text-purple-400">import</span> { OrbitAgent, type TaskContext } <span class="text-purple-400">from</span> <span class="text-emerald-300">'@orbit/core'</span>;
-
-<span class="text-purple-400">export const</span> launchResearchPipeline = <span class="text-purple-400">async</span> (ctx: TaskContext) => {
-  <span class="text-purple-400">const</span> trajectory = <span class="text-purple-400">await</span> OrbitAgent.spawn({
-    model: <span class="text-emerald-300">'orbit-pro-pulsar-2'</span>,
-    tools: [<span class="text-emerald-300">'headless-browser'</span>, <span class="text-emerald-300">'market-matrix'</span>, <span class="text-emerald-300">'code-synth'</span>],
-    verification: <span class="text-emerald-300">'strict'</span>
-  });
-
-  <span class="text-purple-400">return await</span> trajectory.execute(ctx.intent);
-};
-</pre>
-            </div>
-          </div>
-
-          <!-- View 4: Agent Terminal -->
-          <div data-cockpit-view="terminal" style="display:none;">
-            <div class="code-box">
-              <p class="text-emerald-400 text-xs">$ orbit-cli daemon --status</p>
-              <p class="text-[#9299A6] text-xs">[INFO] Orbit daemon running on pid 4819. Memory footprint: 38MB.</p>
-              <p class="text-[#9299A6] text-xs">[INFO] Active WebSockets: 3. Subscribed channels: [telemetry, agent-mesh, execution-bus].</p>
-              <p class="text-emerald-400 text-xs">$ orbit-cli agents inspect --all</p>
-              <p class="text-[#F5F7FA] text-xs">research-agent-01 (Idle) | browser-agent-04 (Active) | code-synth-02 (Ready)</p>
-            </div>
+          <div class="app-composer-wrap">
+            <a class="app-composer" href="https://app.orbitdev.org/" aria-label="Open Orbit and start a conversation">
+              <span class="app-input"><span>Message Orbit…</span><span class="app-input-actions" aria-hidden="true"><i>＋</i><i>↑</i></span></span>
+              <span class="app-chip-row"><span class="app-chip">Add files</span><span class="app-chip">Use tools</span><span class="app-chip">Choose model</span></span>
+            </a>
           </div>
         </div>
       </div>
@@ -1333,14 +1315,6 @@
   <script src="/assets/js/cinematic-timeline.js"></script>
   <script src="/assets/js/cinematic-ui.js"></script>
   <script src="/assets/js/information-engine.js"></script>
-
-  <!-- Applet Initializer -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      window.orbitKineticEngine = new OrbitKineticEngine();
-      window.orbitKineticTimeline = new OrbitKineticTimeline();
-      window.orbitKineticUI = new OrbitKineticUI();
-    });
-  </script>
+  <script src="/assets/js/animation-guard.js"></script>
 </body>
 </html>

@@ -1,0 +1,12 @@
+{
+  "name": "Orbit AI",
+  "short_name": "Orbit",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050507",
+  "theme_color": "#050507",
+  "icons": [
+    { "src": "/public/icons/web-app-manifest-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/public/icons/web-app-manifest-512x512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

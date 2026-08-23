@@ -56,7 +56,7 @@ class OrbitKineticEngine {
 
   initThree() {
     this.scene = new THREE.Scene();
-    this.scene.fog = new THREE.FogExp2(0x050609, 0.012);
+    this.scene.fog = new THREE.FogExp2(0x020203, 0.012);
 
     this.camera = new THREE.PerspectiveCamera(45, this.width / this.height, 0.1, 1000);
     this.camera.position.set(0, 0, 45);

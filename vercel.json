@@ -1,5 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "npm run build",
+  "outputDirectory": ".",
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
@@ -21,7 +24,7 @@
       ]
     },
     {
-      "source": "/(assets|Public|images)/(.*)",
+      "source": "/(assets|public|Public|images)/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -130,281 +133,293 @@
     },
     {
       "source": "/terms",
-      "destination": "/Routes/terms.html",
+      "destination": "/Routes/terms",
       "permanent": true
     },
     {
       "source": "/privacy",
-      "destination": "/Routes/privacy.html",
+      "destination": "/Routes/privacy",
       "permanent": true
     },
     {
       "source": "/cookies",
-      "destination": "/Routes/cookies.html",
+      "destination": "/Routes/cookies",
       "permanent": true
     },
     {
       "source": "/refund",
-      "destination": "/Routes/refund.html",
+      "destination": "/Routes/refund",
       "permanent": true
     },
     {
       "source": "/ai-usage",
-      "destination": "/Routes/ai-usage.html",
+      "destination": "/Routes/ai-usage",
       "permanent": true
     },
     {
       "source": "/dpa",
-      "destination": "/Routes/dpa.html",
+      "destination": "/Routes/dpa",
       "permanent": true
     },
     {
       "source": "/security",
-      "destination": "/Routes/security.html",
+      "destination": "/Routes/security",
       "permanent": true
     },
     {
       "source": "/copyright",
-      "destination": "/Routes/copyright.html",
+      "destination": "/Routes/copyright",
       "permanent": true
     },
     {
       "source": "/trademark",
-      "destination": "/Routes/trademark.html",
+      "destination": "/Routes/trademark",
       "permanent": true
     },
     {
       "source": "/open-source",
-      "destination": "/Routes/open-source.html",
+      "destination": "/Routes/open-source",
       "permanent": true
     },
     {
       "source": "/accessibility",
-      "destination": "/Routes/accessibility.html",
+      "destination": "/Routes/accessibility",
       "permanent": true
     },
     {
       "source": "/support",
-      "destination": "/Routes/support.html",
+      "destination": "/Routes/support",
       "permanent": false
     },
     {
       "source": "/extension",
-      "destination": "/Routes/extension.html",
+      "destination": "/Routes/extension",
       "permanent": false
     },
     {
       "source": "/about",
-      "destination": "/Routes/about.html",
+      "destination": "/Routes/about",
       "permanent": false
     },
     {
       "source": "/contact",
-      "destination": "/Routes/contact.html",
+      "destination": "/Routes/contact",
       "permanent": false
     },
     {
       "source": "/careers",
-      "destination": "/Routes/Career.html",
+      "destination": "/Routes/Career",
       "permanent": false
     },
     {
       "source": "/career",
-      "destination": "/Routes/Career.html",
+      "destination": "/Routes/Career",
       "permanent": false
     },
     {
       "source": "/blog",
-      "destination": "/Routes/blog.html",
+      "destination": "/Routes/blog",
       "permanent": false
     },
     {
       "source": "/reviews",
-      "destination": "/Routes/reviews.html",
+      "destination": "/Routes/reviews",
       "permanent": false
     },
     {
       "source": "/research",
-      "destination": "/Routes/research.html",
+      "destination": "/Routes/research",
       "permanent": false
     },
     {
       "source": "/developers",
-      "destination": "/Routes/developers.html",
+      "destination": "/Routes/developers",
       "permanent": false
     },
     {
       "source": "/dev",
-      "destination": "/Routes/DEV.html",
+      "destination": "/Routes/DEV",
       "permanent": false
     },
     {
       "source": "/DEV",
-      "destination": "/Routes/DEV.html",
+      "destination": "/Routes/DEV",
       "permanent": false
     },
     {
       "source": "/orbit-ai",
-      "destination": "/Routes/orbit-ai.html",
+      "destination": "/Routes/orbit-ai",
       "permanent": false
     },
     {
       "source": "/pulsar",
-      "destination": "/Routes/pro-pulsar.html",
+      "destination": "/Routes/pro-pulsar",
       "permanent": false
     },
     {
       "source": "/pro-pulsar",
-      "destination": "/Routes/pro-pulsar.html",
+      "destination": "/Routes/pro-pulsar",
       "permanent": false
     },
     {
       "source": "/pulsar-v1",
-      "destination": "/Routes/pulsar-v1.html",
+      "destination": "/Routes/pulsar-v1",
       "permanent": false
     },
     {
       "source": "/agents",
-      "destination": "/Routes/agents.html",
+      "destination": "/Routes/agents",
       "permanent": false
     },
     {
       "source": "/business",
-      "destination": "/Routes/business.html",
+      "destination": "/Routes/business",
       "permanent": false
     },
     {
       "source": "/acceptable",
-      "destination": "/Routes/acceptable.html",
+      "destination": "/Routes/acceptable",
       "permanent": true
     },
     {
       "source": "/acceptable-use",
-      "destination": "/Routes/acceptable.html",
+      "destination": "/Routes/acceptable",
       "permanent": true
     },
     {
       "source": "/acceptabe",
-      "destination": "/Routes/acceptable.html",
+      "destination": "/Routes/acceptable",
       "permanent": true
     },
     {
       "source": "/partnership",
-      "destination": "/Routes/partnership.html",
+      "destination": "/Routes/partnership",
       "permanent": true
     },
     {
       "source": "/partnerships",
-      "destination": "/Routes/partnership.html",
+      "destination": "/Routes/partnership",
       "permanent": true
     },
     {
       "source": "/prathership",
-      "destination": "/Routes/partnership.html",
+      "destination": "/Routes/partnership",
       "permanent": true
     },
     {
       "source": "/network",
-      "destination": "/Routes/network.html",
+      "destination": "/Routes/network",
       "permanent": false
     },
     {
       "source": "/eco",
-      "destination": "/Routes/Eco.html",
+      "destination": "/Routes/Eco",
       "permanent": false
     },
     {
       "source": "/ecosystem",
-      "destination": "/Routes/Eco.html",
+      "destination": "/Routes/Eco",
       "permanent": false
     },
     {
       "source": "/architects",
-      "destination": "/Routes/architects.html",
+      "destination": "/Routes/architects",
       "permanent": false
     },
     {
       "source": "/core",
-      "destination": "/Routes/core.html",
+      "destination": "/Routes/core",
       "permanent": false
     },
     {
       "source": "/doc",
-      "destination": "/Routes/doc.html",
+      "destination": "/Routes/doc",
       "permanent": false
     },
     {
       "source": "/docs",
-      "destination": "/Routes/doc.html",
+      "destination": "/Routes/doc",
       "permanent": false
     },
     {
       "source": "/documentation",
-      "destination": "/Routes/doc.html",
+      "destination": "/Routes/doc",
       "permanent": false
     },
     {
       "source": "/rules",
-      "destination": "/Routes/rules.html",
+      "destination": "/Routes/rules",
       "permanent": false
     },
     {
       "source": "/stage",
-      "destination": "/Routes/stage.html",
+      "destination": "/Routes/stage",
       "permanent": false
     },
     {
       "source": "/academy",
-      "destination": "/Routes/stage.html",
+      "destination": "/Routes/stage",
       "permanent": false
     },
     {
       "source": "/schools",
-      "destination": "/Routes/schools.html",
+      "destination": "/Routes/schools",
       "permanent": false
     },
     {
       "source": "/company",
-      "destination": "/Routes/company.html",
+      "destination": "/Routes/company",
       "permanent": false
     },
     {
       "source": "/Routes/Privacy.html",
-      "destination": "/Routes/privacy.html",
+      "destination": "/Routes/privacy",
       "permanent": true
     },
     {
       "source": "/Routes/acceptable-use.html",
-      "destination": "/Routes/acceptable.html",
+      "destination": "/Routes/acceptable",
       "permanent": true
     },
     {
       "source": "/Routes/acceptabe.html",
-      "destination": "/Routes/acceptable.html",
+      "destination": "/Routes/acceptable",
       "permanent": true
     },
     {
       "source": "/Routes/prathership.html",
-      "destination": "/Routes/partnership.html",
+      "destination": "/Routes/partnership",
       "permanent": true
     },
     {
       "source": "/Routes/career.html",
-      "destination": "/Routes/Career.html",
+      "destination": "/Routes/Career",
       "permanent": true
     },
     {
       "source": "/Routes/eco.html",
-      "destination": "/Routes/Eco.html",
+      "destination": "/Routes/Eco",
       "permanent": true
     },
     {
       "source": "/Routes/dev.html",
-      "destination": "/Routes/DEV.html",
+      "destination": "/Routes/DEV",
       "permanent": true
     }
   ],
   "rewrites": [
+    {
+      "source": "/Public/web-app-manifest-:size.png",
+      "destination": "/public/icons/web-app-manifest-:size.png"
+    },
+    {
+      "source": "/Public/site.webmanifest",
+      "destination": "/public/site.webmanifest"
+    },
+    {
+      "source": "/Public/:path*",
+      "destination": "/public/:path*"
+    },
     {
       "source": "/create-payment-intent",
       "destination": "/api/create-payment-intent"
