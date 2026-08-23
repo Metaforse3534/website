@@ -1,4 +1,12 @@
 (() => {
+  if (!document.querySelector('script[data-orbit-cookie-controller]')) {
+    const cookieController = document.createElement('script');
+    cookieController.src = '/assets/js/cookie-consent.js';
+    cookieController.defer = true;
+    cookieController.dataset.orbitCookieController = '';
+    document.head.appendChild(cookieController);
+  }
+
   const root = document.documentElement;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let observer;

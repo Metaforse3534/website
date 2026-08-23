@@ -1,4 +1,12 @@
 (() => {
+  if (!document.querySelector('script[data-orbit-cookie-controller]')) {
+    const cookieController = document.createElement('script');
+    cookieController.src = '/assets/js/cookie-consent.js';
+    cookieController.defer = true;
+    cookieController.dataset.orbitCookieController = '';
+    document.head.appendChild(cookieController);
+  }
+
   const APP_ORIGIN = "https://app.orbitdev.org";
   const routeMap = new Map([
     ["terms", "/Routes/terms.html"],

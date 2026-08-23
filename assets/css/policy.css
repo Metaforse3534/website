@@ -1,219 +1,296 @@
-/* Policy / legal document layout — used with orbit.css */
-.policy-wrap {
-  width: min(100% - 2.5rem, 1180px);
+/* Orbit legal centre — calm, document-first layout. */
+body[data-policy-page] {
+  --policy-bg: #020203;
+  --policy-panel: #070708;
+  --policy-panel-raised: #0a0a0c;
+  --policy-text: #f4f4f6;
+  --policy-secondary: #aaaab3;
+  --policy-muted: #767680;
+  --policy-line: rgba(255, 255, 255, 0.09);
+  --policy-line-strong: rgba(255, 255, 255, 0.16);
+  --policy-accent: #a9bcff;
+  --policy-warning: #f1c875;
+  background: var(--policy-bg);
+}
+
+body[data-policy-page] main { min-height: 72vh; }
+
+body[data-policy-page] .policy-wrap {
+  width: min(calc(100% - 3rem), 1160px);
   margin: 0 auto;
-  padding: 2.5rem 0 4.5rem;
+  padding: clamp(3.5rem, 7vw, 6.5rem) 0 6rem;
   display: grid;
-  grid-template-columns: 220px minmax(0, 1fr);
-  gap: 3rem;
+  grid-template-columns: 248px minmax(0, 760px);
+  justify-content: space-between;
+  gap: clamp(3rem, 7vw, 6.5rem);
 }
 
 .policy-side {
   position: sticky;
-  top: calc(var(--nav-h) + 1rem);
+  top: 5.25rem;
   align-self: start;
-  max-height: calc(100vh - var(--nav-h) - 2rem);
+  max-height: calc(100vh - 6.5rem);
   overflow-y: auto;
+  padding: 0.8rem;
+  border: 1px solid var(--policy-line);
+  border-radius: 12px;
+  background: var(--policy-panel);
+  scrollbar-width: thin;
+  scrollbar-color: var(--policy-line-strong) transparent;
 }
 
 .policy-side-title {
-  margin: 0 0 0.75rem;
-  color: var(--text-3);
-  font-family: var(--font-mono);
+  margin: 0;
+  padding: 0.4rem 0.65rem 0.7rem;
+  color: var(--policy-muted);
+  font-family: var(--font-mono, ui-monospace, monospace);
   font-size: 0.65rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
+  font-weight: 600;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
 }
 
-.policy-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
-  border-left: 1px solid var(--line);
-}
+.policy-nav { display: flex; flex-direction: column; gap: 0.15rem; }
 
 .policy-nav a {
-  display: block;
-  padding: 0.5rem 0.75rem;
-  border-left: 2px solid transparent;
-  margin-left: -1px;
-  color: var(--text-3);
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  color: var(--policy-muted);
   font-size: 0.8rem;
   line-height: 1.35;
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
 }
 
-.policy-nav a:hover {
-  color: var(--text);
-  background: var(--surface);
+.policy-nav a:hover { color: var(--policy-text); background: rgba(255, 255, 255, 0.035); }
+
+.policy-nav a[aria-current="page"], .policy-nav a.active {
+  border-color: var(--policy-line);
+  color: var(--policy-text);
+  background: var(--policy-panel-raised);
 }
 
-.policy-nav a[aria-current="page"],
-.policy-nav a.active {
-  color: var(--text);
-  border-left-color: var(--signal);
-  background: var(--surface);
+.policy-nav a[aria-current="page"]::before, .policy-nav a.active::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  margin-right: 0.55rem;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--policy-accent);
 }
 
-.policy-main {
-  max-width: 720px;
-  min-width: 0;
-}
-
-.policy-main > .eyebrow {
-  margin-bottom: 0.85rem;
-}
+.policy-main { width: 100%; min-width: 0; }
+.policy-main > .eyebrow { margin: 0 0 1.1rem; color: var(--policy-accent) !important; }
 
 .policy-main > h1 {
-  font-size: clamp(1.85rem, 4vw, 2.75rem);
-  margin: 0 0 0.85rem;
-  max-width: 18ch;
+  max-width: 15ch;
+  margin: 0 0 1.25rem;
+  color: var(--policy-text);
+  font-size: clamp(2.65rem, 6vw, 4.75rem) !important;
+  font-weight: 610 !important;
+  letter-spacing: -0.055em !important;
+  line-height: 0.98 !important;
 }
 
 .policy-summary {
+  max-width: 43rem;
   margin: 0;
-  max-width: 42rem;
-  color: var(--text-2);
-  font-size: 1.02rem;
-  line-height: 1.7;
+  color: var(--policy-secondary) !important;
+  font-size: clamp(1rem, 1.5vw, 1.12rem) !important;
+  line-height: 1.72;
 }
 
-.policy-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-  margin-top: 1.25rem;
-}
-
+.policy-meta { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1.6rem; }
 .policy-meta span {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 0.4rem 0.55rem;
-  background: var(--surface);
-  color: var(--text-3);
-  font-size: 0.72rem;
-  font-family: var(--font-mono);
+  padding: 0.42rem 0.58rem;
+  border: 1px solid var(--policy-line);
+  border-radius: 6px !important;
+  color: var(--policy-muted);
+  background: var(--policy-panel) !important;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.68rem;
+  line-height: 1.3;
 }
 
 .policy-notice {
-  margin-top: 1.35rem;
-  padding: 0.9rem 1rem;
-  border: 1px solid var(--line);
-  border-left: 2px solid var(--signal);
-  border-radius: var(--radius);
-  background: var(--surface);
-  color: var(--text-2);
-  font-size: 0.85rem;
-  line-height: 1.65;
+  position: relative;
+  margin-top: 1.5rem;
+  padding: 1rem 1.05rem 1rem 1.15rem;
+  border: 1px solid rgba(169, 188, 255, 0.22) !important;
+  border-radius: 9px;
+  color: #c6c6cd;
+  background: rgba(169, 188, 255, 0.045) !important;
+  font-size: 0.84rem;
+  line-height: 1.72;
 }
 
-.policy-content {
-  margin-top: 2rem;
+.policy-notice::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 -1px;
+  width: 2px;
+  border-radius: 9px 0 0 9px;
+  background: var(--policy-accent);
 }
 
-.policy-section {
-  padding: 1.35rem 0;
-  border-top: 1px solid var(--line);
+.policy-toc {
+  margin-top: 1.5rem;
+  padding: 1rem 1.05rem;
+  border: 1px solid var(--policy-line);
+  border-radius: 9px;
+  background: var(--policy-panel);
 }
-
-.policy-section h2 {
-  display: flex;
-  gap: 0.65rem;
+.policy-toc-title {
+  margin: 0 0 0.75rem;
+  color: var(--policy-muted);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.policy-toc ol {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.4rem 1.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: policy-toc;
+}
+.policy-toc li { min-width: 0; counter-increment: policy-toc; }
+.policy-toc a {
+  display: grid;
+  grid-template-columns: 1.5rem minmax(0, 1fr);
+  min-height: 36px;
   align-items: baseline;
-  margin: 0 0 0.55rem;
-  font-size: 1.05rem;
-  letter-spacing: -0.02em;
+  color: var(--policy-secondary);
+  font-size: 0.76rem;
+  line-height: 1.4;
 }
+.policy-toc a::before {
+  content: counter(policy-toc, decimal-leading-zero);
+  color: var(--policy-muted);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.62rem;
+}
+.policy-toc a:hover { color: var(--policy-text); }
 
+.policy-content { margin-top: 2.25rem; border-bottom: 1px solid var(--policy-line); }
+body[data-policy-page] .policy-section {
+  scroll-margin-top: 6rem;
+  padding: 1.75rem 0 !important;
+  border-top: 1px solid var(--policy-line);
+}
+.policy-section h2 {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: baseline;
+  margin: 0 0 0.8rem;
+  color: var(--policy-text);
+  font-size: clamp(1.08rem, 2vw, 1.28rem) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.025em !important;
+  line-height: 1.3 !important;
+}
 .policy-section h2 .num {
-  color: var(--text-3);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
+  color: var(--policy-muted);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.68rem;
   font-weight: 500;
+  letter-spacing: 0;
   white-space: nowrap;
 }
-
-.policy-section p,
-.policy-section li {
-  margin: 0;
-  color: var(--text-2);
-  font-size: 0.925rem;
-  line-height: 1.8;
+.policy-section p, .policy-section li {
+  color: var(--policy-secondary) !important;
+  font-size: 0.93rem;
+  line-height: 1.82;
 }
+.policy-section p + p, .policy-section p + ul, .policy-section p + ol,
+.policy-section ul + p, .policy-section ol + p { margin-top: 0.75rem; }
+.policy-section ul, .policy-section ol { margin: 0.65rem 0 0; padding-left: 1.2rem; }
+.policy-section li { padding-left: 0.2rem; }
+.policy-section li + li { margin-top: 0.35rem; }
+.policy-section li::marker { color: var(--policy-muted); }
 
-.policy-section ul,
-.policy-section ol {
-  margin: 0.5rem 0 0;
-  padding-left: 1.2rem;
-}
-
-.policy-section li + li {
-  margin-top: 0.35rem;
-}
-
-.policy-section a {
-  color: var(--text);
+.policy-section a, .policy-doc-footer a {
+  color: var(--policy-text);
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-decoration-color: rgba(169, 188, 255, 0.48);
+  text-underline-offset: 4px;
+}
+.policy-section a:hover, .policy-doc-footer a:hover {
+  color: var(--policy-accent);
+  text-decoration-color: currentColor;
 }
 
-.policy-section a:hover {
-  color: var(--signal);
+.legal-required {
+  display: inline;
+  padding: 0.12rem 0.3rem;
+  border: 1px solid rgba(241, 200, 117, 0.26);
+  border-radius: 4px;
+  color: #f2d79c;
+  background: rgba(241, 200, 117, 0.08);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.76em;
+  line-height: 1.7;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
 .policy-doc-footer {
-  margin-top: 2rem;
-  padding-top: 1.15rem;
-  border-top: 1px solid var(--line);
+  margin-top: 1.75rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 0.85rem;
-  color: var(--text-3);
-  font-size: 0.8rem;
+  color: var(--policy-muted);
+  font-size: 0.78rem;
 }
 
-.policy-doc-footer a {
-  color: var(--text);
-}
-
-@media (max-width: 900px) {
-  .policy-wrap {
+@media (max-width: 940px) {
+  body[data-policy-page] .policy-wrap {
+    width: min(calc(100% - 2.5rem), 760px);
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding-top: 1.5rem;
+    justify-content: stretch;
+    gap: 2rem;
+    padding-top: 2rem;
   }
-
-  .policy-side {
-    position: static;
-    max-height: none;
-  }
-
+  .policy-side { position: static; max-height: none; overflow: hidden; padding: 0.7rem; }
   .policy-nav {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    border-left: none;
-    gap: 0.15rem;
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+    scrollbar-width: thin;
+    scroll-snap-type: x proximity;
   }
-
-  .policy-nav a {
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    margin-left: 0;
-  }
-
-  .policy-nav a[aria-current="page"],
-  .policy-nav a.active {
-    border-color: var(--line-strong);
-  }
+  .policy-nav a { min-width: max-content; min-height: 42px; scroll-snap-align: start; }
 }
 
-@media (max-width: 520px) {
-  .policy-nav {
-    grid-template-columns: 1fr;
-  }
+@media (max-width: 600px) {
+  body[data-policy-page] .policy-wrap { width: min(calc(100% - 2rem), 760px); padding-top: 1.25rem; padding-bottom: 4rem; }
+  .policy-main > h1 { font-size: clamp(2.35rem, 13vw, 3.35rem) !important; }
+  .policy-toc ol { grid-template-columns: 1fr; gap: 0.15rem; }
+  .policy-section h2 { grid-template-columns: 1fr; gap: 0.3rem; }
+  .policy-section h2 .num { display: block; }
+  .policy-meta span { flex: 1 1 auto; }
+}
 
-  .policy-wrap {
-    width: min(100% - 1.5rem, 1180px);
-  }
+@media (prefers-reduced-motion: reduce) { .policy-nav a { transition: none; } }
+
+@media print {
+  body[data-policy-page], body[data-policy-page] main { color: #111 !important; background: #fff !important; }
+  body[data-policy-page] .policy-wrap { display: block; width: 100%; padding: 0; }
+  .policy-side, .policy-toc, body[data-policy-page] .site-footer, body[data-policy-page] header,
+  .orbit-cookie-panel, .orbit-cookie-dialog { display: none !important; }
+  .policy-main { max-width: none; }
+  .policy-main > h1, .policy-section h2, .policy-section p, .policy-section li, .policy-summary { color: #111 !important; }
+  .policy-section, .policy-content, .policy-doc-footer { border-color: #bbb; }
+  .policy-section a { color: #111; }
+  .policy-section a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.8em; }
 }

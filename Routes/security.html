@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Security &amp; Integrity — Orbit AI</title>
-  <meta name="description" content="Orbit AI security architecture: account security, data isolation, GDPR compliance, and verifiable execution." />
-  <meta name="theme-color" content="#050609" />
+  <meta name="description" content="Verified security information for the Orbit website, app, accounts, billing flow, AI requests, and responsible disclosure." />
+  <meta name="theme-color" content="#020203" />
   <link rel="canonical" href="https://www.orbitdev.org/Routes/security.html" />
   <link rel="icon" type="image/svg+xml" href="/Public/favicon.svg" />
 
@@ -16,77 +16,41 @@
   <link rel="stylesheet" href="/assets/css/tailwind.generated.css">
   <link rel="stylesheet" href="/assets/css/orbit.css" />
   <link rel="stylesheet" href="/assets/css/cinematic.css" />
+  <link rel="stylesheet" href="/assets/css/policy.css" />
   <link rel="stylesheet" href="/assets/css/route-modern.css">
 </head>
-<body class="bg-[#050609] text-[#F5F7FA]">
+<body class="bg-[#020203] text-[#F5F7FA]" data-policy-page="security">
 
   <div data-include="/components/navbar.html"></div>
 
-  <main id="main" class="min-h-screen">
-    <header class="page-hero text-center py-20 px-4">
-      <div class="container max-w-4xl mx-auto">
-        <span class="eyebrow">Trust &amp; Infrastructure</span>
-        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-4">
-          Security &amp; Integrity.
-        </h1>
-        <p class="text-lg text-[#9299A6] max-w-2xl mx-auto mb-6" data-info="security-summary">
-          Security covers account security, data security (encryption in transit; appropriate controls at rest), infrastructure practices, and AI system integrity.
-        </p>
-      </div>
-    </header>
-
-    <section class="py-12 px-4 max-w-4xl mx-auto space-y-8">
-      <!-- Security Pillars -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="orbit-card">
-          <div class="w-8 h-8 rounded-full bg-[#6EA8FF]/20 flex items-center justify-center text-[#6EA8FF] mb-4">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-          </div>
-          <h3 class="text-base font-semibold text-[#F5F7FA] mb-2">Cryptographic Isolation</h3>
-          <p class="text-xs text-[#9299A6] leading-relaxed">
-            Data encrypted in transit via TLS 1.3 and at rest with AES-256 GCM. User workspaces run in isolated execution enclaves.
-          </p>
+  <main id="main">
+    <div class="policy-wrap">
+      <div data-include="/components/policy-nav.html"></div>
+      <article class="policy-main">
+        <span class="eyebrow">SECURITY</span>
+        <h1>Security &amp; Responsible Disclosure</h1>
+        <p class="policy-summary">Verified security information for Orbit accounts, the public website, the authenticated workspace, AI requests, connected tools, billing, and vulnerability reports.</p>
+        <div class="policy-meta"><span>Updated: August 23, 2026</span><span>Orbit Systems B.V.</span><span>No compliance certification claimed</span></div>
+        <div class="policy-notice">The website repository verifies HTTPS deployment headers, protected billing redirection, and documented account controls. It does not prove a specific cipher, encryption-at-rest algorithm, execution-enclave architecture, audit certification, backup schedule, monitoring provider, or completed DPA. Those claims have been removed pending evidence.</div>
+        <div class="policy-content">
+          <section class="policy-section"><h2><span class="num">001 /</span> Account controls</h2><p>The current product documentation describes password-based authentication, email verification, password reset, protected workspace routes, and optional six-digit TOTP two-factor authentication. Users should protect passwords and recovery methods and report suspected access promptly.</p></section>
+          <section class="policy-section"><h2><span class="num">002 /</span> Transport and browser protections</h2><p>Orbit is served over HTTPS in production. The Vercel configuration adds content-type sniffing protection, same-origin framing, and a strict-origin referrer policy. The exact production TLS version and full header set are controlled by the hosting deployment and should be independently verified after release.</p></section>
+          <section class="policy-section"><h2><span class="num">003 /</span> Data access and isolation</h2><p>Orbit limits data access through authenticated product routes and account ownership checks described by the app documentation. The public repository does not contain the production database policies or infrastructure configuration, so no unverified tenant-isolation, RLS, encryption-at-rest, backup, or key-management claim is made here.</p></section>
+          <section class="policy-section"><h2><span class="num">004 /</span> AI and tool safety</h2><p>Model requests and tool actions can expose content to selected providers or connected services. Users should grant the least access needed, keep secrets out of prompts, and review consequential browser, desktop, code, messaging, and automation actions before completion.</p></section>
+          <section class="policy-section"><h2><span class="num">005 /</span> Payment handling</h2><p>The website disables its legacy payment-intent endpoint and redirects purchases to Orbit Billing, where the documented Stripe flow handles card collection. Never send full card numbers, passwords, private keys, or authentication codes through support forms or email.</p></section>
+          <section class="policy-section"><h2><span class="num">006 /</span> Data deletion and incidents</h2><p>Users may contact support about account or data deletion. The production deletion timing, backup expiry, incident-response workflow, and notification contacts require confirmation before stronger public commitments can be made: [DATA RETENTION PERIOD REQUIRED] [INCIDENT RESPONSE PROCESS REQUIRED].</p></section>
+          <section class="policy-section"><h2><span class="num">007 /</span> Responsible disclosure</h2><p>Send suspected vulnerabilities to <a href="mailto:security@orbitdev.org">security@orbitdev.org</a>. Include the affected URL or version, impact, reproducible steps, and a safe proof of concept. Do not access other users’ data, disrupt service, use social engineering, demand payment, or publish details before Orbit has had reasonable time to investigate.</p></section>
+          <section class="policy-section"><h2><span class="num">008 /</span> Scope and safe harbor</h2><p>Only test systems you are authorized to test. A formal vulnerability scope, response target, disclosure timeline, and safe-harbor promise have not been approved: [VULNERABILITY DISCLOSURE TERMS REQUIRED]. Orbit will review good-faith reports and may ask for additional details.</p></section>
+          <section class="policy-section"><h2><span class="num">009 /</span> Certifications</h2><p>Orbit does not currently claim SOC 2, ISO 27001, HIPAA, PCI DSS certification, or another independent security certification on this page. Payment-provider compliance does not automatically certify Orbit as a whole.</p></section>
         </div>
-
-        <div class="orbit-card">
-          <div class="w-8 h-8 rounded-full bg-[#6EA8FF]/20 flex items-center justify-center text-[#6EA8FF] mb-4">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-          </div>
-          <h3 class="text-base font-semibold text-[#F5F7FA] mb-2">Zero Model Training</h3>
-          <p class="text-xs text-[#9299A6] leading-relaxed">
-            Customer source code, uploaded documents, prompts, and workspace state are never retained for general model training.
-          </p>
-        </div>
-
-        <div class="orbit-card">
-          <div class="w-8 h-8 rounded-full bg-[#6EA8FF]/20 flex items-center justify-center text-[#6EA8FF] mb-4">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
-          </div>
-          <h3 class="text-base font-semibold text-[#F5F7FA] mb-2">GDPR &amp; DPA Readiness</h3>
-          <p class="text-xs text-[#9299A6] leading-relaxed">
-            Headquartered in the Netherlands, operating strictly within European data protection standards with full DPA execution.
-          </p>
-        </div>
-      </div>
-
-      <!-- Responsible Disclosure Notice -->
-      <div class="orbit-card bg-[#0B0D12]">
-        <h3 class="text-base font-semibold text-[#F5F7FA] mb-2">Responsible Disclosure Policy</h3>
-        <p class="text-xs text-[#9299A6] leading-relaxed mb-4">
-          We welcome vulnerability reports from security researchers. Please contact <a href="mailto:security@orbitdev.org" class="text-[#6EA8FF] underline">security@orbitdev.org</a> with technical proof-of-concept steps.
-        </p>
-        <div class="flex flex-wrap gap-3">
-          <a href="/Routes/privacy.html" class="btn-secondary py-2 px-4 text-xs">Privacy Policy</a>
-          <a href="/Routes/dpa.html" class="btn-secondary py-2 px-4 text-xs">Data Processing Agreement</a>
-          <a href="/Routes/ai-usage.html" class="btn-secondary py-2 px-4 text-xs">AI Usage Policy</a>
-        </div>
-      </div>
-    </section>
+        <footer class="policy-doc-footer"><span>© 2026 Orbit Systems B.V.</span><a href="/Routes/support.html">Contact support</a></footer>
+      </article>
+    </div>
   </main>
 
   <div data-include="/components/footer.html"></div>
   <script src="/assets/js/include.js"></script>
-  <script src="/assets/js/information-engine.js"></script>
+  <script src="/assets/js/policy.js" defer></script>
   <script src="/assets/js/route-motion.js" defer></script>
 </body>
 </html>

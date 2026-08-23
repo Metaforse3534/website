@@ -692,22 +692,6 @@ table {
         </div>
     </div>
 
-    <div id="cookie-banner" class="fixed bottom-6 right-6 left-6 md:left-auto md:w-[380px] z-[100] app-panel p-5 rounded-xl hidden shadow-2xl transition-all duration-500 translate-y-6 opacity-0">
-        <div class="flex items-start gap-3.5">
-            <div class="text-zinc-400 mt-0.5">
-                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 2a10 10 0 0 1 10 10h-2a8 8 0 0 0-8-8V2z"/></svg>
-            </div>
-            <div class="flex-1">
-                <h4 class="text-xs font-semibold tracking-tight mb-1">Cookie settings</h4>
-                <p class="text-xs leading-relaxed mb-4 text-zinc-400 light-mode:text-zinc-500">Orbit uses cookies to keep the site secure and improve your experience. Review our <a href="/Routes/cookies.html" class="text-zinc-200 light-mode:text-zinc-800 hover:underline">Cookie Policy</a>.</p>
-                <div class="flex gap-2">
-                    <button onclick="acceptCookies()" class="flex-1 px-3 py-1.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-black light-mode:bg-zinc-900 light-mode:hover:bg-zinc-800 light-mode:text-white text-xs font-medium rounded-md transition duration-150">Accept</button>
-                    <button onclick="closeBanner()" class="px-3 py-1.5 border border-white/5 light-mode:border-black/5 hover:border-white/10 text-zinc-400 dark:text-zinc-400 light-mode:text-zinc-500 hover:text-zinc-200 text-xs font-medium rounded-md transition duration-150">Decline</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <nav id="main-nav" class="fixed w-full z-50 border-b border-white/[0.03] dark:border-white/[0.03] light-mode:border-black/[0.05] backdrop-blur-md bg-black/10 dark:bg-black/10 light-mode:bg-white/10 transition-all duration-200 top-0">
         <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
             <div class="font-space text-sm font-bold tracking-tight cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
@@ -1043,7 +1027,7 @@ table {
         }
 
         function dismissAnnouncement() {
-            localStorage.setItem(ANNOUNCEMENT_ID, 'dismissed');
+            if (window.OrbitCookieConsent?.allows('preferences')) localStorage.setItem(ANNOUNCEMENT_ID, 'dismissed');
             const bar = document.getElementById('announcement-bar');
             const nav = document.getElementById('main-nav');
             
@@ -1085,11 +1069,11 @@ table {
             if (isLight) {
                 html.classList.remove('dark');
                 icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
-                localStorage.setItem('theme', 'light');
+                if (window.OrbitCookieConsent?.allows('preferences')) localStorage.setItem('theme', 'light');
             } else {
                 html.classList.add('dark');
                 icon.innerHTML = '<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>';
-                localStorage.setItem('theme', 'dark');
+                if (window.OrbitCookieConsent?.allows('preferences')) localStorage.setItem('theme', 'dark');
             }
         }
 
@@ -1128,16 +1112,6 @@ table {
 
         window.onload = () => {
             checkAnnouncement();
-            if (!localStorage.getItem('orbit_consent')) {
-                setTimeout(() => {
-                    const banner = document.getElementById('cookie-banner');
-                    banner.classList.remove('hidden');
-                    setTimeout(() => {
-                        banner.classList.remove('translate-y-6', 'opacity-0');
-                    }, 50);
-                }, 800);
-            }
-            
             // Set initial theme setup safely
             if (localStorage.getItem('theme') === 'light') {
                 toggleTheme();
@@ -1147,12 +1121,6 @@ table {
             typeTerminal();
         };
 
-        function acceptCookies() { localStorage.setItem('orbit_consent', 'granted'); closeBanner(); }
-        function closeBanner() { 
-            const banner = document.getElementById('cookie-banner');
-            banner.classList.add('translate-y-6', 'opacity-0');
-            setTimeout(() => banner.classList.add('hidden'), 400);
-        } 
     </script>
     <script src="/site.js" defer></script>
   <script src="/assets/js/route-motion.js" defer></script>

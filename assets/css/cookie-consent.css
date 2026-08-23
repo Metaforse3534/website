@@ -1,0 +1,271 @@
+:root {
+  --cc-bg: #080809;
+  --cc-raised: #0d0d0f;
+  --cc-text: #f4f4f5;
+  --cc-muted: #a1a1aa;
+  --cc-line: rgba(255, 255, 255, 0.11);
+  --cc-focus: #8bb8ff;
+}
+
+.orbit-cookie-panel {
+  position: fixed;
+  z-index: 10000;
+  right: 1rem;
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  width: min(430px, calc(100vw - 2rem));
+  padding: 1.15rem;
+  border: 1px solid var(--cc-line);
+  border-radius: 14px;
+  color: var(--cc-text);
+  background: rgba(8, 8, 9, 0.97);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.68), inset 0 1px rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(18px);
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.orbit-cookie-panel[hidden] {
+  display: none !important;
+}
+
+.orbit-cookie-label {
+  margin: 0 0 0.45rem;
+  color: #7dafff;
+  font: 500 0.64rem/1.2 "JetBrains Mono", monospace;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.orbit-cookie-panel h2,
+.orbit-cookie-dialog h2 {
+  margin: 0;
+  color: var(--cc-text);
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.orbit-cookie-panel p,
+.orbit-cookie-dialog p {
+  margin: 0.55rem 0 0;
+  color: var(--cc-muted);
+  font-size: 0.78rem;
+  line-height: 1.65;
+}
+
+.orbit-cookie-panel a,
+.orbit-cookie-dialog a {
+  color: var(--cc-text);
+  text-underline-offset: 3px;
+}
+
+.orbit-cookie-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.orbit-cookie-button {
+  min-height: 44px;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--cc-line);
+  border-radius: 8px;
+  color: var(--cc-text);
+  background: rgba(255, 255, 255, 0.035);
+  font: 600 0.72rem/1.2 Inter, system-ui, sans-serif;
+  cursor: pointer;
+}
+
+.orbit-cookie-button:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.065);
+}
+
+.orbit-cookie-button--primary {
+  border-color: #edf2ff;
+  color: #060607;
+  background: #edf2ff;
+}
+
+.orbit-cookie-button--primary:hover {
+  background: #fff;
+}
+
+.orbit-cookie-button:focus-visible,
+.orbit-cookie-switch input:focus-visible + span,
+[data-cookie-manage]:focus-visible {
+  outline: 2px solid var(--cc-focus);
+  outline-offset: 3px;
+}
+
+.orbit-cookie-dialog {
+  width: min(560px, calc(100vw - 2rem));
+  max-height: min(720px, calc(100vh - 2rem));
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--cc-line);
+  border-radius: 16px;
+  color: var(--cc-text);
+  background: var(--cc-bg);
+  box-shadow: 0 34px 120px rgba(0, 0, 0, 0.75);
+  overscroll-behavior: contain;
+}
+
+.orbit-cookie-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(5px);
+}
+
+.orbit-cookie-dialog-inner {
+  max-height: min(720px, calc(100vh - 2rem));
+  padding: 1.25rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.orbit-cookie-dialog-head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.orbit-cookie-close {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  border: 1px solid var(--cc-line);
+  border-radius: 8px;
+  color: var(--cc-muted);
+  background: transparent;
+  cursor: pointer;
+}
+
+.orbit-cookie-categories {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.orbit-cookie-category {
+  padding: 0.9rem;
+  border: 1px solid var(--cc-line);
+  border-radius: 10px;
+  background: var(--cc-raised);
+}
+
+.orbit-cookie-category-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.orbit-cookie-category strong {
+  font-size: 0.8rem;
+}
+
+.orbit-cookie-switch input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.orbit-cookie-switch span {
+  width: 38px;
+  height: 22px;
+  display: block;
+  position: relative;
+  border: 1px solid var(--cc-line);
+  border-radius: 999px;
+  background: #242429;
+}
+
+.orbit-cookie-switch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.orbit-cookie-switch:has(input:disabled) {
+  cursor: not-allowed;
+}
+
+.orbit-cookie-switch span::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #8c8c96;
+  transition: transform 160ms ease, background-color 160ms ease;
+}
+
+.orbit-cookie-switch input:checked + span {
+  background: #275baf;
+}
+
+.orbit-cookie-switch input:checked + span::after {
+  transform: translateX(16px);
+  background: #fff;
+}
+
+.orbit-cookie-switch input:disabled + span {
+  opacity: 0.65;
+}
+
+.orbit-cookie-dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.orbit-cookie-manage {
+  padding: 0;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+@media (max-width: 520px) {
+  .orbit-cookie-panel {
+    right: 0.75rem;
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+    width: calc(100vw - 1.5rem);
+    max-height: calc(100dvh - 1.5rem - env(safe-area-inset-bottom));
+    overflow-y: auto;
+  }
+
+  .orbit-cookie-dialog {
+    width: calc(100vw - 1.5rem);
+    max-height: calc(100dvh - 1.5rem);
+  }
+
+  .orbit-cookie-dialog-inner {
+    max-height: calc(100dvh - 1.5rem);
+    padding: 1rem;
+  }
+
+  .orbit-cookie-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .orbit-cookie-button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-cookie-switch span::after {
+    transition: none;
+  }
+}

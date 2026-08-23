@@ -79,23 +79,6 @@
     items.forEach((el) => io.observe(el));
   }
 
-  function initCookieBanner() {
-    const banner = qs("[data-cookie-banner]");
-    if (!banner) return;
-    const key = "orbit_cookie_ack_v1";
-    if (localStorage.getItem(key)) {
-      banner.hidden = true;
-      return;
-    }
-    banner.hidden = false;
-    qsa("[data-cookie-accept]", banner).forEach((btn) => {
-      btn.addEventListener("click", () => {
-        localStorage.setItem(key, "1");
-        banner.hidden = true;
-      });
-    });
-  }
-
   function initNewsletter() {
     qsa("[data-newsletter-form]").forEach((form) => {
       form.addEventListener("submit", (e) => {
@@ -140,7 +123,6 @@
     initMobileNav();
     initNavDetails();
     initReveals();
-    initCookieBanner();
     initNewsletter();
     initAppLinks();
   }
