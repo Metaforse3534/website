@@ -1,61 +1,17 @@
 /**
  * ORBIT — CINEMATIC CONTINUOUS SCENE TIMELINE
- * Lenis smooth scrolling + GSAP ScrollTrigger orchestrated timeline.
+ * Native scrolling + GSAP ScrollTrigger orchestrated timeline.
  */
 
 class OrbitKineticTimeline {
   constructor() {
-    this.lenis = null;
     this.webglEngine = null;
     this.init();
   }
 
   init() {
-    this.initLenis();
     this.initNavScroll();
     this.initGSAPAnimations();
-  }
-
-  initLenis() {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-    if (typeof Lenis !== 'undefined' && !prefersReducedMotion.matches) {
-      this.lenis = new Lenis({
-        duration: 0.72,
-        easing: (t) => 1 - Math.pow(1 - t, 4),
-        orientation: 'vertical',
-        gestureOrientation: 'vertical',
-        smoothWheel: true,
-        wheelMultiplier: 0.9,
-        syncTouch: false,
-        anchors: {
-          offset: -112,
-          duration: 0.8,
-        },
-        infinite: false,
-      });
-
-      if (typeof ScrollTrigger !== 'undefined') {
-        this.lenis.on('scroll', ScrollTrigger.update);
-        gsap.ticker.add((time) => {
-          this.lenis.raf(time * 1000);
-        });
-        gsap.ticker.lagSmoothing(0);
-      } else {
-        const raf = (time) => {
-          this.lenis.raf(time);
-          requestAnimationFrame(raf);
-        };
-        requestAnimationFrame(raf);
-      }
-
-      prefersReducedMotion.addEventListener('change', (event) => {
-        if (event.matches && this.lenis) {
-          this.lenis.destroy();
-          this.lenis = null;
-        }
-      });
-    }
   }
 
   initNavScroll() {
