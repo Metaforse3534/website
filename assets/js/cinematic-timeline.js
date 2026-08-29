@@ -17,15 +17,21 @@ class OrbitKineticTimeline {
   }
 
   initLenis() {
-    if (typeof Lenis !== 'undefined') {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    if (typeof Lenis !== 'undefined' && !prefersReducedMotion.matches) {
       this.lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        duration: 0.72,
+        easing: (t) => 1 - Math.pow(1 - t, 4),
         orientation: 'vertical',
         gestureOrientation: 'vertical',
         smoothWheel: true,
-        wheelMultiplier: 1.0,
-        touchMultiplier: 1.5,
+        wheelMultiplier: 0.9,
+        syncTouch: false,
+        anchors: {
+          offset: -112,
+          duration: 0.8,
+        },
         infinite: false,
       });
 
@@ -42,6 +48,13 @@ class OrbitKineticTimeline {
         };
         requestAnimationFrame(raf);
       }
+
+      prefersReducedMotion.addEventListener('change', (event) => {
+        if (event.matches && this.lenis) {
+          this.lenis.destroy();
+          this.lenis = null;
+        }
+      });
     }
   }
 
