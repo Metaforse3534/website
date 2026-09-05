@@ -1,5 +1,5 @@
 import { ExternalLink, Github, Menu, X } from 'lucide-react'
-import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { external } from '../data/siteData'
 import { CookieConsent } from './CookieConsent'
@@ -20,6 +20,58 @@ function SmartLink({ href, children, className, onClick }: { href: string; child
   return externalLink
     ? <a href={href} className={className} onClick={onClick} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}>{children}</a>
     : <Link to={href} className={className} onClick={onClick}>{children}</Link>
+}
+
+function ScrollMotion() {
+  const location = useLocation()
+
+  useLayoutEffect(() => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reducedMotion || !('IntersectionObserver' in window)) return
+
+    const elements = Array.from(document.querySelectorAll<HTMLElement>([
+      '#main > section:not(.hero):not(.page-hero):not(.docs-hero):not(.pricing-hero):not(.blog-hero):not(.careers-hero):not(.form-hero):not(.not-found)',
+      '.capability',
+      '.deep-row',
+      '.agent-stack article',
+      '.principles > div',
+      '.frontier-grid article',
+      '.pricing-grid > article',
+      '.pricing-preview article',
+      '.post-grid > a',
+      '.role-list > article',
+      '.mission-steps article',
+      '.mission-steps-horizontal article',
+      '.orbit-map-readout article',
+      '.docs-content > section',
+      '.article-body > section',
+      '.legal-content > section',
+    ].join(',')))
+
+    elements.forEach((element, index) => {
+      element.classList.add('motion-reveal')
+      element.style.setProperty('--reveal-delay', `${(index % 4) * 70}ms`)
+    })
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return
+        entry.target.classList.add('is-visible')
+        observer.unobserve(entry.target)
+      })
+    }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' })
+
+    elements.forEach(element => observer.observe(element))
+    return () => {
+      observer.disconnect()
+      elements.forEach(element => {
+        element.classList.remove('motion-reveal', 'is-visible')
+        element.style.removeProperty('--reveal-delay')
+      })
+    }
+  }, [location.pathname])
+
+  return null
 }
 
 export function Header() {
@@ -91,7 +143,7 @@ export function Footer() {
 }
 
 export function Layout({ children }: { children: ReactNode }) {
-  return <><a className="skip" href="#main">Skip to content</a><Header /><main id="main">{children}</main><Footer /><CookieConsent /></>
+  return <><a className="skip" href="#main">Skip to content</a><Header /><main id="main">{children}</main><ScrollMotion /><Footer /><CookieConsent /></>
 }
 
 export { SmartLink }
