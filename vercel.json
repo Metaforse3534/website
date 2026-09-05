@@ -425,10 +425,6 @@
       "destination": "/api/create-payment-intent"
     },
     {
-      "source": "/routes/:path*",
-      "destination": "/Routes/:path*"
-    },
-    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
