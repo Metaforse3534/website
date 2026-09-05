@@ -41,14 +41,9 @@ function OrbitMissionMap({ animate }: { animate: boolean }) {
     <div className="orbit-map-header"><span>ORBITAL COMPUTE MAP</span><small><i /> PATHS / SIMULATED</small></div>
     <div className="orbit-map-canvas">
       <svg viewBox="0 0 920 600" role="img" aria-labelledby="orbit-map-title orbit-map-description">
-        <title id="orbit-map-title">Concept map of Orbit AI orbital computing paths</title>
-        <desc id="orbit-map-description">Three illustrative orbital paths connect conceptual edge, relay, and compute nodes around Earth.</desc>
+        <title id="orbit-map-title">Concept map of Orbit AI floating compute paths</title>
+        <desc id="orbit-map-description">Three illustrative orbital paths connect edge, relay, and compute nodes around a modular floating data center.</desc>
         <defs>
-          <radialGradient id="mission-earth" cx="35%" cy="28%">
-            <stop offset="0" stopColor="#38434a" />
-            <stop offset=".62" stopColor="#13181b" />
-            <stop offset="1" stopColor="#080a0b" />
-          </radialGradient>
           <filter id="mission-glow" x="-120%" y="-120%" width="340%" height="340%"><feGaussianBlur stdDeviation="5" result="blur" /><feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
         </defs>
         <g className="mission-map-grid" aria-hidden="true">
@@ -58,15 +53,14 @@ function OrbitMissionMap({ animate }: { animate: boolean }) {
         <path id="mission-orbit-a" className="mission-orbit orbit-a" d="M 88 302 C 170 92 690 58 832 266 C 716 478 194 492 88 302 Z" />
         <path id="mission-orbit-b" className="mission-orbit orbit-b" d="M 120 430 C 264 116 728 118 808 350 C 650 506 258 538 120 430 Z" />
         <path id="mission-orbit-c" className="mission-orbit orbit-c" d="M 216 102 C 480 94 694 242 752 520 C 440 462 246 318 216 102 Z" />
-        <g className="mission-earth" aria-hidden="true">
-          <circle cx="460" cy="306" r="115" />
-          <ellipse cx="460" cy="306" rx="115" ry="42" />
-          <ellipse cx="460" cy="306" rx="45" ry="115" />
-          <path d="M352 270 Q460 220 568 270 M352 342 Q460 392 568 342" />
-          <circle className="earth-core" cx="460" cy="306" r="18" />
-          <text x="460" y="311">EARTH / AI CORE</text>
+        <g className="mission-compute-hub" aria-hidden="true">
+          <rect className="hub-body" x="400" y="278" width="120" height="58" rx="4" />
+          <rect className="hub-panel" x="300" y="286" width="94" height="42" />
+          <rect className="hub-panel" x="526" y="286" width="94" height="42" />
+          <path d="M320 286 V328 M342 286 V328 M364 286 V328 M556 286 V328 M578 286 V328 M600 286 V328" />
+          <circle className="hub-core" cx="460" cy="307" r="10" />
+          <text x="460" y="365">ORBIT AI / COMPUTE HUB</text>
         </g>
-        <g className="mission-ground-link" aria-hidden="true"><path d="M460 424 L460 505 L590 505" /><circle cx="460" cy="424" r="4" /><text x="606" y="511">GROUND RELAY</text></g>
         {nodes.map(node => <g className="mission-node" key={node.id} transform={animate ? undefined : node.resting} aria-hidden="true">
           <circle className="node-pulse" r="18" />
           <circle className="node-core" r="7" />
@@ -75,7 +69,7 @@ function OrbitMissionMap({ animate }: { animate: boolean }) {
           {animate && <animateMotion dur={node.duration} begin={node.begin} repeatCount="indefinite" rotate="auto"><mpath href={`#${node.id}`} /></animateMotion>}
         </g>)}
       </svg>
-      <div className="map-axis axis-y">POLAR / +90°</div><div className="map-axis axis-x">EQUATORIAL / 0°</div>
+      <div className="map-axis axis-y">ORBITAL PLANE / 03</div><div className="map-axis axis-x">NETWORK PLANE / 0°</div>
     </div>
     <div className="orbit-map-readout">
       <article><span>EDGE 01</span><b>On-orbit inference</b><small>CONCEPT</small></article>
@@ -111,15 +105,15 @@ export default function Home() {
     <section className="system-section"><p className="section-label">05 / SYSTEM</p><div className="section-intro"><h2>YOUR WORK. ONE INTELLIGENT LAYER.</h2><p>Orbit connects the AI core to models, agents, applications, files, projects, browser context, voice, automations, the developer API, and the desktop bridge.</p></div><div className="system-map"><strong>ORBIT AI CORE</strong>{['Models', 'Agents', 'Applications', 'Files', 'Projects', 'Browser', 'Voice', 'Automations', 'Developer API', 'Desktop bridge'].map((item, i) => <span style={{ '--i': i } as React.CSSProperties} key={item}>{item}</span>)}</div><SmartLink href="/Routes/Eco" className="text-link">Explore the ecosystem <ArrowRight size={16} /></SmartLink></section>
     <section className="trust-section"><div><p className="section-label">06 / TRUST</p><h2>BUILT FOR CONTROL.</h2><SmartLink href="/Routes/security" className="button ghost">Read about security <ArrowRight size={16} /></SmartLink></div><div className="trust-list">{['Private by default', 'Human review', 'Clear product-status labels', 'Visible actions', 'Account security', 'Revocable API keys', 'Responsible automation', 'Data-deletion controls'].map(item => <span key={item}><Check size={17} />{item}</span>)}</div></section>
     <section className="orbit-mission-section">
-      <div className="orbit-mission-heading"><div><p className="section-label">07 / OUR MISSION</p><h2>AI, BUILT<br />BEYOND EARTH.</h2></div><div><p>Make AI smarter. Bring intelligence into space. Explore floating data centers that can process selected workloads closer to orbital data.</p><div className="mission-state"><i /> CONCEPT NETWORK / NOT YET DEPLOYED</div></div></div>
+      <div className="orbit-mission-heading"><div><p className="section-label">07 / OUR MISSION</p><h2>AI, BUILT<br />BEYOND THE GROUND.</h2></div><div><p>Make AI smarter. Bring intelligence into space. Explore a fleet of floating data centers that can process selected workloads across a distributed orbital network.</p><div className="mission-state"><i /> CONCEPT NETWORK / NOT YET DEPLOYED</div></div></div>
       <div className="orbit-simulation-stage">
         {heavyMotion ? <Suspense fallback={<OrbitMissionMap animate={false} />}><OrbitalMissionScene /></Suspense> : <OrbitMissionMap animate={false} />}
         <div className="simulation-hud hud-top"><span>ORBITAL COMPUTE / DIGITAL TWIN</span><span><i /> SIMULATION ACTIVE</span></div>
         <div className="simulation-hud hud-left"><small>SCENARIO</small><b>LEO DISTRIBUTED<br />COMPUTE</b></div>
-        <div className="simulation-hud hud-right"><small>DATA PATH</small><b>EARTH → EDGE<br />→ ORBIT</b></div>
+        <div className="simulation-hud hud-right"><small>DATA PATH</small><b>AI CORE → EDGE<br />→ ORBIT</b></div>
         <div className="simulation-hud hud-bottom"><span>EDGE 01 / INFERENCE</span><span>RELAY 02 / ROUTING</span><span>COMPUTE 03 / FLOATING DATA CENTER</span></div>
       </div>
-      <div className="mission-steps mission-steps-horizontal">{[['01', 'Earth intelligence', 'Develop and verify capable AI systems.'], ['02', 'Orbital inference', 'Process selected signals closer to their source.'], ['03', 'Floating data centers', 'Explore modular compute platforms in orbit.']].map(([number, title, copy]) => <article key={title}><span>{number}</span><div><h3>{title}</h3><p>{copy}</p></div></article>)}</div>
+      <div className="mission-steps mission-steps-horizontal">{[['01', 'AI core', 'Develop and verify capable AI systems.'], ['02', 'Orbital inference', 'Process selected signals closer to their source.'], ['03', 'Floating data centers', 'Explore modular compute platforms in orbit.']].map(([number, title, copy]) => <article key={title}><span>{number}</span><div><h3>{title}</h3><p>{copy}</p></div></article>)}</div>
       <div className="mission-footer"><p className="mission-disclaimer">Concept simulation. Orbit AI does not currently claim an operational satellite constellation; paths, positions, and node labels are illustrative research targets.</p><SmartLink href="/Routes/research" className="text-link">Explore the research mission <ArrowRight size={16} /></SmartLink></div>
     </section>
     <section className="frontier-section"><img src="/media/pulsar-research.webp" alt="Satellite prototype displayed in a controlled research room" loading="lazy" /><div className="frontier-overlay"><p className="section-label">RESEARCH / ROBOTICS</p><div className="frontier-grid"><article><span className="status research">Research / Prototype / Planned</span><h2>PRO PULSAR</h2><p>Orbit’s language-model and AI-infrastructure initiative spanning model research, inference, training systems, and developer access.</p><SmartLink href="/Routes/pro-pulsar" className="text-link">Explore Pro Pulsar <ArrowRight size={16} /></SmartLink></article><article><span className="status in-development">In development — concept targets only</span><h2>PULSAR V1</h2><p>An agile reconnaissance and support robotics concept designed to explore how intelligent software may work with physical systems.</p><SmartLink href="/Routes/pulsar-v1" className="text-link">Explore Pulsar V1 <ArrowRight size={16} /></SmartLink></article></div></div></section>
