@@ -2,6 +2,7 @@ import { ExternalLink, Github, Menu, X } from 'lucide-react'
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { external } from '../data/siteData'
+import { CookieConsent } from './CookieConsent'
 
 export const navGroups = [
   { label: 'Product', links: [['Orbit AI Workspace', '/Routes/orbit-ai'], ['Orbit Agents', '/Routes/agents'], ['Orbit Ecosystem', '/Routes/Eco'], ['Extension Pro', '/Routes/extension'], ['Pricing', '/shop']] },
@@ -85,12 +86,12 @@ export function Footer() {
   return <footer className="footer">
     <div className="footer-columns">{footerColumns.map(([title, links]) => <div key={title}><h2>{title}</h2>{links.map(([label, href]) => <SmartLink key={href} href={href}>{label}</SmartLink>)}</div>)}</div>
     <div className="footer-wordmark">ORBIT SYSTEMS</div>
-    <div className="footer-bottom"><p>Orbit AI is developed by Orbit Systems B.V. in the Netherlands.</p><p>© {new Date().getFullYear()} Orbit Systems B.V.</p><p>Intelligence, Built for What’s Next.</p><div className="footer-social"><a href={external.github} target="_blank" rel="noopener noreferrer" aria-label="Orbit AI on GitHub"><Github size={17} /></a><a href={external.discord} target="_blank" rel="noopener noreferrer">Discord <ExternalLink size={12} /></a><Link to="/Routes/network"><i /> View network status</Link></div></div>
+    <div className="footer-bottom"><p>Orbit AI is developed by Orbit Systems B.V. in the Netherlands.</p><p>© {new Date().getFullYear()} Orbit Systems B.V.</p><p>Intelligence, Built for What’s Next.</p><div className="footer-social"><a href={external.github} target="_blank" rel="noopener noreferrer" aria-label="Orbit AI on GitHub"><Github size={17} /></a><a href={external.discord} target="_blank" rel="noopener noreferrer">Discord <ExternalLink size={12} /></a><Link to="/Routes/network"><i /> View network status</Link><button type="button" onClick={() => window.dispatchEvent(new Event('orbit:open-cookie-settings'))}>Cookie settings</button></div></div>
   </footer>
 }
 
 export function Layout({ children }: { children: ReactNode }) {
-  return <><a className="skip" href="#main">Skip to content</a><Header /><main id="main">{children}</main><Footer /></>
+  return <><a className="skip" href="#main">Skip to content</a><Header /><main id="main">{children}</main><Footer /><CookieConsent /></>
 }
 
 export { SmartLink }

@@ -42,13 +42,13 @@ export const legalDocuments: LegalDocument[] = [
     ],
   },
   {
-    path: '/Routes/cookies', title: 'Cookie Policy', description: 'How Orbit uses cookies and similar browser technologies.', updated: '5 September 2026',
+    path: '/Routes/cookies', title: 'Cookie Policy', description: 'How Orbit uses cookies and similar browser technologies.', updated: '6 September 2026',
     sections: [
       { title: 'Scope', paragraphs: ['This policy covers cookies, local storage, and similar browser technologies used on Orbit websites and applications.'] },
       { title: 'Essential storage', paragraphs: ['Essential technologies can maintain authentication, security, load balancing, consent choices, and settings required for the requested service. They are not used as a substitute for permission where consent is legally required.'] },
       { title: 'Preferences and measurement', paragraphs: ['Optional storage may remember interface preferences or help Orbit understand aggregate site performance. Optional categories should not be activated before required consent.'] },
       { title: 'Third parties', paragraphs: ['Authentication, hosting, payments, media, and other integrations may set or read data under their own policies when their surface is used.'] },
-      { title: 'Controls', paragraphs: ['Use Orbit consent controls where available and browser controls to block or delete storage. Blocking essential storage can prevent sign-in or other requested functions.'] },
+      { title: 'Controls', paragraphs: ['Use the Orbit consent panel when it first appears, or choose Cookie settings in the website footer at any time. Optional preferences, analytics, and marketing categories remain disabled unless selected. Browser controls can also block or delete storage. Blocking essential storage can prevent sign-in or other requested functions.'] },
       { title: 'Changes and contact', paragraphs: ['The current policy date appears above. Orbit may revise the categories as the service changes.', contact] },
     ],
   },
