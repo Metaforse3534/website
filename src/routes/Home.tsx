@@ -7,7 +7,6 @@ import { Layout, SmartLink } from '../components/SiteChrome'
 import { external } from '../data/siteData'
 
 const OrbitalScene = lazy(() => import('../components/OrbitalScene'))
-const OrbitalMissionScene = lazy(() => import('../components/OrbitalMissionScene'))
 const capabilities = [
   ['Research', 'Explore technical literature, compare sources, extract structured facts, and produce clear findings.', '/Routes/doc#research'],
   ['Synthesis', 'Turn unstructured ideas into specifications, reports, presentations, documents, and decision-ready outputs.', '/Routes/orbit-ai'],
@@ -29,54 +28,6 @@ const deepDives = [
 
 function Reveal({ children, className = '' }: { children: ReactNode; className?: string }) {
   return <motion.div className={className} initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .15 }} transition={{ duration: .55 }}>{children}</motion.div>
-}
-
-function OrbitMissionMap({ animate }: { animate: boolean }) {
-  const nodes = [
-    { id: 'mission-orbit-a', label: 'EDGE 01', duration: '15s', begin: '-4s', resting: 'translate(670 196)' },
-    { id: 'mission-orbit-b', label: 'RELAY 02', duration: '19s', begin: '-11s', resting: 'translate(280 430)' },
-    { id: 'mission-orbit-c', label: 'COMPUTE 03', duration: '23s', begin: '-17s', resting: 'translate(726 388)' },
-  ]
-  return <div className="orbit-map-shell">
-    <div className="orbit-map-header"><span>ORBITAL COMPUTE MAP</span><small><i /> PATHS / SIMULATED</small></div>
-    <div className="orbit-map-canvas">
-      <svg viewBox="0 0 920 600" role="img" aria-labelledby="orbit-map-title orbit-map-description">
-        <title id="orbit-map-title">Concept map of Orbit AI floating compute paths</title>
-        <desc id="orbit-map-description">Three illustrative orbital paths connect edge, relay, and compute nodes around a modular floating data center.</desc>
-        <defs>
-          <filter id="mission-glow" x="-120%" y="-120%" width="340%" height="340%"><feGaussianBlur stdDeviation="5" result="blur" /><feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
-        </defs>
-        <g className="mission-map-grid" aria-hidden="true">
-          {[100, 220, 340, 460, 580, 700, 820].map(x => <line x1={x} y1="35" x2={x} y2="565" key={`x-${x}`} />)}
-          {[75, 165, 255, 345, 435, 525].map(y => <line x1="40" y1={y} x2="880" y2={y} key={`y-${y}`} />)}
-        </g>
-        <path id="mission-orbit-a" className="mission-orbit orbit-a" d="M 88 302 C 170 92 690 58 832 266 C 716 478 194 492 88 302 Z" />
-        <path id="mission-orbit-b" className="mission-orbit orbit-b" d="M 120 430 C 264 116 728 118 808 350 C 650 506 258 538 120 430 Z" />
-        <path id="mission-orbit-c" className="mission-orbit orbit-c" d="M 216 102 C 480 94 694 242 752 520 C 440 462 246 318 216 102 Z" />
-        <g className="mission-compute-hub" aria-hidden="true">
-          <rect className="hub-body" x="400" y="278" width="120" height="58" rx="4" />
-          <rect className="hub-panel" x="300" y="286" width="94" height="42" />
-          <rect className="hub-panel" x="526" y="286" width="94" height="42" />
-          <path d="M320 286 V328 M342 286 V328 M364 286 V328 M556 286 V328 M578 286 V328 M600 286 V328" />
-          <circle className="hub-core" cx="460" cy="307" r="10" />
-          <text x="460" y="365">ORBIT AI / COMPUTE HUB</text>
-        </g>
-        {nodes.map(node => <g className="mission-node" key={node.id} transform={animate ? undefined : node.resting} aria-hidden="true">
-          <circle className="node-pulse" r="18" />
-          <circle className="node-core" r="7" />
-          <path d="M-15 0 H-7 M7 0 H15 M0 -15 V-7 M0 7 V15" />
-          <text x="25" y="5">{node.label}</text>
-          {animate && <animateMotion dur={node.duration} begin={node.begin} repeatCount="indefinite" rotate="auto"><mpath href={`#${node.id}`} /></animateMotion>}
-        </g>)}
-      </svg>
-      <div className="map-axis axis-y">ORBITAL PLANE / 03</div><div className="map-axis axis-x">NETWORK PLANE / 0°</div>
-    </div>
-    <div className="orbit-map-readout">
-      <article><span>EDGE 01</span><b>On-orbit inference</b><small>CONCEPT</small></article>
-      <article><span>RELAY 02</span><b>Ground-to-space routing</b><small>RESEARCH</small></article>
-      <article><span>COMPUTE 03</span><b>Floating data centers</b><small>PLANNED</small></article>
-    </div>
-  </div>
 }
 
 export default function Home() {
@@ -104,18 +55,6 @@ export default function Home() {
     <section className="agents-section"><div><p className="section-label">04 / AGENTS</p><h2>DON’T JUST ASK.<br />LET IT ACT.</h2><p>Give specialized agents a clear role, keep their steps visible, and review consequential outputs and actions.</p><SmartLink href="/Routes/agents" className="button primary">Explore Orbit Agents <ArrowRight size={16} /></SmartLink></div><div className="agent-stack">{[['LEAD', 'Breaks goals into steps and coordinates the result.'], ['BUILDER', 'Produces code, structures, copy, configuration, and deliverables.'], ['RESEARCHER', 'Finds relevant information and sources.'], ['REVIEWER', 'Checks gaps, risks, security, and weak assumptions.']].map(([name, copy], index) => <article key={name}><span>AGENT 0{index + 1}</span><h3>{name}</h3><p>{copy}</p></article>)}</div></section>
     <section className="system-section"><p className="section-label">05 / SYSTEM</p><div className="section-intro"><h2>YOUR WORK. ONE INTELLIGENT LAYER.</h2><p>Orbit connects the AI core to models, agents, applications, files, projects, browser context, voice, automations, the developer API, and the desktop bridge.</p></div><div className="system-map"><strong>ORBIT AI CORE</strong>{['Models', 'Agents', 'Applications', 'Files', 'Projects', 'Browser', 'Voice', 'Automations', 'Developer API', 'Desktop bridge'].map((item, i) => <span style={{ '--i': i } as React.CSSProperties} key={item}>{item}</span>)}</div><SmartLink href="/Routes/Eco" className="text-link">Explore the ecosystem <ArrowRight size={16} /></SmartLink></section>
     <section className="trust-section"><div><p className="section-label">06 / TRUST</p><h2>BUILT FOR CONTROL.</h2><SmartLink href="/Routes/security" className="button ghost">Read about security <ArrowRight size={16} /></SmartLink></div><div className="trust-list">{['Private by default', 'Human review', 'Clear product-status labels', 'Visible actions', 'Account security', 'Revocable API keys', 'Responsible automation', 'Data-deletion controls'].map(item => <span key={item}><Check size={17} />{item}</span>)}</div></section>
-    <section className="orbit-mission-section">
-      <div className="orbit-mission-heading"><div><p className="section-label">07 / OUR MISSION</p><h2>AI, BUILT<br />BEYOND THE GROUND.</h2></div><div><p>Make AI smarter. Bring intelligence into space. Explore a fleet of floating data centers that can process selected workloads across a distributed orbital network.</p><div className="mission-state"><i /> CONCEPT NETWORK / NOT YET DEPLOYED</div></div></div>
-      <div className="orbit-simulation-stage">
-        {heavyMotion ? <Suspense fallback={<OrbitMissionMap animate={false} />}><OrbitalMissionScene /></Suspense> : <OrbitMissionMap animate={false} />}
-        <div className="simulation-hud hud-top"><span>ORBITAL COMPUTE / DIGITAL TWIN</span><span><i /> SIMULATION ACTIVE</span></div>
-        <div className="simulation-hud hud-left"><small>SCENARIO</small><b>LEO DISTRIBUTED<br />COMPUTE</b></div>
-        <div className="simulation-hud hud-right"><small>DATA PATH</small><b>AI CORE → EDGE<br />→ ORBIT</b></div>
-        <div className="simulation-hud hud-bottom"><span>EDGE 01 / INFERENCE</span><span>RELAY 02 / ROUTING</span><span>COMPUTE 03 / FLOATING DATA CENTER</span></div>
-      </div>
-      <div className="mission-steps mission-steps-horizontal">{[['01', 'AI core', 'Develop and verify capable AI systems.'], ['02', 'Orbital inference', 'Process selected signals closer to their source.'], ['03', 'Floating data centers', 'Explore modular compute platforms in orbit.']].map(([number, title, copy]) => <article key={title}><span>{number}</span><div><h3>{title}</h3><p>{copy}</p></div></article>)}</div>
-      <div className="mission-footer"><p className="mission-disclaimer">Concept simulation. Orbit AI does not currently claim an operational satellite constellation; paths, positions, and node labels are illustrative research targets.</p><SmartLink href="/Routes/research" className="text-link">Explore the research mission <ArrowRight size={16} /></SmartLink></div>
-    </section>
     <section className="frontier-section"><img src="/media/pulsar-research.webp" alt="Satellite prototype displayed in a controlled research room" loading="lazy" /><div className="frontier-overlay"><p className="section-label">RESEARCH / ROBOTICS</p><div className="frontier-grid"><article><span className="status research">Research / Prototype / Planned</span><h2>PRO PULSAR</h2><p>Orbit’s language-model and AI-infrastructure initiative spanning model research, inference, training systems, and developer access.</p><SmartLink href="/Routes/pro-pulsar" className="text-link">Explore Pro Pulsar <ArrowRight size={16} /></SmartLink></article><article><span className="status in-development">In development — concept targets only</span><h2>PULSAR V1</h2><p>An agile reconnaissance and support robotics concept designed to explore how intelligent software may work with physical systems.</p><SmartLink href="/Routes/pulsar-v1" className="text-link">Explore Pulsar V1 <ArrowRight size={16} /></SmartLink></article></div></div></section>
     <section className="pricing-preview"><p className="section-label">PLANS / ACCESS</p><h2>SIMPLE PLANS.<br />SERIOUS CAPABILITY.</h2><div>{[['Developer', '€0', 'Free for individuals'], ['Orbit Pro', '€10 / month', 'Parallel agents and Pro Pulsar access'], ['Orbit Team', '€25 / user / month', 'Team capabilities include planned items'], ['Enterprise', 'Custom', 'Terms and readiness confirmed with sales']].map(([name, price, copy]) => <article key={name}><h3>{name}</h3><b>{price}</b><p>{copy}</p></article>)}</div><SmartLink href="/shop" className="button primary">View full pricing <ArrowRight size={16} /></SmartLink></section>
     <section className="final-cta"><p className="section-label">READY / 01</p><h2>ENTER ORBIT.</h2><p>Intelligence that moves with you.</p><div className="actions"><SmartLink href={external.app} className="button primary">Launch Orbit <ExternalLink size={16} /></SmartLink><SmartLink href="/Routes/doc" className="button ghost">Read documentation</SmartLink><SmartLink href="/shop" className="button ghost">View pricing</SmartLink></div></section>
