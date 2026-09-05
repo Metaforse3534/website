@@ -3,15 +3,31 @@
   "version": "1.0.0",
   "private": true,
   "description": "Orbit AI official website and developer platform",
+  "type": "module",
   "scripts": {
-    "dev": "node server.js",
-    "lint": "node scripts/validate-site.js",
-    "build": "npm run build:css && node scripts/validate-site.js",
-    "build:css": "tailwindcss -i assets/css/tailwind.input.css -o assets/css/tailwind.generated.css --minify",
-    "start": "node server.js"
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "lint": "tsc -b --pretty false"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@react-three/fiber": "^8.18.0",
+    "framer-motion": "^12.43.0",
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-helmet-async": "^2.0.5",
+    "react-router-dom": "^7.18.3",
+    "three": "^0.179.1"
+  },
   "devDependencies": {
-    "tailwindcss": "^3.4.17"
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@types/node": "^24.3.0",
+    "@types/three": "^0.179.0",
+    "@vitejs/plugin-react": "^5.2.0",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.6"
   }
 }

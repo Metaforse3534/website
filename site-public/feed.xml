@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Orbit AI Writing</title>
+    <link>https://www.orbitdev.org/Routes/blog</link>
+    <description>Research, engineering, trust, and robotics writing from Orbit AI.</description>
+    <language>en</language>
+    <item><title>Why We Are Building Pulsar</title><link>https://www.orbitdev.org/public/blog/why-we-are-building-pulsar</link><guid>https://www.orbitdev.org/public/blog/why-we-are-building-pulsar</guid><description>Ambition with honest labels and a practical connection to the Orbit workspace.</description></item>
+    <item><title>How We Think About Trust in AI</title><link>https://www.orbitdev.org/public/blog/how-we-think-about-trust-in-ai</link><guid>https://www.orbitdev.org/public/blog/how-we-think-about-trust-in-ai</guid><description>Transparency, privacy, security, and no false social proof.</description></item>
+    <item><title>Building AI Systems That Work With People</title><link>https://www.orbitdev.org/public/blog/building-ai-systems-that-work-with-people</link><guid>https://www.orbitdev.org/public/blog/building-ai-systems-that-work-with-people</guid><description>Human oversight, review by default, and honest limitations.</description></item>
+    <item><title>Inside Orbit AI’s AI Architecture</title><link>https://www.orbitdev.org/public/blog/inside-orbit-ais-ai-architecture</link><guid>https://www.orbitdev.org/public/blog/inside-orbit-ais-ai-architecture</guid><description>Composable tools, reliability, and the boundary between product and research.</description></item>
+    <item><title>The Future of AI and Robotics</title><link>https://www.orbitdev.org/public/blog/the-future-of-ai-and-robotics</link><guid>https://www.orbitdev.org/public/blog/the-future-of-ai-and-robotics</guid><description>Moving from intelligence to physical action with safety and supervision.</description></item>
+  </channel>
+</rss>

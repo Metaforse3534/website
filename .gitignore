@@ -2,3 +2,5 @@
 *.exe
 .vercel/
 node_modules/
+dist/
+*.tsbuildinfo
