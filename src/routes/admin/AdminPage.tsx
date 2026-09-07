@@ -18,6 +18,7 @@ function Login({ onSession }: { onSession: (session: Session) => void }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+  const [notice, setNotice] = useState('')
   const [busy, setBusy] = useState(false)
   const submit = async (event: FormEvent) => {
     event.preventDefault(); setBusy(true); setError('')
@@ -26,12 +27,45 @@ function Login({ onSession }: { onSession: (session: Session) => void }) {
     if (authError || !data.session) setError(authError?.message ?? 'Sign-in failed.')
     else onSession(data.session)
   }
+  const recover = async () => {
+    setError(''); setNotice('')
+    if (!email) { setError('Enter your administrator email first.'); return }
+    setBusy(true)
+    const { error: recoveryError } = await supabase!.auth.resetPasswordForEmail(email, { redirectTo: `${window.location.origin}/admin` })
+    setBusy(false)
+    if (recoveryError) setError(recoveryError.message)
+    else setNotice('Password setup link sent. Check your email.')
+  }
   return <main className="admin-auth"><Meta title="Admin sign in" description="Authorized Orbit administrators only." path="/admin" /><form className="admin-auth-card" onSubmit={submit}>
     <OrbitMark /><p className="eyebrow">ORBIT ADMIN / RESTRICTED</p><h1>Publishing control</h1><p>Use an administrator account invited by Orbit. Public registration is disabled.</p>
     <label>Email<input type="email" value={email} onChange={event => setEmail(event.target.value)} autoComplete="username" required /></label>
     <label>Password<input type="password" value={password} onChange={event => setPassword(event.target.value)} autoComplete="current-password" required /></label>
-    {error && <p className="admin-error" role="alert">{error}</p>}<button className="admin-primary" disabled={busy}>{busy ? 'Checking access…' : 'Continue'}</button>
+    {error && <p className="admin-error" role="alert">{error}</p>}{notice && <p className="admin-success" role="status">{notice}</p>}<button className="admin-primary" disabled={busy}>{busy ? 'Please wait…' : 'Continue'}</button>
+    <button className="admin-link-button" type="button" onClick={() => void recover()} disabled={busy}>Set or reset password</button>
     <a href="https://app.orbitdev.org">Return to Orbit</a>
+  </form></main>
+}
+
+function PasswordRecovery({ onComplete }: { onComplete: () => void }) {
+  const [password, setPassword] = useState('')
+  const [confirm, setConfirm] = useState('')
+  const [error, setError] = useState('')
+  const [busy, setBusy] = useState(false)
+  const submit = async (event: FormEvent) => {
+    event.preventDefault(); setError('')
+    if (password.length < 12) { setError('Use at least 12 characters.'); return }
+    if (password !== confirm) { setError('Passwords do not match.'); return }
+    setBusy(true)
+    const { error: updateError } = await supabase!.auth.updateUser({ password })
+    setBusy(false)
+    if (updateError) setError(updateError.message)
+    else onComplete()
+  }
+  return <main className="admin-auth"><form className="admin-auth-card" onSubmit={submit}>
+    <OrbitMark /><p className="eyebrow">ORBIT ADMIN / ACCOUNT SETUP</p><h1>Choose a password</h1><p>Use a unique password with at least 12 characters. Authenticator setup follows next.</p>
+    <label>New password<input type="password" value={password} onChange={event => setPassword(event.target.value)} autoComplete="new-password" minLength={12} required /></label>
+    <label>Confirm password<input type="password" value={confirm} onChange={event => setConfirm(event.target.value)} autoComplete="new-password" minLength={12} required /></label>
+    {error && <p className="admin-error" role="alert">{error}</p>}<button className="admin-primary" disabled={busy}>{busy ? 'Saving…' : 'Save password'}</button>
   </form></main>
 }
 
@@ -113,10 +147,14 @@ export default function AdminPage() {
   const [session, setSession] = useState<Session | null>(null)
   const [ready, setReady] = useState(false)
   const [verified, setVerified] = useState(false)
+  const [recovering, setRecovering] = useState(false)
   useEffect(() => {
     if (!supabase) { setReady(true); return }
     void supabase.auth.getSession().then(({ data }) => { setSession(data.session); setReady(true) })
-    const { data } = supabase.auth.onAuthStateChange((_event, next) => setSession(next))
+    const { data } = supabase.auth.onAuthStateChange((event, next) => {
+      setSession(next)
+      if (event === 'PASSWORD_RECOVERY') setRecovering(true)
+    })
     return () => data.subscription.unsubscribe()
   }, [])
   useEffect(() => {
@@ -131,6 +169,7 @@ export default function AdminPage() {
   if (!ready) return <main className="admin-auth"><Activity className="admin-spinner" /></main>
   if (!session) return <Login onSession={setSession} />
   if (session.user.app_metadata.role !== 'admin') return <main className="admin-auth"><p>Redirecting…</p></main>
+  if (recovering) return <PasswordRecovery onComplete={() => setRecovering(false)} />
   if (!verified) return <MfaGate onVerified={() => setVerified(true)} />
   return <Dashboard session={session} />
 }
