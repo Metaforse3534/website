@@ -1,3 +1,4 @@
+-- Orbit Admin CMS schema, policies, storage, and seed content.
 create extension if not exists pgcrypto;
 create extension if not exists pg_cron;
 create extension if not exists pg_net;

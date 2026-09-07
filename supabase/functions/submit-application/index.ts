@@ -1,6 +1,6 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
-const allowedOrigins = (Deno.env.get('ALLOWED_ORIGINS') ?? 'https://www.orbitdev.org,http://localhost:5173')
+const allowedOrigins = (Deno.env.get('ALLOWED_ORIGINS') ?? 'https://www.orbitdev.org,https://orbit-ai-systems.j-boerefijn.chatgpt.site,http://localhost:5173')
   .split(',').map(value => value.trim())
 
 function cors(origin: string | null) {

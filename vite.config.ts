@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 
 export default defineConfig({
   root: 'client',
+  envDir: '..',
   publicDir: '../site-public',
   plugins: [react()],
   server: {

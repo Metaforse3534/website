@@ -23,11 +23,10 @@ In Supabase Auth settings, disable public sign-up, add `https://www.orbitdev.org
 
 ## 3. Deploy protected functions
 
-Set three function secrets using a private local environment file that is not committed:
+Optionally override the two function defaults using a private local environment file that is not committed:
 
 - `ALLOWED_ORIGINS=https://www.orbitdev.org,http://localhost:5173`
 - `RATE_LIMIT_SECRET=<long random value>`
-- `CRON_SECRET=<different long random value>`
 
 Deploy with:
 
@@ -38,7 +37,7 @@ npx supabase functions deploy submit-application purge-applications --use-api
 
 The Supabase runtime supplies `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` to the functions. Do not create browser-visible copies.
 
-Create Vault secrets named `project_url`, `publishable_key`, and `cron_secret`, then run `supabase/setup-cron.sql` in the SQL Editor. The cleanup job runs daily at 02:17 UTC.
+Run `supabase/setup-cron.sql` in the SQL Editor. It creates a random Vault-backed cleanup secret and schedules the cleanup job daily at 02:17 UTC.
 
 ## 4. Invite the first administrator
 
