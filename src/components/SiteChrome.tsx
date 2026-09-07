@@ -8,7 +8,7 @@ export const navGroups = [
   { label: 'Product', links: [['Orbit AI Workspace', '/Routes/orbit-ai'], ['Orbit Agents', '/Routes/agents'], ['Orbit Ecosystem', '/Routes/Eco'], ['Extension Pro', '/Routes/extension'], ['Pricing', '/shop']] },
   { label: 'Research', links: [['Pro Pulsar', '/Routes/pro-pulsar'], ['Pulsar Research', '/Routes/pulsar'], ['Pulsar V1 Robotics', '/Routes/pulsar-v1'], ['Research', '/Routes/research']] },
   { label: 'Developers', links: [['Developer Platform', '/Routes/developers'], ['Developer API', '/Routes/DEV'], ['Documentation', '/Routes/doc'], ['GitHub', external.github]] },
-  { label: 'Company', links: [['About', '/Routes/about'], ['Architects', '/Routes/architects'], ['Security', '/Routes/security'], ['Network Status', '/Routes/network'], ['Blog', '/Routes/blog'], ['Careers', '/Routes/careers'], ['Press', '/Routes/press'], ['Contact', '/Routes/contact']] },
+  { label: 'Company', links: [['About', '/Routes/about'], ['Architects', '/Routes/architects'], ['Updates', '/Routes/updates'], ['Security', '/Routes/security'], ['Network Status', '/Routes/network'], ['Blog', '/Routes/blog'], ['Careers', '/Routes/careers'], ['Press', '/Routes/press'], ['Contact', '/Routes/contact']] },
 ] as const
 
 export function OrbitMark() {
@@ -129,7 +129,7 @@ const footerColumns = [
   ['Product', [['Orbit AI', '/Routes/orbit-ai'], ['Agents', '/Routes/agents'], ['Ecosystem', '/Routes/Eco'], ['Extension Pro', '/Routes/extension'], ['Pricing', '/shop'], ['Launch Orbit', external.app]]],
   ['Research', [['Pro Pulsar', '/Routes/pro-pulsar'], ['Pulsar', '/Routes/pulsar'], ['Pulsar V1', '/Routes/pulsar-v1'], ['Research', '/Routes/research']]],
   ['Developers', [['Documentation', '/Routes/doc'], ['Developer API', '/Routes/DEV'], ['Developer Dashboard', external.developer], ['GitHub', external.github]]],
-  ['Company', [['About', '/Routes/about'], ['Architects', '/Routes/architects'], ['Blog', '/Routes/blog'], ['Reviews', '/Routes/reviews'], ['Careers', '/Routes/careers'], ['Press', '/Routes/press'], ['Contact', '/Routes/contact']]],
+  ['Company', [['About', '/Routes/about'], ['Architects', '/Routes/architects'], ['Updates', '/Routes/updates'], ['Blog', '/Routes/blog'], ['Reviews', '/Routes/reviews'], ['Careers', '/Routes/careers'], ['Press', '/Routes/press'], ['Contact', '/Routes/contact']]],
   ['Support', [['Support', '/Routes/support'], ['Network Status', '/Routes/network'], ['Security', '/Routes/security']]],
   ['Legal', [['Terms', '/Routes/terms'], ['Privacy', '/Routes/privacy'], ['Cookie Policy', '/Routes/cookies'], ['Acceptable Use', '/Routes/acceptable'], ['AI Usage Policy', '/Routes/ai-usage'], ['Refund Policy', '/Routes/refund'], ['Data Processing Agreement', '/Routes/dpa'], ['Orbit Rules', '/Routes/rules']]],
 ] as const

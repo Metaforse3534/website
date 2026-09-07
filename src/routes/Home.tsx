@@ -3,6 +3,7 @@ import { ArrowRight, Check, ExternalLink, FileCode2, Mic, Orbit, Search, ShieldC
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { Meta } from '../components/Meta'
+import { HomepageNoticeBar } from '../components/HomepageNotice'
 import { Layout, SmartLink } from '../components/SiteChrome'
 import { external } from '../data/siteData'
 
@@ -37,7 +38,7 @@ export default function Home() {
     const memory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory || 8
     setHeavyMotion(!reduced && memory >= 4 && window.innerWidth > 700)
   }, [])
-  return <Layout>
+  return <Layout><HomepageNoticeBar />
     <Meta title="Intelligence, Built for What’s Next." description="Orbit AI is an intelligent workspace for research, creation, automation, coding, and coordinated agents." path="/" />
     <Helmet><script type="application/ld+json">{JSON.stringify({ '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'Orbit AI', applicationCategory: 'ProductivityApplication', operatingSystem: 'Web, Windows', url: external.app, description: 'Research, create, automate and execute from one intelligent workspace.' })}</script></Helmet>
     <section className="hero">

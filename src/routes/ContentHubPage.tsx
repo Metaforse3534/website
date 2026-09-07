@@ -1,0 +1,16 @@
+import { useQuery } from '@tanstack/react-query'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { Link, useParams } from 'react-router-dom'
+import { Meta } from '../components/Meta'
+import { RichContent } from '../components/RichContent'
+import { Layout } from '../components/SiteChrome'
+import type { EditorialPost } from '../lib/cms'
+import { contentMediaUrl, isSupabaseConfigured, supabase } from '../lib/supabase'
+
+export default function ContentHubPage({ kind, detail = false }: { kind: 'research' | 'product_update'; detail?: boolean }) {
+  const { slug } = useParams(); const basePath = kind === 'research' ? '/research' : '/updates'; const indexPath = kind === 'research' ? '/Routes/research' : '/Routes/updates'; const label = kind === 'research' ? 'RESEARCH' : 'PRODUCT UPDATES'
+  const query = useQuery({ queryKey: ['content-hub', kind, slug ?? 'index'], enabled: isSupabaseConfigured, queryFn: async () => { const base = supabase!.from('editorial_posts').select('*').eq('kind', kind); const { data, error } = detail ? await base.eq('slug', slug!).maybeSingle() : await base.order('publish_at', { ascending: false }); if (error) throw error; return data as EditorialPost | EditorialPost[] | null } })
+  if (detail) { const post = !Array.isArray(query.data) ? query.data : null; if (query.isLoading) return <Layout><section className="content-loading">Loading…</section></Layout>; if (!post) return <Layout><section className="content-loading"><h1>Publication unavailable</h1><Link to={indexPath}>Return</Link></section></Layout>; return <Layout><Meta title={post.seo_title || post.title} description={post.seo_description || post.excerpt} path={`${basePath}/${post.slug}`} article /><article className="article"><header>{post.cover_image_path && <img className="article-cover" src={contentMediaUrl(post.cover_image_path) ?? ''} alt="" />}<p className="eyebrow">ORBIT AI / {label}</p><h1>{post.title}</h1><p>{post.excerpt}</p><div><span>{post.author_name}</span></div></header><div className="article-layout single"><div className="article-body"><RichContent document={post.body} /></div></div><footer className="article-footer"><Link to={indexPath}><ArrowLeft /> Back to {label.toLowerCase()}</Link></footer></article></Layout> }
+  const posts = Array.isArray(query.data) ? query.data : []
+  return <Layout><Meta title={kind === 'research' ? 'AI Research and Foundations' : 'Orbit Product Updates'} description={kind === 'research' ? 'Orbit research across reasoning, agents, oversight, model architecture, robotics, and responsible automation.' : 'Product and company updates from Orbit AI.'} path={indexPath} /><section className="blog-hero"><p className="eyebrow">ORBIT AI / {label}</p><h1>{kind === 'research' ? 'RESEARCH AND FOUNDATIONS.' : 'WHAT’S NEW AT ORBIT.'}</h1><p>{kind === 'research' ? 'Ambitious investigations, clearly separated from released product claims.' : 'Release notes, platform changes, and company announcements.'}</p></section><section className="post-grid">{posts.map((post, i) => <Link to={`${basePath}/${post.slug}`} key={post.id}><span>{label} / {String(i + 1).padStart(2,'0')}</span><h2>{post.title}</h2><p>{post.excerpt}</p><footer>Read publication <ArrowRight /></footer></Link>)}{!query.isLoading && !posts.length && <p className="content-empty">No published entries are available.</p>}</section></Layout>
+}

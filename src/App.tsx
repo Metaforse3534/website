@@ -13,6 +13,10 @@ const BlogPage = lazy(() => import('./routes/BlogPage'))
 const LegalPage = lazy(() => import('./routes/LegalPage'))
 const CareersPage = lazy(() => import('./routes/CareersPage'))
 const NotFoundPage = lazy(() => import('./routes/NotFoundPage'))
+const AdminPage = lazy(() => import('./routes/admin/AdminPage'))
+const ContentHubPage = lazy(() => import('./routes/ContentHubPage'))
+const NetworkStatusPage = lazy(() => import('./routes/NetworkStatusPage'))
+const JobPage = lazy(() => import('./routes/JobPage'))
 
 const legacyRedirects: [string, string][] = [
   ...pages.map(page => [`${page.path}.html`, page.path] as [string, string]),
@@ -27,7 +31,7 @@ export default function App() {
   return <Suspense fallback={<div className="route-loader" role="status"><span /> Loading Orbit…</div>}>
     <Routes>
       <Route path="/" element={<Home />} />
-      {pages.filter(page => !['/Routes/contact', '/Routes/reviews'].includes(page.path)).map(page => <Route key={page.path} path={page.path} element={<GenericPage pagePath={page.path} />} />)}
+      {pages.filter(page => !['/Routes/contact', '/Routes/reviews', '/Routes/research', '/Routes/network', '/Routes/careers'].includes(page.path)).map(page => <Route key={page.path} path={page.path} element={<GenericPage pagePath={page.path} />} />)}
       {legalDocuments.map(document => <Route key={document.path} path={document.path} element={<LegalPage path={document.path} />} />)}
       <Route path="/Routes/DEV" element={<ApiPage />} />
       <Route path="/Routes/doc" element={<DocsPage />} />
@@ -36,7 +40,15 @@ export default function App() {
       <Route path="/Routes/reviews" element={<FormsPage type="reviews" />} />
       <Route path="/Routes/blog" element={<BlogPage index />} />
       <Route path="/public/blog/:slug" element={<BlogPage />} />
-      <Route path="/Routes/Career" element={<CareersPage />} />
+      <Route path="/Routes/careers" element={<CareersPage />} />
+      <Route path="/Routes/Career" element={<Navigate to="/Routes/careers" replace />} />
+      <Route path="/careers/:slug" element={<JobPage />} />
+      <Route path="/Routes/research" element={<ContentHubPage kind="research" />} />
+      <Route path="/research/:slug" element={<ContentHubPage kind="research" detail />} />
+      <Route path="/Routes/updates" element={<ContentHubPage kind="product_update" />} />
+      <Route path="/updates/:slug" element={<ContentHubPage kind="product_update" detail />} />
+      <Route path="/Routes/network" element={<NetworkStatusPage />} />
+      <Route path="/admin/*" element={<AdminPage />} />
       {legacyRedirects.map(([from, to]) => <Route key={from} path={from} element={<Navigate to={to} replace />} />)}
       <Route path="/404" element={<NotFoundPage />} />
       <Route path="*" element={<NotFoundPage />} />
