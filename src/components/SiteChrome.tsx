@@ -1,5 +1,6 @@
 import { ExternalLink, Github, Menu, X } from 'lucide-react'
 import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react'
+import { createPortal } from 'react-dom'
 import { Link, useLocation } from 'react-router-dom'
 import { external } from '../data/siteData'
 import { CookieConsent } from './CookieConsent'
@@ -87,6 +88,14 @@ export function Header() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
   useEffect(() => {
+    const desktop = window.matchMedia('(min-width: 851px)')
+    const closeOnDesktop = (event: MediaQueryListEvent) => {
+      if (event.matches) setOpen(false)
+    }
+    desktop.addEventListener('change', closeOnDesktop)
+    return () => desktop.removeEventListener('change', closeOnDesktop)
+  }, [])
+  useEffect(() => {
     if (!open) return
     const previous = document.activeElement as HTMLElement | null
     document.body.classList.add('menu-active')
@@ -114,14 +123,14 @@ export function Header() {
       <Link to="/shop">Pricing</Link>
     </nav>
     <a className="nav-cta" href={external.app} target="_blank" rel="noopener noreferrer">Launch Orbit <ExternalLink aria-hidden="true" size={14} /></a>
-    <button className="menu-button" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
-    {open && <div className="mobile-panel" id="mobile-menu" ref={panel} role="dialog" aria-modal="true" aria-label="Navigation">
+    <button type="button" className="menu-button" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen(current => !current)}>{open ? <X /> : <Menu />}</button>
+    {open && createPortal(<div className="mobile-panel" id="mobile-menu" ref={panel} role="dialog" aria-modal="true" aria-label="Navigation">
       <nav className="mobile-nav" aria-label="Mobile navigation">
         {navGroups.map(group => <details key={group.label}><summary>{group.label}</summary>{group.links.map(([label, href]) => <SmartLink key={href} href={href} onClick={() => setOpen(false)}>{label}</SmartLink>)}</details>)}
         <SmartLink href="/shop" onClick={() => setOpen(false)}>Pricing</SmartLink>
         <SmartLink href={external.app} className="button primary" onClick={() => setOpen(false)}>Launch Orbit</SmartLink>
       </nav>
-    </div>}
+    </div>, document.body)}
   </header>
 }
 
