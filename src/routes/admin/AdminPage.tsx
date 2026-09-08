@@ -84,6 +84,18 @@ function MfaGate({ onVerified }: { onVerified: () => void }) {
     const verified = data.totp.find(factor => factor.status === 'verified')
     if (verified) setFactorId(verified.id)
     else {
+      // listFactors().totp contains verified factors only. Clear an abandoned
+      // enrollment with this friendly name before creating a replacement so a
+      // previously interrupted setup does not cause mfa_factor_name_conflict.
+      const abandoned = data.all.filter(factor =>
+        factor.factor_type === 'totp' &&
+        factor.status === 'unverified' &&
+        factor.friendly_name === 'Orbit Admin'
+      )
+      for (const factor of abandoned) {
+        const { error: unenrollError } = await supabase!.auth.mfa.unenroll({ factorId: factor.id })
+        if (unenrollError) { setError(unenrollError.message); setLoading(false); return }
+      }
       const { data: enrolled, error: enrollError } = await supabase!.auth.mfa.enroll({ factorType: 'totp', friendlyName: 'Orbit Admin' })
       if (enrollError) setError(enrollError.message)
       else { setFactorId(enrolled.id); setQr(enrolled.totp.qr_code); setSecret(enrolled.totp.secret) }

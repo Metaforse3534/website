@@ -1,11 +1,17 @@
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { createClient } from 'npm:@supabase/supabase-js@2.115.0'
 
 const allowedOrigins = (Deno.env.get('ALLOWED_ORIGINS') ?? 'https://www.orbitdev.org,https://orbit-ai-systems.j-boerefijn.chatgpt.site,http://localhost:5173')
   .split(',').map(value => value.trim())
 
 function cors(origin: string | null) {
   const allowed = origin && allowedOrigins.includes(origin) ? origin : allowedOrigins[0]
-  return { 'Access-Control-Allow-Origin': allowed, 'Access-Control-Allow-Headers': 'content-type, authorization, apikey', 'Access-Control-Allow-Methods': 'POST, OPTIONS', Vary: 'Origin' }
+  return {
+    'Access-Control-Allow-Origin': allowed,
+    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-retry-count, traceparent, tracestate, baggage',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Max-Age': '86400',
+    Vary: 'Origin',
+  }
 }
 
 function response(body: unknown, status: number, origin: string | null) {
