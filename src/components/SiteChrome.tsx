@@ -140,14 +140,14 @@ const footerColumns = [
   ['Developers', [['Documentation', '/Routes/doc'], ['Developer API', '/Routes/DEV'], ['Developer Dashboard', external.developer], ['GitHub', external.github]]],
   ['Company', [['About', '/Routes/about'], ['Architects', '/Routes/architects'], ['Updates', '/Routes/updates'], ['Blog', '/Routes/blog'], ['Reviews', '/Routes/reviews'], ['Careers', '/Routes/careers'], ['Press', '/Routes/press'], ['Contact', '/Routes/contact']]],
   ['Support', [['Support', '/Routes/support'], ['Network Status', '/Routes/network'], ['Security', '/Routes/security']]],
-  ['Legal', [['Terms', '/Routes/terms'], ['Privacy', '/Routes/privacy'], ['Cookie Policy', '/Routes/cookies'], ['Acceptable Use', '/Routes/acceptable'], ['AI Usage Policy', '/Routes/ai-usage'], ['Refund Policy', '/Routes/refund'], ['Data Processing Agreement', '/Routes/dpa'], ['Orbit Rules', '/Routes/rules']]],
+  ['Legal', [['Terms', '/Routes/terms'], ['Privacy', '/Routes/privacy'], ['Cookies', '/Routes/cookies'], ['Acceptable Use', '/Routes/acceptable'], ['AI Usage', '/Routes/ai-usage'], ['AI Transparency', '/Routes/ai-transparency'], ['Payments & Refunds', '/Routes/refund'], ['DPA', '/Routes/dpa'], ['Subprocessors', '/Routes/subprocessors'], ['Legal Notice', '/Routes/legal-notice'], ['Copyright', '/Routes/copyright'], ['Trademarks', '/Routes/trademark'], ['Open Source', '/Routes/open-source'], ['Accessibility', '/Routes/accessibility'], ['Security Disclosure', '/Routes/security-policy'], ['Orbit Rules', '/Routes/rules']]],
 ] as const
 
 export function Footer() {
   return <footer className="footer">
     <div className="footer-columns">{footerColumns.map(([title, links]) => <div key={title}><h2>{title}</h2>{links.map(([label, href]) => <SmartLink key={href} href={href}>{label}</SmartLink>)}</div>)}</div>
-    <div className="footer-wordmark">ORBIT SYSTEMS</div>
-    <div className="footer-bottom"><p>Orbit AI is developed by Orbit Systems B.V. in the Netherlands.</p><p>© {new Date().getFullYear()} Orbit Systems B.V.</p><p>Intelligence, Built for What’s Next.</p><div className="footer-social"><a href={external.github} target="_blank" rel="noopener noreferrer" aria-label="Orbit AI on GitHub"><Github size={17} /></a><a href={external.discord} target="_blank" rel="noopener noreferrer">Discord <ExternalLink size={12} /></a><Link to="/Routes/network"><i /> View network status</Link><button type="button" onClick={() => window.dispatchEvent(new Event('orbit:open-cookie-settings'))}>Cookie settings</button></div></div>
+    <div className="footer-wordmark">ORBIT LABS</div>
+    <div className="footer-bottom"><p>Orbit AI is a pre-launch project operated under the Orbit Labs name in the Netherlands.</p><p>© {new Date().getFullYear()} Orbit Labs.</p><p>Intelligence, Built for What’s Next.</p><div className="footer-social"><a href={external.github} target="_blank" rel="noopener noreferrer" aria-label="Orbit AI on GitHub"><Github size={17} /></a><a href={external.discord} target="_blank" rel="noopener noreferrer">Discord <ExternalLink size={12} /></a><Link to="/Routes/network"><i /> View network status</Link><button type="button" onClick={() => window.dispatchEvent(new Event('orbit:open-cookie-settings'))}>Cookie settings</button></div></div>
   </footer>
 }
 

@@ -1,5 +1,5 @@
 # Orbit AI — Company Profile
-**Orbit Systems B.V. | orbitdev.org | Version 0.0.20**
+**Orbit Labs | orbitdev.org | Version 0.0.20**
 
 ---
 
@@ -17,7 +17,7 @@ Orbit AI builds intelligent software that helps people work, learn, create, and 
 
 ## Short Website Description
 
-Orbit AI is an AI workspace developed by Orbit Systems B.V. that brings together AI chat, browser automation, coding assistance, research, file analysis, and workflow automation in one place. Orbit is built for people and organizations who want capable, reliable AI that respects their privacy and handles their data responsibly.
+Orbit AI is an AI workspace developed by Orbit Labs that brings together AI chat, browser automation, coding assistance, research, file analysis, and workflow automation in one place. Orbit is built for people and organizations who want capable, reliable AI that respects their privacy and handles their data responsibly.
 
 ---
 
@@ -25,7 +25,7 @@ Orbit AI is an AI workspace developed by Orbit Systems B.V. that brings together
 
 Orbit AI is a technology company building intelligent software for people and organizations who demand more than capability — they demand reliability, honesty, and control.
 
-Founded as Orbit Systems B.V., the company operates under the belief that the most powerful AI is not necessarily the most valuable AI. The most valuable AI is the kind people can actually trust: software that performs consistently, explains itself clearly, protects the data it touches, and works alongside human judgment rather than replacing it.
+Orbit Labs is an early-stage project built around the belief that the most powerful AI is not necessarily the most valuable AI. The most valuable AI is the kind people can actually trust: software that performs consistently, explains itself clearly, protects the data it touches, and works alongside human judgment rather than replacing it.
 
 Orbit develops its workspace and tooling iteratively, driven by real-world use and direct feedback. Every design decision, every engineering choice, and every policy reflects a core conviction: the future of AI depends not only on intelligence, but on trust.
 
@@ -33,13 +33,13 @@ Orbit develops its workspace and tooling iteratively, driven by real-world use a
 
 ## About Orbit AI
 
-Orbit AI is the intelligent workspace from Orbit Systems B.V., available at orbitdev.org and app.orbitdev.org.
+Orbit AI is the intelligent workspace from Orbit Labs, available at orbitdev.org and app.orbitdev.org.
 
 The Orbit workspace brings together the tools professionals, developers, researchers, and teams use most — AI chat, browser automation, coding assistance, workflow automation, file analysis, voice workflows, and collaboration — in a single, coherent environment.
 
 Orbit is not built around any single AI model. It is designed to work with the best available AI capabilities and connect them to a workspace that puts the user in control. The product is continuously developed and maintained, currently at version 0.0.20.
 
-Orbit Systems B.V. is registered in the Netherlands. The company operates openly and publishes its public code repository at github.com/Metaforse3534/OrbitAIPublic.
+Orbit Labs is based in the Netherlands and is awaiting business registration. The project operates openly and publishes its public code repository at github.com/Metaforse3534/OrbitAIPublic.
 
 ---
 
@@ -89,7 +89,7 @@ Everything in the Orbit workspace is designed to work together — not as a coll
 
 **Product name:** Orbit AI  
 **Short name:** Orbit  
-**Publisher:** Orbit AI / Orbit Systems B.V.  
+**Publisher:** Orbit AI / Orbit Labs
 **Website:** https://www.orbitdev.org  
 **Application:** https://app.orbitdev.org  
 **Current version:** 0.0.20  
@@ -237,7 +237,7 @@ Orbit is an early-stage company. The long-term vision is genuinely long-term. Wh
 
 ## Founder Story
 
-Orbit AI was founded as Orbit Systems B.V. in the Netherlands.
+Orbit AI is developed under the Orbit Labs name in the Netherlands. Business registration is pending.
 
 The company emerged from a direct observation: existing AI tools were becoming increasingly capable, but they were not becoming more trustworthy. Capability without accountability creates tools that are powerful but not dependable — impressive in demos but difficult to rely on in serious work.
 

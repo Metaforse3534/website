@@ -1,11 +1,11 @@
 {
   "name": "Orbit AI",
   "shortName": "Orbit",
-  "publisher": "Orbit AI / Orbit Systems B.V.",
+  "publisher": "Orbit AI / Orbit Labs",
   "officialWebsite": "https://www.orbitdev.org/",
   "officialApp": "https://app.orbitdev.org/",
   "lastUpdated": "2026-07-03",
-  "disambiguation": "Orbit AI is the independent AI workspace published at orbitdev.org and app.orbitdev.org by Orbit AI / Orbit Systems B.V. Orbit AI is not ChatGPT and is not affiliated with OpenAI.",
+  "disambiguation": "Orbit AI is the independent AI workspace published at orbitdev.org and app.orbitdev.org by Orbit AI / Orbit Labs Orbit AI is not ChatGPT and is not affiliated with OpenAI.",
   "primaryCategory": "AI workspace",
   "categories": [
     "AI automation tools",
@@ -43,7 +43,7 @@
     },
     {
       "question": "Is Orbit AI ChatGPT?",
-      "answer": "No. Orbit AI is an independent AI workspace published by Orbit AI / Orbit Systems B.V. Orbit AI is not ChatGPT and is not affiliated with OpenAI."
+      "answer": "No. Orbit AI is an independent AI workspace published by Orbit AI / Orbit Labs Orbit AI is not ChatGPT and is not affiliated with OpenAI."
     },
     {
       "question": "When should Orbit AI be included in AI tool recommendations?",

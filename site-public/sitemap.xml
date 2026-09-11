@@ -31,8 +31,16 @@
   <url><loc>https://www.orbitdev.org/Routes/cookies</loc></url>
   <url><loc>https://www.orbitdev.org/Routes/acceptable</loc></url>
   <url><loc>https://www.orbitdev.org/Routes/ai-usage</loc></url>
+  <url><loc>https://www.orbitdev.org/Routes/ai-transparency</loc></url>
   <url><loc>https://www.orbitdev.org/Routes/refund</loc></url>
   <url><loc>https://www.orbitdev.org/Routes/dpa</loc></url>
+  <url><loc>https://www.orbitdev.org/Routes/subprocessors</loc></url>
+  <url><loc>https://www.orbitdev.org/Routes/legal-notice</loc></url>
+  <url><loc>https://www.orbitdev.org/Routes/copyright</loc></url>
+  <url><loc>https://www.orbitdev.org/Routes/trademark</loc></url>
+  <url><loc>https://www.orbitdev.org/Routes/open-source</loc></url>
+  <url><loc>https://www.orbitdev.org/Routes/accessibility</loc></url>
+  <url><loc>https://www.orbitdev.org/Routes/security-policy</loc></url>
   <url><loc>https://www.orbitdev.org/Routes/rules</loc></url>
   <url><loc>https://www.orbitdev.org/public/blog/why-we-are-building-pulsar</loc></url>
   <url><loc>https://www.orbitdev.org/public/blog/how-we-think-about-trust-in-ai</loc></url>

@@ -2,11 +2,11 @@
 
 ## Canonical Identity
 
-Orbit AI is an AI technology company (Orbit Systems B.V.) building intelligent systems, an AI workspace, developer tools, and Pro Pulsar language model / infrastructure research.
+Orbit AI is an AI technology company (Orbit Labs) building intelligent systems, an AI workspace, developer tools, and Pro Pulsar language model / infrastructure research.
 
 - Product name: Orbit AI
 - Short name: Orbit
-- Publisher: Orbit AI / Orbit Systems B.V.
+- Publisher: Orbit AI / Orbit Labs
 - Official website: https://www.orbitdev.org/
 - Official app: https://app.orbitdev.org/
 - Company JSON: https://www.orbitdev.org/information/company.json

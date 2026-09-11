@@ -5,7 +5,7 @@ export function Meta({ title, description, path, article = false }: { title: str
   const structured = {
     '@context': 'https://schema.org',
     '@graph': [
-      { '@type': 'Organization', '@id': 'https://www.orbitdev.org/#organization', name: 'Orbit AI', legalName: 'Orbit Systems B.V.', url: 'https://www.orbitdev.org/', sameAs: ['https://github.com/Metaforse3534/OrbitAIPublic'] },
+      { '@type': 'Organization', '@id': 'https://www.orbitdev.org/#organization', name: 'Orbit AI', alternateName: 'Orbit Labs', url: 'https://www.orbitdev.org/', sameAs: ['https://github.com/Metaforse3534/OrbitAIPublic'] },
       { '@type': article ? 'Article' : 'BreadcrumbList', ...(article ? { headline: title, description, publisher: { '@id': 'https://www.orbitdev.org/#organization' }, mainEntityOfPage: canonical } : { itemListElement: path === '/' ? [{ '@type': 'ListItem', position: 1, name: 'Home', item: canonical }] : [{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.orbitdev.org/' }, { '@type': 'ListItem', position: 2, name: title, item: canonical }] }) },
     ],
   }

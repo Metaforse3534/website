@@ -1,5 +1,5 @@
 # Orbit AI — Brand Identity Guidelines
-**Orbit Systems B.V. | Internal & External Reference Document**
+**Orbit Labs | Internal & External Reference Document**
 
 ---
 
@@ -393,4 +393,4 @@ Do not:
 
 *These guidelines apply to all public-facing Orbit AI materials: website, documentation, product interfaces, partnership materials, press communications, and developer documentation. Internal tooling may adapt these standards where operationally necessary.*
 
-*Version: July 2026 | Orbit Systems B.V.*
+*Version: July 2026 | Orbit Labs*

@@ -164,16 +164,16 @@ export const pages: PageDefinition[] = [
     ], actions: [{ label: 'Open Developer Dashboard', href: external.developer, primary: true }, { label: 'API Documentation', href: '/Routes/DEV' }, { label: 'Product Documentation', href: '/Routes/doc' }, { label: 'GitHub', href: external.github }],
   },
   {
-    path: '/Routes/about', eyebrow: 'ORBIT SYSTEMS B.V. / NETHERLANDS', title: 'INTELLIGENCE, BUILT FOR WHAT’S NEXT.',
+    path: '/Routes/about', eyebrow: 'ORBIT LABS / NETHERLANDS', title: 'INTELLIGENCE, BUILT FOR WHAT’S NEXT.',
     description: 'Orbit AI is an AI workspace and research company building trusted intelligence for software, agents, and robotics.',
-    intro: 'Orbit AI builds intelligent systems, AI assistants, developer tools, and Pro Pulsar language-model technology. Orbit Systems B.V. develops the Orbit workspace and pursues longer-term Pulsar V1 robotics research.',
+    intro: 'Orbit AI builds intelligent systems, AI assistants, developer tools, and Pro Pulsar language-model technology. Orbit Labs develops the Orbit workspace and pursues longer-term Pulsar V1 robotics research.',
     sections: [
       { title: 'What Orbit builds', body: 'A connected AI workspace, coordinated agents, developer tools, language-model research, and longer-term robotics concepts.' },
       { title: 'Orbit workspace', body: 'The current product brings chat, files, research, code, agents, automation, voice, and artifacts together.' },
       { title: 'Pro Pulsar', body: 'Orbit’s language-model and AI-infrastructure initiative, with component-level Research, Prototype, Planned, or Available labels.', status: 'Research' },
       { title: 'Pulsar V1 research', body: 'A long-term robotics concept for exploring intelligent software in physical systems—not a finished product.', status: 'In development' },
       { title: 'Operating principles', body: 'Precision, velocity, autonomy, responsibility, and honest product labels shape how Orbit describes and builds its work.' },
-      { title: 'Company information', body: 'Public brand: Orbit AI. Legal company name: Orbit Systems B.V. Jurisdiction: Netherlands.' },
+      { title: 'Project information', body: 'Public product brand: Orbit AI. Operating name: Orbit Labs. Based in the Netherlands; business registration is pending.' },
       { title: 'Product-status transparency', body: 'Released capabilities, research, prototypes, plans, and in-development concepts are labeled separately.' },
     ], actions: [{ label: 'Explore the workspace', href: '/Routes/orbit-ai', primary: true }, { label: 'Contact Orbit', href: '/Routes/contact' }],
   },
@@ -245,7 +245,7 @@ export const pages: PageDefinition[] = [
     ], actions: [{ label: 'Extension Hub', href: external.extension, primary: true }, { label: 'Sign in', href: external.auth }, { label: 'Documentation', href: '/Routes/doc#browser-extension' }],
   },
   {
-    path: '/Routes/careers', eyebrow: 'CAREERS / ORBIT SYSTEMS B.V.', title: 'BUILD WITH CARE.',
+    path: '/Routes/careers', eyebrow: 'CAREERS / ORBIT LABS', title: 'BUILD WITH CARE.',
     description: 'Orbit careers, working principles, open role categories, application privacy, and contact.',
     intro: 'Orbit is interested in people who can move quickly without becoming careless about facts, users, or consequences.',
     sections: [
@@ -262,13 +262,13 @@ export const pages: PageDefinition[] = [
     description: 'Verified Orbit AI company facts, product summary, official links, and press contact.',
     intro: 'Orbit AI is an AI workspace and research company building trusted intelligence for software, agents, and robotics.',
     sections: [
-      { title: 'Company boilerplate', body: 'Orbit AI builds intelligent systems, AI assistants, developer tools, and Pro Pulsar language-model technology. Orbit Systems B.V. develops the Orbit workspace and pursues longer-term Pulsar V1 robotics research.' },
+      { title: 'Company boilerplate', body: 'Orbit AI builds intelligent systems, AI assistants, developer tools, and Pro Pulsar language-model technology. Orbit Labs develops the Orbit workspace and pursues longer-term Pulsar V1 robotics research.' },
       { title: 'Product summary', body: 'The Orbit AI workspace supports chat, files, research, code, agents, automations, voice, and artifact creation across web and Windows desktop surfaces.' },
-      { title: 'Company facts', body: 'Public brand: Orbit AI. Legal company: Orbit Systems B.V. Jurisdiction: Netherlands. Primary website: orbitdev.org.' },
+      { title: 'Project facts', body: 'Public product brand: Orbit AI. Operating name: Orbit Labs. Based in the Netherlands; business registration is pending. Primary website: orbitdev.org.' },
       { title: 'Official links', body: 'Use the primary website, Orbit application, documentation, GitHub repository, and Discord links published here.' },
       { title: 'Press contact', body: 'Send factual press inquiries to press@orbitdev.org.' },
       { title: 'Media placeholder', body: 'A downloadable press package is not currently published. Request the current approved assets from the press contact.', status: 'Coming soon' },
-      { title: 'Brand usage', body: 'Do not imply endorsement, partnership, certification, or product availability. Keep Orbit AI and Orbit Systems B.V. naming accurate.' },
+      { title: 'Brand usage', body: 'Do not imply endorsement, partnership, certification, or product availability. Keep Orbit AI and Orbit Labs naming accurate.' },
     ], actions: [{ label: 'Email press', href: 'mailto:press@orbitdev.org', primary: true }, { label: 'About Orbit', href: '/Routes/about' }],
   },
   {

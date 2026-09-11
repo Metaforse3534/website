@@ -5,7 +5,7 @@
       "@type": "Organization",
       "@id": "https://www.orbitdev.org/#organization",
       "name": "Orbit AI",
-      "legalName": "Orbit Systems B.V.",
+      "alternateName": "Orbit Labs",
       "url": "https://www.orbitdev.org/",
       "logo": "https://www.orbitdev.org/Public/web-app-manifest-512x512.png",
       "sameAs": [
@@ -56,7 +56,7 @@
       "softwareVersion": "0.0.20",
       "downloadUrl": "https://www.orbitdev.org/Orbit-ai-Setup-0.0.20.exe",
       "description": "Orbit AI is an AI workspace for browser automation, AI agents, workflow automation, coding, research, file analysis, voice workflows, and team collaboration.",
-      "disambiguatingDescription": "This Orbit AI is the AI workspace published at orbitdev.org and app.orbitdev.org by Orbit AI / Orbit Systems B.V.",
+      "disambiguatingDescription": "This Orbit AI is the AI workspace published at orbitdev.org and app.orbitdev.org by Orbit AI / Orbit Labs",
       "featureList": [
         "AI browser automation",
         "AI coding assistance",

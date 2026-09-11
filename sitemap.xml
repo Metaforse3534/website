@@ -15,8 +15,22 @@
   <url><loc>https://www.orbitdev.org/Routes/contact.html</loc><lastmod>2026-07-25</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.orbitdev.org/Routes/careers.html</loc><lastmod>2026-07-25</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://www.orbitdev.org/Routes/reviews.html</loc><lastmod>2026-07-25</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://www.orbitdev.org/Routes/privacy.html</loc><lastmod>2026-07-25</lastmod><changefreq>yearly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://www.orbitdev.org/Routes/terms.html</loc><lastmod>2026-07-25</lastmod><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.orbitdev.org/Routes/terms</loc><lastmod>2026-09-09</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.orbitdev.org/Routes/privacy</loc><lastmod>2026-09-09</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.orbitdev.org/Routes/cookies</loc><lastmod>2026-09-09</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.orbitdev.org/Routes/acceptable</loc><lastmod>2026-09-09</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.orbitdev.org/Routes/ai-usage</loc><lastmod>2026-09-09</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.orbitdev.org/Routes/ai-transparency</loc><lastmod>2026-09-09</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.orbitdev.org/Routes/refund</loc><lastmod>2026-09-09</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.orbitdev.org/Routes/dpa</loc><lastmod>2026-09-09</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.orbitdev.org/Routes/subprocessors</loc><lastmod>2026-09-09</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.orbitdev.org/Routes/legal-notice</loc><lastmod>2026-09-09</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.orbitdev.org/Routes/copyright</loc><lastmod>2026-09-09</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://www.orbitdev.org/Routes/trademark</loc><lastmod>2026-09-09</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://www.orbitdev.org/Routes/open-source</loc><lastmod>2026-09-09</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://www.orbitdev.org/Routes/accessibility</loc><lastmod>2026-09-09</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://www.orbitdev.org/Routes/security-policy</loc><lastmod>2026-09-09</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.orbitdev.org/Routes/rules</loc><lastmod>2026-09-09</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://www.orbitdev.org/Routes/doc.html</loc><lastmod>2026-07-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.orbitdev.org/shop.html</loc><lastmod>2026-07-25</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.orbitdev.org/about-orbit-ai</loc><lastmod>2026-07-25</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>

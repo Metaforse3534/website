@@ -62,7 +62,7 @@ class OrbitInformationDataEngine {
     const c = this.data.company;
 
     document.querySelectorAll('[data-info="company-name"]').forEach(el => el.textContent = c.name || 'Orbit AI');
-    document.querySelectorAll('[data-info="company-legal"]').forEach(el => el.textContent = c.legalName || 'Orbit Systems B.V.');
+    document.querySelectorAll('[data-info="company-legal"]').forEach(el => el.textContent = c.operatingName || 'Orbit Labs');
     document.querySelectorAll('[data-info="company-tagline"]').forEach(el => el.textContent = c.tagline || '');
     document.querySelectorAll('[data-info="company-desc"]').forEach(el => el.textContent = c.description || '');
     document.querySelectorAll('[data-info="company-jurisdiction"]').forEach(el => el.textContent = c.jurisdiction || 'Netherlands');
