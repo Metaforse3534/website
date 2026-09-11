@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState, type ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { ArrowRight, Check, ExternalLink, FileCode2, Mic, Orbit, Search, ShieldCheck, Waypoints } from 'lucide-react'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
@@ -7,7 +7,6 @@ import { HomepageNoticeBar } from '../components/HomepageNotice'
 import { Layout, SmartLink } from '../components/SiteChrome'
 import { external } from '../data/siteData'
 
-const OrbitalScene = lazy(() => import('../components/OrbitalScene'))
 const capabilities = [
   ['Research', 'Explore technical literature, compare sources, extract structured facts, and produce clear findings.', '/Routes/doc#research'],
   ['Synthesis', 'Turn unstructured ideas into specifications, reports, presentations, documents, and decision-ready outputs.', '/Routes/orbit-ai'],
@@ -32,19 +31,11 @@ function Reveal({ children, className = '' }: { children: ReactNode; className?:
 }
 
 export default function Home() {
-  const [heavyMotion, setHeavyMotion] = useState(false)
-  useEffect(() => {
-    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches
-    const memory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory || 8
-    setHeavyMotion(!reduced && memory >= 4 && window.innerWidth > 700)
-  }, [])
   return <Layout><HomepageNoticeBar />
     <Meta title="Intelligence, Built for What’s Next." description="Orbit AI is an intelligent workspace for research, creation, automation, coding, and coordinated agents." path="/" />
     <Helmet><script type="application/ld+json">{JSON.stringify({ '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'Orbit AI', applicationCategory: 'ProductivityApplication', operatingSystem: 'Web, Windows', url: external.app, description: 'Research, create, automate and execute from one intelligent workspace.' })}</script></Helmet>
     <section className="hero">
-      <video className="hero-video" autoPlay muted loop playsInline poster="/media/orbit-hero-poster.png"><source src="/media/orbit-hero.mp4" type="video/mp4" media="(min-width: 701px)" /></video>
       <div className="hero-shade" />
-      {heavyMotion ? <Suspense fallback={<div className="orbital-fallback" />}><OrbitalScene /></Suspense> : <div className="orbital-fallback" />}
       <div className="hero-content"><p className="eyebrow">ORBIT AI / INTELLIGENT WORKSPACE</p><h1>AI THAT GETS<br />THINGS DONE.</h1><p className="lede">Research, create, automate and execute from one intelligent workspace.</p><div className="actions"><a className="button primary" href={external.app} target="_blank" rel="noopener noreferrer">Launch Orbit <ExternalLink size={17} /></a><a className="button ghost" href="#platform">Explore the platform <ArrowRight size={17} /></a></div></div>
       <div className="hero-status"><span><i /> WORKSPACE AVAILABLE</span><span>ORBIT AI v0.0.20</span></div>
     </section>
