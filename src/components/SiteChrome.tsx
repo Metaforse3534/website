@@ -1,9 +1,11 @@
 import { ExternalLink, Github, Menu, X } from 'lucide-react'
-import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react'
+import { Fragment, Suspense, useEffect, useRef, useState, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, Outlet, useLocation } from 'react-router-dom'
 import { external } from '../data/siteData'
 import { CookieConsent } from './CookieConsent'
+import { OrbitMarkLoader, useDelayedPending } from './loading'
+import { OrbitPageTransition } from './motion/OrbitPageTransition'
 
 export const navGroups = [
   { label: 'Product', links: [['Orbit AI Workspace', '/Routes/orbit-ai'], ['Orbit Agents', '/Routes/agents'], ['Orbit Ecosystem', '/Routes/Eco'], ['Extension Pro', '/Routes/extension'], ['Pricing', '/shop']] },
@@ -21,58 +23,6 @@ function SmartLink({ href, children, className, onClick }: { href: string; child
   return externalLink
     ? <a href={href} className={className} onClick={onClick} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}>{children}</a>
     : <Link to={href} className={className} onClick={onClick}>{children}</Link>
-}
-
-function ScrollMotion() {
-  const location = useLocation()
-
-  useLayoutEffect(() => {
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reducedMotion || !('IntersectionObserver' in window)) return
-
-    const elements = Array.from(document.querySelectorAll<HTMLElement>([
-      '#main > section:not(.hero):not(.page-hero):not(.docs-hero):not(.pricing-hero):not(.blog-hero):not(.careers-hero):not(.form-hero):not(.not-found)',
-      '.capability',
-      '.deep-row',
-      '.agent-stack article',
-      '.principles > div',
-      '.frontier-grid article',
-      '.pricing-grid > article',
-      '.pricing-preview article',
-      '.post-grid > a',
-      '.role-list > article',
-      '.mission-steps article',
-      '.mission-steps-horizontal article',
-      '.orbit-map-readout article',
-      '.docs-content > section',
-      '.article-body > section',
-      '.legal-content > section',
-    ].join(',')))
-
-    elements.forEach((element, index) => {
-      element.classList.add('motion-reveal')
-      element.style.setProperty('--reveal-delay', `${(index % 4) * 70}ms`)
-    })
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return
-        entry.target.classList.add('is-visible')
-        observer.unobserve(entry.target)
-      })
-    }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' })
-
-    elements.forEach(element => observer.observe(element))
-    return () => {
-      observer.disconnect()
-      elements.forEach(element => {
-        element.classList.remove('motion-reveal', 'is-visible')
-        element.style.removeProperty('--reveal-delay')
-      })
-    }
-  }, [location.pathname])
-
-  return null
 }
 
 export function Header() {
@@ -151,8 +101,17 @@ export function Footer() {
   </footer>
 }
 
+function DelayedRouteLoader() {
+  const visible = useDelayedPending(true)
+  return visible ? <div className="route-loader" role="status" aria-live="polite"><OrbitMarkLoader label="Loading page" /><span>Loading Orbit</span></div> : null
+}
+
+export function PublicShell() {
+  return <><a className="skip" href="#main">Skip to content</a><Header /><main id="main"><Suspense fallback={<DelayedRouteLoader />}><OrbitPageTransition><Outlet /></OrbitPageTransition></Suspense></main><Footer /><CookieConsent /></>
+}
+
 export function Layout({ children }: { children: ReactNode }) {
-  return <><a className="skip" href="#main">Skip to content</a><Header /><main id="main">{children}</main><ScrollMotion /><Footer /><CookieConsent /></>
+  return <Fragment>{children}</Fragment>
 }
 
 export { SmartLink }

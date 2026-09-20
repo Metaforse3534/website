@@ -1,5 +1,6 @@
 import { Fragment, type ReactNode } from 'react'
 import type { RichNode } from '../lib/cms'
+import { OrbitImage } from './media'
 
 const allowedProtocols = /^(https?:|mailto:)/i
 
@@ -27,7 +28,7 @@ function renderNode(node: RichNode, key: number): ReactNode {
     case 'listItem': return <li key={key}>{children}</li>
     case 'blockquote': return <blockquote key={key}>{children}</blockquote>
     case 'hardBreak': return <br key={key} />
-    case 'image': { const src = String(node.attrs?.src ?? ''); return /^https:\/\//.test(src) ? <img key={key} src={src} alt={String(node.attrs?.alt ?? '')} loading="lazy" /> : null }
+    case 'image': { const src = String(node.attrs?.src ?? ''); return /^https:\/\//.test(src) ? <OrbitImage key={key} src={src} alt={String(node.attrs?.alt ?? '')} /> : null }
     default: return null
   }
 }

@@ -1,5 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
+import { OrbitMarkLoader } from './components/loading'
+import { PublicShell } from './components/SiteChrome'
 import { legalDocuments } from './data/legalData'
 import { pages } from './data/siteData'
 
@@ -28,8 +30,8 @@ const legacyRedirects: [string, string][] = [
 ]
 
 export default function App() {
-  return <Suspense fallback={<div className="route-loader" role="status"><span /> Loading Orbit…</div>}>
-    <Routes>
+  return <Routes>
+    <Route element={<PublicShell />}>
       <Route path="/" element={<Home />} />
       {pages.filter(page => !['/Routes/contact', '/Routes/reviews', '/Routes/research', '/Routes/network', '/Routes/careers'].includes(page.path)).map(page => <Route key={page.path} path={page.path} element={<GenericPage pagePath={page.path} />} />)}
       {legalDocuments.map(document => <Route key={document.path} path={document.path} element={<LegalPage path={document.path} />} />)}
@@ -48,10 +50,10 @@ export default function App() {
       <Route path="/Routes/updates" element={<ContentHubPage kind="product_update" />} />
       <Route path="/updates/:slug" element={<ContentHubPage kind="product_update" detail />} />
       <Route path="/Routes/network" element={<NetworkStatusPage />} />
-      <Route path="/admin/*" element={<AdminPage />} />
       {legacyRedirects.map(([from, to]) => <Route key={from} path={from} element={<Navigate to={to} replace />} />)}
       <Route path="/404" element={<NotFoundPage />} />
       <Route path="*" element={<NotFoundPage />} />
-    </Routes>
-  </Suspense>
+    </Route>
+    <Route path="/admin/*" element={<Suspense fallback={<div className="route-loader"><OrbitMarkLoader label="Loading administration" /></div>}><AdminPage /></Suspense>} />
+  </Routes>
 }

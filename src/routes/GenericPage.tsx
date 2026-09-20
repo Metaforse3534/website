@@ -1,8 +1,9 @@
 import { ArrowRight, Check, ExternalLink } from 'lucide-react'
-import { motion } from 'framer-motion'
 import { Navigate, useParams } from 'react-router-dom'
 import { Layout, SmartLink } from '../components/SiteChrome'
 import { Meta } from '../components/Meta'
+import { OrbitReveal } from '../components/motion'
+import { OrbitImage } from '../components/media'
 import { pages } from '../data/siteData'
 
 export default function GenericPage({ pagePath }: { pagePath?: string }) {
@@ -17,7 +18,7 @@ export default function GenericPage({ pagePath }: { pagePath?: string }) {
   return <Layout>
     <Meta title={page.title} description={page.description} path={page.path} />
     <section className={`page-hero${isRobotics ? ' media-hero' : ''}`}>
-      {isRobotics && <img src="/media/pulsar-research.webp" alt="Satellite prototype displayed in a controlled research room" />}
+      {isRobotics && <OrbitImage src="/media/pulsar-research.webp" alt="Satellite prototype displayed in a controlled research room" aspectRatio="16 / 9" />}
       <div className="page-hero-grid" aria-hidden="true" />
       <div className="page-hero-content">
         <p className="eyebrow">{page.eyebrow}</p>
@@ -31,11 +32,11 @@ export default function GenericPage({ pagePath }: { pagePath?: string }) {
     {isAgents && <section className="execution-path" aria-label="Agent execution path">{['Understanding', 'Researching', 'Comparing', 'Building', 'Reviewing', 'Complete'].map((step, index) => <div key={step}><span>0{index + 1}</span><b>{step}</b></div>)}</section>}
     {isWorkspace && <WorkspacePreview />}
     <section className="content-rows">
-      {page.sections.map((section, index) => <motion.article className="content-row" key={section.title} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .15 }} transition={{ duration: .45 }}>
+      {page.sections.map((section, index) => <OrbitReveal as="article" className="content-row" key={section.title}>
         <div className="row-number">{String(index + 1).padStart(2, '0')}</div>
         <div className="row-title"><h2>{section.title}</h2>{section.status && <span className={`status ${section.status.toLowerCase().replaceAll(' ', '-')}`}>{section.status}</span>}</div>
         <div className="row-copy"><p>{section.body}</p>{section.items && <ul>{section.items.map(item => <li key={item}><Check size={15} />{item}</li>)}</ul>}</div>
-      </motion.article>)}
+      </OrbitReveal>)}
     </section>
     {page.actions && <section className="page-cta"><p className="eyebrow">NEXT TRAJECTORY</p><h2>Move from context to action.</h2><div className="actions">{page.actions.slice(0, 3).map(action => <SmartLink key={action.label} href={action.href} className={`button ${action.primary ? 'primary' : 'ghost'}`}>{action.label}<ArrowRight size={16} /></SmartLink>)}</div></section>}
   </Layout>
