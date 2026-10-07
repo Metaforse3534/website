@@ -1,5 +1,5 @@
 import { useReducedMotion } from 'framer-motion'
-import { useState, type ImgHTMLAttributes, type VideoHTMLAttributes } from 'react'
+import { useEffect, useRef, useState, type ImgHTMLAttributes, type VideoHTMLAttributes } from 'react'
 import { OrbitMediaSkeleton } from '../loading'
 
 type OrbitImageProps = ImgHTMLAttributes<HTMLImageElement> & {
@@ -18,13 +18,20 @@ export function OrbitImage({ className = '', aspectRatio, fallbackLabel = 'Image
 type OrbitVideoProps = VideoHTMLAttributes<HTMLVideoElement> & {
   poster: string
   label?: string
+  playbackRate?: number
 }
 
-export function OrbitVideo({ className = '', poster, label = 'Orbit product film', children, onCanPlay, onError, ...props }: OrbitVideoProps) {
+export function OrbitVideo({ className = '', poster, label = 'Orbit product film', playbackRate = 1, children, onCanPlay, onError, ...props }: OrbitVideoProps) {
   const reduceMotion = useReducedMotion()
   const [state, setState] = useState<'loading' | 'ready' | 'error'>('loading')
+  const video = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    if (state === 'ready' && !reduceMotion && video.current) video.current.playbackRate = playbackRate
+  }, [playbackRate, reduceMotion, state])
+
   return <span className={`orbit-video ${className} is-${reduceMotion ? 'reduced' : state}`.trim()}>
     <img className="orbit-video-poster" src={poster} alt="" aria-hidden="true" />
-    {!reduceMotion && state !== 'error' && <video {...props} poster={poster} aria-label={label} preload={props.preload ?? 'metadata'} onCanPlay={event => { setState('ready'); onCanPlay?.(event) }} onError={event => { setState('error'); onError?.(event) }}>{children}</video>}
+    {!reduceMotion && state !== 'error' && <video ref={video} {...props} poster={poster} aria-label={label} preload={props.preload ?? 'metadata'} onCanPlay={event => { event.currentTarget.playbackRate = playbackRate; setState('ready'); onCanPlay?.(event) }} onError={event => { setState('error'); onError?.(event) }}>{children}</video>}
   </span>
 }

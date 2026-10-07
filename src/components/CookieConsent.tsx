@@ -1,5 +1,5 @@
 import { Cookie, ShieldCheck, SlidersHorizontal, X } from 'lucide-react'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 type ConsentChoice = {
@@ -10,41 +10,66 @@ type ConsentChoice = {
   updatedAt: string
 }
 
+type ConsentReadResult = {
+  choice: ConsentChoice | null
+  error: string
+}
+
 const storageKey = 'orbit-cookie-consent-v1'
 const optionalDefaults = { preferences: false, analytics: false, marketing: false }
 
-function readChoice(): ConsentChoice | null {
+function readChoice(): ConsentReadResult {
   try {
     const value = localStorage.getItem(storageKey)
-    if (!value) return null
-    const parsed = JSON.parse(value) as Partial<ConsentChoice>
-    if (parsed.necessary !== true) return null
-    return {
-      necessary: true,
-      preferences: parsed.preferences === true,
-      analytics: parsed.analytics === true,
-      marketing: parsed.marketing === true,
-      updatedAt: typeof parsed.updatedAt === 'string' ? parsed.updatedAt : new Date().toISOString(),
+    if (!value) return { choice: null, error: '' }
+    const parsed: unknown = JSON.parse(value)
+    if (!parsed || typeof parsed !== 'object' || !('necessary' in parsed) || parsed.necessary !== true) {
+      return { choice: null, error: 'Saved cookie choices could not be read. Please choose your preferences again.' }
     }
-  } catch {
-    return null
+    const valueRecord = parsed as Partial<ConsentChoice>
+    if (typeof valueRecord.updatedAt !== 'string') {
+      return { choice: null, error: 'Saved cookie choices are incomplete. Please choose your preferences again.' }
+    }
+    return {
+      choice: {
+        necessary: true,
+        preferences: valueRecord.preferences === true,
+        analytics: valueRecord.analytics === true,
+        marketing: valueRecord.marketing === true,
+        updatedAt: valueRecord.updatedAt,
+      },
+      error: '',
+    }
+  } catch (error) {
+    console.error('Unable to read saved cookie choices.', error)
+    return { choice: null, error: 'Cookie choices could not be restored. Please choose your preferences again.' }
   }
 }
 
 export function CookieConsent() {
-  const [choice, setChoice] = useState<ConsentChoice | null>(() => readChoice())
+  const [initialRead] = useState(readChoice)
+  const [choice, setChoice] = useState<ConsentChoice | null>(initialRead.choice)
+  const [storageError, setStorageError] = useState(initialRead.error)
   const [draft, setDraft] = useState(optionalDefaults)
   const [settingsOpen, setSettingsOpen] = useState(false)
   const dialog = useRef<HTMLDivElement>(null)
 
-  const openSettings = () => {
+  const openSettings = useCallback(() => {
     setDraft(choice ? { preferences: choice.preferences, analytics: choice.analytics, marketing: choice.marketing } : optionalDefaults)
+    setStorageError('')
     setSettingsOpen(true)
-  }
+  }, [choice])
 
   const save = (optional: typeof optionalDefaults) => {
     const next: ConsentChoice = { necessary: true, ...optional, updatedAt: new Date().toISOString() }
-    localStorage.setItem(storageKey, JSON.stringify(next))
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(next))
+    } catch (error) {
+      console.error('Unable to save cookie choices.', error)
+      setStorageError('Your browser blocked the save. Cookie choices have not been stored; check browser privacy settings and try again.')
+      return
+    }
+    setStorageError('')
     setChoice(next)
     setSettingsOpen(false)
     window.dispatchEvent(new CustomEvent('orbit:consent-changed', { detail: next }))
@@ -53,7 +78,18 @@ export function CookieConsent() {
   useEffect(() => {
     window.addEventListener('orbit:open-cookie-settings', openSettings)
     return () => window.removeEventListener('orbit:open-cookie-settings', openSettings)
-  })
+  }, [openSettings])
+
+  useEffect(() => {
+    const onStorage = (event: StorageEvent) => {
+      if (event.key !== storageKey) return
+      const result = readChoice()
+      setChoice(result.choice)
+      setStorageError(result.error)
+    }
+    window.addEventListener('storage', onStorage)
+    return () => window.removeEventListener('storage', onStorage)
+  }, [])
 
   useEffect(() => {
     if (!settingsOpen) return
@@ -81,7 +117,7 @@ export function CookieConsent() {
   return <>
     {!choice && !settingsOpen && <section className="cookie-banner" aria-label="Cookie consent" role="region">
       <div className="cookie-banner-icon" aria-hidden="true"><Cookie /></div>
-      <div className="cookie-banner-copy"><p className="eyebrow">PRIVACY / YOUR CONTROL</p><h2>Choose what enters your orbit.</h2><p>Essential storage keeps the site secure and remembers this choice. Optional categories stay off unless you allow them.</p><Link to="/Routes/cookies">Read the Cookie Policy</Link></div>
+      <div className="cookie-banner-copy"><p className="eyebrow">PRIVACY / YOUR CONTROL</p><h2>Choose what enters your orbit.</h2><p>Essential storage keeps the site secure and remembers this choice. Optional categories stay off unless you allow them.</p><Link to="/Routes/cookies">Read the Cookie Policy</Link>{storageError && <p className="cookie-storage-error" role="alert">{storageError}</p>}</div>
       <div className="cookie-banner-actions"><button className="button ghost" type="button" onClick={openSettings}><SlidersHorizontal size={16} />Settings</button><button className="button ghost" type="button" onClick={() => save(optionalDefaults)}>Reject optional</button><button className="button primary" type="button" onClick={() => save({ preferences: true, analytics: true, marketing: true })}>Accept all</button></div>
     </section>}
 
@@ -89,6 +125,7 @@ export function CookieConsent() {
       <div className="cookie-modal" ref={dialog} role="dialog" aria-modal="true" aria-labelledby="cookie-settings-title" aria-describedby="cookie-settings-description">
         <header><div><p className="eyebrow">ORBIT CONSENT CONTROL</p><h2 id="cookie-settings-title">Cookie settings</h2></div><button className="cookie-modal-close" type="button" onClick={() => setSettingsOpen(false)} aria-label="Close cookie settings"><X /></button></header>
         <p id="cookie-settings-description" className="cookie-settings-intro">Choose which optional browser technologies Orbit may use. Essential storage is always active because it supports security and remembers your decision.</p>
+        {storageError && <p className="cookie-storage-error" role="alert">{storageError}</p>}
         <div className="cookie-categories">
           <article><div><ShieldCheck aria-hidden="true" /><div><h3>Necessary</h3><p>Security, authentication, load balancing, and consent storage.</p></div></div><label><span>Always on</span><input type="checkbox" checked disabled aria-label="Necessary cookies always on" /></label></article>
           <article><div><SlidersHorizontal aria-hidden="true" /><div><h3>Preferences</h3><p>Remember optional interface and experience choices.</p></div></div><label><span>{draft.preferences ? 'On' : 'Off'}</span><input type="checkbox" checked={draft.preferences} onChange={event => setDraft(current => ({ ...current, preferences: event.target.checked }))} aria-label="Allow preference storage" /></label></article>

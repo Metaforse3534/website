@@ -15,10 +15,10 @@ export function OrbitReveal({ children, className, delay = 0, as = 'div' }: Reve
   const Component = motion.create(as)
   return <Component
     className={className}
-    initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-    whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-    viewport={{ once: true, amount: 0.12, margin: '0px 0px -6% 0px' }}
-    transition={{ duration: 0.48, delay, ease: easing }}
+    initial={reduceMotion ? false : { opacity: 1, y: 28, scale: 0.985 }}
+    whileInView={reduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
+    viewport={{ once: true, amount: 0.16, margin: '0px 0px -4% 0px' }}
+    transition={{ duration: 0.68, delay, ease: easing }}
   >{children}</Component>
 }
 
@@ -29,7 +29,7 @@ export function OrbitSectionReveal(props: RevealProps) {
 export function OrbitFade({ children, className, delay = 0, as = 'div' }: RevealProps) {
   const reduceMotion = useReducedMotion()
   const Component = motion.create(as)
-  return <Component className={className} initial={reduceMotion ? false : { opacity: 0 }} whileInView={reduceMotion ? undefined : { opacity: 1 }} viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.4, delay, ease: easing }}>{children}</Component>
+  return <Component className={className} initial={reduceMotion ? false : { opacity: 1, y: 20, scale: 0.99 }} whileInView={reduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }} viewport={{ once: true, amount: 0.14 }} transition={{ duration: 0.62, delay, ease: easing }}>{children}</Component>
 }
 
 export function OrbitTextReveal({ children, className, delay = 0, as = 'div' }: RevealProps) {
@@ -37,20 +37,20 @@ export function OrbitTextReveal({ children, className, delay = 0, as = 'div' }: 
   const Component = motion.create(as)
   return <Component
     className={className}
-    initial={reduceMotion ? false : { opacity: 0, y: 10, filter: 'blur(4px)' }}
-    animate={reduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
-    transition={{ duration: 0.42, delay, ease: easing }}
+    initial={reduceMotion ? false : { opacity: 1, y: 20, scale: 0.99 }}
+    animate={reduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
+    transition={{ duration: 0.72, delay, ease: easing }}
   >{children}</Component>
 }
 
 const staggerContainer: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.06 } },
+  visible: { transition: { staggerChildren: 0.085 } },
 }
 
 const staggerItem: Variants = {
-  hidden: { opacity: 0, y: 10 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.42, ease: easing } },
+  hidden: { opacity: 1, y: 22, scale: 0.985 },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.62, ease: easing } },
 }
 
 export function OrbitStagger({ children, className, as = 'div' }: Omit<RevealProps, 'delay'>) {
